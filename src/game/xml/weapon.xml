@@ -1,0 +1,842 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+	<!-- 武器 -->
+	<equip part="0" mode="random">
+		<id>101</id>
+		<name></name>
+		<des></des>
+		<kind></kind>
+		<type></type>
+		<rank></rank>
+	</equip>
+	
+
+
+
+	<weapon>
+		<name>侍从短剑</name>
+		<des>以黄铜铸造的轻型剑，剑刃锋利，吹毛断发.虽剑身较短但在近身战中足可一剑致命。</des>
+		<kind>刀</kind>
+		<type>all</type>
+		<rank>3</rank>
+	</weapon>
+	
+	<weapon>
+		<name>普通长剑<a>aa</a></name>
+		<des>这是一把最最普通的长剑，一般都是新手铁匠的试手之作</des>
+		<kind>剑</kind>
+		<type>all</type>
+		<rank>1</rank>
+	</weapon>
+	
+	<weapon>
+		<name>精炼长剑</name>
+		<des>精钢打造，十字剑结构，剑身细长，剑尖细如蜂刺，经受过不少战斗。</des>
+		<kind>剑</kind>
+		<type>all</type>
+		<rank>5</rank>
+	</weapon>
+	
+	<weapon>
+		<name>弯剑</name>
+		<des>此剑以生铁混以鍒石打造，亦柔亦刚，剑身蜿蜒如蛇，抖若青蛇吐信，舞若柳絮纷飞。可系于背，可悬于腰。</des>
+		<kind>剑</kind>
+		<type>all</type>
+		<rank>7</rank>
+	</weapon>
+	
+	<weapon>
+		<name>彩饰剑</name>
+		<des>铸剑师发现在锻造过程中往材料里添加不同的元素，铸成的刀剑呈不同颜色。为不少贵族公子所喜爱。</des>
+		<kind>剑</kind>
+		<type>all</type>
+		<rank>9</rank>
+	</weapon>
+	<weapon>
+		<name>精锻陨铁剑</name>
+		<des>集数十人之力取天降巨石，置炉中锻炼，铸成此剑。削铁如泥，劈金如土，其坚硬非普通武器可及万一。</des>
+		<kind>剑</kind>
+		<type>all</type>
+		<rank>11</rank>
+	</weapon>
+	
+	<weapon>
+		<name>重剑</name>
+		<des>"重剑无锋，大巧不工"，以赤铁矿铸成的这把重剑，其色也不艳，其剑也不锋。其锋在战场上磨砺，其色以鲜血来渲染。</des>
+		<kind>剑</kind>
+		<type>all</type>
+		<rank>13</rank>
+	</weapon>
+	
+	<weapon>
+		<name>锻玉剑</name>
+		<des>此剑及玉的光泽和钢的硬度于一身，是把极其珍奇的宝剑，在外流失已久。</des>
+		<kind>剑</kind>
+		<type>all</type>
+		<rank>15</rank>
+	</weapon>
+	
+	<weapon>
+		<name>闪电剑</name>
+		<des>以特殊技法在天雷下术锻造出来的宝剑。剑长三尺四寸，剑光凛利，使用时电闪雷鸣可发射出强大的雷电力量。</des>
+		<kind>剑</kind>
+		<type>all</type>
+		<rank>17</rank>
+	</weapon>
+	
+	<weapon>
+		<name>血刺</name>
+		<des>一把邪气很重的锥形剑，见血封喉，剑尖有血光溢出。传说取虎妖的利齿打造。</des>
+		<kind>剑</kind>
+		<type>all</type>
+		<rank>19</rank>
+	</weapon>
+	
+	<weapon>
+		<name>红诛剑</name>
+		<des>某皇室铸剑师打造，剑长3尺7寸。剑身上部裹有一层黄金并镶嵌2颗真红宝石价值连城，被世人认为华而不实。</des>
+		<kind>剑</kind>
+		<type>all</type>
+		<rank>21</rank>
+	</weapon>
+	
+	<weapon>
+		<name>冥咒剑</name>
+		<des>多年前的一场灭门之战中，绝望的邪派长老临死前在佩剑上留下血咒，从此该剑在击杀敌人时会激发出巨大的力量。</des>
+		<kind>剑</kind>
+		<type>all</type>
+		<rank>23</rank>
+	</weapon>
+	
+	<weapon>
+		<name>赤钢阔剑</name>
+		<des>此剑由赤钢打造，剑身长而宽，厚而实，挥舞时虎虎有声。不知贼王从而盗来，非天生神力恐怕难以挥动此剑。</des>
+		<kind>剑</kind>
+		<type>all</type>
+		<rank>25</rank>
+	</weapon>
+	
+	<weapon>
+		<name>赤炎剑</name>
+		<des>采自燃烧平原上的火炎兽的精华锻造而成。剑身如火，集聚了强大的热量，一丈之外，热浪袭人。剑过之处有焦痕。</des>
+		<kind>剑</kind>
+		<type>all</type>
+		<rank>27</rank>
+	</weapon>
+	
+	<weapon>
+		<name>寒月</name>
+		<des>相传在月圆之夜，取月山之石并以月亮井之水淬火，由此锻造的剑寒光四射，犹如明月。此剑为门派圣剑，拥有至高无上的权利。</des>
+		<kind>剑</kind>
+		<type>all</type>
+		<rank>29</rank>
+	</weapon>
+	
+	<weapon>
+		<name>绯红魔言</name>
+		<des>剑柄镶嵌的猩红圣石具有毁天灭地之力，当年三魔者之一的玄冥生持此剑与正派高手一战，此剑大显魔威。可惜现在威力不足当年十一</des>
+		<kind>剑</kind>
+		<type>all</type>
+		<rank>29</rank>
+	</weapon>
+	
+	<weapon>
+		<name>血咒剑</name>
+		<des>一把来自地狱的魔剑。在血海里静置千年而魔化，以血为食，因此通体血红，剑身上有血海之浪。</des>
+		<kind>剑</kind>
+		<type>all</type>
+		<rank>29</rank>
+	</weapon>
+	
+	<weapon>
+		<name>冥河剑</name>
+		<des>相传在冥河深渊有把宝剑，持有者可拥有统神世界的力量。千百年过去了，数不清的野心家一去不返，于是人们开始怀疑它的存在。</des>
+		<kind>剑</kind>
+		<type>all</type>
+		<rank>33</rank>
+	</weapon>
+	
+	<weapon>
+		<name>圣影剑</name>
+		<des>三圣剑之一，当年正道第一人为了庇护人类置此剑于庇护山上以镇妖邪，千百年来，取日月精华，凝天人之力。</des>
+		<kind>剑</kind>
+		<type>all</type>
+		<rank>35</rank>
+	</weapon>
+	
+	<weapon>
+		<name>月神之光</name>
+		<des>传说，为了守护世界的安宁，月神将这把剑赐给人类的勇士。它的剑锋如同夜色一样温柔，却像凄清的月光一样锋利无情。</des>
+		<kind>剑</kind>
+		<type>all</type>
+		<rank>37</rank>
+	</weapon>
+	
+	<weapon>
+		<name>魔吟之剑</name>
+		<des>传说上古丰饶之神使用的驯鹿角被火焰巨人焚毁后便与肉身一起熔炼成神剑，却被冥界之祖诅咒魔化，变为了一把魔剑</des>
+		<kind>剑</kind>
+		<type>all</type>
+		<rank>39</rank>
+	</weapon>
+	<weapon>
+		<name>燃血真言</name>
+		<des>远古大能所铸造的双锋大剑，剑身流火萦绕如同血光，挥舞时划破空气，隐隐发出真言吟诵之声。</des>
+		<kind>剑</kind>
+		<type>all</type>
+		<rank>39</rank>
+	</weapon>
+	
+	<weapon>
+		<name>弯刃刀</name>
+		<des>黄铜铸造的单刀，刀身厚重，刀刃处的倒刺状如尖牙般结构使得此刀极具杀伤力，能轻易的撕开你的血肉。</des>
+		<kind>刀</kind>
+		<type>all</type>
+		<rank>3</rank>
+	</weapon>
+	<weapon>
+		<name>贯心刀</name>
+		<des>刀曰贯心，乃一刀致命之意，刀走弧形，刀尖成一倒钩，见者无不心寒。此刀铸成之后，因其外形过于阴险而被正派人士所不齿。</des>
+		<kind>刀</kind>
+		<type>all</type>
+		<rank>5</rank>
+	</weapon>
+	<weapon>
+		<name>长战刀</name>
+		<des>精钢混着一点玄金石打造的战刀，外形普通但坚久耐用。乃先天后大多数武林人士的选择。</des>
+		<kind>刀</kind>
+		<type>all</type>
+		<rank>7</rank>
+	</weapon>
+	<weapon>
+		<name>细刃刀</name>
+		<des>刀身细长而轻盈，锋利异常，长四尺7寸，重20斤。因其灵巧的特性而深受女侠们的喜爱。</des>
+		<kind>刀</kind>
+		<type>all</type>
+		<rank>9</rank>
+	</weapon>
+	
+	<weapon>
+		<name>冷刀</name>
+		<des>这把冷青色单刀乃提取千只角蜥的精华凝炼而成，刀身异常怪异，隐现青色蜥蜴纹，刀柄处五颗突刺含剧毒。此刀邪气甚重。</des>
+		<kind>刀</kind>
+		<type>all</type>
+		<rank>11</rank>
+	</weapon>
+	<weapon>
+		<name>紫心刀</name>
+		<des>此刀紫气四溢，光彩耀人，造型更是精美绝伦，刀柄上镶嵌的紫水晶更显高雅名贵，是身份显赫的富贵小姐梦寐以求的宝刀。</des>
+		<kind>刀</kind>
+		<type>all</type>
+		<rank>13</rank>
+	</weapon>
+	
+	<weapon>
+		<name>海盗弯刀</name>
+		<des>盘距西部的海盗无恶不作。其中首领有一把宝刀，军队数次围剿都没有成功。后来这群海盗神秘地消失了，这把刀却留了下来。</des>
+		<kind>刀</kind>
+		<type>all</type>
+		<rank>15</rank>
+	</weapon>
+	<weapon>
+		<name>斩首者</name>
+		<des>王国的刽子手使用的斩首刀，因斩杀千人而极具戾气，为部分魔教人士喜爱</des>
+		<kind>刀</kind>
+		<type>all</type>
+		<rank>17</rank>
+	</weapon>
+	
+	<weapon>
+		<name>竞技血刃</name>
+		<des>血脉石矿精炼而成的双刃刀，通体血红。因此矿极其珍惜且难以提炼，故此刀为大陆珍品。</des>
+		<kind>刀</kind>
+		<type>all</type>
+		<rank>19</rank>
+	</weapon>
+	<weapon>
+		<name>明光之刃</name>
+		<des>传说用明光湖的水来淬火的刀会放出耀眼刺目的白光。这把以明光湖水淬就的明光之刃光亮无比，持刀夜行，亮如白昼。</des>
+		<kind>刀</kind>
+		<type>all</type>
+		<rank>21</rank>
+	</weapon>
+	
+	<weapon>
+		<name>食魂者</name>
+		<des>隐雾森林里树妖的精魂提炼而成，刀背上有一层树皮状组织无比坚硬。可以吸食被杀者的灵魂。</des>
+		<kind>刀</kind>
+		<type>all</type>
+		<rank>23</rank>
+	</weapon>
+	
+	<weapon>
+		<name>魔翼刃</name>
+		<des>魔主独狐残使用的宽头大刀，大陆三大魔刀之一，吸收了黑暗力量而威力无比。刀身上刻一面貌狰狞的骷髅头像，使人未战而心悚。</des>
+		<kind>刀</kind>
+		<type>all</type>
+		<rank>25</rank>
+	</weapon>
+	
+	<weapon>
+		<name>龙牙</name>
+		<des>刀头平整，刀锋凌厉。刀走弧形，上覆九颗龙鳞。以九颗蛟龙的牙锻造而成，无坚不摧。</des>
+		<kind>刀</kind>
+		<type>all</type>
+		<rank>27</rank>
+	</weapon>
+	
+	
+	<weapon>
+		<name>炼欲碎</name>
+		<des>由雪狼冰湖里的千年寒晶打造。千年结此一晶，无影无形，见光则化，遇热则融。刀身泛蓝光，十步之内，寒气逼人。</des>
+		<kind>刀</kind>
+		<type>all</type>
+		<rank>29</rank>
+	</weapon>
+	
+	<weapon>
+		<name>龙灵骨锋</name>
+		<des>上古邪龙在激战后力竭身亡，沉埋地心多年，在岁月磨蚀下化作骨刀。这柄骨刀古朴暗哑，只有在战斗时才会显露出邪龙的狂性。</des>
+		<kind>刀</kind>
+		<type>all</type>
+		<rank>31</rank>
+	</weapon>
+	
+	<weapon>
+		<name>冰雪律动</name>
+		<des>一块百年难寻的寒铁，由铸剑大师打造。通体透着凛冽寒气，挥舞时卷起霜雪，令敌人身体僵硬，腾挪无力。</des>
+		<kind>刀</kind>
+		<type>all</type>
+		<rank>33</rank>
+	</weapon>
+	
+	
+	<weapon>
+		<name>流金烙印</name>
+		<des>取中部的神秘金属熔炼百遍后成刀，刀芒撼人心神。败在此刀下的人将终生难忘那抹金色流光，那是刻骨铭心的震慑。</des>
+		<kind>刀</kind>
+		<type>all</type>
+		<rank>35</rank>
+	</weapon>
+	
+	
+	<weapon>
+		<name>幽皇吐息</name>
+		<des>风谷中的原矿石，长年受风刀压迫蚀刻，被锻炼得坚如精铁，锋愈刀剑。打造成刀后更是风威纵横，不动自威。</des>
+		<kind>刀</kind>
+		<type>all</type>
+		<rank>37</rank>
+	</weapon>
+	
+	<weapon>
+		<name>寂灭黎明</name>
+		<des>魔道巨匠采集极地阴寒之物铸成。刀体吸收了黎明前最纯正的黑暗力量，威力无比。刀背绽放出幽蓝的光芒，使人未战而心悚。</des>
+		<kind>刀</kind>
+		<type>all</type>
+		<rank>39</rank>
+	</weapon>
+	
+	
+	<weapon>
+		<name>食魂者</name>
+		
+		<des>隐雾森林里树妖的精魂提炼而成，刀背上有一层树皮状组织无比坚硬。可以吸食被杀者的灵魂。</des>
+		
+		<kind>剑</kind>
+		<type>all</type>
+		<rank></rank>
+	</weapon>
+	
+	
+	
+	<weapon>
+		<name>食魂者</name>
+		
+		<des>隐雾森林里树妖的精魂提炼而成，刀背上有一层树皮状组织无比坚硬。可以吸食被杀者的灵魂。</des>
+		
+		<kind>剑</kind>
+		<type>all</type>
+		<rank></rank>
+	</weapon>
+	
+	<weapon>
+		<name>食魂者</name>
+		
+		<des>隐雾森林里树妖的精魂提炼而成，刀背上有一层树皮状组织无比坚硬。可以吸食被杀者的灵魂。</des>
+		
+		<kind>剑</kind>
+		<type>all</type>
+		<rank></rank>
+	</weapon>
+	
+	
+	<weapon>
+		<name>食魂者</name>
+		
+		<des>隐雾森林里树妖的精魂提炼而成，刀背上有一层树皮状组织无比坚硬。可以吸食被杀者的灵魂。</des>
+		
+		<kind>剑</kind>
+		<type>all</type>
+		<rank></rank>
+	</weapon>
+	
+	
+	<weapon>
+		<name>食魂者</name>
+		
+		<des>隐雾森林里树妖的精魂提炼而成，刀背上有一层树皮状组织无比坚硬。可以吸食被杀者的灵魂。</des>
+		
+		<kind>剑</kind>
+		<type>all</type>
+		<rank></rank>
+	</weapon>
+	
+	<weapon>
+		<name>食魂者</name>
+		
+		<des>隐雾森林里树妖的精魂提炼而成，刀背上有一层树皮状组织无比坚硬。可以吸食被杀者的灵魂。</des>
+		
+		<kind>剑</kind>
+		<type>all</type>
+		<rank></rank>
+	</weapon>
+	
+	
+	<weapon>
+		<name>食魂者</name>
+		
+		<des>隐雾森林里树妖的精魂提炼而成，刀背上有一层树皮状组织无比坚硬。可以吸食被杀者的灵魂。</des>
+		
+		<kind>剑</kind>
+		<type>all</type>
+		<rank></rank>
+	</weapon>
+	
+	
+	
+	<weapon>
+		<name>食魂者</name>
+		
+		<des>隐雾森林里树妖的精魂提炼而成，刀背上有一层树皮状组织无比坚硬。可以吸食被杀者的灵魂。</des>
+		
+		<kind>剑</kind>
+		<type>all</type>
+		<rank></rank>
+	</weapon>
+	
+	<weapon>
+		<name>食魂者</name>
+		
+		<des>隐雾森林里树妖的精魂提炼而成，刀背上有一层树皮状组织无比坚硬。可以吸食被杀者的灵魂。</des>
+		
+		<kind>剑</kind>
+		<type>all</type>
+		<rank></rank>
+	</weapon>
+	
+	
+	<weapon>
+		<name>食魂者</name>
+		
+		<des>隐雾森林里树妖的精魂提炼而成，刀背上有一层树皮状组织无比坚硬。可以吸食被杀者的灵魂。</des>
+		
+		<kind>剑</kind>
+		<type>all</type>
+		<rank></rank>
+	</weapon>
+	
+	
+	
+	<weapon>
+		<name>食魂者</name>
+		
+		<des>隐雾森林里树妖的精魂提炼而成，刀背上有一层树皮状组织无比坚硬。可以吸食被杀者的灵魂。</des>
+		
+		<kind>剑</kind>
+		<type>all</type>
+		<rank></rank>
+	</weapon>
+	
+	<weapon>
+		<name>食魂者</name>
+		
+		<des>隐雾森林里树妖的精魂提炼而成，刀背上有一层树皮状组织无比坚硬。可以吸食被杀者的灵魂。</des>
+		
+		<kind>剑</kind>
+		<type>all</type>
+		<rank></rank>
+	</weapon>
+	
+	
+	<weapon>
+		<name>食魂者</name>
+		
+		<des>隐雾森林里树妖的精魂提炼而成，刀背上有一层树皮状组织无比坚硬。可以吸食被杀者的灵魂。</des>
+		
+		<kind>剑</kind>
+		<type>all</type>
+		<rank></rank>
+	</weapon>
+	
+	
+	<weapon>
+		<name>食魂者</name>
+		
+		<des>隐雾森林里树妖的精魂提炼而成，刀背上有一层树皮状组织无比坚硬。可以吸食被杀者的灵魂。</des>
+		
+		<kind>剑</kind>
+		<type>all</type>
+		<rank></rank>
+	</weapon>
+	
+	<weapon>
+		<name>食魂者</name>
+		
+		<des>隐雾森林里树妖的精魂提炼而成，刀背上有一层树皮状组织无比坚硬。可以吸食被杀者的灵魂。</des>
+		
+		<kind>剑</kind>
+		<type>all</type>
+		<rank></rank>
+	</weapon>
+	
+	
+	<weapon>
+		<name>食魂者</name>
+		
+		<des>隐雾森林里树妖的精魂提炼而成，刀背上有一层树皮状组织无比坚硬。可以吸食被杀者的灵魂。</des>
+		
+		<kind>剑</kind>
+		<type>all</type>
+		<rank></rank>
+	</weapon>
+	
+	
+	<weapon>
+		<name>食魂者</name>
+		
+		<des>隐雾森林里树妖的精魂提炼而成，刀背上有一层树皮状组织无比坚硬。可以吸食被杀者的灵魂。</des>
+		
+		<kind>剑</kind>
+		<type>all</type>
+		<rank></rank>
+	</weapon>
+	
+	<weapon>
+		<name>食魂者</name>
+		
+		<des>隐雾森林里树妖的精魂提炼而成，刀背上有一层树皮状组织无比坚硬。可以吸食被杀者的灵魂。</des>
+		
+		<kind>剑</kind>
+		<type>all</type>
+		<rank></rank>
+	</weapon>
+	
+	
+	<weapon>
+		<name>食魂者</name>
+		
+		<des>隐雾森林里树妖的精魂提炼而成，刀背上有一层树皮状组织无比坚硬。可以吸食被杀者的灵魂。</des>
+		
+		<kind>剑</kind>
+		<type>all</type>
+		<rank></rank>
+	</weapon>
+	
+	
+	<weapon>
+		<name>食魂者</name>
+		
+		<des>隐雾森林里树妖的精魂提炼而成，刀背上有一层树皮状组织无比坚硬。可以吸食被杀者的灵魂。</des>
+		
+		<kind>剑</kind>
+		<type>all</type>
+		<rank></rank>
+	</weapon>
+	
+	<weapon>
+		<name>食魂者</name>
+		
+		<des>隐雾森林里树妖的精魂提炼而成，刀背上有一层树皮状组织无比坚硬。可以吸食被杀者的灵魂。</des>
+		
+		<kind>剑</kind>
+		<type>all</type>
+		<rank></rank>
+	</weapon>
+	
+	
+	<weapon>
+		<name>食魂者</name>
+		
+		<des>隐雾森林里树妖的精魂提炼而成，刀背上有一层树皮状组织无比坚硬。可以吸食被杀者的灵魂。</des>
+		
+		<kind>剑</kind>
+		<type>all</type>
+		<rank></rank>
+	</weapon>
+	
+	
+	<weapon>
+		<name>食魂者</name>
+		
+		<des>隐雾森林里树妖的精魂提炼而成，刀背上有一层树皮状组织无比坚硬。可以吸食被杀者的灵魂。</des>
+		
+		<kind>剑</kind>
+		<type>all</type>
+		<rank></rank>
+	</weapon>
+	
+	<weapon>
+		<name>食魂者</name>
+		
+		<des>隐雾森林里树妖的精魂提炼而成，刀背上有一层树皮状组织无比坚硬。可以吸食被杀者的灵魂。</des>
+		
+		<kind>剑</kind>
+		<type>all</type>
+		<rank></rank>
+	</weapon>
+	
+	
+	<weapon>
+		<name>食魂者</name>
+		
+		<des>隐雾森林里树妖的精魂提炼而成，刀背上有一层树皮状组织无比坚硬。可以吸食被杀者的灵魂。</des>
+		
+		<kind>剑</kind>
+		<type>all</type>
+		<rank></rank>
+	</weapon>
+	
+	
+	<weapon>
+		<name>食魂者</name>
+		
+		<des>隐雾森林里树妖的精魂提炼而成，刀背上有一层树皮状组织无比坚硬。可以吸食被杀者的灵魂。</des>
+		
+		<kind>剑</kind>
+		<type>all</type>
+		<rank></rank>
+	</weapon>
+	
+	<weapon>
+		<name>食魂者</name>
+		
+		<des>隐雾森林里树妖的精魂提炼而成，刀背上有一层树皮状组织无比坚硬。可以吸食被杀者的灵魂。</des>
+		
+		<kind>剑</kind>
+		<type>all</type>
+		<rank></rank>
+	</weapon>
+	
+	
+	<weapon>
+		<name>食魂者</name>
+		
+		<des>隐雾森林里树妖的精魂提炼而成，刀背上有一层树皮状组织无比坚硬。可以吸食被杀者的灵魂。</des>
+		
+		<kind>剑</kind>
+		<type>all</type>
+		<rank></rank>
+	</weapon>
+	
+	
+	<weapon>
+		<name>食魂者</name>
+		
+		<des>隐雾森林里树妖的精魂提炼而成，刀背上有一层树皮状组织无比坚硬。可以吸食被杀者的灵魂。</des>
+		
+		<kind>剑</kind>
+		<type>all</type>
+		<rank></rank>
+	</weapon>
+	
+	<weapon>
+		<name>食魂者</name>
+		
+		<des>隐雾森林里树妖的精魂提炼而成，刀背上有一层树皮状组织无比坚硬。可以吸食被杀者的灵魂。</des>
+		
+		<kind>剑</kind>
+		<type>all</type>
+		<rank></rank>
+	</weapon>
+	
+	
+	<weapon>
+		<name>食魂者</name>
+		
+		<des>隐雾森林里树妖的精魂提炼而成，刀背上有一层树皮状组织无比坚硬。可以吸食被杀者的灵魂。</des>
+		
+		<kind>剑</kind>
+		<type>all</type>
+		<rank></rank>
+	</weapon>
+	
+	
+	<weapon>
+		<name>食魂者</name>
+		
+		<des>隐雾森林里树妖的精魂提炼而成，刀背上有一层树皮状组织无比坚硬。可以吸食被杀者的灵魂。</des>
+		
+		<kind>剑</kind>
+		<type>all</type>
+		<rank></rank>
+	</weapon>
+	
+	<weapon>
+		<name>食魂者</name>
+		
+		<des>隐雾森林里树妖的精魂提炼而成，刀背上有一层树皮状组织无比坚硬。可以吸食被杀者的灵魂。</des>
+		
+		<kind>剑</kind>
+		<type>all</type>
+		<rank></rank>
+	</weapon>
+	
+	
+	<weapon>
+		<name>食魂者</name>
+		
+		<des>隐雾森林里树妖的精魂提炼而成，刀背上有一层树皮状组织无比坚硬。可以吸食被杀者的灵魂。</des>
+		
+		<kind>剑</kind>
+		<type>all</type>
+		<rank></rank>
+	</weapon>
+	
+	
+	<weapon>
+		<name>食魂者</name>
+		
+		<des>隐雾森林里树妖的精魂提炼而成，刀背上有一层树皮状组织无比坚硬。可以吸食被杀者的灵魂。</des>
+		
+		<kind>剑</kind>
+		<type>all</type>
+		<rank></rank>
+	</weapon>
+	
+	<weapon>
+		<name>食魂者</name>
+		
+		<des>隐雾森林里树妖的精魂提炼而成，刀背上有一层树皮状组织无比坚硬。可以吸食被杀者的灵魂。</des>
+		
+		<kind>剑</kind>
+		<type>all</type>
+		<rank></rank>
+	</weapon>
+	
+	
+	<weapon>
+		<name>食魂者</name>
+		
+		<des>隐雾森林里树妖的精魂提炼而成，刀背上有一层树皮状组织无比坚硬。可以吸食被杀者的灵魂。</des>
+		
+		<kind>剑</kind>
+		<type>all</type>
+		<rank></rank>
+	</weapon>
+	
+	
+	<weapon>
+		<name>食魂者</name>
+		
+		<des>隐雾森林里树妖的精魂提炼而成，刀背上有一层树皮状组织无比坚硬。可以吸食被杀者的灵魂。</des>
+		
+		<kind>剑</kind>
+		<type>all</type>
+		<rank></rank>
+	</weapon>
+	
+	<weapon>
+		<name>食魂者</name>
+		
+		<des>隐雾森林里树妖的精魂提炼而成，刀背上有一层树皮状组织无比坚硬。可以吸食被杀者的灵魂。</des>
+		
+		<kind>剑</kind>
+		<type>all</type>
+		<rank></rank>
+	</weapon>
+	
+	
+	<weapon>
+		<name>食魂者</name>
+		
+		<des>隐雾森林里树妖的精魂提炼而成，刀背上有一层树皮状组织无比坚硬。可以吸食被杀者的灵魂。</des>
+		
+		<kind>剑</kind>
+		<type>all</type>
+		<rank></rank>
+	</weapon>
+	
+	
+	<weapon>
+		<name>食魂者</name>
+		
+		<des>隐雾森林里树妖的精魂提炼而成，刀背上有一层树皮状组织无比坚硬。可以吸食被杀者的灵魂。</des>
+		
+		<kind>剑</kind>
+		<type>all</type>
+		<rank></rank>
+	</weapon>
+	
+	<weapon>
+		<name>食魂者</name>
+		
+		<des>隐雾森林里树妖的精魂提炼而成，刀背上有一层树皮状组织无比坚硬。可以吸食被杀者的灵魂。</des>
+		
+		<kind>剑</kind>
+		<type>all</type>
+		<rank></rank>
+	</weapon>
+	
+	
+	<weapon>
+		<name>食魂者</name>
+		
+		<des>隐雾森林里树妖的精魂提炼而成，刀背上有一层树皮状组织无比坚硬。可以吸食被杀者的灵魂。</des>
+		
+		<kind>剑</kind>
+		<type>all</type>
+		<rank></rank>
+	</weapon>
+	
+	
+	<weapon>
+		<name>食魂者</name>
+		
+		<des>隐雾森林里树妖的精魂提炼而成，刀背上有一层树皮状组织无比坚硬。可以吸食被杀者的灵魂。</des>
+		
+		<kind>剑</kind>
+		<type>all</type>
+		<rank></rank>
+	</weapon>
+	
+	<weapon>
+		<name>食魂者</name>
+		
+		<des>隐雾森林里树妖的精魂提炼而成，刀背上有一层树皮状组织无比坚硬。可以吸食被杀者的灵魂。</des>
+		
+		<kind>剑</kind>
+		<type>all</type>
+		<rank></rank>
+	</weapon>
+	
+	
+	<weapon>
+		<name>食魂者</name>
+		<des>隐雾森林里树妖的精魂提炼而成，刀背上有一层树皮状组织无比坚硬。可以吸食被杀者的灵魂。</des>
+		
+		<kind>剑</kind>
+		<type>all</type>
+		<rank></rank>
+	</weapon>
+	
+	<!-- 固定武器 -->
+	<weapon>
+		<id>1001</id>
+		<name>马三炮的枪</name>
+		<des>这是一把马三炮缴获的枪！</des>
+		<kind>枪</kind>
+		<type>2</type>
+		<rank>3</rank>
+	</weapon>
+	
+</root>

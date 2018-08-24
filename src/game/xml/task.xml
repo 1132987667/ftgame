@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+	<!-- 
+	0 未触发
+	1 已触发
+	2 已接受
+	3 已完成
+	4 任务结束|已放弃 
+	-->
+	<task id="101">
+		<taskName>苏醒</taskName>
+		<curState>1</curState>
+		<npcId></npcId>小花
+		<taskDes></taskDes>
+		<task1>
+			爹，爹，你快来看，他醒啦！|
+			爹爹好像很忙，大哥哥你出去找他吧，等你伤好了，就可以陪我玩了
+		</task1>
+		<task2></task2>
+		<task3></task3>
+		<task4>0,1,5</task4>
+		<startCond>true</startCond>
+		<endCond>true</endCond>
+	</task>
+	<task id="102">
+		<taskName>易大叔的女儿</taskName>
+		<curState>0</curState>
+		<npcId>1004</npcId>
+		<taskDes>现在世道很乱，易大叔想让女儿女婿到家里来避避风头。你要去xxx村找到易大叔的女儿</taskDes>
+		<task1>
+			现在你的身体壮实了不少，那帮我个忙，去xx村找我女儿把我的想法告诉他们。
+		</task1>
+		<task2>
+			答应了那么你去把，早去早回！
+		</task2>
+		<task3>
+			什么，你说小雅她..，大叔仿佛一下了老了很多，他只低着头怒吼，你默默的走开了
+		</task3>
+		<startCond>true</startCond>
+		<acceptCond></acceptCond>
+		<endCond>true</endCond>
+	</task>
+	
+	
+	
+	
+	<ask id="101">
+		<title>这是哪</title>
+		<askMsg>大叔，请问这里是什么敌方?</askMsg>
+		<answerMsg>这里是xxx国的xxx的xxx山下，我姓易，你就叫我易大叔把</answerMsg>
+	</ask>
+	<ask id="102">
+		<title>这是什么</title>
+		<askMsg>刚才在屋子里躺在一张虎皮上，虎皮长达3米，你内心震惊不已，迫不及待的问起大叔。</askMsg>
+		<answerMsg>看你的瘦弱的样子，没有听过也正常，既然你问了，我就告诉你，在我们这些凡人上面，其实还有更强大的
+		人，也就是传说中的仙人，既然有仙人，那么也会存在一些强大的灵兽，那只是有粗浅法力的老虎。</answerMsg>
+	</ask>
+	<ask id="103">
+		<title>先生教我</title>
+		<askMsg>先生，请教我</askMsg>
+		<answerMsg>先你妹啊，小说看多了把，我只是个普通的猎户，虽然长的帅点，不过，教你一点粗浅的功夫还是可以的，呐，这是一本最基本的吐纳法，你练着...</answerMsg>
+	</ask>
+</root>

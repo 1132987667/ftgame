@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+	<!-- 武器  -->
+	<equip name="weapon">
+		<attr>
+			<type>1</type>
+			<attrType>twoAdd</attrType>
+			<attrName>attack</attrName>
+			<value>0.8</value>
+		</attr>
+		<attr>
+			<type>2</type>
+			<attrType>special</attrType>
+			<attrName>attack|money|exp|suck</attrName>
+			<value>0.8</value>
+		</attr>
+		<attr>
+			<type>0</type>
+			<attrType>oneAdd</attrType>
+			<attrName>li|min|lucky</attrName>
+			<value>0.8</value>
+		</attr>
+		<attr>
+			<type>1</type>
+			<attrType>twoAdd</attrType>
+			<attrName>attack|baoji</attrName>
+			<value>0.5</value>
+		</attr>
+		<attr>
+			<type>4</type>
+			<attrType>skillAdd</attrType>
+			<attrName></attrName>
+			<value>0.1</value>
+		</attr>
+	</equip>
+	
+	<!--  -->
+	<equip name="helmet">
+		<attr>
+			<type>1</type>
+			<attrType>twoAdd</attrType>
+			<attrName>hp|mp</attrName>
+			<value>0.4</value>
+		</attr>
+		<attr>
+			<type>2</type>		
+			<attrType>special</attrType>
+			<attrName>hp|defense|money|exp</attrName>
+			<value>0.4</value>
+		</attr>
+		<attr>			
+			<type>0</type>
+			<attrType>oneAdd</attrType>
+			<attrName>tili|lucky|jingli</attrName>
+			<value>0.4</value>
+		</attr>
+		<attr>			
+			<type>1</type>
+			<attrType>twoAdd</attrType>
+			<attrName>hp|defense|mp</attrName>
+			<value>0.4</value>
+		</attr>
+		<attr>			
+			<type>3</type>
+			<attrType>petAdd</attrType>
+			<attrName>attack|defense|hp|all</attrName>
+			<value>0.5</value>
+		</attr>
+	</equip>
+	
+	<!-- 项链 -->
+	<equip name="necklace">
+		<attr>			
+			<type>1</type>
+			<attrType>twoAdd</attrType>
+			<attrName>mp|defense</attrName>
+			<value>0.3</value>
+		</attr>
+		<attr>			
+			<type>2</type>
+			<attrType>special</attrType>
+			<attrName>hp|mp|attack|baolv|suck</attrName>
+			<value>0.3</value>
+		</attr>
+		<attr>			
+			<type>0</type>
+			<attrType>oneAdd</attrType>
+			<attrName>li|min|lucky</attrName>
+			<value>0.3</value>
+		</attr>
+		<attr>			
+			<type>1</type>
+			<attrType>twoAdd</attrType>
+			<attrName>baoji</attrName>
+			<value>0.3</value>
+		</attr>
+		<attr>			
+			<type>3</type>
+			<attrType>petAdd</attrType>
+			<attrName>all|attack|defense|all</attrName>
+			<value>0.5</value>
+		</attr>
+	</equip>
+	
+	<!-- 上衣 -->
+	<equip name="coat">
+		<attr>			
+			<type>1</type>
+			<attrType>twoAdd</attrType>
+			<attrName>hp|defense</attrName>
+			<value>0.8</value>
+		</attr>
+		<attr>			
+			<type>2</type>
+			<attrType>special</attrType>
+			<attrName>hp|defense|exp</attrName>
+			<value>0.4</value>
+		</attr>
+		<attr>			
+			<type>0</type>
+			<attrType>oneAdd</attrType>
+			<attrName>tili|min|lucky</attrName>
+			<value>0.4</value>
+		</attr>
+		<attr>			
+			<type>1</type>
+			<attrType>twoAdd</attrType>
+			<attrName>hp|defense</attrName>
+			<value>0.4</value>
+		</attr>
+		<attr>			
+			<type>2</type>
+			<attrType>special</attrType>
+			<attrName>exp|money|baolv|hp|defense</attrName>
+			<value>0.4</value>
+		</attr>
+	</equip>
+	
+	<!-- 戒指 -->
+	<equip name="ring">
+		<attr>			
+			<type>1</type>
+			<attrType>twoAdd</attrType>
+			<attrName>attack|defense</attrName>
+			<value>0.3</value>
+		</attr>
+		<attr>			
+			<type>2</type>
+			<attrType>special</attrType>
+			<attrName>exp|money|suck</attrName>
+			<value>0.3</value>
+		</attr>
+		<attr>			
+			<type>0</type>
+			<attrType>oneAdd</attrType>
+			<attrName>li|min|lucky</attrName>
+			<value>0.3</value>
+		</attr>
+		<attr>			
+			<type>1</type>
+			<attrType>twoAdd</attrType>
+			<attrName>attack|defense|baoji</attrName>
+			<value>0.3</value>
+		</attr>
+		<attr>			
+			<type>2</type>
+			<attrType>special</attrType>
+			<attrName>exp|money|baolv|attack|suck</attrName>
+			<value>0.3</value>
+		</attr>
+	</equip>
+	
+	<!-- 腰带 -->
+	<equip name="waistband">
+		<attr>			
+			<type>1</type>
+			<attrType>twoAdd</attrType>
+			<attrName>hp|defense|attack</attrName>
+			<value>0.3</value>
+		</attr>
+		<attr>			
+			<type>2</type>
+			<attrType>special</attrType>
+			<attrName>hp|defense|exp|money</attrName>
+			<value>0.2</value>
+		</attr>
+		<attr>			
+			<type>0</type>
+			<attrType>oneAdd</attrType>
+			<attrName>tili|min|jingli</attrName>
+			<value>0.2</value>
+		</attr>
+		<attr>			
+			<type>1</type>
+			<attrType>twoAdd</attrType>
+			<attrName>hp|defense</attrName>
+			<value>0.2</value>
+		</attr>
+		<attr>			
+			<type>2</type>
+			<attrType>special</attrType>
+			<attrName>exp|money</attrName>
+			<value>0.3</value>
+		</attr>
+	</equip>
+	
+	<!-- 裤子 -->
+	<equip name="trousers">
+		<attr>			
+			<type>1</type>
+			<attrType>twoAdd</attrType>
+			<attrName>hp|defense|mp</attrName>
+			<value>0.5</value>
+		</attr>
+		<attr>			
+			<type>2</type>
+			<attrType>special</attrType>
+			<attrName>hp|defense|mp|exp</attrName>
+			<value>0.5</value>
+		</attr>
+		<attr>			
+			<type>0</type>
+			<attrType>oneAdd</attrType>
+			<attrName>tili|min|lucky</attrName>
+			<value>0.5</value>
+		</attr>
+		<attr>			
+			<type>1</type>
+			<attrType>twoAdd</attrType>
+			<attrName>hp|defense</attrName>
+			<value>0.5</value>
+		</attr>
+		<attr>			
+			<type>2</type>
+			<attrType>special</attrType>
+			<attrName>exp|money|baolv|hp|defense</attrName>
+			<value>0.4</value>
+		</attr>
+	</equip>
+	
+	<!-- 鞋子 -->
+	<equip name="shoes">
+		<attr>			
+			<type>1</type>
+			<attrType>twoAdd</attrType>
+			<attrName>defense</attrName>
+			<value>0.5</value>
+		</attr>
+		<attr>			
+			<type>2</type>
+			<attrType>special</attrType>
+			<attrName>defense|baolv</attrName>
+			<value>0.3</value>
+		</attr>
+		<attr>			
+			<type>0</type>
+			<attrType>oneAdd</attrType>
+			<attrName>min</attrName>
+			<value>0.3</value>
+		</attr>
+		<attr>			
+			<type>1</type>
+			<attrType>twoAdd</attrType>
+			<attrName>baoji|defense</attrName>
+			<value>0.3</value>
+		</attr>
+		<attr>			
+			<type>2</type>
+			<attrType>special</attrType>
+			<attrName>defense|baolv</attrName>
+			<value>0.3</value>
+		</attr>
+	</equip>
+</root>

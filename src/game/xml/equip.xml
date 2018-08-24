@@ -1,0 +1,2208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+	<!-- 武器 -->
+	<equip part="0" mode="random">
+		<id>101</id>
+		<name>普通长剑</name>
+		<des>这是一把最最普通的长剑，一般都是新手铁匠的试手之作</des>
+		<kind>剑</kind>
+		<type>all</type>
+		<rank>1</rank>
+	</equip>
+	<equip part="0" mode="random">
+		<id>102</id>
+		<name>侍从短剑</name>
+		<des>以黄铜铸造的轻型剑，剑刃锋利，吹毛断发.虽剑身较短但在近身战中足可一剑致命。</des>
+		<kind>刀</kind>
+		<type>all</type>
+		<rank>3</rank>
+	</equip>
+	<equip part="0" mode="random">
+		<id>103</id>
+		<name>精炼长剑</name>
+		<des>精钢打造，十字剑结构，剑身细长，剑尖细如蜂刺，经受过不少战斗。</des>
+		<kind>剑</kind>
+		<type>all</type>
+		<rank>5</rank>
+	</equip>
+	<equip part="0" mode="random">
+		<id>104</id>
+		<name>弯剑</name>
+		<des>此剑以生铁混以鍒石打造，亦柔亦刚，剑身蜿蜒如蛇，抖若青蛇吐信，舞若柳絮纷飞。可系于背，可悬于腰。</des>
+		<kind>剑</kind>
+		<type>all</type>
+		<rank>7</rank>
+	</equip>
+	<equip part="0" mode="random">
+		<id>105</id>
+		<name>彩饰剑</name>
+		<des>铸剑师发现在锻造过程中往材料里添加不同的元素，铸成的刀剑呈不同颜色。为不少贵族公子所喜爱。</des>
+		<kind>剑</kind>
+		<type>all</type>
+		<rank>9</rank>
+	</equip>
+	<equip part="0" mode="random">
+		<id>106</id>
+		<name>精锻陨铁剑</name>
+		<des>集数十人之力取天降巨石，置炉中锻炼，铸成此剑。削铁如泥，劈金如土，其坚硬非普通武器可及万一。</des>
+		<kind>剑</kind>
+		<type>all</type>
+		<rank>11</rank>
+	</equip>
+	<equip part="0" mode="random">
+		<id>107</id>
+		<name>重剑</name>
+		<des>"重剑无锋，大巧不工"，以赤铁矿铸成的这把重剑，其色也不艳，其剑也不锋。其锋在战场上磨砺，其色以鲜血来渲染。</des>
+		<kind>剑</kind>
+		<type>all</type>
+		<rank>13</rank>
+	</equip>
+	<equip part="0" mode="random">
+		<id>108</id>
+		<name>锻玉剑</name>
+		<des>此剑及玉的光泽和钢的硬度于一身，是把极其珍奇的宝剑，在外流失已久。</des>
+		<kind>剑</kind>
+		<type>all</type>
+		<rank>15</rank>
+	</equip>
+	<equip part="0" mode="random">
+		<id>109</id>
+		<name>闪电剑</name>
+		<des>以特殊技法在天雷下术锻造出来的宝剑。剑长三尺四寸，剑光凛利，使用时电闪雷鸣可发射出强大的雷电力量。</des>
+		<kind>剑</kind>
+		<type>all</type>
+		<rank>17</rank>
+	</equip>
+	<equip part="0" mode="random">
+		<id>110</id>
+		<name>血刺</name>
+		<des>一把邪气很重的锥形剑，见血封喉，剑尖有血光溢出。传说取虎妖的利齿打造。</des>
+		<kind>剑</kind>
+		<type>all</type>
+		<rank>19</rank>
+	</equip>
+	<equip part="0" mode="random">
+		<id>111</id>
+		<name>红诛剑</name>
+		<des>某皇室铸剑师打造，剑长3尺7寸。剑身上部裹有一层黄金并镶嵌2颗真红宝石价值连城，被世人认为华而不实。</des>
+		<kind>剑</kind>
+		<type>all</type>
+		<rank>21</rank>
+	</equip>
+	<equip part="0" mode="random">
+		<id>112</id>
+		<name>冥咒剑</name>
+		<des>多年前的一场灭门之战中，绝望的邪派长老临死前在佩剑上留下血咒，从此该剑在击杀敌人时会激发出巨大的力量。</des>
+		<kind>剑</kind>
+		<type>all</type>
+		<rank>23</rank>
+	</equip>
+	<equip part="0" mode="random">
+		<id>113</id>
+		<name>赤钢阔剑</name>
+		<des>此剑由赤钢打造，剑身长而宽，厚而实，挥舞时虎虎有声。不知贼王从而盗来，非天生神力恐怕难以挥动此剑。</des>
+		<kind>剑</kind>
+		<type>all</type>
+		<rank>25</rank>
+	</equip>
+	<equip part="0" mode="random">
+		<id>114</id>
+		<name>赤炎剑</name>
+		<des>采自燃烧平原上的火炎兽的精华锻造而成。剑身如火，集聚了强大的热量，一丈之外，热浪袭人。剑过之处有焦痕。</des>
+		<kind>剑</kind>
+		<type>all</type>
+		<rank>27</rank>
+	</equip>
+	<equip part="0" mode="random">
+		<id>115</id>
+		<name>寒月</name>
+		<des>相传在月圆之夜，取月山之石并以月亮井之水淬火，由此锻造的剑寒光四射，犹如明月。此剑为门派圣剑，拥有至高无上的权利。</des>
+		<kind>剑</kind>
+		<type>all</type>
+		<rank>29</rank>
+	</equip>
+	<equip part="0" mode="random">
+		<id>116</id>
+		<name>绯红魔言</name>
+		<des>剑柄镶嵌的猩红圣石具有毁天灭地之力，当年三魔者之一的玄冥生持此剑与正派高手一战，此剑大显魔威。可惜现在威力不足当年十一</des>
+		<kind>剑</kind>
+		<type>all</type>
+		<rank>29</rank>
+	</equip>
+	<equip part="0" mode="random">
+		<id>117</id>
+		<name>血咒剑</name>
+		<des>一把来自地狱的魔剑。在血海里静置千年而魔化，以血为食，因此通体血红，剑身上有血海之浪。</des>
+		<kind>剑</kind>
+		<type>all</type>
+		<rank>29</rank>
+	</equip>
+	<equip part="0" mode="random">
+		<id>118</id>
+		<name>冥河剑</name>
+		<des>相传在冥河深渊有把宝剑，持有者可拥有统神世界的力量。千百年过去了，数不清的野心家一去不返，于是人们开始怀疑它的存在。</des>
+		<kind>剑</kind>
+		<type>all</type>
+		<rank>33</rank>
+	</equip>
+	<equip part="0" mode="random">
+		<id>119</id>
+		<name>圣影剑</name>
+		<des>三圣剑之一，当年正道第一人为了庇护人类置此剑于庇护山上以镇妖邪，千百年来，取日月精华，凝天人之力。</des>
+		<kind>剑</kind>
+		<type>all</type>
+		<rank>35</rank>
+	</equip>
+	<equip part="0" mode="random">
+		<id>120</id>
+		<name>月神之光</name>
+		<des>传说，为了守护世界的安宁，月神将这把剑赐给人类的勇士。它的剑锋如同夜色一样温柔，却像凄清的月光一样锋利无情。</des>
+		<kind>剑</kind>
+		<type>all</type>
+		<rank>37</rank>
+	</equip>
+	<equip part="0" mode="random">
+		<id>121</id>
+		<name>魔吟之剑</name>
+		<des>传说上古丰饶之神使用的驯鹿角被火焰巨人焚毁后便与肉身一起熔炼成神剑，却被冥界之祖诅咒魔化，变为了一把魔剑</des>
+		<kind>剑</kind>
+		<type>all</type>
+		<rank>39</rank>
+	</equip>
+	<equip part="0" mode="random">
+		<id>122</id>
+		<name>燃血真言</name>
+		<des>远古大能所铸造的双锋大剑，剑身流火萦绕如同血光，挥舞时划破空气，隐隐发出真言吟诵之声。</des>
+		<kind>剑</kind>
+		<type>all</type>
+		<rank>39</rank>
+	</equip>
+	<equip part="0" mode="random">
+		<id>123</id>
+		<name>弯刃刀</name>
+		<des>黄铜铸造的单刀，刀身厚重，刀刃处的倒刺状如尖牙般结构使得此刀极具杀伤力，能轻易的撕开你的血肉。</des>
+		<kind>刀</kind>
+		<type>all</type>
+		<rank>3</rank>
+	</equip>
+	<equip part="0" mode="random">
+		<id>124</id>
+		<name>贯心刀</name>
+		<des>刀曰贯心，乃一刀致命之意，刀走弧形，刀尖成一倒钩，见者无不心寒。此刀铸成之后，因其外形过于阴险而被正派人士所不齿。</des>
+		<kind>刀</kind>
+		<type>all</type>
+		<rank>5</rank>
+	</equip>
+	<equip part="0" mode="random">
+		<id>125</id>
+		<name>长战刀</name>
+		<des>精钢混着一点玄金石打造的战刀，外形普通但坚久耐用。乃先天后大多数武林人士的选择。</des>
+		<kind>刀</kind>
+		<type>all</type>
+		<rank>7</rank>
+	</equip>
+	<equip part="0" mode="random">
+		<id>126</id>
+		<name>细刃刀</name>
+		<des>刀身细长而轻盈，锋利异常，长四尺7寸，重20斤。因其灵巧的特性而深受女侠们的喜爱。</des>
+		<kind>刀</kind>
+		<type>all</type>
+		<rank>9</rank>
+	</equip>
+	<equip part="0" mode="random">
+		<id>127</id>
+		<name>冷刀</name>
+		<des>这把冷青色单刀乃提取千只角蜥的精华凝炼而成，刀身异常怪异，隐现青色蜥蜴纹，刀柄处五颗突刺含剧毒。此刀邪气甚重。</des>
+		<kind>刀</kind>
+		<type>all</type>
+		<rank>11</rank>
+	</equip>
+	<equip part="0" mode="random">
+		<id>128</id>
+		<name>紫心刀</name>
+		<des>此刀紫气四溢，光彩耀人，造型更是精美绝伦，刀柄上镶嵌的紫水晶更显高雅名贵，是身份显赫的富贵小姐梦寐以求的宝刀。</des>
+		<kind>刀</kind>
+		<type>all</type>
+		<rank>13</rank>
+	</equip>
+	<equip part="0" mode="random">
+		<id>129</id>
+		<name>海盗弯刀</name>
+		<des>盘距西部的海盗无恶不作。其中首领有一把宝刀，军队数次围剿都没有成功。后来这群海盗神秘地消失了，这把刀却留了下来。</des>
+		<kind>刀</kind>
+		<type>all</type>
+		<rank>15</rank>
+	</equip>
+	<equip part="0" mode="random">
+		<id>130</id>
+		<name>斩首者</name>
+		<des>王国的刽子手使用的斩首刀，因斩杀千人而极具戾气，为部分魔教人士喜爱</des>
+		<kind>刀</kind>
+		<type>all</type>
+		<rank>17</rank>
+	</equip>
+	<equip part="0" mode="random">
+		<id>131</id>
+		<name>竞技血刃</name>
+		<des>血脉石矿精炼而成的双刃刀，通体血红。因此矿极其珍惜且难以提炼，故此刀为大陆珍品。</des>
+		<kind>刀</kind>
+		<type>all</type>
+		<rank>19</rank>
+	</equip>
+	<equip part="0" mode="random">
+		<id>132</id>
+		<name>明光之刃</name>
+		<des>传说用明光湖的水来淬火的刀会放出耀眼刺目的白光。这把以明光湖水淬就的明光之刃光亮无比，持刀夜行，亮如白昼。</des>
+		<kind>刀</kind>
+		<type>all</type>
+		<rank>21</rank>
+	</equip>
+	<equip part="0" mode="random">
+		<id>133</id>
+		<name>食魂者</name>
+		<des>隐雾森林里树妖的精魂提炼而成，刀背上有一层树皮状组织无比坚硬。可以吸食被杀者的灵魂。</des>
+		<kind>刀</kind>
+		<type>all</type>
+		<rank>23</rank>
+	</equip>
+	<equip part="0" mode="random">
+		<id>134</id>
+		<name>魔翼刃</name>
+		<des>魔主独狐残使用的宽头大刀，大陆三大魔刀之一，吸收了黑暗力量而威力无比。刀身上刻一面貌狰狞的骷髅头像，使人未战而心悚。</des>
+		<kind>刀</kind>
+		<type>all</type>
+		<rank>25</rank>
+	</equip>
+	<equip part="0" mode="random">
+		<id>135</id>
+		<name>龙牙</name>
+		<des>刀头平整，刀锋凌厉。刀走弧形，上覆九颗龙鳞。以九颗蛟龙的牙锻造而成，无坚不摧。</des>
+		<kind>刀</kind>
+		<type>all</type>
+		<rank>27</rank>
+	</equip>
+	<equip part="0" mode="random">
+		<id>136</id>
+		<name>炼欲碎</name>
+		<des>由雪狼冰湖里的千年寒晶打造。千年结此一晶，无影无形，见光则化，遇热则融。刀身泛蓝光，十步之内，寒气逼人。</des>
+		<kind>刀</kind>
+		<type>all</type>
+		<rank>29</rank>
+	</equip>
+	<equip part="0" mode="random">
+		<id>137</id>
+		<name>龙灵骨锋</name>
+		<des>上古邪龙在激战后力竭身亡，沉埋地心多年，在岁月磨蚀下化作骨刀。这柄骨刀古朴暗哑，只有在战斗时才会显露出邪龙的狂性。</des>
+		<kind>刀</kind>
+		<type>all</type>
+		<rank>31</rank>
+	</equip>
+	<equip part="0" mode="random">
+		<id>138</id>
+		<name>冰雪律动</name>
+		<des>一块百年难寻的寒铁，由铸剑大师打造。通体透着凛冽寒气，挥舞时卷起霜雪，令敌人身体僵硬，腾挪无力。</des>
+		<kind>刀</kind>
+		<type>all</type>
+		<rank>33</rank>
+	</equip>
+	<equip part="0" mode="random">
+		<id>139</id>
+		<name>流金烙印</name>
+		<des>取中部的神秘金属熔炼百遍后成刀，刀芒撼人心神。败在此刀下的人将终生难忘那抹金色流光，那是刻骨铭心的震慑。</des>
+		<kind>刀</kind>
+		<type>all</type>
+		<rank>35</rank>
+	</equip>
+	<equip part="0" mode="random">
+		<id>140</id>
+		<name>幽皇吐息</name>
+		<des>风谷中的原矿石，长年受风刀压迫蚀刻，被锻炼得坚如精铁，锋愈刀剑。打造成刀后更是风威纵横，不动自威。</des>
+		<kind>刀</kind>
+		<type>all</type>
+		<rank>37</rank>
+	</equip>
+	<equip part="0" mode="random">
+		<id>141</id>
+		<name>寂灭黎明</name>
+		<des>魔道巨匠采集极地阴寒之物铸成。刀体吸收了黎明前最纯正的黑暗力量，威力无比。刀背绽放出幽蓝的光芒，使人未战而心悚。</des>
+		<kind>刀</kind>
+		<type>all</type>
+		<rank>39</rank>
+	</equip>
+	<equip part="0" mode="random">
+		<id>142</id>
+		<name>出跸刀</name>
+		<des>一柄黄杨木雕的弯刀，无鞘，刀身长三尺半，上面雕有美人出跸图。据说这把刀具有非凡的魔力，但却无人参透。。。</des>
+		<kind>刀</kind>
+		<type>all</type>
+		<rank>39</rank>
+	</equip>
+	<!-- 固定武器 501开始 -->
+	<equip part="0" mode="fixed">
+		<id>501</id>
+		<name>马三炮的枪</name>
+		<des>这是一把马三炮缴获的枪！</des>
+		<kind>手枪</kind>
+		<type>2</type>
+		<rank>3</rank>
+	</equip>
+
+
+	<!-- 1-头盔 1100开始 -->
+	<equip part="1" mode="random">
+		<id>1101</id>
+		<name>粗布头巾</name>
+		<des>普通麻布材料做成的头巾，一般人家都穿这个</des>
+		<kind>头盔</kind>
+		<type>all</type>
+		<rank>1</rank>
+	</equip>
+	<equip part="1" mode="random">
+		<id>1102</id>
+		<name>普通头盔</name>
+		<des>最大的特点就是普通</des>
+		<kind>头盔</kind>
+		<type>all</type>
+		<rank>3</rank>
+	</equip>
+	<equip part="1" mode="random">
+		<id>1103</id>
+		<name>鹿皮帽子</name>
+		<des>鹿皮缝制而成的帽子，手艺勉强过得去。</des>
+		<kind>头盔</kind>
+		<type>all</type>
+		<rank>3</rank>
+	</equip>
+	<equip part="1" mode="random">
+		<id>1104</id>
+		<name>蓝羽头盔</name>
+		<des>巧匠打造的一种头盔，镶嵌着一种蓝色巨鸟的羽毛。据说这种鸟的羽毛能够为佩带者带来意想不到的好运。</des>
+		<kind>头盔</kind>
+		<type>all</type>
+		<rank>5</rank>
+	</equip>
+	<equip part="1" mode="random">
+		<id>1105</id>
+		<name>锦绣帽子</name>
+		<des>由图案华丽，质地精致的锦绣做成，手艺讲究。</des>
+		<kind>头盔</kind>
+		<type>all</type>
+		<rank>5</rank>
+	</equip>
+	<equip part="1" mode="random">
+		<id>1106</id>
+		<name>九耀御雷</name>
+		<des>名字看起来挺唬人，其实防御力不咋地</des>
+		<kind>头盔</kind>
+		<type>all</type>
+		<rank>7</rank>
+	</equip>
+	<equip part="1" mode="random">
+		<id>1107</id>
+		<name>素绫之帽</name>
+		<des>由素绫和银丝编织而成的帽子，还真挺好看的。</des>
+		<kind>头盔</kind>
+		<type>all</type>
+		<rank>7</rank>
+	</equip>
+	<equip part="1" mode="random">
+		<id>1108</id>
+		<name>蓝色深邃</name>
+		<des>老铁匠心血倾注之作，那种仿佛蕴藏了无数玄机的天蓝色调显得深邃且含蓄，让无数人为之着迷。</des>
+		<kind>头盔</kind>
+		<type>all</type>
+		<rank>9</rank>
+	</equip>
+	<equip part="1" mode="random">
+		<id>1109</id>
+		<name>灵绸帽子</name>
+		<des>用丝绸织就的帽子，上面用极细的金丝绣出华丽的图案，</des>
+		<kind>头盔</kind>
+		<type>all</type>
+		<rank>9</rank>
+	</equip>
+	<equip part="1" mode="random">
+		<id>1110</id>
+		<name>流光飞翼</name>
+		<des>经过精细打磨和抛光的亮丽外表，轻巧美观的造型，使得这款头盔深受士兵们喜爱，因此得以大批量普及。</des>
+		<kind>头盔</kind>
+		<type>all</type>
+		<rank>11</rank>
+	</equip>
+	<equip part="1" mode="random">
+		<id>1111</id>
+		<name>凝玉头盔</name>
+		<des>凝玉琢磨成薄片后制成的头盔，上面刻着一些符文，就是太贵了呀。</des>
+		<kind>头盔</kind>
+		<type>all</type>
+		<rank>11</rank>
+	</equip>
+	<equip part="1" mode="random">
+		<id>1112</id>
+		<name>安刺轻钢</name>
+		<des>使用一种相当奇特的混合金属打造的轻钢头盔，既具有钢铁的坚韧，又具有白银的亮度。受到贵族们疯狂的追捧。</des>
+		<kind>头盔</kind>
+		<type>all</type>
+		<rank>13</rank>
+	</equip>
+	<equip part="1" mode="random">
+		<id>1113</id>
+		<name>问道头盔</name>
+		<des>象征着求道之心的头盔，带着求道人的信念。</des>
+		<kind>头盔</kind>
+		<type>all</type>
+		<rank>13</rank>
+	</equip>
+	<equip part="1" mode="random">
+		<id>1114</id>
+		<name>冥虹镜芒</name>
+		<des>镔铁打造的头盔。外表经过特殊打磨，光滑如镜，被大量装备于军官中。</des>
+		<kind>头盔</kind>
+		<type>all</type>
+		<rank>15</rank>
+	</equip>
+	<equip part="1" mode="random">
+		<id>1115</id>
+		<name>血色战盔</name>
+		<des>血红色的战盔犹如正午骄阳，彰显出的威武与不凡。</des>
+		<kind>头盔</kind>
+		<type>all</type>
+		<rank>15</rank>
+	</equip>
+	<equip part="1" mode="random">
+		<id>1116</id>
+		<name>龙翼圣痕</name>
+		<des>龙皮所制的头盔，带有上次战争所留下的创痕。据说能够使人获得光的力量。</des>
+		<kind>头盔</kind>
+		<type>all</type>
+		<rank>17</rank>
+	</equip>
+	<equip part="1" mode="random">
+		<id>1117</id>
+		<name>凤羽之盔</name>
+		<des>用灵鸟羽毛绣边的皮盔，为显富贵华丽，谓之凤羽。</des>
+		<kind>头盔</kind>
+		<type>all</type>
+		<rank>17</rank>
+	</equip>
+	<equip part="1" mode="random">
+		<id>1118</id>
+		<name>斗战迷惘</name>
+		<des>轻巧实用的头盔。黄金镶边能够更好地保护双目，同时增加了一份华贵之气。在头盔的左侧印有不同的印记。</des>
+		<kind>头盔</kind>
+		<type>all</type>
+		<rank>19</rank>
+	</equip>
+	<equip part="1" mode="random">
+		<id>1119</id>
+		<name>灵藤头盔</name>
+		<des>取山中灵藤，秘法炮制几月之后，所制成的头盔</des>
+		<kind>头盔</kind>
+		<type>all</type>
+		<rank>19</rank>
+	</equip>
+	<equip part="1" mode="random">
+		<id>1120</id>
+		<name>炎蟒头盔</name>
+		<des>孽债上升。</des>
+		<kind>头盔</kind>
+		<type>all</type>
+		<rank>19</rank>
+	</equip>
+	<equip part="1" mode="random">
+		<id>1121</id>
+		<name>黄金宿印</name>
+		<des>样式复古的初级灵器头盔。镶嵌于头盔上的红宝石据说能够令群邪辟易,制造材料昂贵。</des>
+		<kind>头盔</kind>
+		<type>all</type>
+		<rank>21</rank>
+	</equip>
+	<equip part="1" mode="random">
+		<id>1122</id>
+		<name>侠道之盔</name>
+		<des>风靡于年轻侠客间的头盔，主要作用是风骚。</des>
+		<kind>头盔</kind>
+		<type>all</type>
+		<rank>21</rank>
+	</equip>
+	<equip part="1" mode="random">
+		<id>1123</id>
+		<name>狂热暴君</name>
+		<des>邪派流行的一种头盔，每一个头盔，都凝聚着无数怨魂的诅咒。</des>
+		<kind>头盔</kind>
+		<type>all</type>
+		<rank>23</rank>
+	</equip>
+	<equip part="1" mode="random">
+		<id>1124</id>
+		<name>紫金头盔</name>
+		<des>紫金锻造的锁子甲，华贵逼人，真的，我都亮瞎了</des>
+		<kind>头盔</kind>
+		<type>all</type>
+		<rank>23</rank>
+	</equip>
+	<equip part="1" mode="random">
+		<id>1125</id>
+		<name>噩梦之首</name>
+		<des>锻造宗师打造的灵器头盔，头盔上镂刻着繁复的花纹，看上去既诡异又华丽。是魔道人士的心爱之物。</des>
+		<kind>头盔</kind>
+		<type>all</type>
+		<rank>25</rank>
+	</equip>
+	<equip part="1" mode="random">
+		<id>1126</id>
+		<name>雪莲晨露帽子</name>
+		<des>用千年雪莲和清晨的露水淬练过的药草编织而成的护腕，名士都得来一套。</des>
+		<kind>头盔</kind>
+		<type>all</type>
+		<rank>25</rank>
+	</equip>
+	<equip part="1" mode="random">
+		<id>1127</id>
+		<name>凌霄翼盔</name>
+		<des>锻造宗师呕心之作，这顶头盔附加了气系能力，戴上它能体会到飞翔般的轻盈，脚步愈发优雅，攻击更加凌厉。</des>
+		<kind>头盔</kind>
+		<type>all</type>
+		<rank>27</rank>
+	</equip>
+	<equip part="1" mode="random">
+		<id>1128</id>
+		<name>白晶头环</name>
+		<des>做工精巧的白金头饰，能够帮助佩戴者凝聚精力，同时亦具有消除灾祸的神奇效果。</des>
+		<kind>头盔</kind>
+		<type>all</type>
+		<rank>27</rank>
+	</equip>
+	<equip part="1" mode="random">
+		<id>1129</id>
+		<name>寒流头环</name>
+		<des>以北方大地万年寒冰雕琢的珍贵头饰，能够有效降低佩戴者因受伤而产生的痛楚，但同时也会令佩戴者变得冷酷无情。</des>
+		<kind>头盔</kind>
+		<type>all</type>
+		<rank>29</rank>
+	</equip>
+	<equip part="1" mode="random">
+		<id>1130</id>
+		<name>白晶头环</name>
+		<des>做工精巧的白金头饰，能够帮助佩戴者凝聚精力，同时亦具有消除灾祸的神奇效果。</des>
+		<kind>头盔</kind>
+		<type>all</type>
+		<rank>29</rank>
+	</equip>
+	<equip part="1" mode="random">
+		<id>1131</id>
+		<name>富贵头盔</name>
+		<des>现在的，什么最重要？当然是——俺！--南山派大师兄</des>
+		<kind>头盔</kind>
+		<type>all</type>
+		<rank>29</rank>
+	</equip>
+	<equip part="1" mode="random">
+		<id>1132</id>
+		<name>火焰凤环</name>
+		<des>使用极罕见的赤金铸造这种华丽的头饰。它代表着尊贵与崇高的意志。同时也是权力的象征。</des>
+		<kind>头盔</kind>
+		<type>all</type>
+		<rank>29</rank>
+	</equip>
+	<equip part="1" mode="random">
+		<id>1133</id>
+		<name>斗战迷惘</name>
+		<des>沉沦深渊的灵魂在永世的禁锢中充满了对鲜血的渴望。只有魔道大能才能控制这股疯狂的力量。</des>
+		<kind>头盔</kind>
+		<type>all</type>
+		<rank>29</rank>
+	</equip>
+	<equip part="1" mode="random">
+		<id>1134</id>
+		<name>武神宝盔</name>
+		<des>武神成名时所戴的头盔。良好的质地、轻盈却可以护住致命部位而不影响穿戴者行动，是高手们的最佳选择。</des>
+		<kind>头盔</kind>
+		<type>all</type>
+		<rank>31</rank>
+	</equip>
+	<equip part="1" mode="random">
+		<id>1135</id>
+		<name>青龙啸月头盔</name>
+		<des>虽然它不是真正的龙皮，但是你还是买不起的！</des>
+		<kind>头盔</kind>
+		<type>all</type>
+		<rank>31</rank>
+	</equip>
+	<equip part="1" mode="random">
+		<id>1136</id>
+		<name>混沌咆吼</name>
+		<des>这个头冠的外形有如狰狞的巨兽，它如血般的红宝石双眼渴望着与拥有者共同见证邪王之敌的恐惧与谵妄。</des>
+		<kind>头盔</kind>
+		<type>all</type>
+		<rank>33</rank>
+	</equip>
+	<equip part="1" mode="random">
+		<id>1137</id>
+		<name>狂暴炎龙</name>
+		<des>杀死残暴的火蛟龙，并用它的脊梁，打磨成这代表着力量与愤怒的火红头饰。</des>
+		<kind>头盔</kind>
+		<type>all</type>
+		<rank>33</rank>
+	</equip>
+	<equip part="1" mode="random">
+		<id>1138</id>
+		<name>虹影灵环</name>
+		<des>从异界那狂乱的能量中提取出七色之虹，将之凝聚成为无与伦比的神圣头饰。</des>
+		<kind>头盔</kind>
+		<type>all</type>
+		<rank>35</rank>
+	</equip>
+	<equip part="1" mode="random">
+		<id>1139</id>
+		<name>苍穹羽冠</name>
+		<des>对于强大的武者来说，永无止尽的超越即是存在的意义。这顶羽冠象征着天空的征服者，它将赋予佩戴者以无穷的勇气与魔力。</des>
+		<kind>头盔</kind>
+		<type>all</type>
+		<rank>37</rank>
+	</equip>
+	<equip part="1" mode="random">
+		<id>1140</id>
+		<name>幻空流焰</name>
+		<des>如血、如焰，一道赤红的长链横贯在漆黑如墨的帽子上。世界上没有多少人能让它展现出应有风采，它已存在千年。</des>
+		<kind>头盔</kind>
+		<type>all</type>
+		<rank>39</rank>
+	</equip>
+	<equip part="1" mode="random">
+		<id>1141</id>
+		<name>天启权冠</name>
+		<des>正如它的名字一样，这顶头盔能赋予所有者以媲美天启的力量。亲眼见过它的人往往会坠入恐惧的深渊，只有最强大的魔道老祖才能戴上它。
+		</des>
+		<kind>头盔</kind>
+		<type>all</type>
+		<rank>39</rank>
+	</equip>
+	<!-- 2-项链  2100-->
+	<equip part="2" mode="random">
+		<id>2100</id>
+		<name>紫焰项链</name>
+		<des>在最纯粹的烈火中锤炼而出的项链，能给佩戴者带来热血与激情，并令对手恐惧不安。</des>
+		<kind>项链</kind>
+		<type>all</type>
+		<rank>3</rank>
+	</equip>
+	<equip part="2" mode="random">
+		<id>2101</id>
+		<name>无瑕守护</name>
+		<des>项链上跃动着蓝光，凝聚着强大的灵气，一旦认定主人，便如忠诚的仆从一般守护着佩戴者。</des>
+		<kind>项链</kind>
+		<type>all</type>
+		<rank>6</rank>
+	</equip>
+	<equip part="2" mode="random">
+		<id>2102</id>
+		<name>灼热之链</name>
+		<des>因为封存了某种神秘的能量，吊坠上泛着灼热的气息，威力逼人并能给佩戴者带来强大的保护。</des>
+		<kind>项链</kind>
+		<type>all</type>
+		<rank>9</rank>
+	</equip>
+	<equip part="2" mode="random">
+		<id>2103</id>
+		<name>法之印记</name>
+		<des>被注入法力的护符，关键时刻将发挥意想不到的强大作用。</des>
+		<kind>项链</kind>
+		<type>all</type>
+		<rank>9</rank>
+	</equip>
+	<equip part="2" mode="random">
+		<id>2104</id>
+		<name>星芒之牙</name>
+		<des>旷世大战后正道锻造大师特地打造的项链，象征着“信念”和“忠诚”。正道年轻人坚信这种项链能够给佩戴者带来无上的荣耀。</des>
+		<kind>项链</kind>
+		<type>all</type>
+		<rank>12</rank>
+	</equip>
+	<equip part="2" mode="random">
+		<id>2105</id>
+		<name>月之链</name>
+		<des>一枚银色的月亮石静静悬在项链的末端，澄澈透明如冬夜晓月，能静气凝神。</des>
+		<kind>项链</kind>
+		<type>all</type>
+		<rank>12</rank>
+	</equip>
+	<equip part="2" mode="random">
+		<id>2106</id>
+		<name>熔火之心</name>
+		<des>一串红色的项链，只有意志与信念兼备，有坚不可摧的心灵的人才，才能得到它。</des>
+		<kind>项链</kind>
+		<type>all</type>
+		<rank>15</rank>
+	</equip>
+	<equip part="2" mode="random">
+		<id>2107</id>
+		<name>魔焰之眼</name>
+		<des>魔道锻造大师打造的魔链，它会无情地侵蚀使用者的神智，只有意志强大的魔道天才才能抵御住诱惑，成为它的主宰。</des>
+		<kind>项链</kind>
+		<type>all</type>
+		<rank>18</rank>
+	</equip>
+	<equip part="2" mode="random">
+		<id>2108</id>
+		<name>火羽星焰</name>
+		<des>仿佛燃烧的羽翼，散发着耀眼的星辉。借由项链所赐予的强大力量，佩戴者能得到前所未有的勇气，冲破暗夜中最浓重的阴影。</des>
+		<kind>项链</kind>
+		<type>all</type>
+		<rank>21</rank>
+	</equip>
+	<equip part="2" mode="random">
+		<id>2109</id>
+		<name>刺棘魔眼</name>
+		<des>环绕着刺棘纹样的魔脸链坠，魔眼能将周围的灵力吸收凝聚，为魔道天才所用。</des>
+		<kind>项链</kind>
+		<type>all</type>
+		<rank>21</rank>
+	</equip>
+	<equip part="2" mode="random">
+		<id>2110</id>
+		<name>繁荒之眼</name>
+		<des>流动如水波的黄金围绕着项链中间的妖兽之眸，它已看过千年的繁华与荒芜，却依然沉默如故。</des>
+		<kind>项链</kind>
+		<type>all</type>
+		<rank>24</rank>
+	</equip>
+	<equip part="2" mode="random">
+		<id>2111</id>
+		<name>绞火之燃</name>
+		<des>传说是用强大魔兽的遗骸锻造而出，经过烈火的浸染因而更加耀眼，其间承载的力量能为使用者带来无尽庇护。</des>
+		<kind>项链</kind>
+		<type>all</type>
+		<rank>24</rank>
+	</equip>
+	<equip part="2" mode="random">
+		<id>2112</id>
+		<name>龙息怒焰</name>
+		<des>盘亘在项链中的远古龙息令人敬畏而战栗，充斥其中的能量令灵魂震颤不安，而吊坠之上的怒焰更是足以燃烧一切邪恶。</des>
+		<kind>项链</kind>
+		<type>all</type>
+		<rank>27</rank>
+	</equip>
+	<equip part="2" mode="random">
+		<id>2113</id>
+		<name>燎日龙魄</name>
+		<des>这串散发着灼热气息的项链中封印着蛟龙的一丝魂魄，佩戴者一旦动怒，由项链中喷涌而出毁天灭地的烈焰之力。</des>
+		<kind>项链</kind>
+		<type>all</type>
+		<rank>30</rank>
+	</equip>
+	<equip part="2" mode="random">
+		<id>2114</id>
+		<name>暗星之眸</name>
+		<des>以古老神秘的符咒为契，在链坠上注入幽暗星辰的灵力锻造而成的诡异星眸，可使佩戴者获得充沛的星辰之力。</des>
+		<kind>项链</kind>
+		<type>all</type>
+		<rank>30</rank>
+	</equip>
+	<equip part="2" mode="random">
+		<id>2115</id>
+		<name>冰渊之痕</name>
+		<des>传说这枚链坠上的宝石来自北域最深处的冰川裂缝中，千载存留的冰寒之力是不少武林人士最梦寐以求的护佑。</des>
+		<kind>项链</kind>
+		<type>all</type>
+		<rank>30</rank>
+	</equip>
+	<equip part="2" mode="random">
+		<id>2116</id>
+		<name>星曜之坠</name>
+		<des>背负着自然的荣耀，聆听着星辰的祝福。佩戴者将在这条项链的祝福下展现出无与伦比的潜力。</des>
+		<kind>项链</kind>
+		<type>all</type>
+		<rank>33</rank>
+	</equip>
+	<equip part="2" mode="random">
+		<id>2117</id>
+		<name>冥川陨星</name>
+		<des>取材于冥川崖壁内不知来历的流星陨石，带着不可名状的奇异能量，只有圣级锻造师才能打造而出。</des>
+		<kind>项链</kind>
+		<type>all</type>
+		<rank>36</rank>
+	</equip>
+	<equip part="2" mode="random">
+		<id>2118</id>
+		<name>不朽意志</name>
+		<des>生死轮回，寂灭重生，唯有意志不朽，伴随你游走于光与暗的边缘。</des>
+		<kind>项链</kind>
+		<type>all</type>
+		<rank>39</rank>
+	</equip>
+	<equip part="2" mode="random">
+		<id>2119</id>
+		<name>暮光沉寂</name>
+		<des>链坠上的宝石来自神秘的冥界，它所透出的光芒，深沉凝重，如同暮光被沉淀积聚，拥有让人见之绝望的法力。</des>
+		<kind>项链</kind>
+		<type>all</type>
+		<rank>36</rank>
+	</equip>
+	<equip part="2" mode="random">
+		<id>2120</id>
+		<name>群星之链</name>
+		<des>汇聚星辰之力打造的传奇项链，其中涌动着无边的星空之力。它将为其主人指出命运的方向。</des>
+		<kind>项链</kind>
+		<type>all</type>
+		<rank>39</rank>
+	</equip>
+	<equip part="2" mode="random">
+		<id>2121</id>
+		<name>影月灵歌</name>
+		<des>暗月之下薄雾迷离，风声从链饰的纹章孔洞中穿过，如同飘渺的歌声在悠远的某处飘荡，此刻，生或死，不由己。</des>
+		<kind>项链</kind>
+		<type>all</type>
+		<rank>39</rank>
+	</equip>
+	<equip part="2" mode="random">
+		<id>2122</id>
+		<name>迷魇漩涡</name>
+		<des>由两种不同性质的冥河晶石镶嵌而成的诡异波纹，与佩戴者的法力呼应，令敌人意识混乱，如同堕入不醒的噩梦漩涡。</des>
+		<kind>项链</kind>
+		<type>all</type>
+		<rank>39</rank>
+	</equip>
+	<!-- 3-上衣 3100 -->
+	<equip part="3" mode="random">
+		<id>3100</id>
+		<name>粗布衣服</name>
+		<des>普通麻布材料做成的衣服，一般人家都穿这个。</des>
+		<kind>上衣</kind>
+		<type>all</type>
+		<rank>1</rank>
+	</equip>
+	<equip part="23" mode="random">
+		<id>3101</id>
+		<name>轻钢甲</name>
+		<des>采用皮革与少量轻钢打造的护甲，防护不强却胜在灵巧。</des>
+		<kind>上衣</kind>
+		<type>all</type>
+		<rank>3</rank>
+	</equip>
+	<equip part="3" mode="random">
+		<id>3102</id>
+		<name>鹿皮上衣</name>
+		<des>鹿皮缝制而成的上衣，手艺勉强过得去。。</des>
+		<kind>上衣</kind>
+		<type>all</type>
+		<rank>3</rank>
+	</equip>
+	<equip part="3" mode="random">
+		<id>3103</id>
+		<name>锁环甲</name>
+		<des>以铁片和硬皮加以钢钉缝制而成的轻型装甲。虽牺牲了部分防御力但却使行动更为灵活。</des>
+		<kind>上衣</kind>
+		<type>all</type>
+		<rank>5</rank>
+	</equip>
+	<equip part="3" mode="random">
+		<id>3104</id>
+		<name>锦绣衣</name>
+		<des>图案华丽，质地精致的锦绣制成的衣服，手艺讲究。。</des>
+		<kind>上衣</kind>
+		<type>all</type>
+		<rank>5</rank>
+	</equip>
+	<equip part="3" mode="random">
+		<id>3105</id>
+		<name>精钢甲</name>
+		<des>这件暗红色的装甲看似沉重实则轻盈，精钢的采用使这件铠甲拥有较高的防御力却并不笨重，只是材料的珍稀使得此甲价格不菲。</des>
+		<kind>上衣</kind>
+		<type>all</type>
+		<rank>7</rank>
+	</equip>
+	<equip part="3" mode="random">
+		<id>3106</id>
+		<name>素绫银衣</name>
+		<des>由素绫和银丝编织而成的衣服，还真挺好看的。</des>
+		<kind>上衣</kind>
+		<type>all</type>
+		<rank>7</rank>
+	</equip>
+	<equip part="3" mode="random">
+		<id>3107</id>
+		<name>赤灵胸甲</name>
+		<des>锻造大师打造的战甲，这件红色的胸甲在实战中常常发挥远比华丽的外表更重要的作用。</des>
+		<kind>上衣</kind>
+		<type>all</type>
+		<rank>9</rank>
+	</equip>
+	<equip part="3" mode="random">
+		<id>3108</id>
+		<name>灵绸金衣</name>
+		<des>用丝绸织就的衣服，上面用极细的金丝绣出华丽的图案，。</des>
+		<kind>上衣</kind>
+		<type>all</type>
+		<rank>9</rank>
+	</equip>
+	<equip part="3" mode="random">
+		<id>3109</id>
+		<name>血色胸甲</name>
+		<des>血红色的战衣犹如正午骄阳，彰显出的威武与不凡</des>
+		<kind>上衣</kind>
+		<type>all</type>
+		<rank>11</rank>
+	</equip>
+	<equip part="3" mode="random">
+		<id>3110</id>
+		<name>凝玉胸甲</name>
+		<des>凝玉琢磨成薄片后制成的衣服，上面刻着一些符文，就是太贵了呀。</des>
+		<kind>上衣</kind>
+		<type>all</type>
+		<rank>11</rank>
+	</equip>
+	<equip part="3" mode="random">
+		<id>3111</id>
+		<name>猎魔装</name>
+		<des>以轻皮革和亚麻布，加上妖兽皮缝制而成的布甲轻巧而灵活。</des>
+		<kind>上衣</kind>
+		<type>all</type>
+		<rank>13</rank>
+	</equip>
+	<equip part="3" mode="random">
+		<id>3112</id>
+		<name>问道盔甲</name>
+		<des>象征着求道之心的盔甲，带着坚定的信念</des>
+		<kind>上衣</kind>
+		<type>all</type>
+		<rank>13</rank>
+	</equip>
+	<equip part="3" mode="random">
+		<id>3113</id>
+		<name>虹冥铠</name>
+		<des>幽冥涧内的虹冥石百年而不腐，具有神秘的力量。以此石精炼而成的虹冥铠是身份与荣耀的象征。</des>
+		<kind>上衣</kind>
+		<type>all</type>
+		<rank>15</rank>
+	</equip>
+	<equip part="3" mode="random">
+		<id>3114</id>
+		<name>血色战铠</name>
+		<des>血红色的战衣犹如正午骄阳，彰显出的威武与不凡。</des>
+		<kind>上衣</kind>
+		<type>all</type>
+		<rank>15</rank>
+	</equip>
+	<equip part="3" mode="random">
+		<id>3115</id>
+		<name>圣痕之铠</name>
+		<des>赤炼之地，一片赤红，却有一种白色矿石，熔入虹冥铠，反而变成银白色的铠甲。</des>
+		<kind>上衣</kind>
+		<type>all</type>
+		<rank>17</rank>
+	</equip>
+	<equip part="3" mode="random">
+		<id>3116</id>
+		<name>凤羽之衣</name>
+		<des>用灵鸟羽毛绣边的衣服，为显富贵华丽，谓之凤羽。</des>
+		<kind>上衣</kind>
+		<type>all</type>
+		<rank>17</rank>
+	</equip>
+	<equip part="3" mode="random">
+		<id>3117</id>
+		<name>百炼精甲</name>
+		<des>用秘法千锤百炼而成的盔甲，无时不在散发威压。</des>
+		<kind>上衣</kind>
+		<type>all</type>
+		<rank>19</rank>
+	</equip>
+	<equip part="3" mode="random">
+		<id>3118</id>
+		<name>灵藤精甲</name>
+		<des>取山中灵藤，秘法炮制几月之后，所制成的盔甲。</des>
+		<kind>上衣</kind>
+		<type>all</type>
+		<rank>19</rank>
+	</equip>
+	<equip part="3" mode="random">
+		<id>3119</id>
+		<name>炎蟒胸甲</name>
+		<des>用炎蟒的皮制成的战甲。</des>
+		<kind>上衣</kind>
+		<type>all</type>
+		<rank>19</rank>
+	</equip>
+	<equip part="3" mode="random">
+		<id>3120</id>
+		<name>夜魔战甲</name>
+		<des>用轻盈而坚韧的兽皮打造的铠甲，穿戴者仿佛暗夜中的恶魔，给对手带来无法消除的压力与恐惧。</des>
+		<kind>上衣</kind>
+		<type>all</type>
+		<rank>21</rank>
+	</equip>
+	<equip part="3" mode="random">
+		<id>3121</id>
+		<name>侠道盔甲</name>
+		<des>风靡与于年轻侠客之间的盔甲，主要作用是好看。</des>
+		<kind>上衣</kind>
+		<type>all</type>
+		<rank>21</rank>
+	</equip>
+	<equip part="3" mode="random">
+		<id>3122</id>
+		<name>耀金甲</name>
+		<des>以发光蚕丝裁剪而成的衣服，泛着金属的光芒，可以抵挡住森林里毒气的侵蚀。</des>
+		<kind>上衣</kind>
+		<type>all</type>
+		<rank>23</rank>
+	</equip>
+	<equip part="3" mode="random">
+		<id>3123</id>
+		<name>紫金甲</name>
+		<des>紫金锻造的锁子甲，华贵逼人，真的，我都亮瞎了。</des>
+		<kind>上衣</kind>
+		<type>all</type>
+		<rank>23</rank>
+	</equip>
+	<equip part="3" mode="random">
+		<id>3124</id>
+		<name>天空之袍</name>
+		<des>特殊材料缝制的袍子，含有强大的法力，穿戴者有如青云绕体，令其对手产生仰望天空的错觉而丧失斗志。</des>
+		<kind>上衣</kind>
+		<type>all</type>
+		<rank>25</rank>
+	</equip>
+	<equip part="3" mode="random">
+		<id>3125</id>
+		<name>噩梦之甲</name>
+		<des>>锻造宗师打造的灵器盔甲，头盔上镂刻着繁复的花纹，看上去既诡异又华丽。</des>
+		<kind>上衣</kind>
+		<type>all</type>
+		<rank>25</rank>
+	</equip>
+	<equip part="3" mode="random">
+		<id>3126</id>
+		<name>雪莲晨露衣</name>
+		<des>用千年雪莲和清晨的露水淬练过的药草编织而成的护腕，名士都得来一套</des>
+		<kind>上衣</kind>
+		<type>all</type>
+		<rank>25</rank>
+	</equip>
+	<equip part="3" mode="random">
+		<id>3127</id>
+		<name>渊之晨星</name>
+		<des>星辰虽小，却是深渊里抬头可望的光明。这件长袍以希望之名，虽只燃烧过一次，却已成为灿烂的永恒。</des>
+		<kind>上衣</kind>
+		<type>all</type>
+		<rank>27</rank>
+	</equip>
+	<equip part="3" mode="random">
+		<id>3128</id>
+		<name>凌霄甲</name>
+		<des>附加了气系符文阵的盔甲，戴上它能体会到飞翔般的轻盈，脚步愈发优雅，攻击更加凌厉。</des>
+		<kind>上衣</kind>
+		<type>all</type>
+		<rank>27</rank>
+	</equip>
+	<equip part="3" mode="random">
+		<id>3129</id>
+		<name>光要甲</name>
+		<des>上古锻造圣地成名的一种盔甲，全体黑色。</des>
+		<kind>上衣</kind>
+		<type>all</type>
+		<rank>29</rank>
+	</equip>
+	<equip part="3" mode="random">
+		<id>3130</id>
+		<name>富贵甲</name>
+		<des>俺要是女人，早爱上俺了…… --南山派大师兄</des>
+		<kind>上衣</kind>
+		<type>all</type>
+		<rank>29</rank>
+	</equip>
+	<equip part="3" mode="random">
+		<id>3131</id>
+		<name>炽血骨胄</name>
+		<des>蛟龙骨经过特殊锻之后，形成了具备强大防护之力的铠甲，萦绕其间的淡淡龙威更能挑起战意。</des>
+		<kind>上衣</kind>
+		<type>all</type>
+		<rank>31</rank>
+	</equip>
+	<equip part="3" mode="random">
+		<id>3132</id>
+		<name>青龙啸月甲</name>
+		<des>用虺龙皮制成的护甲。</des>
+		<kind>上衣</kind>
+		<type>all</type>
+		<rank>31</rank>
+	</equip>
+	<equip part="3" mode="random">
+		<id>3133</id>
+		<name>流金庇护</name>
+		<des>仿佛有烈焰流淌在铠甲的纹理之间，金色的火光带给自信与威严。</des>
+		<kind>上衣</kind>
+		<type>all</type>
+		<rank>31</rank>
+	</equip>
+	<equip part="3" mode="random">
+		<id>3134</id>
+		<name>幻焰魔铠</name>
+		<des>圣级锻造师在地心的炽焰中四十九天成就了这件铠甲，熠动的雕纹勾画出特殊的法力，令穿着者行动间身影叠映，如炫目幻影，行踪莫辨。
+		</des>
+		<kind>上衣</kind>
+		<type>all</type>
+		<rank>33</rank>
+	</equip>
+	<equip part="3" mode="random">
+		<id>3135</id>
+		<name>雷之启示</name>
+		<des>在锻造这件铠甲时，引来了天雷相助，闪电在甲胄上刻下了缭绕的铭文，令穿着者如获神助。</des>
+		<kind>上衣</kind>
+		<type>all</type>
+		<rank>35</rank>
+	</equip>
+	<equip part="3" mode="random">
+		<id>3136</id>
+		<name>月之拥护</name>
+		<des>以各种天材地宝，在月光洗练十年，一旦穿配，你将君临世间，洗去世间一切晦恶。</des>
+		<kind>上衣</kind>
+		<type>all</type>
+		<rank>37</rank>
+	</equip>
+	<equip part="3" mode="random">
+		<id>3137</id>
+		<name>影之苍穹</name>
+		<des>苍穹笼罩大地，光影相伴相生。这件传奇战衣融合了光与影之力，能带给拥有者无与伦比的力量。</des>
+		<kind>上衣</kind>
+		<type>all</type>
+		<rank>39</rank>
+	</equip>
+	<equip part="3" mode="random">
+		<id>3138</id>
+		<name>风雷之赐</name>
+		<des>蕴含雷霆之威与风暴之怒的铠甲。能让穿戴者以碾压的姿态消灭一切敌人。</des>
+		<kind>上衣</kind>
+		<type>all</type>
+		<rank>39</rank>
+	</equip>
+	<equip part="3" mode="random">
+		<id>3139</id>
+		<name>永夜赞歌</name>
+		<des>是永夜中的赞歌，也是黑暗里的守望。这件黑袍可以是一切你所能想象的模样，唯有跨越死亡的邪王才能听见其间缭绕不绝的灵魂旋律。
+		</des>
+		<kind>上衣</kind>
+		<type>all</type>
+		<rank>3</rank>
+	</equip>
+	
+	
+	<!-- 4-戒指 4100 -->
+	<equip part="4" mode="random">
+		<id>4101</id>
+		<name>狼戒指</name>
+		<des>此戒指乃猎户们所制。</des>
+		<kind>戒指</kind>
+		<type>all</type>
+		<rank>3</rank>
+	</equip>
+	<equip part="4" mode="random">
+		<id>4102</id>
+		<name>羽戒</name>
+		<des>由一种鸟羽制成，让上去感觉人灵巧不少。</des>
+		<kind>戒指</kind>
+		<type>all</type>
+		<rank>6</rank>
+	</equip>
+	<equip part="4" mode="random">
+		<id>4103</id>
+		<name>暗纹沉木戒</name>
+		<des>一种金属打造的戒指，表面却有木纹，怪哉。</des>
+		<kind>戒指</kind>
+		<type>all</type>
+		<rank>9</rank>
+	</equip>
+	<equip part="4" mode="random">
+		<id>4104</id>
+		<name>红泪石戒指</name>
+		<des>以泪石之名闻名的珍贵宝石，特殊手法炼制后有特殊力量。</des>
+		<kind>戒指</kind>
+		<type>all</type>
+		<rank>12</rank>
+	</equip>
+	<equip part="4" mode="random">
+		<id>4105</id>
+		<name>雾之戒</name>
+		<des>纯白色的戒指，上面有颗特殊的宝石，像雾一样翻滚。</des>
+		<kind>戒指</kind>
+		<type>all</type>
+		<rank>15</rank>
+	</equip>
+	<equip part="4" mode="random">
+		<id>4106</id>
+		<name>信念之戒</name>
+		<des>那场旷世之战后，正道第一派打造的戒指，象征着信念和勇气</des>
+		<kind>戒指</kind>
+		<type>all</type>
+		<rank>18</rank>
+	</equip>
+	<equip part="4" mode="random">
+		<id>4107</id>
+		<name>贪婪金蛇戒</name>
+		<des>一条金蛇首尾咬合，闪耀着诱人的光芒。</des>
+		<kind>戒指</kind>
+		<type>all</type>
+		<rank>21</rank>
+	</equip>
+	<equip part="4" mode="random">
+		<id>4108</id>
+		<name>鹰戒</name>
+		<des>锻造宗师打造的精品戒指，给你鹰一样凌厉的攻击。</des>
+		<kind>戒指</kind>
+		<type>all</type>
+		<rank>24</rank>
+	</equip>
+	<equip part="4" mode="random">
+		<id>4109</id>
+		<name>狂吼龙徽戒</name>
+		<des>样式为一条不屈的龙，可以提高使用的法力流速。</des>
+		<kind>戒指</kind>
+		<type>all</type>
+		<rank>27</rank>
+	</equip>
+	<equip part="4" mode="random">
+		<id>4110</id>
+		<name>沉眠戒</name>
+		<des>带有特殊精神力量的戒指，可以让人昏昏欲睡。</des>
+		<kind>戒指</kind>
+		<type>all</type>
+		<rank>30</rank>
+	</equip>
+	<equip part="4" mode="random">
+		<id>4111</id>
+		<name>宵暗戒</name>
+		<des>精神力强大的邪眼，</des>
+		<kind>戒指</kind>
+		<type>all</type>
+		<rank>30</rank>
+	</equip>
+	<equip part="4" mode="random">
+		<id>4112</id>
+		<name>灰烬之戒</name>
+		<des>里面蕴含了狂暴的火焰力量，可以毁天灭地。</des>
+		<kind>戒指</kind>
+		<type>all</type>
+		<rank>36</rank>
+		<rank></rank>
+	</equip><equip part="4" mode="random">
+		<id>4113</id>
+		<name>日曜戒</name>
+		<des>日曜真人流传下来的戒指，威力无穷。</des>
+		<kind>戒指</kind>
+		<type>all</type>
+		<rank>39</rank>
+	</equip>
+	<equip part="4" mode="random">
+		<id>4114</id>
+		<name>幻戒</name>
+		<des>以烈狱纷争之赤金为主材，精工雕制而成。杖端的魔龙之眼，仍然不可思议地保存着生命，被它看到的人会永久陷入幻觉。</des>
+		<kind>戒指</kind>
+		<type>all</type>
+		<rank>39</rank>
+	</equip>
+	<equip part="4" mode="random">
+		<id>4115</id>
+		<name>苍穹星辉</name>
+		<des>强化魔金制成的戒指，镶嵌着稀有的星辉宝钻，一旦激活，光芒飞散、宛如天幕繁星洒落世间。</des>
+		<kind>戒指</kind>
+		<type>all</type>
+		<rank>36</rank>
+	</equip><equip part="4" mode="random">
+		<id>4116</id>
+		<name>恶魔幽影</name>
+		<des>这个戒指镌刻着来自魔道的诅咒，阴冷森然的光芒蕴含着强大的力量，仿佛来自地府的怒吼，令佩戴者的敌人不寒而栗。</des>
+		<kind>戒指</kind>
+		<type>all</type>
+		<rank>33</rank>
+	</equip>
+	<equip part="4" mode="random">
+		<id>4117</id>
+		<name>守护之戒</name>
+		<des>这个戒指上凝结着森然浩瀚的气息，能为佩戴者铸造一个强大的屏障，轻易化解敌人疯狂的攻击。</des>
+		<kind>戒指</kind>
+		<type>all</type>
+		<rank>30</rank>
+	</equip>
+	<equip part="4" mode="random">
+		<id>4118</id>
+		<name>光之晨曦</name>
+		<des>来自异域的神秘戒指，可吸收日月星辰的精华，以形成强大的结界屏障，利用源自虚空的恢弘能量，帮助佩戴者抵御强烈的攻击。</des>
+		<kind>戒指</kind>
+		<type>all</type>
+		<rank>39</rank>
+	</equip><equip part="4" mode="random">
+		<id>4119</id>
+		<name>星辰戒</name>
+		<des>当这个手镯上神秘的符文浮现时，虚空轮转，星辰随之寂灭，天地间的能量仿佛在那一刻都注入手镯之中，供给佩戴者强大防御力。</des>
+		<kind>戒指</kind>
+		<type>all</type>
+		<rank>39</rank>
+	</equip>
+	
+	<!-- 5-腰带 5100 -->
+	
+	<equip part="5" mode="random">
+		<id>5100</id>
+		<name>粗布腰带</name>
+		<des>普通麻布材料做成的腰带，一般人家都穿这个</des>
+		<kind>腰带</kind>
+		<type>all</type>
+		<rank>1</rank>
+	</equip>
+	<equip part="5" mode="random">
+		<id>5101</id>
+		<name>普通腰带</name>
+		<des>最大的特点就是普通。</des>
+		<kind>腰带</kind>
+		<type>all</type>
+		<rank>3</rank>
+	</equip>
+	<equip part="5" mode="random">
+		<id>5102</id>
+		<name>鹿皮腰带</name>
+		<des>鹿皮缝制而成的腰带，手艺勉强过得去。</des>
+		<kind>腰带</kind>
+		<type>all</type>
+		<rank>3</rank>
+	</equip>
+	<equip part="5" mode="random">
+		<id>5103</id>
+		<name>锦绣束腰</name>
+		<des>图案华丽，质地精致的锦绣制成的腰带，手艺讲究。</des>
+		<kind>腰带</kind>
+		<type>all</type>
+		<rank>5</rank>
+	</equip>
+	<equip part="5" mode="random">
+		<id>5104</id>
+		<name>素绫束腰</name>
+		<des>由素绫和银丝编织而成的腰带，还真挺好看的。</des>
+		<kind>腰带</kind>
+		<type>all</type>
+		<rank>7</rank>
+	</equip>
+	<equip part="5" mode="random">
+		<id>5105</id>
+		<name>黄琅腰带</name>
+		<des>黄色的美玉制成的腰带。</des>
+		<kind>腰带</kind>
+		<type>all</type>
+		<rank>9</rank>
+	</equip>
+	<equip part="5" mode="random">
+		<id>5106</id>
+		<name>灵绸束腰</name>
+		<des>用丝绸织就的腰带，上面用极细的金丝绣出华丽的图案。</des>
+		<kind>腰带</kind>
+		<type>all</type>
+		<rank>9</rank>
+	</equip>
+	<equip part="5" mode="random">
+		<id>5107</id>
+		<name>凝玉腰带</name>
+		<des>凝玉琢磨成薄片后制成的腰带，上面刻着一些符文，就是太贵了呀。</des>
+		<kind>裤子</kind>
+		<type>all</type>
+		<rank>11</rank>
+
+	</equip>
+	<equip part="5" mode="random">
+		<id>5108</id>
+		<name>问道腰带</name>
+		<des>象征着求道之心的头盔，带着问道者的信念。</des>
+		<kind>裤子</kind>
+		<type>all</type>
+		<rank>13</rank>
+	</equip>
+	<equip part="5" mode="random">
+		<id>5109</id>
+		<name>翡翠凌缎</name>
+		<des>泛着点点绿光的猫眼翡翠镶嵌在绫缎之上，富贵尽显。</des>
+		<kind>腰带</kind>
+		<type>all</type>
+		<rank>15</rank>
+	</equip><equip part="5" mode="random">
+		<id>5110</id>
+		<name>血色腰带</name>
+		<des>血红色的战衣犹如正午骄阳，彰显出的威武与不凡。</des>
+		<kind>腰带</kind>
+		<type>all</type>
+		<rank>15</rank>
+	</equip>
+	<equip part="5" mode="random">
+		<id>5111</id>
+		<name>狂阳腰带</name>
+		<des>天无二日，狂阳不落。</des>
+		<kind>腰带</kind>
+		<type>all</type>
+		<rank>17</rank>
+	</equip>
+	<equip part="5" mode="random">
+		<id>5112</id>
+		<name>凤羽腰带</name>
+		<des>用灵鸟羽毛绣边的腰带，为显富贵华丽，谓之凤羽。</des>
+		<kind>腰带</kind>
+		<type>all</type>
+		<rank>17</rank>
+	</equip>
+	<equip part="5" mode="random">
+		<id>5113</id>
+		<name>灵藤腰带</name>
+		<des>取山中灵藤，秘法炮制几月之后，所制成腰带。</des>
+		<kind>腰带</kind>
+		<type>all</type>
+		<rank>19</rank>
+	</equip>
+	<equip part="5" mode="random">
+		<id>5114</id>
+		<name>八卦缎带</name>
+		<des>暗藏八卦玄机的腰带，能起到极强的防御作用。</des>
+		<kind>腰带</kind>
+		<type>all</type>
+		<rank>21</rank>
+	</equip><equip part="5" mode="random">
+		<id>5115</id>
+		<name>侠道腰带</name>
+		<des>风靡于年轻侠客中的腰带，主要作用是养眼。</des>
+		<kind>腰带</kind>
+		<type>all</type>
+		<rank>21</rank>
+	</equip>
+	<equip part="5" mode="random">
+		<id>5116</id>
+		<name>炎蟒腰带</name>
+		<des>嗷呜……我要把你撕得粉碎！</des>
+		<kind>腰带</kind>
+		<type>all</type>
+		<rank>23</rank>
+	</equip>
+	<equip part="5" mode="random">
+		<id>5117</id>
+		<name>紫金腰带</name>
+		<des>紫金锻造的腰带，上面还有一个满满的钱包！！！</des>
+		<kind>腰带</kind>
+		<type>all</type>
+		<rank>23</rank>
+	</equip>
+	<equip part="5" mode="random">
+		<id>5118</id>
+		<name>噩梦腰带</name>
+		<des>锻造宗师打造的灵器头盔，头盔上镂刻着繁复的花纹，看上去既诡异又华丽。</des>
+		<kind>腰带</kind>
+		<type>all</type>
+		<rank>25</rank>
+	</equip>
+	<equip part="5" mode="random">
+		<id>5119</id>
+		<name>雪莲晨露束腰</name>
+		<des>用千年雪莲和清晨的露水淬练过的药草编织而成的腰带，名士都得来一套。</des>
+		<kind>腰带</kind>
+		<type>all</type>
+		<rank>25</rank>
+	</equip><equip part="5" mode="random">
+		<id>5120</id>
+		<name>凌霄腰带</name>
+		<des>附加了气系符文阵的腰带，戴上它能体会到飞翔般的轻盈。</des>
+		<kind>腰带</kind>
+		<type>all</type>
+		<rank>27</rank>
+	</equip>
+	<equip part="5" mode="random">
+		<id>5121</id>
+		<name>富贵腰带</name>
+		<des>要想成为一流的侠客，至少要准备一条像我这样的腰带。</des>
+		<kind>腰带</kind>
+		<type>all</type>
+		<rank>29</rank>
+	</equip>
+	<equip part="5" mode="random">
+		<id>5122</id>
+		<name>青龙啸月腰带</name>
+		<des> 对男人来说，腰部非常重要！！！你明白吧？</des>
+		<kind>腰带</kind>
+		<type>all</type>
+		<rank>31</rank>
+	</equip>
+	<equip part="5" mode="random">
+		<id>5123</id>
+		<name>魔心</name>
+		<des>魔心生九祸，百世见痴狂。</des>
+		<kind>腰带</kind>
+		<type>all</type>
+		<rank>47</rank>
+	</equip>
+	<equip part="5" mode="random">
+		<id>5124</id>
+		<name>太皓腰带</name>
+		<des>太初神迹，皓皓归一。</des>
+		<kind>腰带</kind>
+		<type>all</type>
+		<rank>49</rank>
+	</equip>
+	<equip part="5" mode="random">
+		<id>5125</id>
+		<name>辰天绫</name>
+		<des>不知名匠人耗尽一生，打造了这条似乎将骄阳束在腰间的腰带，华丽非凡，灵气逼人。</des>
+		<kind>腰带</kind>
+		<type>all</type>
+		<rank>35</rank>
+	</equip>
+	<equip part="5" mode="random">
+		<id>5126</id>
+		<name>天荒腰带</name>
+		<des>万里狼烟起，杀戮破天荒。</des>
+		<kind>腰带</kind>
+		<type>all</type>
+		<rank>37</rank>
+	</equip>
+	<equip part="5" mode="random">
+		<id>5127</id>
+		<name>独尊腰带</name>
+		<des>杀三界，平天齐地。灭神佛，唯吾独尊。</des>
+		<kind>腰带</kind>
+		<type>all</type>
+		<rank>49</rank>
+	</equip>
+	<equip part="5" mode="random">
+		<id>5128</id>
+		<name>残梦</name>
+		<des>梦里团圆，残而不全</des>
+		<kind>腰带</kind>
+		<type>all</type>
+		<rank>39</rank>
+	</equip>
+	<equip part="5" mode="random">
+		<id>5129</id>
+		<name>圣王腰带</name>
+		<des>必须是大陆公认的绝代天骄才有资格拥有这副腰带。</des>
+		<kind>腰带</kind>
+		<type>all</type>
+		<rank>41</rank>
+	</equip>
+	<equip part="5" mode="random">
+		<id>5130</id>
+		<name>龙息之束</name>
+		<des>千年蛟龙之筋制成，不仅有龙之灵气，更有龙骨之坚韧。</des>
+		<kind>腰带</kind>
+		<type>all</type>
+		<rank>43</rank>
+	</equip>
+	<equip part="5" mode="random">
+		<id>5131</id>
+		<name>紫霄云芒带</name>
+		<des>以云霞束起雷电所制成的腰带，会自行散发雷电袭击敌人。</des>
+		<kind>腰带</kind>
+		<type>all</type>
+		<rank>43</rank>
+	</equip>
+	<equip part="5" mode="random">
+		<id>5132</id>
+		<name>祥云流带</name>
+		<des>显焕明霞，万丈祥云高布，望仙宫衣带，遥遥临香砌。</des>
+		<kind>腰带</kind>
+		<type>all</type>
+		<rank>45</rank>
+	</equip>
+	<equip part="5" mode="random">
+		<id>5133</id>
+		<name>风摄</name>
+		<des>白莲花谢海边飞，吹到菩萨十二院。</des>
+		<kind>腰带</kind>
+		<type>all</type>
+		<rank>47</rank>
+	</equip>
+	<equip part="5" mode="random">
+		<id>5134</id>
+		<name>罗刹腰带</name>
+		<des>罗刹非恶亦动人，天下何人不倾心。</des>
+		<kind>腰带</kind>
+		<type>all</type>
+		<rank>39</rank>
+	</equip>
+	<equip part="5" mode="random">
+		<id>5135</id>
+		<name>重楼</name>
+		<des>情深深，无尽梦，多少流水懂。</des>
+		<kind>腰带</kind>
+		<type>all</type>
+		<rank>37</rank>
+	</equip>
+	
+	<!-- 6-裤子  6100 -->
+	<equip part="6" mode="random">
+		<id>6101</id>
+		<name>粗布长裤</name>
+		<des>普通麻布材料做成的，一般人家都穿这个</des>
+		<kind>裤子</kind>
+		<type>all</type>
+		<rank>1</rank>
+	</equip>
+	<equip part="6" mode="random">
+		<id>6102</id>
+		<name>普通裤子</name>
+		<des>最大的特点就是普通。</des>
+		<kind>裤子</kind>
+		<type>all</type>
+		<rank>3</rank>
+	</equip>
+	<equip part="6" mode="random">
+		<id>6103</id>
+		<name>鹿皮短裤</name>
+		<des>鹿皮缝制而成的腰带，手艺勉强过得去。</des>
+		<kind>裤子</kind>
+		<type>all</type>
+		<rank>5</rank>
+	</equip>
+	<equip part="6" mode="random">
+		<id>6104</id>
+		<name>细布皮裤</name>
+		<des>用上好的毛皮制成，柔软又舒服</des>
+		<kind>裤子</kind>
+		<type>all</type>
+		<rank>7</rank>
+	</equip>
+	<equip part="6" mode="random">
+		<id>6105</id>
+		<name>锦绣裤子</name>
+		<des>图案华丽，质地精致的锦绣制成的裤子，手艺讲究。</des>
+		<kind>裤子</kind>
+		<type>all</type>
+		<rank>5</rank>
+	</equip>
+	<equip part="6" mode="random">
+		<id>6106</id>
+		<name>素绫长裤</name>
+		<des>由素绫和银丝编织而成的裤子，还真挺好看的。</des>
+		<kind>裤子</kind>
+		<type>all</type>
+		<rank>7</rank>
+	</equip>
+	<equip part="6" mode="random">
+		<id>6107</id>
+		<name>灵绸长裤</name>
+		<des>用丝绸织就的裤子，上面用极细的金丝绣出华丽的图案。</des>
+		<kind>裤子</kind>
+		<type>all</type>
+		<rank>9</rank>
+	</equip>
+	<equip part="6" mode="random">
+		<id>6108</id>
+		<name>半夏长裤</name>
+		<des>情深深，无尽梦，多少流水懂。</des>
+		<kind>裤子</kind>
+		<type>all</type>
+		<rank>9</rank>
+	</equip>
+	<equip part="6" mode="random">
+		<id>6109</id>
+		<name>凝玉护腿</name>
+		<des>凝玉琢磨成薄片后制成的护腿，上面刻着一些符文，就是太贵了呀。</des>
+		<kind>裤子</kind>
+		<type>all</type>
+		<rank>11</rank>
+	</equip>
+	<equip part="6" mode="random">
+		<id>6110</id>
+		<name>问道裤</name>
+		<des>象征着求道之心的长裤，带着一丝信念。</des>
+		<kind>裤子</kind>
+		<type>all</type>
+		<rank>13</rank>
+	</equip>
+	<equip part="6" mode="random">
+		<id>6111</id>
+		<name>血色护腿</name>
+		<des>血红色的战衣犹如正午骄阳，彰显出的威武与不凡。</des>
+		<kind>裤子</kind>
+		<type>all</type>
+		<rank>15</rank>
+	</equip>
+	<equip part="6" mode="random">
+		<id>6112</id>
+		<name>凤羽长裤</name>
+		<des>用灵鸟羽毛绣边的皮帽子，为显富贵华丽，谓之凤羽。</des>
+		<kind>裤子</kind>
+		<type>all</type>
+		<rank>17</rank>
+	</equip>
+	<equip part="6" mode="random">
+		<id>6113</id>
+		<name>灵藤护腿</name>
+		<des>取山中灵藤，秘法炮制几月之后，所制成的护腿。</des>
+		<kind>裤子</kind>
+		<type>all</type>
+		<rank>19</rank>
+	</equip>
+	<equip part="6" mode="random">
+		<id>6114</id>
+		<name>侠道长裤</name>
+		<des>风靡于年轻侠客之间的长裤，主要作用是看起来俊逸！</des>
+		<kind>裤子</kind>
+		<type>all</type>
+		<rank>21</rank>
+	</equip>
+	<equip part="6" mode="random">
+		<id>6115</id>
+		<name>紫金护腿</name>
+		<des>紫金锻造的护腿，华贵逼人，真的，我都亮瞎了。</des>
+		<kind>裤子</kind>
+		<type>all</type>
+		<rank>23</rank>
+	</equip>
+	<equip part="6" mode="random">
+		<id>6116</id>
+		<name>噩梦护腿</name>
+		<des>锻造宗师打造的灵器护腿，头盔上镂刻着繁复的花纹，看上去既诡异又华丽。</des>
+		<kind>裤子</kind>
+		<type>all</type>
+		<rank>25</rank>
+	</equip>
+	<equip part="6" mode="random">
+		<id>6117</id>
+		<name>雪莲晨露裤</name>
+		<des>用千年雪莲和清晨的露水淬练过的药草编织而成的裤子，名士都得来一套。</des>
+		<kind>裤子</kind>
+		<type>all</type>
+		<rank>25</rank>
+	</equip>
+	<equip part="6" mode="random">
+		<id>6118</id>
+		<name>凌霄护腿</name>
+		<des>附加了气系符文阵的护腿，戴上它能体会到飞翔般的轻盈，脚步愈发优雅，攻击更加凌厉。</des>
+		<kind>裤子</kind>
+		<type>all</type>
+		<rank>27</rank>
+	</equip>
+	<equip part="6" mode="random">
+		<id>6119</id>
+		<name>富贵长裤</name>
+		<des>其实俺是一个天才，只可惜天妒英才！ --南山派大师兄</des>
+		<kind>裤子</kind>
+		<type>all</type>
+		<rank>29</rank>
+	</equip>
+	<equip part="6" mode="random">
+		<id>6120</id>
+		<name>青龙啸月绑腿</name>
+		<des>龙都被我揍趴下了，何况你呢！</des>
+		<kind>裤子</kind>
+		<type>all</type>
+		<rank>31</rank>
+	</equip>
+	<equip part="6" mode="random">
+		<id>6121</id>
+		<name>罗刹长裤</name>
+		<des>罗刹非恶亦动人，天下何人不倾心。</des>
+		<kind>裤子</kind>
+		<type>all</type>
+		<rank>35</rank>
+	</equip>
+	<equip part="6" mode="random">
+		<id>6122</id>
+		<name>清虚裤</name>
+		<des>情深深，无尽梦，多少流水懂。</des>
+		<kind>裤子</kind>
+		<type>all</type>
+		<rank>37</rank>
+	</equip>
+	<equip part="6" mode="random">
+		<id>6123</id>
+		<name>耀武裤</name>
+		<des>情深深，无尽梦，多少流水懂。</des>
+		<kind>裤子</kind>
+		<type>all</type>
+		<rank>39</rank>
+	</equip>
+	<equip part="6" mode="random">
+		<id>6124</id>
+		<name>青罗裤</name>
+		<des>情深深，无尽梦，多少流水懂。</des>
+		<kind>裤子</kind>
+		<type>all</type>
+		<rank>3</rank>
+	</equip>
+	<equip part="6" mode="random">
+		<id>6125</id>
+		<name>玄鹤裤</name>
+		<des>情深深，无尽梦，多少流水懂。</des>
+		<kind>裤子</kind>
+		<type>all</type>
+		<rank>3</rank>
+	</equip><equip part="6" mode="random">
+		<id>6126</id>
+		<name>缀玉金丝裤</name>
+		<des>情深深，无尽梦，多少流水懂。</des>
+		<kind>裤子</kind>
+		<type>all</type>
+		<rank>3</rank>
+	</equip>
+	<equip part="6" mode="random">
+		<id>6127</id>
+		<name>流云裤</name>
+		<des>情深深，无尽梦，多少流水懂。</des>
+		<kind>裤子</kind>
+		<type>all</type>
+		<rank>3</rank>
+	</equip>
+	<equip part="6" mode="random">
+		<id>6128</id>
+		<name>落阳长裤</name>
+		<des>情深深，无尽梦，多少流水懂。</des>
+		<kind>裤子</kind>
+		<type>all</type>
+		<rank>11</rank>
+	</equip>
+	<equip part="6" mode="random">
+		<id>6129</id>
+		<name>星宿长裤</name>
+		<des>情深深，无尽梦，多少流水懂。</des>
+		<kind>裤子</kind>
+		<type>all</type>
+		<rank>3</rank>
+	</equip>
+	<equip part="6" mode="random">
+		<id>6130</id>
+		<name>归真裤</name>
+		<des>情深深，无尽梦，多少流水懂。</des>
+		<kind>裤子</kind>
+		<type>all</type>
+		<rank>3</rank>
+	</equip>
+	<equip part="6" mode="random">
+		<id>6131</id>
+		<name>不醒长裤</name>
+		<des>情深深，无尽梦，多少流水懂。</des>
+		<kind>裤子</kind>
+		<type>all</type>
+		<rank>3</rank>
+	</equip><equip part="6" mode="random">
+		<id>6132</id>
+		<name>三才胫甲</name>
+		<des>情深深，无尽梦，多少流水懂。</des>
+		<kind>裤子</kind>
+		<type>all</type>
+		<rank>3</rank>
+	</equip>
+	<equip part="6" mode="random">
+		<id>6133</id>
+		<name>丝绸长裤</name>
+		<des>情深深，无尽梦，多少流水懂。</des>
+		<kind>裤子</kind>
+		<type>all</type>
+		<rank>3</rank>
+	</equip>
+	<equip part="6" mode="random">
+		<id>6134</id>
+		<name>贪狼劲装</name>
+		<des>情深深，无尽梦，多少流水懂。</des>
+		<kind>裤子</kind>
+		<type>all</type>
+		<rank>3</rank>
+	</equip>
+	<equip part="6" mode="random">
+		<id>6135</id>
+		<name>沧海长裤</name>
+		<des>情深深，无尽梦，多少流水懂。</des>
+		<kind>裤子</kind>
+		<type>all</type>
+		<rank>3</rank>
+	</equip>
+	<equip part="6" mode="random">
+		<id>6136</id>
+		<name>盘蛇护腿</name>
+		<des>情深深，无尽梦，多少流水懂。</des>
+		<kind>裤子</kind>
+		<type>all</type>
+		<rank>3</rank>
+	</equip>
+	<equip part="6" mode="random">
+		<id>6137</id>
+		<name>登云裤</name>
+		<des>情深深，无尽梦，多少流水懂。</des>
+		<kind>裤子</kind>
+		<type>all</type>
+		<rank>3</rank>
+	</equip><equip part="6" mode="random">
+		<id>6138</id>
+		<name>绸缎长裤</name>
+		<des>情深深，无尽梦，多少流水懂。</des>
+		<kind>裤子</kind>
+		<type>all</type>
+		<rank>3</rank>
+	</equip>
+	
+	<!-- 7-鞋子 7100 -->	
+	<equip part="7" mode="random">
+		<id>7101</id>
+		<name>粗布鞋</name>
+		<des>随处可见的粗布鞋。</des>
+		<kind>鞋子</kind>
+		<type>all</type>
+		<rank>1</rank>
+	</equip>
+	<equip part="7" mode="random">
+		<id>7102</id>
+		<name>普通鞋子</name>
+		<des>最大的特点就是普通。</des>
+		<kind>鞋子</kind>
+		<type>all</type>
+		<rank>3</rank>
+	</equip>
+	<equip part="7" mode="random">
+		<id>7103</id>
+		<name>鹿皮靴</name>
+		<des>一双鹿皮缝制而成的靴子。</des>
+		<kind>鞋子</kind>
+		<type>all</type>
+		<rank>3</rank>
+	</equip>
+	<equip part="7" mode="random">
+		<id>7104</id>
+		<name>锦绣靴</name>
+		<des>图案华丽，质地精致的锦绣，手艺讲究。。</des>
+		<kind>鞋子</kind>
+		<type>all</type>
+		<rank>5</rank>
+	</equip>
+	<equip part="7" mode="random">
+		<id>7105</id>
+		<name>素绫靴</name>
+		<des>由素绫和银丝编织而成的鞋子，还真挺好看的。</des>
+		<kind>鞋子</kind>
+		<type>all</type>
+		<rank>7</rank>
+	</equip>
+	<equip part="7" mode="random">
+		<id>7106</id>
+		<name>灵绸靴</name>
+		<des>用丝绸织就的鞋子，上面用极细的金丝绣出华丽的图案。</des>
+		<kind>鞋子</kind>
+		<type>all</type>
+		<rank>9</rank>
+	</equip>
+	<equip part="7" mode="random">
+		<id>7107</id>
+		<name>凝玉靴</name>
+		<des>凝玉琢磨成薄片后制成的靴子，上面刻着一些符文，就是太贵了呀。</des>
+		<kind>鞋子</kind>
+		<type>all</type>
+		<rank>11</rank>
+	</equip>
+	<equip part="7" mode="random">
+		<id>7108</id>
+		<name>问道鞋</name>
+		<des>象征着求道之心的鞋子，带着一丝信念 。</des>
+		<kind>鞋子</kind>
+		<type>all</type>
+		<rank>13</rank>
+	</equip>
+	<equip part="7" mode="random">
+		<id>7109</id>
+		<name>血红鞋</name>
+		<des>血红色的鞋子犹如正午骄阳，彰显出的威武与不凡。</des>
+		<kind>鞋子</kind>
+		<type>all</type>
+		<rank>15</rank>
+	</equip>
+	<equip part="7" mode="random">
+		<id>7110</id>
+		<name>凤羽鞋</name>
+		<des>用灵鸟羽毛绣边的鞋子，为显富贵华丽，谓之凤羽 。</des>
+		<kind>鞋子</kind>
+		<type>all</type>
+		<rank>17</rank>
+	</equip>
+	<equip part="7" mode="random">
+		<id>7111</id>
+		<name>灵藤鞋</name>
+		<des>取山中灵藤，秘法炮制几月之后，所制成的鞋子。</des>
+		<kind>鞋子</kind>
+		<type>all</type>
+		<rank>19</rank>
+	</equip>
+	<equip part="7" mode="random">
+		<id>7112</id>
+		<name>炎蟒长靴</name>
+		<des>用炎蟒的皮制成的靴子。</des>
+		<kind>鞋子</kind>
+		<type>all</type>
+		<rank>19</rank>
+	</equip>
+	<equip part="7" mode="random">
+		<id>7113</id>
+		<name>侠道靴</name>
+		<des>就着双鞋丑了点，谁让这是配套的呢。</des>
+		<kind>鞋子</kind>
+		<type>all</type>
+		<rank>21</rank>
+	</equip>
+	<equip part="7" mode="random">
+		<id>7114</id>
+		<name>紫金靴</name>
+		<des>紫金色鞋子，华贵逼人，真的，我都亮瞎了。</des>
+		<kind>鞋子</kind>
+		<type>all</type>
+		<rank>23</rank>
+	</equip>
+	<equip part="7" mode="random">
+		<id>7115</id>
+		<name>噩梦靴</name>
+		<des>锻造宗师打造的灵器鞋子，头盔上镂刻着繁复的花纹，看上去既诡异又华丽。</des>
+		<kind>鞋子</kind>
+		<type>all</type>
+		<rank>25</rank>
+	</equip>
+	<equip part="7" mode="random">
+		<id>7116</id>
+		<name>雪莲晨露靴</name>
+		<des>用千年雪莲和清晨的露水淬练过的药草编织而成的鞋子，名士都得来一套。</des>
+		<kind>鞋子</kind>
+		<type>all</type>
+		<rank>25</rank>
+	</equip>
+	<equip part="7" mode="random">
+		<id>7117</id>
+		<name>凌霄靴</name>
+		<des>附加了气系符文阵的头盔，戴上它能体会到飞翔般的轻盈，脚步愈发优雅。</des>
+		<kind>鞋子</kind>
+		<type>all</type>
+		<rank>27</rank>
+	</equip>
+	<equip part="7" mode="random">
+		<id>7118</id>
+		<name>富贵鞋</name>
+		<des>如烈火怒燃，如秋风扫叶，让我们飞驰过去吧！--南山派大师兄</des>
+		<kind>鞋子</kind>
+		<type>all</type>
+		<rank>29</rank>
+	</equip>
+	<equip part="7" mode="random">
+		<id>7119</id>
+		<name>青龙啸月靴</name>
+		<des>它可以像龙爪一样把你撕碎。</des>
+		<kind>鞋子</kind>
+		<type>all</type>
+		<rank>31</rank>
+	</equip>
+	<equip part="7" mode="random">
+		<id>7120</id>
+		<name>天罡布靴</name>
+		<des>以天罡为名，表替天行道之志向。</des>
+		<kind>鞋子</kind>
+		<type>all</type>
+		<rank>31</rank>
+	</equip>
+	<equip part="7" mode="random">
+		<id>7121</id>
+		<name>缓归</name>
+		<des>陌上花开当缓缓归矣。</des>
+		<kind>鞋子</kind>
+		<type>all</type>
+		<rank>33</rank>
+	</equip>
+	<equip part="7" mode="random">
+		<id>7122</id>
+		<name>平步青云</name>
+		<des>此靴可平步青云，借风腾飞。</des>
+		<kind>鞋子</kind>
+		<type>all</type>
+		<rank>33</rank>
+	</equip>
+	<equip part="7" mode="random">
+		<id>7123</id>
+		<name>魅影</name>
+		<des>遁影无踪，形同鬼魅，让人琢磨不定。</des>
+		<kind>鞋子</kind>
+		<type>all</type>
+		<rank>33</rank>
+	</equip>
+	<equip part="7" mode="random">
+		<id>7124</id>
+		<name>夜之挽歌</name>
+		<des>幽蓝的金属光泽与紫色的血纹交织缠绕，仿佛黑夜里凄迷的二重奏，令这双战靴散发着妖异的气息。。</des>
+		<kind>鞋子</kind>
+		<type>all</type>
+		<rank>35</rank>
+	</equip>
+	<equip part="7" mode="random">
+		<id>7125</id>
+		<name>幻影靴</name>
+		<des>存地之灵气，穿之幻影如风。</des>
+		<kind>鞋子</kind>
+		<type>all</type>
+		<rank>37</rank>
+	</equip>
+	<equip part="7" mode="random">
+		<id>7126</id>
+		<name>钧天靴</name>
+		<des>行走如流行划过天际。</des>
+		<kind>鞋子</kind>
+		<type>all</type>
+		<rank>39</rank>
+	</equip>
+	<equip part="7" mode="random">
+		<id>7127</id>
+		<name>逐风战靴</name>
+		<des>游侠之心，踏风而行。</des>
+		<kind>鞋子</kind>
+		<type>all</type>
+		<rank>41</rank>
+	</equip>
+	<equip part="7" mode="random">
+		<id>7128</id>
+		<name>耀日靴</name>
+		<des>炽焰的光芒蕴含着蛟龙之威，汹涌磅礴的能量令人目不能视，穿戴者动如光影。</des>
+		<kind>鞋子</kind>
+		<type>all</type>
+		<rank>43</rank>
+	</equip>
+	<equip part="7" mode="random">
+		<id>7129</id>
+		<name>追云靴</name>
+		<des>穿上可追云逐电，日行万里。</des>
+		<kind>鞋子</kind>
+		<type>all</type>
+		<rank>45</rank>
+	</equip>
+	<equip part="7" mode="random">
+		<id>7130</id>
+		<name>万里追云履</name>
+		<des>可以在任何地形疾走的灵物，穿行无阻。</des>
+		<kind>鞋子</kind>
+		<type>all</type>
+		<rank>47</rank>
+	</equip>
+	<equip part="7" mode="random">
+		<id>7131</id>
+		<name>星辉漫步</name>
+		<des>能够引动星辰之力，星辉不散，便永恒不朽。。</des>
+		<kind>鞋子</kind>
+		<type>all</type>
+		<rank>49</rank>
+	</equip>
+	<equip part="7" mode="random">
+		<id>7132</id>
+		<name>碧霞流云靴</name>
+		<des>以五彩天霞为材料，流云为带缝制而成的靴子。</des>
+		<kind>鞋子</kind>
+		<type>all</type>
+		<rank>47</rank>
+	</equip>
+	<equip part="7" mode="random">
+		<id>7133</id>
+		<name>八宝仙履</name>
+		<des>有灵气的仙履，可踏雪无痕，瞬息千里。</des>
+		<kind>鞋子</kind>
+		<type>all</type>
+		<rank>49</rank>
+	</equip>
+	<equip part="7" mode="random">
+		<id>7134</id>
+		<name>转瞬光年</name>
+		<des>交错的时空在脚下隐隐若现，千年仅在转瞬之间，万里不过咫尺之遥。</des>
+		<kind>鞋子</kind>
+		<type>all</type>
+		<rank>49</rank>
+	</equip>
+</root>

@@ -1,0 +1,655 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+	<npc>
+		<id>101</id>
+		<name>白兔</name>
+		<des></des>
+		<msg></msg>
+		<rank>1</rank>
+		<!-- 此npc的最低品质 -->
+		<type></type>
+	</npc>
+	<npc>
+		<id>102</id>
+		<name>狍子</name>
+		<des></des>
+		<msg></msg>
+		<rank>2</rank>
+		<!-- 此npc的最低品质 -->
+		<type></type>
+	</npc>
+	<npc>
+		<id>103</id>
+		<name>狈</name>
+		<des></des>
+		<msg></msg>
+		<rank>3</rank>
+		<!-- 此npc的最低品质 -->
+		<type></type>
+	</npc>
+	<npc>
+		<id>104</id>
+		<name>竹叶青</name>
+		<des></des>
+		<msg></msg>
+		<rank>4</rank>
+		<!-- 此npc的最低品质 -->
+		<type></type>
+	</npc>
+	<npc>
+		<id>105</id>
+		<name>野狼</name>
+		<des></des>
+		<msg></msg>
+		<rank>5</rank>
+		<!-- 此npc的最低品质 -->
+		<type></type>
+	</npc>
+	<npc>
+		<id>106</id>
+		<name>白猫</name>
+		<des></des>
+		<msg></msg>
+		<rank>5</rank>
+		<!-- 此npc的最低品质 -->
+		<type></type>
+	</npc>
+	<npc>
+		<id>107</id>
+		<name>马鹿</name>
+		<des></des>
+		<msg></msg>
+		<rank>6</rank>
+		<!-- 此npc的最低品质 -->
+		<type></type>
+	</npc>
+	<npc>
+		<id>108</id>
+		<name>红貂</name>
+		<des></des>
+		<msg></msg>
+		<rank>6</rank>
+		<!-- 此npc的最低品质 -->
+		<type></type>
+	</npc>
+	<npc>
+		<id>109</id>
+		<name>黑熊</name>
+		<des></des>
+		<msg></msg>
+		<rank>7</rank>
+		<!-- 此npc的最低品质 -->
+		<type></type>
+	</npc>
+	<npc>	
+		<id>110</id>
+		<name>赤熊</name>
+		<des></des>
+		<msg></msg>
+		<rank>8</rank>
+		<!-- 此npc的最低品质 -->
+		<type></type>
+	</npc>
+	<npc>
+		<id>111</id>
+		<name>蛮猪</name>
+		<des></des>
+		<msg></msg>
+		<rank>8</rank>
+		<!-- 此npc的最低品质 -->
+		<type></type>
+	</npc>
+	<npc>
+		<id>112</id>
+		<name>斑斓虎</name>
+		<des></des>
+		<msg></msg>
+		<rank>9</rank>
+		<!-- 此npc的最低品质 -->
+		<type></type>
+	</npc>
+	<npc>
+		<name></name>
+		<des></des>
+		<msg></msg>
+		<rank></rank>
+		<!-- 此npc的最低品质 -->
+		<type></type>
+	</npc>
+	<npc>
+		<name></name>
+		<des></des>
+		<msg></msg>
+		<rank></rank>
+		<!-- 此npc的最低品质 -->
+		<type></type>
+	</npc>
+	<npc>
+		<name></name>
+		<des></des>
+		<msg></msg>
+		<rank></rank>
+		<!-- 此npc的最低品质 -->
+		<type></type>
+	</npc>
+	<npc>
+		<name></name>
+		<des></des>
+		<msg></msg>
+		<rank></rank>
+		<!-- 此npc的最低品质 -->
+		<type></type>
+	</npc>
+	<npc>
+		<name></name>
+		<des></des>
+		<msg></msg>
+		<rank></rank>
+		<!-- 此npc的最低品质 -->
+		<type></type>
+	</npc>
+	<npc>
+		<name></name>
+		<des></des>
+		<msg></msg>
+		<rank></rank>
+		<!-- 此npc的最低品质 -->
+		<type></type>
+	</npc>
+	<npc>
+		<name></name>
+		<des></des>
+		<msg></msg>
+		<rank></rank>
+		<!-- 此npc的最低品质 -->
+		<type></type>
+	</npc>
+	<npc>
+		<name></name>
+		<des></des>
+		<msg></msg>
+		<rank></rank>
+		<!-- 此npc的最低品质 -->
+		<type></type>
+	</npc>
+	<npc>
+		<name></name>
+		<des></des>
+		<msg></msg>
+		<rank></rank>
+		<!-- 此npc的最低品质 -->
+		<type></type>
+	</npc>
+	<npc>
+		<name></name>
+		<des></des>
+		<msg></msg>
+		<rank></rank>
+		<!-- 此npc的最低品质 -->
+		<type></type>
+	</npc>
+	<npc>
+		<name></name>
+		<des></des>
+		<msg></msg>
+		<rank></rank>
+		<!-- 此npc的最低品质 -->
+		<type></type>
+	</npc>
+	<npc>
+		<name></name>
+		<des></des>
+		<msg></msg>
+		<rank></rank>
+		<!-- 此npc的最低品质 -->
+		<type></type>
+	</npc>
+	<npc>
+		<name></name>
+		<des></des>
+		<msg></msg>
+		<rank></rank>
+		<!-- 此npc的最低品质 -->
+		<type></type>
+	</npc>
+	<npc>
+		<name></name>
+		<des></des>
+		<msg></msg>
+		<rank></rank>
+		<!-- 此npc的最低品质 -->
+		<type></type>
+	</npc>
+	<npc>
+		<name></name>
+		<des></des>
+		<msg></msg>
+		<rank></rank>
+		<!-- 此npc的最低品质 -->
+		<type></type>
+	</npc>
+	<npc>
+		<name></name>
+		<des></des>
+		<msg></msg>
+		<rank></rank>
+		<!-- 此npc的最低品质 -->
+		<type></type>
+	</npc>
+	<npc>
+		<name></name>
+		<des></des>
+		<msg></msg>
+		<rank></rank>
+		<!-- 此npc的最低品质 -->
+		<type></type>
+	</npc>
+	<npc>
+		<name></name>
+		<des></des>
+		<msg></msg>
+		<rank></rank>
+		<!-- 此npc的最低品质 -->
+		<type></type>
+	</npc>
+	<npc>
+		<name></name>
+		<des></des>
+		<msg></msg>
+		<rank></rank>
+		<!-- 此npc的最低品质 -->
+		<type></type>
+	</npc>
+	<npc>
+		<name></name>
+		<des></des>
+		<msg></msg>
+		<rank></rank>
+		<!-- 此npc的最低品质 -->
+		<type></type>
+	</npc>
+	<npc>
+		<name></name>
+		<des></des>
+		<msg></msg>
+		<rank></rank>
+		<!-- 此npc的最低品质 -->
+		<type></type>
+	</npc>
+	<npc>
+		<name></name>
+		<des></des>
+		<msg></msg>
+		<rank></rank>
+		<!-- 此npc的最低品质 -->
+		<type></type>
+	</npc>
+	<npc>
+		<name></name>
+		<des></des>
+		<msg></msg>
+		<rank></rank>
+		<!-- 此npc的最低品质 -->
+		<type></type>
+	</npc>
+	<npc>
+		<name></name>
+		<des></des>
+		<msg></msg>
+		<rank></rank>
+		<!-- 此npc的最低品质 -->
+		<type></type>
+	</npc>
+	<npc>
+		<name></name>
+		<des></des>
+		<msg></msg>
+		<rank></rank>
+		<!-- 此npc的最低品质 -->
+		<type></type>
+	</npc>
+	
+	
+	<!-- 剧情人物 -->
+	<npc tyep="npc">
+		<id>1001</id>
+		<name>马三炮</name>
+		<des>
+			一个身无长物的佃户，嗜赌如命的他，好装腔作势。"混不吝"的他几乎没有烦心事。
+		</des>
+		<msg>
+			杠头和幺九不在，我这还缺个小弟，嘀咕着就把目光看向了你。|
+			什么，你认识我，你也是从那边过来的。|
+			那啥，以后大哥罩着你，来，先给你一个小玩意！|give:(1001,2)
+		</msg>
+		<rank>3</rank>
+		<type></type>
+		<action>
+			<ac	type="sell">
+				<item id="" name="" num="" ></item>
+				<item></item>
+				<item></item>
+				<item></item>
+			</ac>
+		</action>
+	</npc>
+	<npc type="npc">
+		<id>1002</id>
+		<name>二流子</name>
+		<type></type>
+		<des>
+			一些好吃懒惰、游手好闲的混混
+		</des>
+		<msg>
+			兄弟，来，借我们哥几个点小钱玩玩|
+			七八断手，天地拉手，开！
+		</msg>
+		<rank>3</rank>
+	</npc>
+	<npc type="npc">
+		<id>1003</id>
+		<name>老农</name>
+		<type>1</type>
+		<des>
+			一些好吃懒惰、游手好闲的混混
+		</des>
+		<msg>
+			今年这些灵谷长的真喜人！
+		</msg>
+		<rank>3</rank>
+		<action>
+			<ac	type="sell">
+				<item id="" name="" num="" ></item>
+				<item></item>
+				<item></item>
+				<item></item>
+			</ac>
+			<ac type="take">
+				<take>
+					need:[1001,,1];
+					need:[];
+					give:[];
+				</take>
+				<take>
+					need:[1001,,1];
+					need:[];
+					give:[];
+				</take>
+			</ac>
+		</action>
+	</npc>
+	<npc tyep="npc">
+		<id>1004</id>
+		<name>小花</name>
+		<des>
+			猎户大叔的小女儿，一个天真浪漫的小女孩。		
+		</des>
+		<msg>
+			大哥哥，来陪我玩吧！|
+			最近米越来越贵了,于是爹爹老在山上打猎，都没时间陪我！|
+			我好想我的姐姐！
+		</msg>
+		<rank>1</rank>
+		<type>3</type>
+		<action>
+			<ac type="kill">
+				false
+			</ac>
+			<ac type="talk">
+				<!-- 交谈触发任务，苏醒 -->
+				task:101
+			</ac>
+		</action>
+	</npc>
+	<npc tyep="npc">
+		<id>1005</id>
+		<name>猎户大叔</name>
+		<des>
+			一位本领高强的猎户，生的英俊潇洒，貌似潘安，和女儿在这山脚下生活，是附近大家都知道的好人。		
+		</des>
+		<msg>
+			后生，你醒啦，身体好些了么？|
+			你的身体也太差了些，如果你近来无事，不妨上山锻炼锻炼身体！|
+			世道越来越乱了，我得让我女儿他们回来避避风头。|
+		</msg>
+		<rank>1</rank>
+		<type>3</type>
+		<action>
+			<ac type="打听">
+				<event>101</event>
+				<event>102</event>
+				<event>103</event>			
+			</ac>
+			<ac type="交谈">
+				<!-- 交谈触发任务，苏醒 -->
+				task:101
+			</ac>
+		</action>
+	</npc>
+	<!-- <npc>
+		<id></id>
+		<name>六扇门内巡捕</name>
+		<des>这是一个巡捕，身体强壮，看上去武功不错。</des>
+		<msg>
+			东看看，西瞅瞅，似乎在找什么人。|
+			无聊得打了个哈欠，一副没精打采的样子。|
+			"嗯"了一声，也不知道究竟听到了什么。|
+			"啊秋"一声打了个喷嚏，好像是着凉了。|
+			看了看四周，道："有没有看到什么可疑人物？"|
+			嘿嘿干笑了几声，道："犯了案马上自首，否则罪加一等。"|
+			哼了一声道："知情不报，罪与犯同。"
+		</msg>
+		<rank></rank>
+		此npc的最低品质
+		<type></type>
+		<action>
+			<ac	type="kill">
+				对你怒喝道："大胆！居然敢攻击官差？找死么？"
+			</ac>
+		</action>
+	</npc>
+	<npc>
+		<id></id>
+		<name>铁骨蝎</name>
+		<des>这是一条全身闪着磷光的毒蝎子。</des>
+		<msg>
+		</msg>
+		<rank></rank>
+		此npc的最低品质
+		<type></type>
+		<action>
+			<ac	type="kill">
+			</ac>
+			<ac type="dead">
+				铁骨蝎倒在地上，死了。
+			</ac>
+		</action>
+	</npc>
+	<npc>
+		<id></id>
+		<name>吸血蛛</name>
+		<des>一只拳头大小，全身红毛的毒蜘蛛。</des>
+		<msg>
+		</msg>
+		<rank></rank>
+		此npc的最低品质
+		<type></type>
+		<action>
+			<ac	type="kill">
+			</ac>
+			<ac type="dead">
+				吸血蛛倒在地上，死了。
+			</ac>
+		</action>
+	</npc>
+	<npc>
+		<id></id>
+		<name>阴山天蜈</name>
+		<des>这是一条三寸多长，长有一双翅膀剧毒蜈蚣。</des>
+		<msg>
+		</msg>
+		<rank></rank>
+		此npc的最低品质
+		<type></type>
+		<action>
+			<ac	type="kill">
+			</ac>
+			<ac type="dead">
+				阴山天蜈倒在地上，死了。
+			</ac>
+		</action>
+	</npc>
+	<npc>
+		<id></id>
+		<name>吸血蛛</name>
+		<des>一只拳头大小，全身红毛的毒蜘蛛。</des>
+		<msg>
+		</msg>
+		<rank></rank>
+		此npc的最低品质
+		<type></type>
+		<action>
+			<ac	type="kill">
+			</ac>
+			<ac type="dead">
+				吸血蛛倒在地上，死了。
+			</ac>
+		</action>
+	</npc>
+	<npc>
+		<id></id>
+		<name>吸血蛛</name>
+		<des>一只拳头大小，全身红毛的毒蜘蛛。</des>
+		<msg>
+		</msg>
+		<rank></rank>
+		此npc的最低品质
+		<type></type>
+		<action>
+			<ac	type="kill">
+			</ac>
+			<ac type="dead">
+				吸血蛛倒在地上，死了。
+			</ac>
+		</action>
+	</npc>
+	<npc>
+		<id></id>
+		<name>吸血蛛</name>
+		<des>一只拳头大小，全身红毛的毒蜘蛛。</des>
+		<msg>
+		</msg>
+		<rank></rank>
+		此npc的最低品质
+		<type></type>
+		<action>
+			<ac	type="kill">
+			</ac>
+			<ac type="dead">
+				吸血蛛倒在地上，死了。
+			</ac>
+		</action>
+	</npc>
+	<npc>
+		<id></id>
+		<name>吸血蛛</name>
+		<des>一只拳头大小，全身红毛的毒蜘蛛。</des>
+		<msg>
+		</msg>
+		<rank></rank>
+		此npc的最低品质
+		<type></type>
+		<action>
+			<ac	type="kill">
+			</ac>
+			<ac type="dead">
+				吸血蛛倒在地上，死了。
+			</ac>
+		</action>
+	</npc>
+	<npc>
+		<id></id>
+		<name>吸血蛛</name>
+		<des>一只拳头大小，全身红毛的毒蜘蛛。</des>
+		<msg>
+		</msg>
+		<rank></rank>
+		此npc的最低品质
+		<type></type>
+		<action>
+			<ac	type="kill">
+			</ac>
+			<ac type="dead">
+				吸血蛛倒在地上，死了。
+			</ac>
+		</action>
+	</npc>
+	<npc>
+		<id></id>
+		<name>吸血蛛</name>
+		<des>一只拳头大小，全身红毛的毒蜘蛛。</des>
+		<msg>
+		</msg>
+		<rank></rank>
+		此npc的最低品质
+		<type></type>
+		<action>
+			<ac	type="kill">
+			</ac>
+			<ac type="dead">
+				吸血蛛倒在地上，死了。
+			</ac>
+		</action>
+	</npc>
+	<npc>
+		<id></id>
+		<name>吸血蛛</name>
+		<des>一只拳头大小，全身红毛的毒蜘蛛。</des>
+		<msg>
+		</msg>
+		<rank></rank>
+		此npc的最低品质
+		<type></type>
+		<action>
+			<ac	type="kill">
+			</ac>
+			<ac type="dead">
+				吸血蛛倒在地上，死了。
+			</ac>
+		</action>
+	</npc>
+	<npc>
+		<id></id>
+		<name>吸血蛛</name>
+		<des>一只拳头大小，全身红毛的毒蜘蛛。</des>
+		<msg>
+		</msg>
+		<rank></rank>
+		此npc的最低品质
+		<type></type>
+		<action>
+			<ac	type="kill">
+			</ac>
+			<ac type="dead">
+				吸血蛛倒在地上，死了。
+			</ac>
+		</action>
+	</npc> -->
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+</root>

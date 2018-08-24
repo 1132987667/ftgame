@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+	<item type="">
+		<id></id>
+		<name>蓝色锦囊</name>
+		<des>一个用金丝编成的锦囊，似乎可以打开。</des>
+		<type></type>
+		<action>
+			<ac type="use">
+				msg:你擦了擦额头的汗水，迫不及待地用颤抖的双手打开了锦囊。哇！！你被奖励了exp点经验,money金钱。|
+				exp = 2500 + random(2500);
+       	 		pot = 350 + random(350);
+        		score = 35 + random(25);
+			</ac>
+		</action>
+	</item>
+	<item type="">
+		<id></id>
+		<name>红色锦囊</name>
+		<des></des>
+		<type></type>
+		<action>
+			
+		</action>
+	</item>
+	<item type="">
+		<id></id>
+		<name>金色锦囊</name>
+		<des></des>
+		<type></type>
+		<action>
+			
+		</action>
+	</item>
+	<item type="">
+		<id></id>
+		<name>白色锦囊</name>
+		<des></des>
+		<type></type>
+		<action>
+			
+		</action>
+	</item>
+	<item type="">
+		<id></id>
+		<name>紫色锦囊</name>
+		<des></des>
+		<type></type>
+		<action>
+			
+		</action>
+	</item>
+	<item type="">
+		<id></id>
+		<name>青色锦囊</name>
+		<des></des>
+		<type></type>
+		<action>
+			
+		</action>
+	</item>
+	<item type="">
+		<id></id>
+		<name>不老丹</name>
+		<des>一丸传说中的不老神丹</des>
+		<type></type>
+		<action>
+			
+		</action>
+	</item>
+	<item type="">
+		<id></id>
+		<name>醉仙楼菜谱</name>
+		<des>一本醉仙楼菜谱</des>
+		<type></type>
+		<action>
+			
+		</action>
+	</item>
+	<item type="">
+		<id></id>
+		<name>刺杀令</name>
+		<des>一块血迹斑斑的令牌。</des>
+		<type></type>
+		<action>
+			
+		</action>
+	</item>
+	<item type="">
+		<id></id>
+		<name>天缺古月寒</name>
+		<des>江湖传言，每逢月圆之时，石观音都会把自己和这把刀独自关在屋中。据屋中会传来悲苍的歌声，曲调极其古怪，只是觉的仿佛天地间所有的悲伤，苍凉，哀怨，
+痛苦，惆怅，渴求，无奈都一齐涌上心头。</des>
+		<type></type>
+		<action>
+			
+		</action>
+	</item>
+	<item type="">
+		<id></id>
+		<name>猴儿酒</name>
+		<des>一个翠绿色的酒葫芦，隐隐之中泛出柔和的光晕，里面盛满了猴儿酒。</des>
+		<type></type>
+		<action>
+			
+		</action>
+	</item>
+	<item type="">
+		<id></id>
+		<name>狂生曲谱</name>
+		<des>一本狂生曲曲谱。</des>
+		<type></type>
+		<action>
+			
+		</action>
+	</item>
+	<item type="">
+		<id></id>
+		<name>太平灯笼</name>
+		<des>这是郝生意请巧匠专做的太平灯笼，狼山虽说地远风急，但这灯笼却从不熄灭，端是精巧。</des>
+		<type></type>
+		<action>
+			<ac type="use">
+				你掏出一个太平灯笼,点亮了灯芯。
+			</ac>
+		</action>
+	</item>
+	<item type="">
+		<id></id>
+		<name>逍遥紫袍</name>
+		<des>逍遥侯家传之宝。当年逍遥侯的爷爷，在天山天池边上捉到一只千年冰蚕，被做成一件紫色的袍子，紫袍穿在身上冬暖夏凉，刀枪不入，还可以驱除瘴气。  </des>
+		<type></type>
+		<action>
+			
+		</action>
+	</item>
+	<item type="">
+		<id></id>
+		<name>夜明珠</name>
+		<des>一颗淡青色的小珠子，在黑暗静静的散发着柔和的光芒，就象是情人的眼睛。那么的美丽，那么的动人。</des>
+		<type></type>
+		<action>
+			
+		</action>
+	</item>
+	<item type="">
+		<id></id>
+		<name>踏月飘香扇</name>
+		<des>这是柄相当雅致的折扇，扇骨描金，扇面洋洋洒洒写着『踏月而来』四字狂草，隐约散发着缥缈的郁金花香</des>
+		<type></type>
+		<action>
+			
+		</action>
+	</item>
+	<item type="">
+		<id></id>
+		<name>棋盘</name>
+		<des>弈者对垒，“三尺之局兮作战场”，投子于枰，布阵列势，宛若将帅在
+调动兵马，布置攻防。然而棋子毕竟是没有生命力的静物，阵列于纵横
+十九的棋盘上，竟然能生出无穷玄奥的变化来，所以竟有称棋局为“鬼
+阵”者。</des>
+		<type></type>
+		<action>
+			
+		</action>
+	</item>
+	<item type="">
+		<id></id>
+		<name>五罗轻烟帕</name>
+		<des>一块约莫四尺见方的白缎手帕，四角上都绣著一朵红花。花红欲滴，每朵花旁都衬著一张翠绿色的叶子，迎着微风，不住地抖动。</des>
+		<type></type>
+		<action>
+			
+		</action>
+	</item>
+	<item type="">
+		<id></id>
+		<name>天一神水</name>
+		<des>这是一种无色，无味，奇毒无比的液体，可以滴在在酒水之中害人。</des>
+		<type></type>
+		<action>
+			
+		</action>
+	</item>
+	<item type="">
+		<id></id>
+		<name>千年温玉</name>
+		<des>一块绿色的玉石，盈盈的绿意让人沉醉。你似乎可以用它来疗伤</des>
+		<type></type>
+		<action type="">
+			将一块千年温玉放在伤口上轻轻揉动，血淋淋的伤口
+居然奇迹般的愈合了！
+		</action>
+	</item>
+	<item type="">
+		<id></id>
+		<name>无剑心法</name>
+		<des>一本破旧，字迹模糊的书。</des>
+		<type></type>
+		<action>
+			
+		</action>
+	</item>
+	<item type="">
+		<id></id>
+		<name>告示</name>
+		<des>
+		长安府公函
+		近日长安城内时有盗贼出没，滋挠百姓。兹派遣民间义士协助官府巡城捉盗，以保太平。 
+		</des>
+		<type></type>
+		<action>
+			
+		</action>
+	</item>
+	<item type="">
+		<id></id>
+		<name>告示</name>
+		<des>近日长安城内时有猛兽出没，伤及百姓。兹派遣民间义士协助官府剿杀猛兽，以保太平</des>
+		<type></type>
+		<action>
+			
+		</action>
+	</item>
+	<item type="">
+		<id></id>
+		<name>寒萸刀鞘</name>
+		<des>一个用天山上千年寒萸做成的刀鞘。</des>
+		<type></type>
+		<action>
+			
+		</action>
+	</item>
+	<item type="">
+		<id></id>
+		<name></name>
+		<des></des>
+		<type></type>
+		<action>
+			
+		</action>
+	</item>
+	<item type="">
+		<id></id>
+		<name></name>
+		<des></des>
+		<type></type>
+		<action>
+			
+		</action>
+	</item>
+	<item type="">
+		<id></id>
+		<name></name>
+		<des></des>
+		<type></type>
+		<action>
+			
+		</action>
+	</item>
+	<item type="">
+		<id></id>
+		<name></name>
+		<des></des>
+		<type></type>
+		<action>
+			
+		</action>
+	</item>
+	<item type="">
+		<id></id>
+		<name></name>
+		<des></des>
+		<type></type>
+		<action>
+			
+		</action>
+	</item>
+	<item type="">
+		<id></id>
+		<name></name>
+		<des></des>
+		<type></type>
+		<action>
+			
+		</action>
+	</item>
+	<item type="">
+		<id></id>
+		<name></name>
+		<des></des>
+		<type></type>
+		<action>
+			
+		</action>
+	</item>
+	<item type="">
+		<id></id>
+		<name></name>
+		<des></des>
+		<type></type>
+		<action>
+			
+		</action>
+	</item>
+	<item>
+		
+	</item>
+	
+</root>
