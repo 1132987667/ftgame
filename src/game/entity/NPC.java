@@ -29,7 +29,7 @@ public class NPC implements Serializable{
 		
 	}
 	
-	private int id = 0 ;
+	private String id = "" ;
 
 	private String name = null  ;
 	/** 描述 */
@@ -45,6 +45,12 @@ public class NPC implements Serializable{
 	private int type = 0 ;
 	/** 是否为强化怪 */
 	private boolean isIntensify = false ;
+	/** 是否被解析过 */
+	private boolean isAnalyze ;
+	
+	/** 决定属性生成的方式，随机属性还是固定 */
+	private String attrType = null ;
+	
 	
 	/** 怪物一级属性 力,敏,体力,精力,幸运值  */
 	private int li = 0 ;
@@ -193,7 +199,7 @@ public class NPC implements Serializable{
 				Item tempItem= singleTakeList.get(i);
 				if(tempItem instanceof Equip){
 					/** 如果不存在，不满足条件 */
-					if(!player.isExistEquip(((Equip) tempItem).getId())){
+					if(!gameControl.isExistEquip(((Equip) tempItem).getId())){
 						takeFlag = false ;
 					}
 				}else{/** 是除了装备外的其他东西，还未进行处理 */
@@ -621,11 +627,11 @@ public class NPC implements Serializable{
 		
 	}
 
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
@@ -683,6 +689,14 @@ public class NPC implements Serializable{
 
 	public void setSellList(List<Object> sellList) {
 		this.sellList = sellList;
+	}
+
+	public String getAttrType() {
+		return attrType;
+	}
+
+	public void setAttrType(String attrType) {
+		this.attrType = attrType;
 	}
 	
 

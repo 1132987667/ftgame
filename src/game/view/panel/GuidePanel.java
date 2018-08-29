@@ -1,4 +1,4 @@
-package game.view;
+package game.view.panel;
 
 import game.chapter.Chapter1;
 import game.control.GameControl;

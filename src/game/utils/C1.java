@@ -91,9 +91,9 @@ public class C1 extends JFrame{
 		
 		List<Ditu> fbList =  gameControl.loadFuben();
 		Ditu f = fbList.get(0);
-		List<Scene> l = f.scene ;
+		List<Scene> l = f.getScene() ;
 		
-		String[][] ary = new String[columnNames.length][f.scene.size()] ;
+		String[][] ary = new String[columnNames.length][f.getScene().size()] ;
 		for (int i = 0; i < ary.length; i++) {
 			Scene sc = l.get(i); 
 			ary[i][0] = sc.name ;

@@ -66,6 +66,9 @@ public class Archive implements Serializable{
 	/** 当前所在点 */
 	private Map<String,String> cur ;
 
+	/** 当前人物有关任务情况 */
+	private Map<String,Tasks> taskMap = null ;
+	private Map<String,Tasks> curTaskList = new HashMap<>() ;
 	
 	public Archive() {
 		/**
@@ -390,6 +393,26 @@ public class Archive implements Serializable{
 	public boolean obtainEquip(Equip equip){
 		boolean flag = equipBag.add(equip);
 		return flag ;
+	}
+
+
+	public Map<String, Tasks> getTaskMap() {
+		return taskMap;
+	}
+
+
+	public void setTaskMap(Map<String, Tasks> taskMap) {
+		this.taskMap = taskMap;
+	}
+
+
+	public Map<String, Tasks> getCurTaskList() {
+		return curTaskList;
+	}
+
+
+	public void setCurTaskList(Map<String, Tasks> curTaskList) {
+		this.curTaskList = curTaskList;
 	}
 	
 	

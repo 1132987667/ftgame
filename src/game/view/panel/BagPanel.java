@@ -49,14 +49,15 @@ public class BagPanel extends JPanel {
 		gameControl = GameControl.getInstance();
 		/** 初始化 */
 		setLayout(null);
-		setOpaque(false);
+		//setOpaque(false);
+		setBackground(Color.blue);
 		setSize(800, 300);
 		setVisible(false);
 		
 		/** 查看当前装备信息的两个面板 */
 		equipShow = new JPanel() ;
 		equipShow.setLayout(null);
-		equipShow.setBounds(310, 0, 600, 300);
+		equipShow.setBounds(304, 0, 600, 300);
 		equipShow.setOpaque(false);
 		//equipShow.setBackground(Color.red);
 		add(equipShow);
@@ -65,20 +66,20 @@ public class BagPanel extends JPanel {
 		selectEp = new EquipInfoPanel();
 		//selectEp.setVisible(false);
 		equipShow.add(selectEp);
-		selectEp.setBounds(0, 4, 170, 220);
+		selectEp.setBounds(0, 4, 170, 240);
 		/** 当前点击的 */
 		wearEp = new EquipInfoPanel();
 		//wearEp.setVisible(false);
 		equipShow.add(wearEp);
-		wearEp.setBounds(176,4,170,220);
+		wearEp.setBounds(174,4,170,240);
 		
 		/** 对装备进行操作的按钮 */
 		putOn = new TButton("装备", 2);
 		resolve = new TButton("分解", 2);
 		putOn.addActionListener(eqAc);
 		resolve.addActionListener(eqAc);
-		putOn.setBounds(2, 226, 56, 22);
-		resolve.setBounds(62, 226, 56, 22);
+		putOn.setBounds(0, selectEp.getY()+selectEp.getHeight()+2, 56, 22);
+		resolve.setBounds(60, selectEp.getY()+selectEp.getHeight()+2, 56, 22);
 		/** 先隐藏 */
 		//putOn.setVisible(false);
 		//resolve.setVisible(false);
@@ -98,7 +99,7 @@ public class BagPanel extends JPanel {
 		bagPanel.setFont(new Font("楷体",Font.PLAIN,14));
 		add(bagPanel);
 		bagPanel.setBackground(Constant.colorAry[2]);
-		bagPanel.setBounds(0, 0, 300, 199);
+		bagPanel.setBounds(0, 0, 300, 270);
 		/** 增加 */
 		for (int i = 0; i < bagJPanelAry.length; i++) {
 			/** 为背包分类制定具体面板 */

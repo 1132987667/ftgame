@@ -1,26 +1,19 @@
 package game.view.frame;
 
 import game.control.GameControl;
-import game.control.SoundControl;
 import game.entity.Archive;
 import game.entity.Player;
-import game.entity.scene.Tudimiao;
 import game.listener.GreatListener;
 import game.utils.Constant;
-import game.utils.SUtils;
-import game.utils.UIs;
 import game.view.TTextPane;
 import game.view.button.MButton;
 import game.view.button.TButton;
-import game.view.panel.BagClassifyPanel;
 import game.view.panel.BagPanel;
 import game.view.panel.EquipInfoPanel;
 import game.view.panel.TestPanel;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.Insets;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -28,9 +21,12 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JTabbedPane;
 import javax.swing.UIManager;
-
+/**
+ * 进行游戏的主界面
+ * @author yilong22315
+ *
+ */
 public class MainFrame extends JFrame{
 	private static final long serialVersionUID = 1L;
 	/**	
@@ -56,11 +52,19 @@ public class MainFrame extends JFrame{
 	/** 地方面板 */
 	JPanel foeAttr   ;
 	/** 功能按钮 */
-	TButton status , skillsBu , bagBu , task , map ,fuben ,save ; 
-	TButton[] funAry = { status , skillsBu , bagBu , task ,map ,fuben,save  }; 
-	
+	TButton status, skillsBu, bagBu, task, map, fuben, save, juqing;
+	TButton[] funAry = { status, skillsBu, bagBu, task, juqing, fuben, save, map };
+
 	/** 战斗面板 */
 	JPanel fightJpanel  ;
+	/**
+	 * 玩家与游戏进行交互的面板
+	 * 包括了 
+	 * 小地图面板
+	 * 人物显示面板
+	 * 操作人物面板
+	 */
+	JPanel tianPanel ;
 	/** 背包面板 */
 	BagPanel bag ;
 	
@@ -81,7 +85,7 @@ public class MainFrame extends JFrame{
 	
 	public int fontSize = 14 ;
 	Font font1 = new Font("楷体", Font.PLAIN, 14);
-	Font font2 = new Font("隶书", Font.BOLD, 14);
+	Font font2 = new Font("华文楷体", Font.BOLD, 14);
 	Font font3 = new Font("幼圆", Font.PLAIN, 14);
 	
 	/** 当前角色和存档 */
@@ -141,11 +145,11 @@ public class MainFrame extends JFrame{
 			attrAry[i] = new JLabel("");
 			tempL.setFont(font2);
 			attrAry[i].setFont(font2);
-			tempL.setForeground(Color.white);
-			attrAry[i].setForeground(Color.white);
+			tempL.setForeground(Color.blue);
+			attrAry[i].setForeground(Color.blue);
 			panelA.add(tempL);
 			panelA.add(attrAry[i]);
-			tempL.setBounds(x*2, y, fontSize*3, fontSize+inset);
+			tempL.setBounds(x, y, fontSize*3, fontSize+inset);
 			x = tempL.getX()+tempL.getWidth() ;
 			attrAry[i].setBounds(x,y,attrWidth-x-inset, fontSize+inset);
 			y = tempL.getY()+tempL.getHeight() ;
@@ -169,9 +173,8 @@ public class MainFrame extends JFrame{
 		panelB = new TTextPane(rightWidth, 100) ;
 		add(panelB);
 		panelB.setLocation(attrWidth, 0);
-		Tudimiao tudimiao = new Tudimiao();
-		panelB.setBorder(BorderFactory.createTitledBorder(tudimiao.name));
-		panelB.append(tudimiao.des, 0);
+		panelB.setBorder(BorderFactory.createTitledBorder("土地庙"));
+		panelB.append("这儿一间破落的土地庙,因年久失修，土地庙四周都已经长满了杂草，土地神像也是锈迹斑斑，甚至两条胳膊上都已经生出了一条条裂痕，好似随时都有可能掉落下来", 0);
 		
 		/** 战斗面板 */
 		fightJpanel = new JPanel() ;
@@ -179,7 +182,7 @@ public class MainFrame extends JFrame{
 		add(fightJpanel);
 		fightJpanel.setBounds(attrWidth, panelB.getY()+panelB.getHeight(), rightWidth+200, 460);
 		fightJpanel.setFont(font2);
-		fightJpanel.setBackground(Constant.colorAry[2]);
+		fightJpanel.setBackground(Color.red);
 		//fightJpanel.setBorder(BorderFactory.createEtchedBorder());
 		gameControl.setFightJpanel(fightJpanel);
 		
@@ -189,12 +192,18 @@ public class MainFrame extends JFrame{
 		fightJpanel.add(jsc);
 		jsc.setLocation(0, 0);
 		
+		/** 初始化交互面板，为了放置交互背景图片 */
+		tianPanel = new JPanel() ;
+		tianPanel.setLayout(null);
+		fightJpanel.add(tianPanel);
+		tianPanel.setBounds(0, jsc.getHeight(), 600, 198);
+		
 		/** 小地图 */
 		panelE = new JPanel() ;
 		panelE.setOpaque(false);
-		panelE.setBounds(0, jsc.getHeight(), 302, 198);
+		panelE.setBounds(0, 0, 302, 198);
 		panelE.setLayout(null);
-		fightJpanel.add(panelE);
+		tianPanel.add(panelE);
 		for (int j = 0; j < mapButton.length; j++) {
 			 int x = j%3 ; 
 			 int y = j/3 ;
@@ -207,15 +216,22 @@ public class MainFrame extends JFrame{
 		
 		/** 显示场景存在人物 */
 		panelF = new JPanel() ;
+		panelF.setOpaque(false);
 		panelF.setLayout(null);
-		panelF.setBounds(302, jsc.getHeight(), rightWidth-302, 99);
-		fightJpanel.add(panelF);
+		panelF.setBounds(302 ,0, rightWidth-302, 99);
+		tianPanel.add(panelF);
 		/** 显示可以对人物进行的操作 */
 		panelG = new JPanel() ;
+		panelG.setOpaque(false);
 		panelG.setLayout(null);
 		panelG.setBounds(302, panelF.getY()+panelF.getHeight(), rightWidth-302, 99);
-		fightJpanel.add(panelG);
-		panelG.setBackground(Color.RED);
+		tianPanel.add(panelG);
+		//panelG.setBackground(Color.RED);
+		
+		JLabel tianBack = new JLabel();
+		tianBack.setIcon(new ImageIcon("src/game/img/back/select2.png"));
+		tianBack.setBounds(0, 0, tianPanel.getWidth(), tianPanel.getHeight());
+		tianPanel.add(tianBack);
 		
 		/** 初始化弹窗监听器 */
 		greatListener = new GreatListener(this,archive,player);
@@ -245,7 +261,7 @@ public class MainFrame extends JFrame{
 		
 		/** 背包 --开始  */
 		bag = new BagPanel(fightJpanel,player) ;
-		bag.setLocation(0, panelD.getHeight());
+		bag.setLocation(-6, panelD.getHeight());
 		fightJpanel.add(bag);
 		/** 背包 --结束  */
 		
@@ -282,7 +298,6 @@ public class MainFrame extends JFrame{
 			}
 		}
 		
-		UIs.setUI();
 		
 		MainFrame frame = new MainFrame() ;
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -346,14 +361,8 @@ public class MainFrame extends JFrame{
 	
 	/** 隐藏战斗页面，显示及背包页面  */
 	public void openBag(){
-		if(panelE.isVisible()){
-			panelE.setVisible(false);
-		}
-		if(panelF.isVisible()){
-			panelF.setVisible(false);
-		}
-		if(panelG.isVisible()){
-			panelG.setVisible(false);
+		if(tianPanel.isVisible()){
+			tianPanel.setVisible(false);
 		}
 		if(!bag.isVisible()){
 			bag.setVisible(true);
@@ -366,14 +375,8 @@ public class MainFrame extends JFrame{
 		if(bag.isVisible()){
 			bag.setVisible(false);
 		}
-		if(!panelE.isVisible()){
-			panelE.setVisible(true);
-		}
-		if(!panelF.isVisible()){
-			panelF.setVisible(true);
-		}
-		if(!panelG.isVisible()){
-			panelG.setVisible(true);
+		if(!tianPanel.isVisible()){
+			tianPanel.setVisible(true);
 		}
 	}
 	

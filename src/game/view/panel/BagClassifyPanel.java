@@ -81,7 +81,7 @@ public class BagClassifyPanel extends JPanel {
 		scrollPane.setVerticalScrollBarPolicy(   
                 JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 		add(scrollPane);
-		scrollPane.setBounds(2, 24, 300, 148);
+		scrollPane.setBounds(2, 22, 300, 250);
 		
 		init();
 		

@@ -21,6 +21,11 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
+/**
+ * 用来显示玩家信息的面板
+ * @author yilong22315
+ *
+ */
 public class PlayerPanel extends JPanel {
 	private static final long serialVersionUID = 1L;
 	

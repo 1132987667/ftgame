@@ -12,15 +12,15 @@ import java.util.List;
  *  rank 适合等级 
  */
 public class Ditu{
-	public int id = 0 ;
-	public String name = "" ;
-	public String des = "" ;
-	public int rankL = 0 ;
-	public int rankR = 0;
-	public List<NPC> list = null ;
-	public List<Scene> scene = null ;
+	private String id = "" ;
+	private String name = "" ;
+	private String des = "" ;
+	private int rankL = 0 ;
+	private int rankR = 0;
+	private List<NPC> list = null ;
+	private List<Scene> scene = null ;
 	
-	public Ditu(int id,String name, String des, int rankL, int rankR) {
+	public Ditu(String id,String name, String des, int rankL, int rankR) {
 		super();
 		this.id = id ;
 		this.name = name;
@@ -29,5 +29,61 @@ public class Ditu{
 		this.rankR = rankR;
 		list = new ArrayList<>();
 		scene = new ArrayList<>();
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getDes() {
+		return des;
+	}
+
+	public void setDes(String des) {
+		this.des = des;
+	}
+
+	public int getRankL() {
+		return rankL;
+	}
+
+	public void setRankL(int rankL) {
+		this.rankL = rankL;
+	}
+
+	public int getRankR() {
+		return rankR;
+	}
+
+	public void setRankR(int rankR) {
+		this.rankR = rankR;
+	}
+
+	public List<NPC> getList() {
+		return list;
+	}
+
+	public void setList(List<NPC> list) {
+		this.list = list;
+	}
+
+	public List<Scene> getScene() {
+		return scene;
+	}
+
+	public void setScene(List<Scene> scene) {
+		this.scene = scene;
 	}
 }

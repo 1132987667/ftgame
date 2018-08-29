@@ -1,12 +1,17 @@
 package game.listener;
 
+import game.control.EquipControl;
 import game.control.FightControl;
 import game.control.GameControl;
+import game.control.SoundControl;
 import game.entity.Equip;
+import game.entity.Material;
 import game.entity.NPC;
 import game.entity.Player;
 import game.entity.Scene;
+import game.entity.Tasks;
 import game.utils.Constant;
+import game.utils.SUtils;
 import game.view.button.MButton;
 import game.view.frame.SpFrame;
 
@@ -14,8 +19,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import javax.swing.JPanel;
+
+import org.dom4j.Document;
+import org.dom4j.Element;
+import org.dom4j.Node;
 
 public class NpcListener implements ActionListener{
 	private GameControl gameControl = GameControl.getInstance();
@@ -42,8 +52,12 @@ public class NpcListener implements ActionListener{
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		//npcActionAnalyze
 		curBu = (MButton) e.getSource();
 		npc = curBu.getNpc();
+		/** 此时的npc实体类中只有基本数据 */
+		npcActionAnalyze(npc);
+		
 		System.out.println(npc.getName()+"被点击！");
 		fightControl.setNpc(npc);
 		appendNpcInfo(npc);
@@ -54,13 +68,20 @@ public class NpcListener implements ActionListener{
 		curBu.mouseClicked();
 		/** 用来包含npc的全部动作的集合 */
 		actionList = new ArrayList<>();
-		view = new MButton("查看", 2);
+		MButton[] actionBu = gameControl.getAction();
+		for (int i = 0; i < actionBu.length; i++) {
+			if(actionBu[i]!=null){
+				actionList.add(actionBu[i]);
+			}
+		}
+		
+		/*view = new MButton("查看", 2);
 		actionList.add(view);
 		if(npc.isCankill()){
 			kill = new MButton("击杀", 2);
 			kill.addActionListener(killListener);
 			actionList.add(kill);
-		}
+		}*/
 		gameControl.setFbNpcActionPos(actionList);
 	}
 	
@@ -110,6 +131,134 @@ public class NpcListener implements ActionListener{
 	public void setBuList(List<MButton> buList) {
 		this.buList = buList;
 	}
+	
+	
+	/**
+	 * 解析人物的所有交互动作
+	 * 查看         交谈         击杀         给予         交易                  任务
+	 * view, talk, kill, give, trading, tasks
+	 * @param npc
+	 */
+	public void npcActionAnalyze(final NPC npc){
+		String id = npc.getId();
+		Document document = SUtils.load("src/game/xml/npc.xml");
+		Node node = document.selectSingleNode("/root/npc[id='"+id+"']/action");
+		Element action = null ;
+		if(node==null){
+			return ;
+		}
+		action = node.getParent().element("action");
+		List<Element> actionList = action.elements("ac");
+		/** <ac	type="sell" > type= actionName */
+		String actionName = null ;
+		String actionvalue = null ;
+		System.out.println("正在加载"+npc.getName()+"的动作列表");
+		for (int i = 0; i < actionList.size(); i++) {
+			actionName = actionList.get(i).attributeValue("type");
+			System.out.println(i+":"+actionName);
+			/** 判断动作种类 */
+			if(actionName.equals("kill")){//击杀
+				actionvalue = actionList.get(i).getText().trim();
+				//System.out.println("killValue:"+actionvalue);
+				if(SUtils.conStrToBol(actionvalue)){//判断能否击杀
+					npc.setCankill(true);
+				}else{
+					npc.setCankill(false);
+				}
+			}else if(actionName.equals("sell")){
+				/** <item id="" type="" name="" num="" appear=""></item> */
+				List<Element> acList = actionList.get(i).elements();
+				String itemId,itemName,appear,itemType = null ;
+				List<Object> goods = null;
+				int itemNum = 0 , appearLv = 0 ;
+				for (int j = 0; j < acList.size(); j++) {
+					itemId = acList.get(i).attributeValue("id") ;
+					itemName = acList.get(i).attributeValue("name") ;
+					itemNum = SUtils.conStrtoInt(acList.get(i).attributeValue("num")) ;
+					if(id.equals("bestTrader")||id.equals("bestTrader")||id.equals("bestTrader")){
+						if(id.equals("bestTrader")){//极品商人|卖装备和图纸和材料
+							goods = EquipControl.getBestTraderGoods(itemNum);
+						}else if(id.equals("petTrader")){//售卖宠物蛋
+							goods = EquipControl.getPetTraderGoods(itemNum);
+						}else if(id.equals("skillTrader")){//售卖技能书
+							goods = EquipControl.getSkillTraderGoods(itemNum);
+						}
+						appear = acList.get(i).attributeValue("appear") ;
+						npc.setAppearMode(appear);
+						if(appear.equals("lvAppear")){//当商人为随机出现时才会有随即出现率
+							appearLv = SUtils.conStrtoInt(acList.get(i).attributeValue("appearLv")) ;
+							npc.setAppearLv(appearLv);
+						}
+					}else{
+						//普通商人，储存货物信息 <item id="101" itemType="equip" name="长剑" num="1" type="2,3" ></item>
+						itemType = acList.get(i).attributeValue("itemType");
+						if(itemType.equals("equip")){//装备
+							Equip equip = gameControl.getEquipMap().get(id);
+							equip.setType(2);
+							npc.getSellList().add(equip);
+						}else if(itemType.equals("cailiao")){//材料
+							Material mat = null ;
+						}else if(itemType.equals("pet")){//宠物蛋
+							
+						}else if(itemType.equals("drawings")){//图纸
+							
+						}else if(itemType.equals("skillBook")){//技能书
+							
+						}
+					}
+				}
+			}else if(actionName.equals("talk")){/** 谈话|触发任务 */
+				/**
+				 * <ac type="talk">
+				 *	<!-- 交谈触发任务，苏醒  -->
+				 *	task:101
+				 *	</ac>
+				 */
+				actionvalue = actionList.get(i).getText().trim();
+				String[] info = actionvalue.split(":");
+				if(info[0].equals("task")){
+					gameControl.getTaskByNaId(info[1]);
+					Tasks task =  gameControl.getPlayer().getCurTasksList().get(info[1]);
+					if(task!=null){
+						
+					}
+				}
+			}
+		}
+		/*** 得到所有动作按钮 */
+		MButton[] actionBu = gameControl.getAction();
+		System.out.println(npc.getName()+"能否击杀?"+npc.isCankill());
+		if(npc.isCankill()){
+			actionBu[2] = new MButton("战斗", 2);
+			/** 添加击杀动作 */
+			actionBu[2].addActionListener(killListener);
+		}
+		
+		
+		
+		actionBu[0] = new MButton("查看", 2) ;
+		/**** 交谈设置 ***/
+		actionBu[1] = new MButton("交谈", 2);
+		actionBu[1].addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String[] msg = npc.getMsg().split("\\|");
+				int num = new Random().nextInt(msg.length) ;
+				gameControl.append(msg[num].trim()+"\n", 1);
+			}
+		});
+		gameControl.setAction(actionBu);
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	ActionListener killListener = new ActionListener() {
 		@Override

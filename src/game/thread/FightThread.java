@@ -11,14 +11,12 @@ import game.view.TTextPane;
 
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.util.Map;
 
 import javax.swing.JLabel;
 import javax.swing.SwingUtilities;
 
-import test.SutilTest;
 
 /**
  * 执行战斗任务的战斗线程

@@ -4,14 +4,15 @@ import game.control.EquipControl.AddAttrs;
 import game.entity.Archive;
 import game.entity.Ditu;
 import game.entity.Equip;
+import game.entity.Material;
 import game.entity.NPC;
 import game.entity.Player;
 import game.entity.Scene;
+import game.entity.Tasks;
 import game.listener.NpcListener;
 import game.utils.ArchiveUtils;
 import game.utils.Constant;
 import game.utils.SUtils;
-import game.view.FightTextArea;
 import game.view.TLabel;
 import game.view.TTextPane;
 import game.view.button.MButton;
@@ -34,10 +35,10 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JTextArea;
 
 import org.dom4j.Document;
 import org.dom4j.Element;
+import org.dom4j.Node;
 
 /** 控制各个组件 */
 public class GameControl {
@@ -63,17 +64,19 @@ public class GameControl {
 
 	public Map equipBag = new HashMap<>();
 	
+	private Random rd = new Random(System.currentTimeMillis());
 
 	private String archiveName;
 
 	/** 游戏信息 */
-	private Ditu fuben = null;
+	private Ditu curDitu = null;
 	/** 当前场景 */
 	private Scene scene;
 	
 	
 	private Map<String, Equip> equipMap = null ;
 	private  Map<String,NPC> npcMap = null ;
+	private Map<String,Tasks> taskMap =null ;
 	/**
 	 * 加载游戏控制器
 	 * 应该在其中完成相应资料的加载
@@ -85,8 +88,9 @@ public class GameControl {
 	 * 
 	 */
 	private GameControl() {
-		//equipMap = SUtils.loadEquip();
-		//npcMap = SUtils.loadNpc();
+		equipMap = SUtils.loadEquip();
+		npcMap = SUtils.loadNpc();
+		taskMap = SUtils.loadTask();
 	}
 	
 	/** 当前存档 */
@@ -95,6 +99,10 @@ public class GameControl {
 	private Player player =null ;
 	/** 当前与之战斗的npc */
 	private NPC fightNpc = null ;
+	
+	
+	private MButton view, talk, kill, give, trading, tasks ;
+	private MButton[] actionBu = {view, talk, kill, give, trading, tasks} ;
 	
 	
 	public static GameControl getInstance() {
@@ -173,58 +181,94 @@ public class GameControl {
 		return  (NPC) ArchiveUtils.depthClone(npc);
 	}
 	
-	/**
-	 * 加载要去的剧情
-	 * @param name
-	 * @return
+	public Tasks getTaskByNaId(String id){
+		return taskMap.get(id);
+	}
+	
+	/** 
+	 * 通过npc名字得到资料库中npc实体类的克隆体 
+	 * @param name 要查询的npc的name
+	 * @return 返回资料库中Npc实体类的克隆体
 	 */
-	public List<Ditu> loadJuqing(String jqID){
-		int id = 0 ;
-		List<Ditu> list = new ArrayList<>();
+	public NPC getNpcById(String id){
+		System.out.println("npc总数:"+npcMap.size());
+		NPC npc = npcMap.get(id);
+		return  (NPC) ArchiveUtils.depthClone(npc);
+	}
+	
+	
+	public List<Ditu> loadJuqing() {
+		Ditu ditu = null ;
 		Document document = SUtils.load("src/game/xml/juqing.xml");
 		Element root = document.getRootElement();
 		List<Element> temp  = root.elements();
+		List<Ditu> list = new ArrayList<>();
+		String jqId, jqName, jqDes = null ;
+		for (int i = 0; i < temp.size(); i++) {
+			jqId = temp.get(i).attribute("id").getText() ;
+			jqName = temp.get(i).elementText("name");
+			jqDes = temp.get(i).elementText("des");
+			ditu = new Ditu(jqId, jqName, jqDes, 0, 0);
+			list.add(ditu);
+		}
+		return list;
+	}
+	
+	
+	/**
+	 * 加载当前选择的剧情
+	 * @param jqID
+	 * @return 返回地图实体类
+	 */
+	public Ditu loadJuqing(String jqID){
+		Ditu ditu = null ;
+		Document document = SUtils.load("src/game/xml/juqing.xml");
+		Element root = document.getRootElement();
+		Element curJuqing = null ;
+		List<Element> temp  = root.elements();
 		for (int i = 0; i < temp.size(); i++) {
 			if(temp.get(i).attribute("id").getText().equals(jqID)){
-				temp = temp.get(i).elements() ;
-				id = SUtils.conStrtoInt(jqID);
+				curJuqing = temp.get(i);
 				break;
 			}
 		}
-		Element map = null ;
+		String jqId,jqName,jqDes = null ;
+		if(curJuqing==null){
+			return null ;
+		}
+		jqId = jqID ;
+		jqName = curJuqing.elementText("name");
+		jqDes = curJuqing.elementText("des");
+		ditu = new Ditu(jqId, jqName, jqDes, 0, 0);
+		
 		String name,des,pos  = null;
 		Scene scene = null ;
-		List<Element> mapTemp = null ;
-		/*** 加载每个场景的内容 */
-		for (int i = 0; i < temp.size(); i++) {
-			name = temp.get(i).element("name").getText();
-			des = temp.get(i).element("des").getText();
-			Ditu fuben = new Ditu(id,name, des,0,0);
-			/** 不是每个副本都加了地图信息 */
-			map = temp.get(i).element("map") ;
-			if(map!=null){
-				mapTemp = map.elements() ;
-				System.out.println("加载得到"+mapTemp.size()+"个场景");
-				for (int j=0;j < mapTemp.size(); j++) {
-					name =  mapTemp.get(j).element("name").getText();
-					des = mapTemp.get(j).element("des").getText();
-					pos = mapTemp.get(j).element("pos").getText();
-					String[] tempAry = pos.split(",");
-					int x =  SUtils.conStrtoInt(tempAry[0]);
-					int y = SUtils.conStrtoInt(tempAry[1]);
-					scene = new Scene(name,des,x,y) ;
-					String str = mapTemp.get(j).element("npcList").getText();
-					//得到副本中对应的怪物
-					scene.npcList = getNPCList(str);
-					scene.npcStr = str ;
-					System.out.println(x+":"+y +", 该场景怪物数量:"+fuben.list.size());
-					fuben.scene.add(scene);
-					
-				}
+		List<Element> mapTemp = curJuqing.element("map").elements();
+		System.out.println("剧情"+jqId+"共有"+mapTemp.size()+"个场景");
+		
+		/** 场景集合 */
+		List<Scene> sceneList = new ArrayList<>();
+		for (int j = 0; j < mapTemp.size(); j++) {
+			name = mapTemp.get(j).element("name").getText();
+			des = mapTemp.get(j).element("des").getText();
+			pos = mapTemp.get(j).element("pos").getText();
+			String[] tempAry = pos.split(",");
+			/** x,y坐标 */
+			int x = SUtils.conStrtoInt(tempAry[0]);
+			int y = SUtils.conStrtoInt(tempAry[1]);
+			scene = new Scene(name, des, x, y);
+			String npcStr = mapTemp.get(j).element("npcList").getText();
+			// 得到副本中对应的怪物
+			if(npcStr.trim().length()>0){
+				scene.setNpcList(getNPCList(npcStr));
 			}
-			list.add(fuben);
+			scene.setNpcStr(npcStr);
+			System.out.println(x + ":" + y + ", 该场景怪物数量:" + scene.getNpcList().size());
+			sceneList.add(scene);
 		}
-		return null ;
+		ditu.setScene(sceneList);
+		curDitu = ditu ;
+		return ditu ;
 	}
 	
 	
@@ -245,12 +289,11 @@ public class GameControl {
 			}
 		}
 		Element map = null ;
-		int id = 0 ;
-		String name,des,rankL,rankR  = null;
+		String id,name,des,rankL,rankR  = null;
 		Scene scene = null ;
 		List<Element> mapTemp = null ;
 		for (int i = 0; i < temp.size(); i++) {
-			id = SUtils.conStrtoInt(temp.get(i).attribute("id").getText());
+			id = temp.get(i).attribute("id").getText();
 			name = temp.get(i).element("name").getText();
 			des = temp.get(i).element("des").getText();
 			rankL = temp.get(i).element("rankL").getText();
@@ -271,9 +314,8 @@ public class GameControl {
 					//得到副本中对应的怪物
 					scene.npcList = getNPCList(str);
 					scene.npcStr = str ;
-					System.out.println(x+":"+y +", 该场景怪物数量:"+fuben.list.size());
-					fuben.scene.add(scene);
-					
+					System.out.println(x+":"+y +", 该场景怪物数量:"+fuben.getList().size());
+					fuben.getScene().add(scene);
 				}
 			}
 			list.add(fuben);
@@ -284,20 +326,25 @@ public class GameControl {
 	/**
 	 * 传入存有npc名字和数量的特殊格式字符串
 	 * 创建对应对象添加到list中
+	 * 例如  1005:猎户大叔:1,1004:小花:1
 	 * @param str
 	 * @return 返回包含场景内所悟npc信息的集合
 	 */
 	private List<NPC> getNPCList(String str){
 		List<NPC> list = new ArrayList<>();
 		String[] temp = null ;
+		String id = "" ;
 		String npcName = null ;
 		String[] ary = str.split(",");
 		int num = 0 ;
 		for (int i = 0; i < ary.length; i++) {
+			/**  1005:猎户大叔:1 */
 			temp = ary[i].split(":");
-			npcName = temp[0];
-			num = SUtils.conStrtoInt(temp[1]);
-			NPC npc = getNpcByName(npcName);
+			System.out.println(ary[i]+".split(':')"+temp.length);
+			id = temp[0];
+			npcName = temp[1];
+			num = SUtils.conStrtoInt(temp[2]);
+			NPC npc = getNpcById(id);
 			if(npc!=null){
 				for (int j = 0; j < num; j++) {
 					/** 和当前玩家的幸运值相关 */
@@ -306,6 +353,7 @@ public class GameControl {
 				}
 			}
 		}
+		System.out.println("npcList大小:"+list.size());
 		return list ;
 	}
 	
@@ -317,7 +365,7 @@ public class GameControl {
 	 */
 	public void setNpcSpecInfo(Ditu fuben){
 		System.out.println("设置副本npc信息!"+fuben);
-		List<Scene> sceneList = fuben.scene ;
+		List<Scene> sceneList = fuben.getScene() ;
 		List<NPC> npcList = null ;
 		NPC tempNpc = null ;
 		for (int i = 0; i < sceneList.size(); i++) {
@@ -482,7 +530,6 @@ public class GameControl {
 		return npcType;
 	}
 	
-	private JTextArea jta = FightTextArea.getInstance(5, 30);
 	private TimeController t = TimeController.getInstance();
 
 	/** 将主界面的界面传输过来 */
@@ -508,13 +555,13 @@ public class GameControl {
 	 * @param fuben
 	 */
 	public void setSelect(Ditu fuben) {
-		this.fuben = fuben;
-		List<Scene> list = fuben.scene;
-		for (int i = 0; i < fuben.scene.size(); i++) {
-			System.out.println(fuben.scene.get(i).toString());
+		this.curDitu = fuben;
+		List<Scene> list = fuben.getScene();
+		for (int i = 0; i < fuben.getScene().size(); i++) {
+			System.out.println(fuben.getScene().get(i).toString());
 		}
 		panelD.append("你选择了前往【", 0);
-		panelD.append(fuben.name, 5);
+		panelD.append(fuben.getName(), 5);
 		panelD.append("】\n", 0);
 
 	}
@@ -526,7 +573,7 @@ public class GameControl {
 	 * @return 返回目标场景，不存在返回null
 	 */
 	private Scene getScene(int x, int y) {
-		List<Scene> list = fuben.scene;
+		List<Scene> list = curDitu.getScene();
 		for (int i = 0; i < list.size(); i++) {
 			if (list.get(i).x == x && list.get(i).y == y) {
 				return list.get(i);
@@ -595,6 +642,7 @@ public class GameControl {
 	ActionListener maoBuAc = new ActionListener() {
 		@Override
 		public void actionPerformed(ActionEvent e) {
+			SoundControl.ftMuc(26);
 			MButton curBu = (MButton) e.getSource();
 			/** 得到当前点击按钮的场景 */
 			Scene sc = curBu.getCurScene();
@@ -902,14 +950,16 @@ public class GameControl {
 		theArchive.setName(name);
 		/** 把时间设置为当前时间 */
 		theArchive.setTime(System.currentTimeMillis());
+		/** 初始化玩家所有任务 */
+		theArchive.setTaskMap(taskMap);
 		/** 新建存档和人物 , 初始赠送一些装备 */
 		Player newPlayer = new Player() ;
+		newPlayer.setName(name);
 		Equip equip = null ;
 		/** 生成默认基本装备 */
 		for (int i = 0; i < 8; i++) {
 			equip = equipControl.equipGenerate(1, i);
 			if(equip!=null){
-				System.out.println("生成的背包装备:"+i+","+equip.toString());
 				theArchive.obtainEquip(equip);
 				newPlayer.obtainEquip(equip);
 			}
@@ -917,19 +967,15 @@ public class GameControl {
 		for (int i = 0; i < 8; i++) {
 			equip = equipControl.equipGenerate(1, i);
 			if(equip!=null){
-				System.out.println("已穿上装备:"+equip.toString());
 				theArchive.wearEquip(equip, i);
 				newPlayer.wearEquip(equip, i);
 			}
 		}
-		for (int i = 0; i < newPlayer.getEquipBag().size(); i++) {
-			System.out.println("正在检查人物背包:"+theArchive.getEquipBag().get(i).toString());
-		}
-		
-		gameControl.setArchive(theArchive);
-		gameControl.setPlayer(newPlayer);
+		setArchive(theArchive);
+		setPlayer(newPlayer);
 		
 		/** 存档 */
+		System.out.println("设置玩家名字是否成功:"+theArchive.getName());
 		ArchiveUtils.saveArchiving(theArchive, archiveName);
 		return theArchive ;
 	}
@@ -1006,6 +1052,52 @@ public class GameControl {
 		}
 		return speed ;
 	}
+	
+	/**
+	 * 解析人物的所有交互动作
+	 * 查看         交谈         击杀         给予         交易                  任务
+	 * view, talk, kill, give, trading, tasks
+	 * @param npc
+	 */
+	public void npcActionAnalyze(final NPC npc){
+		String id = npc.getId();
+		Document document = SUtils.load("src/game/xml/npc.xml");
+		Node node = document.selectSingleNode("/root/npc[id='"+id+"']/action");
+		Element action ;
+		if(node!=null){
+			action = node.getParent().element("action");
+		}
+		actionBu[0] = new MButton("查看", 2) ;
+		/**** 交谈设置 ***/
+		actionBu[1] = new MButton("交谈", 2);
+		actionBu[1].addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String[] msg = npc.getMsg().split("\\|");
+				int num = rd.nextInt(msg.length) ;
+				append(msg[num], 1);
+			}
+		});
+		
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 	public SpFrame getFtFrame() {
 		return ftFrame;
@@ -1030,5 +1122,206 @@ public class GameControl {
 	public void setEquipMap(Map<String, Equip> equipMap) {
 		this.equipMap = equipMap;
 	}
+
+	public MButton getTask() {
+		return tasks;
+	}
+
+	public void setTask(MButton tasks) {
+		this.tasks = tasks;
+	}
+
+	public MButton[] getAction() {
+		return actionBu;
+	}
+
+	public void setAction(MButton[] action) {
+		this.actionBu = action;
+	}
+	
+	/**
+	 * 对talk动作的处理
+	 * @param str
+	 */
+	public void dealTalkReq(String str){
+		str = str.trim();
+		String[] actionList = str.split("\\|") ;
+		int reNum = 0 ;
+		/** 任务是否开启的标志 */
+		boolean flag = true ;
+		for (int i = 0; i < actionList.length; i++) {
+			if(!actionList[i].startsWith("remove")){
+				boolean temp = isFullCase(actionList[i]);
+				flag = flag&&temp ;
+			}
+		}
+		/** 不满足任务条件则退出 */
+		if(!flag){
+			return ;
+		}
+		/** 满足任务条件则移除必须的物品  remove:type:id:num */
+		String type = "" ;
+		String id = "" ;
+		int num = 0 ;
+		for (int i = 0; i < actionList.length; i++) {
+			/** 判断移除装备的数量 */
+			if(actionList[i].startsWith("remove")){
+				/** 开始移除装备 */
+				String[] tempAry = actionList[i].split(":");
+				type = tempAry[1] ;
+				id = tempAry[2] ;
+				num = SUtils.conStrtoInt(tempAry[3]);
+				switch (type) {
+				case "equip":/** 移除num数量id的装备 */
+					
+					break;
+				case "cailiao":/** 移除num个id材料 */
+									
+					break;
+				case "pet":/** 移除num个id宠物 */
+					
+					break;
+
+				default:
+					break;
+				}
+			}
+		}
+		
+		
+		
+		
+	}
+	
+	/**
+	 * 判断是否满足人物开启的条件
+	 * 如果开启人物需要道具，那么就去掉
+	 * 1:满足属性
+	 * 2:满足物品
+	 * 3:满足前置任务
+	 * 4:直接true
+	 * @param str
+	 * @return
+	 */
+	public boolean isFullCase(String str){
+		str = str.trim();
+		String[] strAry = null ;
+		if(str.startsWith("attr")){
+			/** attr:
+			 * 
+			 */
+			strAry = str.split(":");
+			String attrName = strAry[1] ;
+			int value = SUtils.conStrtoInt(strAry[2]);
+			switch (attrName) {
+			case "rank":
+				if(player.getRank()>value){
+					return true ;
+				}
+				break;
+			case "atk":
+				if(player.getAttack()>value){
+					return true ;
+				}
+				break;
+			case "def":
+				if(player.getDefense()>value){
+					return true ;
+				}
+				break;
+			default:
+				break;
+			}
+			
+		}else if(str.startsWith("Item")){
+			/** item:equip:id:num  装备
+			 *  item:pet:id:num 宠物
+			 *  item:cailiao 材料
+			 *  item:skillBook 技能书
+			 */
+			strAry = str.split(":");
+			String itemName = strAry[1] ;
+			String id = strAry[2] ;
+			int num = SUtils.conStrtoInt(strAry[3]) ;
+			switch (itemName) {
+			case "equip":
+				return isExistEquip(id);
+			case "pet":
+							
+				break;
+			case "cailiao":
+				return isExistCailiao(id, num);
+			case "skillBook":
+				
+				break;
+			default:
+				break;
+			}
+		}else if(str.startsWith("task")){
+			/** 需要满足前置任务 task:id:curState */
+			strAry = str.split(":");
+			String id = strAry[1] ;
+			int curState = SUtils.conStrtoInt(strAry[2]) ;
+			Tasks task = player.getCurTasksList().get(id);
+			if(task.getCurState()==curState){
+				return true ;
+			}else{
+				return false ;
+			}
+		}else if(str.equals("true")){
+			return true ;
+		}
+		return false; 
+	}
+	
+	
+	
+	
+	
+	
+	/**
+	 * 查看某件装备是否存在玩家背包
+	 * @param id
+	 * @return
+	 */
+	public boolean isExistEquip(String id){
+		List<Equip> equipList = player.getEquipBag();
+		for (int i = 0; i < equipList.size(); i++) {
+			if(equipList.get(i).getId().equals(id)){
+				return true ;
+			}
+		}
+		return false ;
+	}
+	
+	/**
+	 * 查看玩家背包是否存在一定的数量的某材料
+	 * @param id 材料id
+	 * @param num 材料数量
+	 * @return
+	 */
+	public boolean isExistCailiao(String id,int num){
+		List<Material> cailiaoList = player.getMaterialBag();
+		for (int i = 0; i < cailiaoList.size(); i++) {
+			if(cailiaoList.get(i).getId().equals(id)){
+				if(cailiaoList.get(i).getNum()>=num){
+					return true ;
+				}
+			}
+		}
+		return false ;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 }

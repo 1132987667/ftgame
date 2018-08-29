@@ -1,9 +1,8 @@
 package game.control;
 
-import javax.swing.JTextArea;
-
 import game.utils.SUtils;
-import game.view.FightTextArea;
+
+import javax.swing.JTextArea;
 
 
 public class InputControl implements Runnable{

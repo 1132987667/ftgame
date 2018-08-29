@@ -4,6 +4,7 @@ import game.control.GameControl;
 import game.entity.Citiao;
 import game.entity.Ditu;
 import game.entity.Equip;
+import game.entity.NPC;
 import game.entity.Scene;
 
 import java.awt.Color;
@@ -46,12 +47,17 @@ public class XMLTool extends JFrame{
 	private JTextField name,des,rank ;
 	private JTable fubenTable ;
 	private JTable equipTable ;
+	private JTable npcTable ;
+	
+	
+	
+	
 	private int width , height ;
 	
 	private DefaultTableModel tableModel = null ;
 	
 	private JComboBox<String> cb1 = null , cb2 = null ;
-	private String[] defFun = {"fuben","equip","3","4"} ;
+	private String[] defFun = {"fuben","equip","npc","4"} ;
 	private String curSelect = null ; 
 	private int curInx = 0 ;
 	private JScrollPane jsc ;
@@ -76,12 +82,8 @@ public class XMLTool extends JFrame{
 		cb1.setMaximumSize(new Dimension(92,24));
 		/** removeAllItems[移除所有下拉框选项],新增选项 addItem*/	
 		
-		List<Ditu> fbList =  GameControl.getInstance().loadFuben();
-		String[] fbAry = new String[fbList.size()];
-		for (int i = 0; i < fbAry.length; i++) {
-			fbAry[i] = fbList.get(i).name;
-		}
-		cb2 = new JComboBox<String>(fbAry);
+		
+		cb2 = new JComboBox<String>();
 		
 		cb2.setMaximumSize(new Dimension(192,24));
 		JButton submit = new JButton("sure");
@@ -105,6 +107,8 @@ public class XMLTool extends JFrame{
 		save.addActionListener(ac);
 		submit.addActionListener(ac);
 		
+		tableModel = new DefaultTableModel();
+		
 		jp2 = new JPanel() ;
 		jp2.setOpaque(false);
 		jp2.setBounds(inset, jp1.getY()+jp1.getHeight()+inset, rootpane.getWidth()-inset*2, 34 );
@@ -112,59 +116,22 @@ public class XMLTool extends JFrame{
 		box.setOpaque(false);
 		box.add(Box.createHorizontalStrut(inset));	
 		box.add(new Field("name:"));
-		name = new JTextField(fbList.get(0).name);
+		name = new JTextField();
 		name.setPreferredSize(new Dimension(50, 30));
 		box.add(name);
 		box.add(Box.createHorizontalStrut(inset));	
 		box.add(new Field("des:"));
-		des = new JTextField(fbList.get(0).des);
+		des = new JTextField();
 		des.setPreferredSize(new Dimension(290, 30));
 		box.add(des);
 		box.add(Box.createHorizontalStrut(inset));	
 		box.add(new Field("rank:"));
-		rank = new JTextField(fbList.get(0).rankL+","+fbList.get(0).rankR);
+		rank = new JTextField();
 		rank.setPreferredSize(new Dimension(40, 30));
 		box.add(rank);
 		jp2.add(box);
 		
-		
-		String[][] ary = new String[0][0] ;
-		String[] tableHead = {"name","des","pos","npc"} ; 
-		tableModel = new DefaultTableModel(ary, tableHead);
-		fubenTable = new JTable(tableModel);// 创建表格组件
-		RowSorter<DefaultTableModel> sorter = new TableRowSorter<DefaultTableModel>(tableModel);
-        fubenTable.setRowSorter(sorter);
-		JTableHeader head = fubenTable.getTableHeader(); // 创建表格标题对象
-		head.setPreferredSize(new Dimension(500, 24));
-		head.setFont(new Font("隶书", Font.PLAIN, 18));// 设置表格字体
-		fubenTable.setRowHeight(20);// 设置表格行宽
-		TableColumn column = null ;
-		column = fubenTable.getColumnModel().getColumn(0);
-		column.setPreferredWidth(50);
-		column = fubenTable.getColumnModel().getColumn(1);
-		column.setPreferredWidth(360);
-		column = fubenTable.getColumnModel().getColumn(2);
-		column.setPreferredWidth(50);
-		column = fubenTable.getColumnModel().getColumn(3);
-		column.setPreferredWidth(100);
-		fubenTable.setCellSelectionEnabled(false);
-		//tableModel.fireTableDataChanged();
-		
-		
-		Ditu f = fbList.get(cb2.getSelectedIndex());
-		List<Scene> l = f.scene ;
-		String[] textAry = null ;
-		/** 填充表格 */
-		for (int i = 0; i < l.size(); i++) {
-			textAry = new String[4];
-			textAry[0] = new String(l.get(i).name);
-			textAry[1] = new String(l.get(i).des);
-			textAry[2] = new String(l.get(i).x+","+l.get(i).y);
-			textAry[3] = new String(l.get(i).npcStr);
-			tableModel.addRow(textAry);
-		}
-		
-		jsc = new JScrollPane(fubenTable);
+		jsc = new JScrollPane(null);
 		jsc.setPreferredSize(new Dimension(width, height-30));
 		jsc.setBounds(inset, jp2.getY()+jp2.getHeight()+inset, width-30, height-(jp2.getY()+jp2.getHeight()+inset)-80 );
 		jsc.setOpaque(false);
@@ -245,18 +212,20 @@ public class XMLTool extends JFrame{
 				String[] ary = rank.getText().split(",");
 				int rankL = SUtils.conStrtoInt(ary[0]);
 				int rankR = SUtils.conStrtoInt(ary[1]);
-				Ditu fb = new Ditu(0,name.getText(), des.getText(), rankL, rankR);
-				fb.scene = list ;
+				Ditu fb = new Ditu(0+"",name.getText(), des.getText(), rankL, rankR);
+				fb.setScene(list); 
 				SUtils.editXML("", curInx, fb);
 			}
 			if(e.getActionCommand().equals("sure")){
 				curInx = cb1.getSelectedIndex() ;
 				if(curInx==1){
 					setEquipTable();
+				}else if(curInx==2){
+					setNpcTable();
 				}
 				
 			}
-			fubenTable.revalidate();
+			//fubenTable.revalidate();
 		}
 	};
 	
@@ -321,6 +290,7 @@ public class XMLTool extends JFrame{
 		Equip value = null;
 		GameControl ganecControl = GameControl.getInstance();
 		Map<String, Equip> equipMap = ganecControl.getEquipMap();
+		//System.out.println("equipMap:"+equipMap);
 		Iterator<String> iter = equipMap.keySet().iterator();
 		String[] textAry = null ;
 		/** 填充表格 */
@@ -345,6 +315,105 @@ public class XMLTool extends JFrame{
 		jsc.setViewportView(equipTable);
 	}
 	
+	public void setFubenTable(){
+		String[][] ary = new String[0][0] ;
+		String[] tableHead = {"name","des","pos","npc"} ; 
+		tableModel = new DefaultTableModel(ary, tableHead);
+		fubenTable = new JTable(tableModel);// 创建表格组件
+		RowSorter<DefaultTableModel> sorter = new TableRowSorter<DefaultTableModel>(tableModel);
+        fubenTable.setRowSorter(sorter);
+		JTableHeader head = fubenTable.getTableHeader(); // 创建表格标题对象
+		head.setPreferredSize(new Dimension(500, 24));
+		head.setFont(new Font("隶书", Font.PLAIN, 18));// 设置表格字体
+		fubenTable.setRowHeight(20);// 设置表格行宽
+		TableColumn column = null ;
+		column = fubenTable.getColumnModel().getColumn(0);
+		column.setPreferredWidth(50);
+		column = fubenTable.getColumnModel().getColumn(1);
+		column.setPreferredWidth(360);
+		column = fubenTable.getColumnModel().getColumn(2);
+		column.setPreferredWidth(50);
+		column = fubenTable.getColumnModel().getColumn(3);
+		column.setPreferredWidth(100);
+		fubenTable.setCellSelectionEnabled(false);
+		//tableModel.fireTableDataChanged();
+		
+		List<Ditu> fbList =  GameControl.getInstance().loadFuben();
+		String[] fbAry = new String[fbList.size()];
+		for (int i = 0; i < fbAry.length; i++) {
+			fbAry[i] = fbList.get(i).getName();
+		}
+		Ditu f = fbList.get(cb2.getSelectedIndex());
+		List<Scene> l = f.getScene() ;
+		String[] textAry = null ;
+		/** 填充表格 */
+		for (int i = 0; i < l.size(); i++) {
+			textAry = new String[4];
+			textAry[0] = new String(l.get(i).name);
+			textAry[1] = new String(l.get(i).des);
+			textAry[2] = new String(l.get(i).x+","+l.get(i).y);
+			textAry[3] = new String(l.get(i).npcStr);
+			tableModel.addRow(textAry);
+		} 
+	}
 	
+	/** 1360 */
+	public void setNpcTable(){
+		String[][] ary = new String[0][0] ;
+		String[] tableHead = {"id","name","attrType","des","msg","rank","type","action"} ; 
+		tableModel = new DefaultTableModel(ary, tableHead);
+		npcTable = new JTable(tableModel);// 创建表格组件
+		RowSorter<DefaultTableModel> sorter = new TableRowSorter<DefaultTableModel>(tableModel);
+		npcTable.setRowSorter(sorter);
+        
+        JTableHeader head = npcTable.getTableHeader(); // 创建表格标题对象
+		head.setPreferredSize(new Dimension(width, 24));
+		head.setFont(new Font("微软雅黑", Font.PLAIN, 14));// 设置表格字体
+		npcTable.setRowHeight(20);// 设置表格行宽
+		TableColumn column = null ;
+		column = npcTable.getColumnModel().getColumn(0);
+		column.setPreferredWidth(50);
+		column = npcTable.getColumnModel().getColumn(1);
+		column.setPreferredWidth(100);
+		column = npcTable.getColumnModel().getColumn(2);
+		column.setPreferredWidth(80);
+		column = npcTable.getColumnModel().getColumn(3);
+		column.setPreferredWidth(300);
+		column = npcTable.getColumnModel().getColumn(4);
+		column.setPreferredWidth(300);
+		column = npcTable.getColumnModel().getColumn(5);
+		column.setPreferredWidth(80);
+		column = npcTable.getColumnModel().getColumn(6);
+		column.setPreferredWidth(80);
+		column = npcTable.getColumnModel().getColumn(7);
+		column.setPreferredWidth(300);
+		npcTable.setCellSelectionEnabled(false);
+		
+		/** 重新设置 数据 */
+		String key = null;
+		NPC value = null;
+		GameControl ganecControl = GameControl.getInstance();
+		Map<String, NPC> equipMap = SUtils.loadNpc();
+		//System.out.println("equipMap:"+equipMap);
+		Iterator<String> iter = equipMap.keySet().iterator();
+		String[] textAry = null ;
+		/** 填充表格 */
+		/** id","name","attrType","des","msg","rank","type","action */
+		while (iter.hasNext()) {
+			key = iter.next();
+			value = equipMap.get(key);
+			textAry = new String[8];
+			textAry[0] = value.getId();
+			textAry[1] = value.getName();
+			textAry[2] = value.getAttrType();
+			textAry[3] = value.getDes()+"";
+			textAry[4] = value.getMsg()+"";
+			textAry[5] = value.getRank()+"";
+			textAry[6] = value.getType()+"";
+			textAry[7] = "";
+			tableModel.addRow(textAry);
+		}
+		jsc.setViewportView(npcTable);
+	}
 	
 }

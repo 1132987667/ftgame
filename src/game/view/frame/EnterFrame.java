@@ -5,9 +5,9 @@ import game.entity.Archive;
 import game.entity.Player;
 import game.utils.ArchiveUtils;
 import game.utils.SUtils;
-import game.view.GuidePanel;
 import game.view.TLabel;
 import game.view.button.TButton;
+import game.view.panel.GuidePanel;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -20,6 +20,12 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+/**
+ * 进入 
+ * 选择存档的面板
+ * @author yilong22315
+ *
+ */
 public class EnterFrame extends JFrame{
 	private static final long serialVersionUID = 1L;
 	/** 四个存档按钮 */

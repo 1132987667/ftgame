@@ -27,7 +27,7 @@ public class EquipInfoPanel extends JPanel {
 	Font font2 = new Font("隶书", Font.PLAIN, 18);// "id"
 	Font font1 = new Font("微软雅黑", Font.PLAIN, 12);
 	
-	private int inset = 4 ;
+	private int inset = 12;
 	private int height = 17 ;
 	private int width = 80;
 	private JScrollPane jsc = null ;
@@ -42,8 +42,8 @@ public class EquipInfoPanel extends JPanel {
 		//setBorder(BorderFactory.createEtchedBorder());
 		//setBackground(new Color(204,204,255));
 		name = new TempLabel("醉银剑",2);
-		name.setHorizontalAlignment(SwingConstants.CENTER);
-		name.setBounds(inset, 0, 170, 20);
+		name.setHorizontalAlignment(SwingConstants.LEFT);
+		name.setBounds(inset, 8, 170, 20);
 		
 		part = new TempLabel("武器:剑",1);
 		part.setBounds(inset, name.getY()+name.getHeight(), width, height);
@@ -64,8 +64,8 @@ public class EquipInfoPanel extends JPanel {
 		jta.setWrapStyleWord(true);
 		jta.setFont(new Font("宋体", Font.PLAIN, 12));
 		jta.setForeground(Color.white);
-		jta.setBounds(inset, rank.getY()+height, 162, 78);
-		jta.setPreferredSize(new Dimension( 162, 78));
+		jta.setBounds(inset, rank.getY()+height, 146, 78);
+		jta.setPreferredSize(new Dimension( 146, 78));
 		jta.setText("描述:巧匠打造的一种头盔，镶嵌着一种蓝色巨鸟的羽毛。据说这种鸟的羽毛能够为佩带者带来意想不到的好运。啊实打实大苏打似的");
 		for (int i = 0; i < attrAry.length; i++) {
 			attrAry[i] = new TempLabel("属性"+i+":", 1);
@@ -83,7 +83,7 @@ public class EquipInfoPanel extends JPanel {
 		
 		JLabel back = new JLabel();
 		back.setOpaque(false);
-		ImageIcon image1 = new ImageIcon("src/game/img/back/see.png") ;
+		ImageIcon image1 = new ImageIcon("src/game/img/back/equipBack2.png") ;
 		back.setIcon(image1);
 		back.setBounds(0, 0, image1.getIconWidth(), image1.getIconHeight());
 		add(back);
@@ -132,15 +132,16 @@ public class EquipInfoPanel extends JPanel {
 		type.setText(Equip.typeDesAry[equip.getType()]);
 		type.setForeground(Constant.equipColor[equip.getType()]);
 		rank.setText("等级:"+equip.getRank()+"");
-		int column = equip.getDes().length()%16>0?equip.getDes().length()/16+1:equip.getDes().length()/16;
-		jta.setText("介绍:"+equip.getDes());
-		jta.setSize(new Dimension(162,18*column));
-		jta.setFont(new Font("微软雅黑", Font.PLAIN, 12));
+		int column = equip.getDes().length()%13>0?equip.getDes().length()/13+1:equip.getDes().length()/13;
+		jta.setText(equip.getDes());
+		jta.setSize(new Dimension(146,15*column));
+		jta.setFont(new Font("微软雅黑", Font.PLAIN, 11));
 		if(equip.getAttrDes()!=null){
 			for (int i = 0; i < attrAry.length; i++) {
 				if(i<equip.getAttrDes().length){
 					attrAry[i].setText(equip.getAttrList()[i].des);
 					attrAry[i].setBounds(inset, i*height+jta.getHeight()+jta.getY(), 140, height);
+					attrAry[i].setForeground(new Color(135,206,250));
 				}else{
 					attrAry[i].setText("");
 				}

@@ -60,7 +60,9 @@ public class Player {
 	 */
 	private List<Equip> equipBag ;
 	private List<Object> skillBag ;
-	private List<Object> materialBag ;
+	private List<Material> materialBag ;
+	
+	private Map<String,Tasks> curTasksList = new HashMap<>() ;
 	
 	/** 五个程度, 誓不两立，令人切齿，素昧平生，莫逆之交，生死之交 */
 	private Map<String,String> liking = new HashMap<>();
@@ -84,7 +86,7 @@ public class Player {
 		for (int i = 0; i < equipAry.length; i++) {
 			equipAry[i] = new Equip() ;
 		}
-		
+		 
 		rank = 1;
 		curExp = 0 ;
 		Exp = 150 ;
@@ -449,22 +451,6 @@ public class Player {
 		
 	}
 	
-	/**
-	 * 查看某件装备是否存在玩家背包
-	 * @param id
-	 * @return
-	 */
-	public boolean isExistEquip(String id){
-		for (int i = 0; i < equipBag.size(); i++) {
-			if(equipBag.get(i).getId().equals(id)){
-				return true ;
-			}
-			
-		}
-		return false ;
-	}
-	
-	
 	public void sort(){
 		Collections.sort(equipBag);
 	}
@@ -481,5 +467,21 @@ public class Player {
 		// TODO Auto-generated method stub
 		return false;
 	}
-	
+
+	public Map<String, Tasks> getCurTasksList() {
+		return curTasksList;
+	}
+
+	public void setCurTasksList(Map<String, Tasks> curTasksList) {
+		this.curTasksList = curTasksList;
+	}
+
+	public List<Material> getMaterialBag() {
+		return materialBag;
+	}
+
+	public void setMaterialBag(List<Material> materialBag) {
+		this.materialBag = materialBag;
+	}
+
 }

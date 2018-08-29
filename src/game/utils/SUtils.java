@@ -243,8 +243,10 @@ public class SUtils {
 	}
 	
 	/**
-	 * 加载xml文件中所有的npc的资料
-	 * 
+	 * 加载npc的基本信息
+	 * id , name , des , msg , rank , type
+	 * 而人物的属性
+	 * 和与玩家的交互在之后解析
 	 * @return
 	 */
 	public static Map<String, NPC> loadNpc() {
@@ -252,31 +254,31 @@ public class SUtils {
 		Document document = load("src/game/xml/npc.xml");
 		Element root = document.getRootElement();
 		List<Element> elementList = root.elements();
-		Element temp = null , action = null ;
+		Element npcEle = null , action = null ;
 		NPC tempNpc = null;
-		int id, type = 0 ;
-		String name = "", des = "", msg = "";
-		int rank = 0;
+		int type, rank = 0 ;
+		String id, name, des, msg, npcType, attrType = "";
+		/** 开始每个npc的信息 */
 		for (int i = 0; i < elementList.size(); i++) {
 			/** 得到npc节点 */
-			temp = elementList.get(i);
-			name = temp.element("name").getText();
-			if (!isNullStr(name)) {// 不为空则加入
-				id = SUtils.conStrtoInt(temp.element("id").getText());
-				des = temp.element("des").getText();
-				msg = temp.element("msg").getText();
-				rank = conStrtoInt(temp.element("rank").getText());
-				type = conStrtoInt(temp.element("type").getText());
-				action = temp.element("action");
+			npcEle = elementList.get(i);
+			id = npcEle.elementText("id");
+			if (!isNullStr(id)) {// 不为空则加入
+				name = npcEle.elementText("name");
+				des = npcEle.elementText("des");
+				msg = npcEle.elementText("msg");
+				rank = conStrtoInt(npcEle.element("rank").getText());
+				type = conStrtoInt(npcEle.element("type").getText());
+				attrType = npcEle.attributeValue("attrType");
 				tempNpc = new NPC();
-				npcActionAnalyze(action,tempNpc);
 				tempNpc.setId(id);
 				tempNpc.setName(name);
 				tempNpc.setDes(des);
 				tempNpc.setMsg(msg);
 				tempNpc.setRank(rank); 
 				tempNpc.setType(type);
-				map.put(name, tempNpc);
+				tempNpc.setAttrType(attrType);
+				map.put(id, tempNpc);
 			}
 		}
 		return map;
@@ -318,13 +320,13 @@ public class SUtils {
 					name = acList.get(i).attributeValue("name") ;
 					num = SUtils.conStrtoInt(acList.get(i).attributeValue("num")) ;
 					if(id.equals("bestTrader")||id.equals("bestTrader")||id.equals("bestTrader")){
-						if(id.equals("bestTrader")){//极品商人|卖装备和图纸和材料
+						/*if(id.equals("bestTrader")){//极品商人|卖装备和图纸和材料
 							goods = getBestTraderGoods(num);
 						}else if(id.equals("petTrader")){//售卖宠物蛋
 							goods = getPetTraderGoods(num);
 						}else if(id.equals("skillTrader")){//售卖技能书
 							goods = getSkillTraderGoods(num);
-						}
+						}*/
 						appear = acList.get(i).attributeValue("appear") ;
 						npc.setAppearMode(appear);
 						if(appear.equals("lvAppear")){//当商人为随机出现时才会有随即出现率
@@ -378,20 +380,6 @@ public class SUtils {
 		
 	}
 	
-	/** 得到技能书商人的货物信息 */
-	private static List<Object> getSkillTraderGoods(int num) {
-		return null;
-	}
-	/** 得到宠物商人的货物信息 */
-	private static List<Object> getPetTraderGoods(int num) {
-		return null;
-	}
-	/** 得到极品商人的货物信息 
-	 * @return */
-	private static List<Object> getBestTraderGoods(int num) {
-		return null;
-	}
-
 	/**
 	 * 加载所有的防具信息 ,存放在Map中
 	 * 
@@ -607,7 +595,7 @@ public class SUtils {
 	 * @return
 	 */
 	public static int conStrtoInt(String num) {
-		return "".equals(num) ? 0 : Integer.valueOf(num);
+		return "".equals(num) ? 0 : Integer.valueOf(num.trim());
 	}
 
 	/**
@@ -694,17 +682,18 @@ public class SUtils {
 		}
 		Element ele = temp.get(index);
 
-		ele.element("name").setText(fb.name);
-		ele.element("des").setText(fb.des);
-		ele.element("rankL").setText(fb.rankL + "");
-		ele.element("rankR").setText(fb.rankR + "");
+		ele.element("name").setText(fb.getName());
+		ele.element("des").setText(fb.getDes());
+		ele.element("rankL").setText(fb.getRankL() + "");
+		ele.element("rankR").setText(fb.getRankR() + "");
 		Element e = ele.element("map");
 		Element map = ele.addElement("map");
 		Element point, name, des, x, y, npcStr;
 		ele.remove(e);
 		Scene sc = null;
-		for (int j = 0; j < fb.scene.size(); j++) {
-			sc = fb.scene.get(j);
+		List<Scene> sceneList = fb.getScene() ;
+		for (int j = 0; j < sceneList.size(); j++) {
+			sc = sceneList.get(j);
 			point = map.addElement("point");
 
 			name = point.addElement("name");
@@ -1022,7 +1011,9 @@ public class SUtils {
 		SUtils s = new SUtils();
 		// SUtils.loadWeapon();
 		Document document = SUtils.load("src/game/xml/npc.xml");
-		Node node = document.selectSingleNode("/root/npc[@id='1003']");
+		Node node = document.selectSingleNode("/root/npc[id='1003']/action");
+		Element e = node.getParent().element("action");
+		System.out.println(e);
 		System.out.println(node.asXML());
 		
 		//s.writeFtLog("日志写入测试！");

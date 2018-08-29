@@ -29,8 +29,14 @@ import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
-
+/**
+ * 用来测试按钮的面板
+ * @author yilong22315
+ *
+ */
 public class TestPanel extends JPanel {
+
+	private static final long serialVersionUID = 1L;
 
 	JTextField partField;
 

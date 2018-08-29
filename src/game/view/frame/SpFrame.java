@@ -31,7 +31,7 @@ import javax.swing.border.EmptyBorder;
 
 /**
  * 特殊的弹窗，半透明
- * 
+ * 副本 个人属性 等等
  * @author yilong22315
  * 
  */
@@ -56,6 +56,7 @@ public class SpFrame extends JFrame implements WindowListener {
 	/** 相关的面板 */
 	private PlayerPanel playerPanel ;
 	private FubenPanel fubenPanel ;
+	private FubenPanel juqingPanel ;
 	private JLabel back ;
 	private FtPanel ftPanel ;
 	
@@ -96,6 +97,11 @@ public class SpFrame extends JFrame implements WindowListener {
 					gameControl.append("】！\n", 0);
 				}else if(type == 3){
 					gameControl.append("战斗结束！\n", 1);
+				}else if(type == 4){
+					SoundControl.jiemianMuc("closeMap"); 
+					gameControl.append("你犹豫了会，还是决定先不去【",0);
+					gameControl.append("红尘", 1);
+					gameControl.append("】中！\n", 0);
 				}
 				gameControl.restore();
 			}
@@ -116,6 +122,10 @@ public class SpFrame extends JFrame implements WindowListener {
 			imgPath = "";
 			init3(contentPane);
 			break;
+		case 4:
+			imgPath = "src/game/img/back/水墨边框B.png";
+			init4(contentPane);
+			break ;
 		default:
 			break;
 		}
@@ -151,6 +161,27 @@ public class SpFrame extends JFrame implements WindowListener {
 		setDragable();
 	}
 
+	private void init4(JPanel contentPane2) {
+		drugBu = new TButton("", 13);
+		drugBu.setFont(new Font("幼圆",1,14));
+		contentPane.add(drugBu);
+		//t.setLocation(80, 50);
+		//t.setFocusable(false);
+		drugBu.setBounds(200, 40, 60, 42);
+		close.setBounds(726, 40, 26, 26);
+		TLabel title = new TLabel("红尘", 2);
+		contentPane.add(title);
+		title.setBounds(140, 40, 128, 30);//360
+		if(juqingPanel==null){
+			juqingPanel =new FubenPanel(2);
+			contentPane.add(juqingPanel);
+		}else{
+			juqingPanel.setVisible(true);
+			juqingPanel.initData();
+		}
+		
+	}
+
 	/**********************************************************
 	 * 初始化副本面板
 	 * @param contentPane
@@ -167,7 +198,7 @@ public class SpFrame extends JFrame implements WindowListener {
 		contentPane.add(title);
 		title.setBounds(140, 40, 128, 30);//360
 		if(fubenPanel==null){
-			fubenPanel =new FubenPanel();
+			fubenPanel =new FubenPanel(1);
 			contentPane.add(fubenPanel);
 		}else{
 			fubenPanel.setVisible(true);

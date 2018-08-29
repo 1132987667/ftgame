@@ -9,17 +9,17 @@ import java.io.Serializable;
  */
 public class Material implements Serializable{
 	private static final long serialVersionUID = 1L;
-	private int id = 0 ;
+	private String id = "" ;
 	private String name = "" ;
 	private String des = "" ;
 	private int num = 0 ;
 	private int price ;
 	/** 珍贵程度 */
 	private int type = 0 ;
-	public int getId() {
+	public String getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 	public String getName() {

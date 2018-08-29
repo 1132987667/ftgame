@@ -1,10 +1,8 @@
 package game.thread;
 
-import game.control.EquipControl;
 import game.control.FightControl;
 import game.control.GameControl;
 import game.control.SoundControl;
-import game.entity.Equip;
 import game.entity.NPC;
 import game.entity.Player;
 import game.utils.Constant;
@@ -16,12 +14,8 @@ import game.view.panel.FtPanel;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
-import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.SwingUtilities;
 
 /** 唤醒线程 */
 public class AwakenThread extends Thread{

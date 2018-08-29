@@ -2,6 +2,11 @@ package game.entity;
 
 import java.io.Serializable;
 
+/**
+ * 任务实体类
+ * @author yilong22315
+ *
+ */
 public class Tasks implements Serializable {
 
 	private static final long serialVersionUID = 1L;

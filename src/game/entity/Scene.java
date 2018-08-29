@@ -45,5 +45,41 @@ public class Scene {
 		return "Scene [name=" + name + ", des=" + des + ", npcStr=" + npcStr
 				+ ", x=" + x + ", y=" + y + "]";
 	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getDes() {
+		return des;
+	}
+	public void setDes(String des) {
+		this.des = des;
+	}
+	public String getNpcStr() {
+		return npcStr;
+	}
+	public void setNpcStr(String npcStr) {
+		this.npcStr = npcStr;
+	}
+	public int getX() {
+		return x;
+	}
+	public void setX(int x) {
+		this.x = x;
+	}
+	public int getY() {
+		return y;
+	}
+	public void setY(int y) {
+		this.y = y;
+	}
+	public List<NPC> getNpcList() {
+		return npcList;
+	}
+	public void setNpcList(List<NPC> npcList) {
+		this.npcList = npcList;
+	}
 	
 }

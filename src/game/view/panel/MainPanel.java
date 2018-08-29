@@ -1,5 +1,7 @@
 package game.view.panel;
 
+import game.utils.Constant;
+
 import java.awt.Font;
 
 import javax.swing.BorderFactory;
@@ -8,10 +10,13 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 
-import game.utils.Constant;
-
-
+/**
+ * 游戏主界面
+ * @author yilong22315
+ *
+ */
 public class MainPanel extends JPanel{
+	private static final long serialVersionUID = 1L;
 	/** 我的属性面板 */
 	private JPanel myAttr ;
 	private JPanel foeAttr ;
@@ -23,8 +28,6 @@ public class MainPanel extends JPanel{
 	private JTabbedPane bagPanel ;
 	/** 功能 */
 	JPanel function ;
-	
-	private BagPanel bag ;
 	
 	/** 基本属性 */
 	JLabel name,hp,attack,defense,nimble,rank,exp,epithet ;

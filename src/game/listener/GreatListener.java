@@ -68,6 +68,21 @@ public class GreatListener implements ActionListener{
 			sp1.setVisible(true);
 			sp1.reload(1);
 			break;
+		case "红尘":
+			SoundControl.jiemianMuc("openMap"); 
+			gameControl.append("你正准备进入【",0);
+			gameControl.append("红尘", 1);
+			gameControl.append("】！\n", 0);
+			type = 1 ;
+			if(sp4==null){
+				sp4 = new SpFrame(f,4);
+			}
+			/** 关闭背包 */
+			gameControl.closeBag();
+			bagFlag = false ;
+			sp4.setVisible(true);
+			sp4.reload(4);
+			break ;
 		case "背包":
 			SoundControl.jiemianMuc("openBag"); 
 			/** true为打开，按下则关闭 */
@@ -137,6 +152,9 @@ public class GreatListener implements ActionListener{
 			break;
 		case 2:
 			sp2.setVisible(false);
+			break;
+		case 4:
+			sp4.setVisible(false);
 			break;
 		default:
 			break;

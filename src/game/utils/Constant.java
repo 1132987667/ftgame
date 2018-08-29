@@ -2,13 +2,12 @@ package game.utils;
 
 import java.awt.Color;
 import java.io.FileInputStream;
-import java.util.Map;
 import java.util.Properties;
 
 public class Constant {
 	//Field字段
 	public static String[] attrAry = {"名号","等级","境界","经验","血量","法力","攻击","防御"} ;
-	public static String[] funAry = {"状态","技能","背包","人物","地图","副本","存档"} ;
+	public static String[] funAry = {"状态","技能","背包","任务","红尘","副本","存档","地图"} ;
 	public static String[] bagClassifyAry = {"兵器","防具","技能书","材料"} ;
 	public static String[] bagClassify = {"equip","armor","skill","material"} ;
 	public static String[] equipAttrAry = {"名字","品质","种类","数量"} ;
@@ -56,14 +55,5 @@ public class Constant {
 	/** 不同品质敌人给玩家提供经验的比率 */
 	public final static double[] npcExpLv = {1,2,3,4,5} ;
 	
-	public static Properties getUserInfo(){
-		Properties pps = new Properties();
-		try {
-			pps.load(new FileInputStream("src/com/test/fight/base/entity/info.properties"));
-		} catch (Exception e) {
-			e.printStackTrace();
-		} 
-		return pps ;
-	}
 
 }

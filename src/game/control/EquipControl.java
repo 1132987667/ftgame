@@ -1290,4 +1290,18 @@ public class EquipControl {
 		}
 	}
 	
+	/** 得到技能书商人的货物信息 */
+	public static List<Object> getSkillTraderGoods(int num) {
+		return null;
+	}
+	/** 得到宠物商人的货物信息 */
+	public static List<Object> getPetTraderGoods(int num) {
+		return null;
+	}
+	/** 得到极品商人的货物信息 
+	 * @return */
+	public static List<Object> getBestTraderGoods(int num) {
+		return null;
+	}
+	
 }

@@ -144,6 +144,9 @@ public class SoundControl {
 		case 25:
 			path = "caocong";// 草丛
 			break;
+		case 26:
+			path = "walk";
+			break;
 		default:
 			break;
 		}

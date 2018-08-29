@@ -7,7 +7,11 @@ import javax.swing.JFrame;
 import javax.swing.UIManager;
 
 import game.view.frame.EnterFrame;
-
+/**
+ * 游戏启动的文件
+ * @author yilong22315
+ *
+ */
 public class Demo {
 	public static void main(String[] args) {
 		UIManager.LookAndFeelInfo[] info = UIManager.getInstalledLookAndFeels();

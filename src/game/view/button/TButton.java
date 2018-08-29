@@ -12,6 +12,11 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
 
+/**
+ * 放置了图片的按钮
+ * @author yilong22315
+ *
+ */
 public class TButton extends JButton implements MouseListener {
 	Color[] c = { new Color(67, 110, 238), new Color(28, 134, 238),
 			new Color(16, 78, 139) };

@@ -1,7 +1,8 @@
-package game.utils;
+package game.thread;
 
 import game.entity.NPC;
 import game.entity.Player;
+import game.utils.SUtils;
 import game.view.TLabel;
 import game.view.TTextPane;
 import game.view.panel.FtPanel;

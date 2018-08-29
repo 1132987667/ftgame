@@ -24,7 +24,11 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
-
+/**
+ * 进行副本选择的面板
+ * @author yilong22315
+ *
+ */
 public class FubenPanel extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private JScrollPane jsc = null;
@@ -37,24 +41,35 @@ public class FubenPanel extends JPanel {
 	public JLabel name, rank, msg;
 	private JLabel[] info = { name, rank, msg };
 	private String[] ary = { "副本名:", "适合等级:", "简介:" };
+	private String[] juqingAry = {"红尘劫:","","简介"} ;
 	private JTextArea text = null;
 	private int fontSize = 13;
 	private Font f1 = new Font("楷体", Font.BOLD, fontSize);
 	private Font f2 = new Font("幼圆", Font.PLAIN, fontSize);
-	private Ditu fb = null ;
+	private Ditu ditu = null ;
 	private List<Ditu> list  ;
 	private JButton jb ;
+	private int type = 0 ;
 	
-	public FubenPanel() {
+	/** type1 副本 type2 剧情 */
+	public FubenPanel(final int type) {
+		this.type = type ;
 		this.setBounds(139, 76, 612, 370);
 		gameControl = GameControl.getInstance() ;
 		setLayout(null);
 		// setOpaque(false);
 		setBackground(Color.white);
-		/** 加载副本列表 */
-		list = gameControl.loadFuben();
+		if(type==1){
+			/** 加载副本列表 */
+			list = gameControl.loadFuben();
+		}else if(type==2){
+			/** 加载副本列表 */
+			list = gameControl.loadJuqing();
+		}
+		
 		int length = list.size();
 		contentPane = new JPanel();
+		contentPane.setLayout(null);
 		contentPane.setOpaque(false);
 		contentPane.setPreferredSize(new Dimension(length * (146 + 6), 127));
 		// 设置边框
@@ -67,10 +82,14 @@ public class FubenPanel extends JPanel {
 		tempBuList = new ArrayList<>();
 		/** 显示副本 */
 		for (int i = 0; i < length; i++) {
-			tempBu = new JButton(list.get(i).name);
+			tempBu = new JButton(list.get(i).getName());
 			tempBu.setOpaque(false);
 			contentPane.add(tempBu);
-			tempBu.setBounds(0, 0, 146, 127);
+			if(type==1){
+				tempBu.setBounds(146*i, 0, 146, 127);
+			}else if(type==2){
+				tempBu.setBounds(190*i, 0, 190, 127);
+			}
 			tempBu.addMouseListener(new Listenr(tempBu, list.get(i)));
 			tempBuList.add(tempBu);
 		}
@@ -79,7 +98,7 @@ public class FubenPanel extends JPanel {
 		showPanel = new JPanel();
 		add(showPanel);
 		showPanel.setLayout(null);
-		showPanel.setBounds(0, 155, 296, 210);
+		showPanel.setBounds(-1, 160, 296, 210);
 		showPanel.setOpaque(false);
 		JLabel temp = null;
 		for (int i = 0; i < ary.length; i++) {
@@ -92,9 +111,9 @@ public class FubenPanel extends JPanel {
 			if (i != 2) {
 				info[i] = new JLabel();
 				info[i].setForeground(new Color(195,39,43));
-				info[i].setFont(new Font("隶书",0,18));
+				info[i].setFont(new Font("隶书",0,16));
 				info[i].setBounds(inset + temp.getWidth(), inset + i
-						* (fontSize + inset), fontSize * 10, fontSize + inset);
+						* (fontSize + inset), fontSize * 16, fontSize + inset);
 				showPanel.add(info[i]);
 			}
 		}
@@ -112,6 +131,7 @@ public class FubenPanel extends JPanel {
 		showPanel.add(text);
 
 		JLabel label = new JLabel("");
+		label.setOpaque(false);
 		ImageIcon img = new ImageIcon("src/game/img/back/backB.png");
 		label.setIcon(img);
 		showPanel.add(label, BorderLayout.CENTER);
@@ -143,19 +163,33 @@ public class FubenPanel extends JPanel {
 		jb.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if(fb==null){
+				if(ditu==null){
 					text.setText("请先选择一个要去往的副本!");
 					text.setForeground(Color.red);
 				}else{
 					System.out.println("副本选择完毕！");
-					gameControl.close(1);
+					if(type==1){
+						gameControl.close(1);
+					}else if(type==2){
+						gameControl.close(4);
+					}
 					gameControl.restore();
-					gameControl.setSelect(fb);
-					gameControl.setNpcSpecInfo(fb);
+					if(type==2){
+						ditu = gameControl.loadJuqing(ditu.getId());
+					}
+					gameControl.setSelect(ditu);
+					gameControl.setNpcSpecInfo(ditu);
 					gameControl.createMap();
 				}
 			}
 		});
+		JLabel jl = new JLabel();
+		//612,370
+		jl.setIcon(new ImageIcon("src/game/img/back/pingtai.png"));
+		add(jl);
+		jl.setBounds(0, 0, 612, 370);
+		
+		System.out.println("over.............................");
 	}
 
 	/** 副本信息 */
@@ -168,10 +202,14 @@ public class FubenPanel extends JPanel {
 		contentPane.setPreferredSize(new Dimension(length * (146 + 6), 127));
 		tempBuList = new ArrayList<>();
 		for (int i = 0; i < length; i++) {
-		  tempBu = new JButton(list.get(i).name);
+		  tempBu = new JButton(list.get(i).getName());
 		  tempBu.setOpaque(false);
 		  contentPane.add(tempBu);
-		  tempBu.setBounds(0, 0, 146, 127);
+		  if(type==1){
+				tempBu.setBounds(146*i, 0, 146, 127);
+		  }else if(type==2){
+				tempBu.setBounds(190*i, 0, 190, 127);
+		  }
 		  tempBu.addMouseListener(new Listenr(tempBu, list.get(i)));
 		  tempBuList.add(tempBu);
 		} 
@@ -184,13 +222,23 @@ public class FubenPanel extends JPanel {
 		private Ditu fuben = null;
 		public JButton jb = null;
 		public boolean flag = false;
-		ImageIcon image1 = new ImageIcon("src/game/img/button/Fuben1.png");
-		ImageIcon image2 = new ImageIcon("src/game/img/button/Fuben2.png");
-		ImageIcon image3 = new ImageIcon("src/game/img/button/Fuben3.png");
-
+		ImageIcon image1 = null ;
+		ImageIcon image2 = null ;
+		ImageIcon image3 = null ;
+		
 		public Listenr(JButton jb, Ditu fuben) {
 			this.jb = jb;
 			this.fuben = fuben;
+			if(type==1){
+				image1 = new ImageIcon("src/game/img/button/Fuben1.png"); 
+				image2 = new ImageIcon("src/game/img/button/Fuben2.png");
+				image3 = new ImageIcon("src/game/img/button/Fuben3.png");
+			}else if(type==2){
+				image1 = new ImageIcon("src/game/img/button/Juqing1.png"); 
+				image2 = new ImageIcon("src/game/img/button/Juqing2.png");
+				image3 = new ImageIcon("src/game/img/button/Juqing3.png");
+			}
+			
 			jb.setIcon(image1);
 			// 设置字体颜色
 			jb.setForeground(Color.white);
@@ -215,14 +263,14 @@ public class FubenPanel extends JPanel {
 			for (int i = 0; i < tempBuList.size(); i++) {
 				tempBuList.get(i).setIcon(image1);
 			}
-			fb = fuben ;
+			ditu = fuben ;
 			flag = true;
 			jb.setIcon(image2);
 			/** 更改显示信息 */
-			info[0].setText(fuben.name);
-			info[1].setText(fuben.rankL + "-" + fuben.rankR);
+			info[0].setText(fuben.getName());
+			info[1].setText(fuben.getRankL() + "-" + fuben.getRankR());
 			text.setForeground(Color.white);
-			text.setText(fuben.des);
+			text.setText(fuben.getDes());
 		}
 
 		@Override
