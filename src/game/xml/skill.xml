@@ -1,0 +1,543 @@
+
+<root> 
+  <!-- 技能基本效果 -->  
+  <!-- 
+		技能id,name,描述
+		效果，持续时间
+		冷却
+	 -->  
+  <effect id="1001"> 
+    <name>流血</name>  
+    <des>血流不止，回复效果已经不起作用</des>  
+    <result>hp:sub</result>  
+    <value/>  
+    <time/>  
+    <cd/> 
+  </effect>  
+  <effect id="1002"> 
+    <name>自愈</name>  
+    <des>你的身体自动在恢复</des>  
+    <result>hp:add</result>  
+    <value/>  
+    <time/>  
+    <cd/> 
+  </effect>  
+  <effect id="1005"> 
+    <name>泉涌</name>  
+    <des>法力如泉，延续不觉</des>  
+    <result>mp:add</result>  
+    <value/>  
+    <time/>  
+    <cd/> 
+  </effect>  
+  <effect id="1011"> 
+    <name>虚弱</name>  
+    <des>虚弱的身体使你的攻击下降了</des>  
+    <result>atk:sub</result>  
+    <value/>  
+    <time/>  
+    <cd/> 
+  </effect>  
+  <effect id="1012"> 
+    <name>战勇</name>  
+    <des>攻击愈发的凶狠</des>  
+    <result>atk:add</result>  
+    <value/>  
+    <time/>  
+    <cd/> 
+  </effect>  
+  <effect id="1021"> 
+    <name>破甲</name>  
+    <des>防御如纸一般，毫无作用</des>  
+    <result>damage:add</result>  
+    <value/>  
+    <time/>  
+    <cd/> 
+  </effect>  
+  <effect id="1022"> 
+    <name>坚韧</name>  
+    <des>你的身体坚韧无比	，所受伤害下降</des>  
+    <result>demage:sub</result>  
+    <value/>  
+    <time/>  
+    <cd/> 
+  </effect>  
+  <effect id="1031"> 
+    <name>缓速</name>  
+    <des>攻击速度下降了</des>  
+    <result>speed:sub</result>  
+    <value/>  
+    <time/>  
+    <cd/> 
+  </effect>  
+  <effect id="1032"> 
+    <name>轻身</name>  
+    <des>攻击速度上升了</des>  
+    <result>speed:add</result>  
+    <value/>  
+    <time/>  
+    <cd/> 
+  </effect>  
+  <effect id="1041"> 
+    <name>致盲</name>  
+    <des>眼前迷雾萦绕，命中降低了</des>  
+    <result>hit:sub</result>  
+    <value/>  
+    <time/>  
+    <cd/> 
+  </effect>  
+  <effect id="1042"> 
+    <name>精准</name>  
+    <des>眼神变得犀利起来，命中增加了</des>  
+    <result>hit:add</result>  
+    <value/>  
+    <time/>  
+    <cd/> 
+  </effect>  
+  <effect id="1051"> 
+    <name>飘渺</name>  
+    <des>身体变得轻灵飘渺起来，闪避率增加了</des>  
+    <result>dodge:add</result>  
+    <value/>  
+    <time/>  
+    <cd/> 
+  </effect>  
+  <effect id="1052"> 
+    <name>迟钝</name>  
+    <des>身体迟钝缓慢，闪避率降低了</des>  
+    <result>dodge:sub</result>  
+    <value/>  
+    <time/>  
+    <cd/> 
+  </effect>  
+  <effect id="1061"> 
+    <name>荆棘</name>  
+    <des>物理攻击？反弹！</des>  
+    <result>wuli:rebound</result>  
+    <value/>  
+    <time/>  
+    <cd/> 
+  </effect>  
+  <effect id="1062"> 
+    <name>慑神</name>  
+    <des>精神一阵恍惚，增益效果消失了</des>  
+    <result>buff:remove</result>  
+    <value/>  
+    <time/>  
+    <cd/> 
+  </effect>  
+  <effect id="1163"> 
+    <name>清心</name>  
+    <des>进入了清心状态，负面效果消失了</des>  
+    <result>debuff:remove</result>  
+    <value/>  
+    <time/>  
+    <cd/> 
+  </effect>  
+  <effect id="1164"> 
+    <name>眩晕</name>  
+    <des>处于眩晕状态，什么也做不了</des>  
+    <result>hp:sub</result>  
+    <value/>  
+    <time/>  
+    <cd/> 
+  </effect>  
+  <skill id="1111"> 
+    <name>八荒唯我独尊功</name>  
+    <des>唯我独尊</des>  
+    <type>1</type>  
+    <!-- 消耗 -->  
+    <consume>1</consume>  
+    <!-- 结果 -->  
+    <result>1</result>  
+    <!-- 目标 -->  
+    <target>敌方</target>  
+    <scope>群体</scope>  
+    <gongId>1</gongId>  
+    <gongName>1</gongName>  
+    <useCase>1</useCase>  
+    <studyCase>1</studyCase>  
+    <needTier>1</needTier>  
+    <cd>11</cd>  
+    <curCd>0</curCd> 
+  </skill>  
+  <skill id="1101"> 
+    <name>1</name>  
+    <des>1</des>  
+    <type>1</type>  
+    <consume>1</consume>  
+    <result>1</result>  
+    <newEle>1</newEle>  
+    <scope>1</scope>  
+    <target>敌方</target>  
+    <gongId>1</gongId>  
+    <gongName>1</gongName>  
+    <useCase>1</useCase>  
+    <studyCase>1</studyCase>  
+    <needTier>1</needTier>  
+    <cd>1</cd>  
+    <curCd>0</curCd> 
+  </skill>  
+  <skill id="3"> 
+    <name>1</name>  
+    <des>1</des>  
+    <type>1</type>  
+    <consume>1</consume>  
+    <result>1</result>  
+    <newEle>3</newEle>  
+    <scope>1</scope>  
+    <target>敌方</target>  
+    <gongId>1</gongId>  
+    <gongName>1</gongName>  
+    <useCase>1</useCase>  
+    <studyCase>1</studyCase>  
+    <needTier>1</needTier>  
+    <cd>1</cd>  
+    <curCd>0</curCd> 
+  </skill>  
+  <skill id="1002"> 
+    <name>饿虎扑兔</name>  
+    <des>龙虎伏，鬼神钦，扑击前方敌人造成55(+30)(+0)点外功伤害（共2击，每击42点）；</des>  
+    <type>3</type>  
+    <consume>3</consume>  
+    <result>3</result>  
+    <newEle>敌方</newEle>  
+    <scope>单体</scope>  
+    <target>敌方</target>  
+    <gongId>3</gongId>  
+    <gongName>3</gongName>  
+    <useCase>3</useCase>  
+    <studyCase>3</studyCase>  
+    <needTier>3</needTier>  
+    <cd>3</cd>  
+    <curCd>0</curCd> 
+  </skill>  
+  <skill id="1003"> 
+    <name>猛龙探爪</name>  
+    <des>风云势起，龙盘虎依，撕扯目标造成192(+63)(+0)点外功伤害（共4击，每击63点）；</des>  
+    <type>1</type>  
+    <consume>1</consume>  
+    <result>1</result>  
+    <newEle>敌方</newEle>  
+    <scope>单体</scope>  
+    <target>敌方</target>  
+    <gongId>1</gongId>  
+    <gongName>3</gongName>  
+    <useCase>1</useCase>  
+    <studyCase>3</studyCase>  
+    <needTier>1</needTier>  
+    <cd>1</cd>  
+    <curCd>0</curCd> 
+  </skill>  
+  <skill id="1004"> 
+    <name>龙游八荒</name>  
+    <des>翔云列晓阵，杀气赫长虹，轰拳对周围敌人造成92(+12)(+0)点外功伤害（共1击，每击104点）；</des>  
+    <type>1</type>  
+    <consume>1</consume>  
+    <result>1</result>  
+    <newEle>敌方</newEle>  
+    <scope>单体</scope>  
+    <target>敌方</target>  
+    <gongId>1</gongId>  
+    <gongName>1</gongName>  
+    <useCase>1</useCase>  
+    <studyCase>1</studyCase>  
+    <needTier>1</needTier>  
+    <cd>1</cd>  
+    <curCd>0</curCd> 
+  </skill>  
+  <skill id="1005"> 
+    <name>霸王临世</name>  
+    <des>力拔山兮气盖世，破釜沉舟决雌雄，轰击目标造成403(+132)(+132)(+0)点外功伤害（共7击，每击95点）；</des>  
+    <type>1</type>  
+    <consume>1</consume>  
+    <result>1</result>  
+    <newEle>敌方</newEle>  
+    <scope>单体</scope>  
+    <target>敌方</target>  
+    <gongId>1</gongId>  
+    <gongName>1</gongName>  
+    <useCase>1</useCase>  
+    <studyCase>1</studyCase>  
+    <needTier>1</needTier>  
+    <cd>1</cd>  
+    <curCd>0</curCd> 
+  </skill>  
+  <skill id="1006"> 
+    <name>虎啸山林</name>  
+    <des>龙腾虎啸，逐若飞蓬，振奋周围队友，为其添加“虎啸”状态，持续5秒：移动速度缓慢提升。</des>  
+    <type>1</type>  
+    <consume>1</consume>  
+    <result>1</result>  
+    <newEle>敌方</newEle>  
+    <scope>单体</scope>  
+    <target>敌方</target>  
+    <gongId>1</gongId>  
+    <gongName>1</gongName>  
+    <useCase>1</useCase>  
+    <studyCase>1</studyCase>  
+    <needTier>1</needTier>  
+    <cd>1</cd>  
+    <curCd>0</curCd> 
+  </skill>  
+  <skill id="1007"> 
+    <name>苍龙动天</name>  
+    <des>龙跃鸿矫，霸称天下，招架成功时，为自身添加“龙翔”状态：施展本套路招式攻击时，获得100%吸血效果，每击消耗1层此状态，持续15秒，可叠加1层。</des>  
+    <type>1</type>  
+    <consume>1</consume>  
+    <result>1</result>  
+    <newEle>敌方</newEle>  
+    <scope>单体</scope>  
+    <target>敌方</target>  
+    <gongId>1</gongId>  
+    <gongName>1</gongName>  
+    <useCase>1</useCase>  
+    <studyCase>1</studyCase>  
+    <needTier>1</needTier>  
+    <cd>1</cd>  
+    <curCd>0</curCd> 
+  </skill>  
+  <skill id="1008"> 
+    <name>黑虎偷心</name>  
+    <des>虎倦龙疲，虚实难辨，摆拳对前方敌人造成37(+30)(+0)点外功伤害（共2击，每击33点）；</des>  
+    <type>1</type>  
+    <consume>1</consume>  
+    <result>1</result>  
+    <newEle>敌方</newEle>  
+    <scope>单体</scope>  
+    <target>敌方</target>  
+    <gongId>1</gongId>  
+    <gongName>1</gongName>  
+    <useCase>1</useCase>  
+    <studyCase>11</studyCase>  
+    <needTier>1</needTier>  
+    <cd>1</cd>  
+    <curCd>0</curCd> 
+  </skill>  
+  <skill id="1009">
+    <name>风虎云龙</name>
+    <des>虎狂龙躁，叱咤滔滔，轰拳对周围敌人造成110(+15)(+0)点外功伤害（共3击，每击41点）；</des>
+    <type>1</type>
+    <consume>1</consume>
+    <result>1</result>
+    <newEle>敌方</newEle>
+    <scope>单体</scope>
+    <target>敌方</target>
+    <gongId>1</gongId>
+    <gongName>1</gongName>
+    <useCase>1</useCase>
+    <studyCase>1</studyCase>
+    <needTier>11</needTier>
+    <cd>1</cd>
+    <curCd>0</curCd>
+  </skill>
+  <skill id="1010">
+    <name>恶蛊攒心</name>
+    <des>造成214点伤害，并使其受到毒虫侵害 (234～254)(+25)(+0)点外功伤害（共0击，每击约Infinity点）</des>
+    <type>1</type>
+    <consume>1</consume>
+    <result>1</result>
+    <newEle>1</newEle>
+    <scope>1</scope>
+    <target>1</target>
+    <gongId>1</gongId>
+    <gongName>黑骨修罗掌</gongName>
+    <useCase>1</useCase>
+    <studyCase>1</studyCase>
+    <needTier>1</needTier>
+    <cd>1</cd>
+    <curCd>0</curCd>
+  </skill>
+  <skill id="1011">
+    <name>修罗腐骨</name>
+    <des>对目标造成161点伤害,附加中毒"修罗腐骨",每层降低攻击2%,持续15秒,最多叠加9层 装备了毒虫，可将虫毒汇聚于掌心后击出，若未命中，则会反噬自身 (171～181)(+12)(+0)点外功伤害（共0击，每击约Infinity点）</des>
+    <type>1</type>
+    <consume>1</consume>
+    <result>1</result>
+    <newEle>1</newEle>
+    <scope>1</scope>
+    <target>1</target>
+    <gongId>1</gongId>
+    <gongName>黑骨修罗掌</gongName>
+    <useCase>1</useCase>
+    <studyCase>1</studyCase>
+    <needTier>1</needTier>
+    <cd>1</cd>
+    <curCd>0</curCd>
+  </skill>
+  <skill id="1012">
+    <name>九幽阴风</name>
+    <des>对目标造成281点伤害,并促进"修罗腐骨"发作: 造成 30点*"修罗腐骨"层数 的伤害; 如果"修罗腐骨"层数大于4小于等于7,造成 5%*层数 的中毒减速,持续 2秒*层数; 如果"修罗腐骨"层数大于7,造成 1秒*层数 的中毒昏迷; 同时修罗腐骨状态被清除 装备了毒虫，可将虫毒汇聚于掌心后击出，若未命中，则会反噬自身 (291～301)(+63)(+0)点外功伤害（共0击，每击约Infinity点）</des>
+    <type>1</type>
+    <consume>1</consume>
+    <result>1</result>
+    <newEle>1</newEle>
+    <scope>1</scope>
+    <target>1</target>
+    <gongId>1</gongId>
+    <gongName>黑骨修罗掌</gongName>
+    <useCase>1</useCase>
+    <studyCase>1</studyCase>
+    <needTier>1</needTier>
+    <cd>1</cd>
+    <curCd>0</curCd>
+  </skill>
+  <skill id="1013">
+    <name>玄毒摧木</name>
+    <des>对目标造成214点伤害,附加中毒"玄毒摧木",每层降低气血回复速度10%,持续15秒,最多叠加7层</des>
+    <type>1</type>
+    <consume>1</consume>
+    <result>1</result>
+    <newEle>1</newEle>
+    <scope>1</scope>
+    <target>1</target>
+    <gongId>1</gongId>
+    <gongName>黑骨修罗掌</gongName>
+    <useCase>1</useCase>
+    <studyCase>1</studyCase>
+    <needTier>1</needTier>
+    <cd>1</cd>
+    <curCd>0</curCd>
+  </skill>
+  <skill id="1014">
+    <name>血凝七步</name>
+    <des>对目标造成750点伤害,并促进"玄毒摧木"发作: 造成额外 45*"玄毒摧木"层数 的伤害; 如果大于4层,造成 30*层数 的阴伤害; 同时"玄毒摧木"状态被清除</des>
+    <type>1</type>
+    <consume>1</consume>
+    <result>1</result>
+    <newEle>1</newEle>
+    <scope>1</scope>
+    <target>1</target>
+    <gongId>1</gongId>
+    <gongName>黑骨修罗掌</gongName>
+    <useCase>1</useCase>
+    <studyCase>1</studyCase>
+    <needTier>1</needTier>
+    <cd>1</cd>
+    <curCd>0</curCd>
+  </skill>
+  <skill id="1015">
+    <name>鹰击长空</name>
+    <des>盘旋回击，对敌人造成41(+23)(+23)(+0)点刚伤害（共3击，每击29点）；爪可抓破肌肤吸取对方气血。</des>
+    <type>1</type>
+    <consume>1</consume>
+    <result>1</result>
+    <newEle>1</newEle>
+    <scope>1</scope>
+    <target>1</target>
+    <gongId>1</gongId>
+    <gongName>鹰爪拳</gongName>
+    <useCase>1</useCase>
+    <studyCase>1</studyCase>
+    <needTier>1</needTier>
+    <cd>1</cd>
+    <curCd>0</curCd>
+  </skill>
+  <skill id="1016">
+    <name>鹰扬万里</name>
+    <des>屈指若爪，直击敌面，对目标造成56(+19)(+19)(+0)点刚伤害（共2击，每击47点）；爪可抓破肌肤吸取对方气血。</des>
+    <type>1</type>
+    <consume>1</consume>
+    <result>1</result>
+    <newEle>1</newEle>
+    <scope>1</scope>
+    <target>1</target>
+    <gongId>1</gongId>
+    <gongName>鹰爪拳</gongName>
+    <useCase>1</useCase>
+    <studyCase>1</studyCase>
+    <needTier>1</needTier>
+    <cd>1</cd>
+    <curCd>0</curCd>
+  </skill>
+  <Skill id="1041">
+  	<name>坚韧</name>
+    <des>最大生命值增加200\n所受物理伤害降低30</des>
+    <type>被动</type>
+    <consume>mp:0</consume>
+    <result>maxhpAdd:200;demageSub:30</result>
+    <newEle>1</newEle>
+    <gongId>2041</gongId>
+    <gongName>伏牛功</gongName>
+    <useCase>无</useCase>
+    <studyCase>无</studyCase>
+    <needTier>5</needTier>
+    <cd>0</cd>
+    <curCd>0</curCd>	
+  </Skill>
+  <Skill id="1042">
+  	<name>纳元振威</name>
+    <des>最大法力增加200\n最大攻击力上升$value(最大法力值的20%)</des>
+    <type>被动</type>
+    <consume>mp:0</consume>
+    <result>maxmpAdd:200;maxatkAdd:[maxMp:20]</result>
+    <newEle>1</newEle>
+    <gongId>2042</gongId>
+    <gongName>吐纳心法</gongName>
+    <useCase>无</useCase>
+    <studyCase>无</studyCase>
+    <needTier>5</needTier>
+    <cd>0</cd>
+    <curCd>0</curCd>	
+  </Skill>
+  <Skill id="1043">
+  	<name>纳元振威</name>
+    <des>最大法力增加400\n最大攻击力上升$value(最大法力值的20%)</des>
+    <type>被动</type>
+    <consume>mp:0</consume>
+    <result>maxmpAdd:400;maxatkAdd:[maxMp:20]</result>
+    <newEle>1</newEle>
+    <gongId>2042</gongId>
+    <gongName>吐纳心法</gongName>
+    <useCase>无</useCase>
+    <studyCase>无</studyCase>
+    <needTier>9</needTier>
+    <cd>0</cd>
+    <curCd>0</curCd>	
+  </Skill>
+  <Skill id="1044">
+  	<name>剑意入门</name>
+    <des>剑系伤害增加15%\n剑系攻击增加50</des>
+    <type>被动</type>
+    <consume>mp:0</consume>
+    <result>jianatkAdd:50;jianDemageAdd:15%</result>
+    <newEle>1</newEle>
+    <gongId>2043</gongId>
+    <gongName>纳剑法</gongName>
+    <useCase>无</useCase>
+    <studyCase>无</studyCase>
+    <needTier>5</needTier>
+    <cd>0</cd>
+    <curCd>0</curCd>	
+  </Skill>
+  <Skill id="1045">
+  	<name>剑意入门</name>
+    <des>剑系伤害增加25%\n剑系攻击增加125</des>
+    <type>被动</type>
+    <consume>mp:0</consume>
+    <result>jianatkAdd:125;jianDemageAdd:25%</result>
+    <newEle>1</newEle>
+    <gongId>2043</gongId>
+    <gongName>纳剑法</gongName>
+    <useCase>无</useCase>
+    <studyCase>无</studyCase>
+    <needTier>5</needTier>
+    <cd>0</cd>
+    <curCd>0</curCd>	
+  </Skill>
+  <Skill id="1046">
+  	<name>紫气初聚</name>
+    <des>所受物理伤害减少80点\n每回合生命恢复8%</des>
+    <type>被动</type>
+    <consume>mp:0</consume>
+    <result>demageSub:80;hpre:8%</result>
+    <newEle>1</newEle>
+    <gongId>2043</gongId>
+    <gongName>纳剑法</gongName>
+    <useCase>无</useCase>
+    <studyCase>无</studyCase>
+    <needTier>5</needTier>
+    <cd>0</cd>
+    <curCd>0</curCd>	
+  </Skill>
+</root>

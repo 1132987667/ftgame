@@ -2,6 +2,7 @@ package game.entity;
 
 import game.control.GameControl;
 import game.control.SoundControl;
+import game.utils.SUtils;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -18,7 +19,6 @@ import javax.swing.JOptionPane;
  * @author yilong22315
  */
 public class Player {
-	
 	private String name = "" ;
 	private String state = "" ;
 	private int rank = 0 ;
@@ -27,24 +27,26 @@ public class Player {
 	
 	
 	/** 怪物一级属性 力,敏,体力,精力,幸运值  */
-	private int li = -1 ;
-	private int min = -1 ;
-	private int tili = -1 ;
-	private int jingli = -1 ;
-	private int lucky = -1 ;
+	private int li ;
+	private int min ;
+	private int tili ;
+	private int jingli ;
+	private int lucky ;
 	
 	/** 怪物二级属性 当前血量,蓝量,当前攻击,当前防御力,当前暴击几率 */
-	private int curHp = -1 ;
-	private int hp = -1 ;
-	private int curMp = -1 ;
-	private int mp = -1 ;
-	private int curAttack = -1 ;
-	private int attack = -1 ;
-	private int curDefense = -1 ;
-	private int defense = -1 ;
+	private int curHp ;
+	private int hp ;
+	private int curMp ;
+	private int mp ;
+	private int curAttack ;
+	private int attack ;
+	private int curDefense ;
+	private int defense ;
 	
 	private int suck = 0 ;
 	private int baoji = 0;
+	/** 任务出手速度 */
+	private int speed = 0 ;/** 毫秒  */
 	//爆率 百分比
 	private int baolv = 0;
 	private int expAdd = 0;
@@ -59,8 +61,25 @@ public class Player {
 	 * 游戏背包 
 	 */
 	private List<Equip> equipBag ;
-	private List<Object> skillBag ;
+	private List<Gong> gongBag ;
 	private List<Material> materialBag ;
+	/** 背包的大小,默认大小为36 */
+	private int bagSize = 36 ;
+	
+	
+	/***    功法系统     **/
+	/** 当前装备的技能 1个被动技能 三个主动技能  */
+	private Gong[]  curUseSkill ;
+	/** 当前装备的内功 */
+	private Gong curUseNeiGong ;
+	/** 当前装备的外功 */
+	private Gong curUseWaiGong ;
+	/** 已经学会的内功列表 */
+	private List<Gong> hasLeaNeiGongs = new ArrayList<>();
+	/** 已经学会的外功 */
+	private List<Gong> hasLeaWaiGongs = new ArrayList<>();
+	/** 已经学会的技能 */
+	private List<Gong> hasLeaSkills ;
 	
 	private Map<String,Tasks> curTasksList = new HashMap<>() ;
 	
@@ -79,7 +98,7 @@ public class Player {
 		 * 初始化背包
 		 */
 		equipBag = new ArrayList<>();
-		skillBag = new ArrayList<>();
+		gongBag = new ArrayList<>();
 		materialBag = new ArrayList<>();
 		
 		/** 初始化装备栏 */
@@ -115,8 +134,8 @@ public class Player {
 		petAdd = 0;
 	}
 	
-	/** 把属性设为基本属性 */
-	public void setBaseAttr(){
+	/** 重新设置基本属性 */
+	public void reloadBaseAttr(){
 		tili = 15+rank*5 ;
 		jingli = 15+rank*5 ;
 		li = 15+rank*5 ;
@@ -128,8 +147,11 @@ public class Player {
 		mp = jingli*5/2 ;
 		curMp = mp ;
 		attack = 4*li-35 ;
+		curAttack = attack ;
 		defense = min ;
-		
+		curDefense = defense ;
+
+		speed = getAtkSpeed(jingli, min);
 		baoji = lucky/40*100 ;
 		baolv = lucky*2;
 		suck = 0 ;
@@ -138,6 +160,19 @@ public class Player {
 		petAdd = 0;
 	}
 	
+	/**
+	 * 得到人物的出手速度
+	 * @param li
+	 * @param min
+	 * @return 返回出手所需要等待的时间 单位:ms
+	 */
+	public int getAtkSpeed(int li,int min){
+		int speed = SUtils.reDouPoint(2500*(1/(1+(0.5*li+min)*0.0067))) ;
+		if(speed<500){
+			speed = 500 ;
+		}
+		return speed ;
+	}
 	
 	/** 得到背包内武器 */
 	public List<Equip> getWeaponBag(){
@@ -482,6 +517,86 @@ public class Player {
 
 	public void setMaterialBag(List<Material> materialBag) {
 		this.materialBag = materialBag;
+	}
+
+	public List<Gong> getGongBag() {
+		return gongBag;
+	}
+
+	public void setGongBag(List<Gong> gongBag) {
+		this.gongBag = gongBag;
+	}
+
+	public Map<String,String> getCur() {
+		return cur;
+	}
+
+	public void setCur(Map<String,String> cur) {
+		this.cur = cur;
+	}
+
+	public int getBagSize() {
+		return bagSize;
+	}
+
+	public void setBagSize(int bagSize) {
+		this.bagSize = bagSize;
+	}
+
+	public int getSpeed() {
+		return speed;
+	}
+
+	public void setSpeed(int speed) {
+		this.speed = speed;
+	}
+
+	public Gong getCurUseNeiGong() {
+		return curUseNeiGong;
+	}
+
+	public void setCurUseNeiGong(Gong curUseNeiGong) {
+		this.curUseNeiGong = curUseNeiGong;
+	}
+
+	public Gong getCurUseWaiGong() {
+		return curUseWaiGong;
+	}
+
+	public void setCurUseWaiGong(Gong curUseWaiGong) {
+		this.curUseWaiGong = curUseWaiGong;
+	}
+
+	public List<Gong> getHasLeaNeiGongs() {
+		return hasLeaNeiGongs;
+	}
+
+	public void setHasLeaNeiGongs(List<Gong> hasLeaNeiGongs) {
+		this.hasLeaNeiGongs = hasLeaNeiGongs;
+	}
+
+	public List<Gong> getHasLeaWaiGongs() {
+		return hasLeaWaiGongs;
+	}
+
+	public void setHasLeaWaiGongs(List<Gong> hasLeaWaiGongs) {
+		this.hasLeaWaiGongs = hasLeaWaiGongs;
+	}
+
+	public List<Gong> getHasLeaSkills() {
+		return hasLeaSkills;
+	}
+
+	public void setHasLeaSkills(List<Gong> hasLeaSkills) {
+		this.hasLeaSkills = hasLeaSkills;
+	}
+
+	public Gong[] getCurUseSkill() {
+		return curUseSkill;
+	}
+
+	public void setCurUseSkill(Gong[] curUseSkill) {
+		this.curUseSkill = curUseSkill;
 	}
 
 }

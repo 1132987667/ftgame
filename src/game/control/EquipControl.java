@@ -1,5 +1,6 @@
 package game.control;
 
+import game.entity.AddAttrs;
 import game.entity.Citiao;
 import game.entity.CitiaoSD;
 import game.entity.Equip;
@@ -11,13 +12,10 @@ import game.utils.ReflectUtils;
 import game.utils.SUtils;
 import game.view.frame.DataCheckFrame;
 
-import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Random;
 
 /**
@@ -199,7 +197,7 @@ public class EquipControl {
 		int t4 = (int) (0.02 * mcl * 0.9 * 1000);
 		int t3 = (int) (0.06 * mcl * 0.7 * 1000);
 		int t2 = (int) (0.15 * mcl * 0.5 * 1000);
-		int t1 = 1000 - t5 - t4 - t3 - t2;
+		//int t1 = 1000 - t5 - t4 - t3 - t2;
 		int type = 0;
 		int num = rd.nextInt(1000) + 1;
 		if (num + t5 >= 1000) {
@@ -221,7 +219,8 @@ public class EquipControl {
 	 * @return
 	 */
 	public double rdAttrValue(double attrValue,int rank){
-		double value = attrValue*0.6*rank + rd.nextInt((int)(attrValue*0.8*rank)+1) ; 
+		int tmpValue = SUtils.reDouPoint(attrValue*50*rank) ;
+		double value = attrValue*0.7*rank + rd.nextInt(tmpValue)*0.01 ; 
 		return value ;
 	}
 
@@ -247,7 +246,7 @@ public class EquipControl {
 		CitiaoSD citiaoSD = list.get(num);
 
 		/** 装备部位 */
-		String equipPart = partAry[part];
+		//String equipPart = partAry[part];
 		/** 得到该词条可能随机出现的属性 */
 		String[] bias = citiaoSD.attrName.split("\\|");
 		
@@ -308,6 +307,7 @@ public class EquipControl {
 				citiao.attrValue = rdAttrValue(Constant.oneToTwo[3]*Constant.lvUpValue[3], rank);
 				break;
 			case "baoji":
+				System.out.println(Constant.oneToTwo[4]*Constant.lvUpValue[4]+":"+rank);
 				citiao.attrValue = rdAttrValue(Constant.oneToTwo[4]*Constant.lvUpValue[4], rank);
 				break;
 			default:
@@ -373,6 +373,7 @@ public class EquipControl {
 		// System.out.println("格式化特殊属性值:"+attrName+addAttr.attrValue);
 
 		/** 这是第几类词条 */
+		@SuppressWarnings("unused")
 		String[] tempAry = null;
 		String[] tempNameAry = null;
 		/** attr.type词条类型 */
@@ -756,65 +757,6 @@ public class EquipControl {
 	
 	}
 	
-	/**
-	 * 内部类
-	 * 装备带来的属性加成
-	 * @author yilong22315
-	 * 一共22条属性
-	 */
-	public class AddAttrs {
-		/** 一级属性 力,敏,体力,精力,幸运值 */
-		public int li = 0;
-		public int min = 0;
-		public int tili = 0;
-		public int jingli = 0;
-		public int lucky = 0;
-
-		/** 怪物二级属性 当前血量,蓝量,当前攻击,当前防御力,当前暴击几率 */
-		public int hp = 0;
-		public int mp = 0;
-		public int attack = 0;
-		public int defense = 0;
-		public int baoji = 0;
-		public int suck = 0;
-		
-		/** 属性值带来的 加成 */
-		public int hpAdd = 0 ;
-		public int mpAdd = 0;
-		public int atkAdd = 0;
-		public int defAdd = 0;
-		public int baojiAdd = 0;
-		public int baolvAdd = 0;
-		
-		/** 装备直接带来的 血量，蓝量，攻击，防御加成 */
-		public int hpEd = 0;
-		public int mpEd = 0;
-		public int atkEd = 0;
-		public int defEd = 0;
-		public int expEd = 0;
-		public int moneyEd = 0;
-		public int baolvEd = 0;
-
-		/** petEd */
-		public int petHp = 0;
-		public int petAtk = 0;
-		public int petDef = 0;
-		public int petAll = 0;
-
-		@Override
-		public String toString() {
-			return "AddAttrs [li=" + li + ", min=" + min + ", tili=" + tili
-					+ ", jingli=" + jingli + ", lucky=" + lucky + ", hp=" + hp
-					+ ", mp=" + mp + ", attack=" + attack + ", defense="
-					+ defense + ", baoji=" + baoji + ", hpEd=" + hpEd
-					+ ", mpEd=" + mpEd + ", atkEd=" + atkEd + ", defEd="
-					+ defEd + ", expEd=" + expEd + ", moneyEd=" + moneyEd
-					+ ", baolvEd=" + baolvEd + ", suck=" + suck + ", petHp="
-					+ petHp + ", petAtk=" + petAtk + ", petDef=" + petDef
-					+ ", petAll=" + petAll + "]";
-		}
-
-	}
 
 	/**--------------------------------------------------------------------------------
 	 * ------------------------------------AddAttrs控制 begin----------------------------
@@ -1027,6 +969,7 @@ public class EquipControl {
 	}
 	
 	/** 装备加成 */
+	@SuppressWarnings("unused")
 	private String[] equipAddAry = { "li", "min", "tili", "jingli", "lucky", "hp",
 			"mp", "attack", "defense", "baoji", "suck", "hpEd", "mpEd",
 			"atkEd", "defEd", "expEd", "moneyEd", "baolvEd", "petHp", "petAtk",

@@ -62,8 +62,8 @@ public class AwakenThread extends Thread{
 		this.showInfo = showInfo;
 		this.mySu = (TLabel)map.get("mySu");
 		this.foeSu = (TLabel)map.get("foeSu");
-		speed.add(gameControl.getAtkSpeed(player.getLi(), player.getMin()));
-		speed.add(gameControl.getAtkSpeed(npc.getLi(), npc.getMin()));
+		speed.add(player.getAtkSpeed(player.getLi(), player.getMin()));
+		speed.add(player.getAtkSpeed(npc.getLi(), npc.getMin()));
 		waitTime.add(0);
 		waitTime.add(0);
 	}

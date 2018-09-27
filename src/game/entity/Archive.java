@@ -53,7 +53,7 @@ public class Archive implements Serializable{
 	 * 游戏背包 
 	 */
 	private List<Equip> equipBag ;
-	private List<Object> skillBag ;
+	private List<Gong> gongBag ;
 	private List<Object> materialBag ;
 	
 	/** 身上的装备 */
@@ -75,7 +75,7 @@ public class Archive implements Serializable{
 		 * 初始化背包
 		 */
 		equipBag = new ArrayList<>();
-		skillBag = new ArrayList<>();
+		gongBag = new ArrayList<>();
 		materialBag = new ArrayList<>();
 		
 		/** 初始化装备栏 */
@@ -344,13 +344,13 @@ public class Archive implements Serializable{
 	}
 
 
-	public List<Object> getSkillBag() {
-		return skillBag;
+	public List<Gong> getGongBag() {
+		return gongBag;
 	}
 
 
-	public void setSkillBag(List<Object> skillBag) {
-		this.skillBag = skillBag;
+	public void setGongBag(List<Gong> gongBag) {
+		this.gongBag = gongBag;
 	}
 
 

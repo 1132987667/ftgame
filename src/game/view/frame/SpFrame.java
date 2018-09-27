@@ -6,8 +6,10 @@ import game.control.SoundControl;
 import game.entity.NPC;
 import game.view.TLabel;
 import game.view.button.TButton;
+import game.view.panel.BagPanel;
 import game.view.panel.FtPanel;
 import game.view.panel.FubenPanel;
+import game.view.panel.GongPanel;
 import game.view.panel.PlayerPanel;
 
 import java.awt.BorderLayout;
@@ -18,6 +20,7 @@ import java.awt.Font;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
@@ -25,6 +28,7 @@ import java.awt.event.WindowListener;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
@@ -32,6 +36,7 @@ import javax.swing.border.EmptyBorder;
 /**
  * 特殊的弹窗，半透明
  * 副本 个人属性 等等
+ * 背包
  * @author yilong22315
  * 
  */
@@ -50,6 +55,8 @@ public class SpFrame extends JFrame implements WindowListener {
 	private JPanel contentPane;
 	/** 拖动按钮和关闭按钮 */
 	private TButton drugBu,close ;
+	
+	private BagPanel bagPanel ;
 	
 	private NPC npc ;
 	
@@ -102,6 +109,8 @@ public class SpFrame extends JFrame implements WindowListener {
 					gameControl.append("你犹豫了会，还是决定先不去【",0);
 					gameControl.append("红尘", 1);
 					gameControl.append("】中！\n", 0);
+				}else if(type == 5){//背包
+					
 				}
 				gameControl.restore();
 			}
@@ -115,7 +124,7 @@ public class SpFrame extends JFrame implements WindowListener {
 			init1(contentPane);
 			break ;
 		case 2:// 人物属性和装备图
-			imgPath = "src/game/img/back/diao.png";
+			imgPath = "src/game/img/back/attrAndGong.png";
 			init2(contentPane);
 			break;
 		case 3:
@@ -126,6 +135,9 @@ public class SpFrame extends JFrame implements WindowListener {
 			imgPath = "src/game/img/back/水墨边框B.png";
 			init4(contentPane);
 			break ;
+		case 5:
+			imgPath = "src/game/img/back/bagBac.png";
+			init5();
 		default:
 			break;
 		}
@@ -159,6 +171,33 @@ public class SpFrame extends JFrame implements WindowListener {
 		
 		/** 添加拖动功能 */
 		setDragable();
+	}
+
+	private void init5() {
+		JLayeredPane layeredPanel = getLayeredPane() ;
+		layeredPanel.setLayout(null);
+		gameControl.setLayeredPanel(layeredPanel);
+		
+		close.setBounds(300, 11, 26, 26);
+		JLabel title = new JLabel("背包");
+		title.setBounds(170, 12, 80, 20);
+		title.setForeground(Color.white);
+		title.setFont(new Font("隶书",0,18));
+		drugBu = new TButton("", 24);
+		drugBu.setToolTipText("拖动");
+		contentPane.add(drugBu);
+		drugBu.setBounds(357, 32, 40, 64);
+		contentPane.add(title);
+		if(bagPanel==null){
+			System.out.println("初始化背包面板");
+			bagPanel = new BagPanel(contentPane, gameControl.getPlayer());
+			bagPanel.setLocation(52, 42);
+			bagPanel.setSize(800, 300);
+			contentPane.add(bagPanel);
+		}else{
+			bagPanel.setVisible(true);
+			//bagPanel.initData();
+		}
 	}
 
 	private void init4(JPanel contentPane2) {
@@ -209,6 +248,7 @@ public class SpFrame extends JFrame implements WindowListener {
 	
 	/**********************************************************
 	 * 人物的属性和装备面板的初始化
+	 * 人物功法面板初始化
 	 * @param contentPane
 	 */
 	private void init2(JPanel contentPane) {
@@ -226,6 +266,9 @@ public class SpFrame extends JFrame implements WindowListener {
 			playerPanel= new PlayerPanel(drugBu,contentPane);
 			contentPane.add(playerPanel);	
 			playerPanel.initData();
+			GongPanel gongPanel = new GongPanel() ;
+			gongPanel.setBounds(playerPanel.getWidth(), 0, 300, 410);
+			contentPane.add(gongPanel);	
 		}else{
 			playerPanel.setVisible(true);
 			playerPanel.initData();
@@ -305,7 +348,7 @@ public class SpFrame extends JFrame implements WindowListener {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					SpFrame frame = new SpFrame(null, 1);
+					SpFrame frame = new SpFrame(null, 5);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -320,7 +363,7 @@ public class SpFrame extends JFrame implements WindowListener {
 
 	/** 用来移动窗体的方法 */
 	private void setDragable() {
-		drugBu.addMouseListener(new java.awt.event.MouseAdapter() {
+		drugBu.addMouseListener(new MouseAdapter() {
 			public void mouseReleased(java.awt.event.MouseEvent e) {
 				isDragged = false;
 				setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
@@ -360,6 +403,8 @@ public class SpFrame extends JFrame implements WindowListener {
 		}else if(type==3){
 			npc = fightControl.getNpc();
 			ftPanel.reload(gameControl.getPlayer(), npc);
+		}else if(type==5){
+			bagPanel.openBag();
 		}
 		
 	}

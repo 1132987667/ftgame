@@ -197,11 +197,11 @@ public class EnterFrame extends JFrame{
 				JOptionPane.showConfirmDialog(null, "请选择一个存档","提示", JOptionPane.PLAIN_MESSAGE);
 			}else{
 				/** 传输存档 和 游戏角色 */
-				Archive archive = ArchiveUtils.loadArchive(archiveName);
-				gameControl.setArchive(archive);
-				Player player = SUtils.conArcToPlayer(theArchive);
-				gameControl.setPlayer(player);
-				gameControl.setArchiveName(archiveName);
+																																																Archive archive = ArchiveUtils.loadArchive(archiveName);
+																																																gameControl.setArchive(archive);
+																																																Player player = SUtils.conArcToPlayer(theArchive);
+																																																gameControl.setPlayer(player);
+																																																gameControl.setArchiveName(archiveName);
 				//System.out.println("玩家:"+player.getArmorBag().size());
 				//System.out.println("存档:"+archive.getEquipBag().size());
 				//存档存在

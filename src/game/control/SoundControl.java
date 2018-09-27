@@ -1,7 +1,5 @@
 package game.control;
 
-import game.utils.SUtils;
-
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -24,6 +22,7 @@ public class SoundControl {
 		return soundControl;
 	}
 
+	@SuppressWarnings("unused")
 	private Clip getFtback(int type) {
 		Clip clip = null;
 		String str = null;

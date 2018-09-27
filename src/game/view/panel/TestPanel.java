@@ -10,6 +10,7 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Cursor;
 import java.awt.Font;
+import java.awt.Frame;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -70,9 +71,9 @@ public class TestPanel extends JPanel {
 	private JPanel equipPanelView ;
 	private JLabel weapon, helmet, necklace, coat, ring, waistband, trousers,shoes;
 	private JLabel[] equipAttr = { weapon, helmet, necklace, coat, ring, waistband, trousers,shoes } ;
-	private JLabel weaponV, helmetV, necklaceV, coatV, ringV, waistbandV, trousersV,shoesV;
+	/*private JLabel weaponV, helmetV, necklaceV, coatV, ringV, waistbandV, trousersV,shoesV;
 	private JLabel[] equipAttrValue = { weaponV, helmetV, necklaceV, coatV, ringV, waistbandV, trousersV,shoesV } ;
-	
+	*/
 	
 	
 	
@@ -243,6 +244,8 @@ public class TestPanel extends JPanel {
 
 	boolean isDragged = false;
 
+	
+	@SuppressWarnings("unused")
 	private void setDragable(JFrame f) {
 
 		this.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -337,12 +340,12 @@ public class TestPanel extends JPanel {
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				f.setExtendedState(f.ICONIFIED); // 最小化
+				f.setExtendedState(Frame.ICONIFIED); // 最小化
 
-				if (f.getExtendedState() != f.MAXIMIZED_BOTH)
-					f.setExtendedState(f.MAXIMIZED_BOTH);
+				if (f.getExtendedState() != Frame.MAXIMIZED_BOTH)
+					f.setExtendedState(Frame.MAXIMIZED_BOTH);
 				else
-					f.setExtendedState(f.NORMAL);
+					f.setExtendedState(Frame.NORMAL);
 				System.exit(0);
 
 				// 关闭，退出程序

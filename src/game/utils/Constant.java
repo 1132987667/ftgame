@@ -13,7 +13,8 @@ public class Constant {
 	public static String[] equipAttrAry = {"名字","品质","种类","数量"} ;
 	
 	public static final String[] partDes = { "兵器", "头盔", "项链", "上衣", "戒指", "腰带", "裤子", "鞋子" };
-
+	
+	public static final String[] STATE = {"开光","辟谷","练气","筑基","结丹","元婴","出窍","分神","大成","渡劫"} ;
 	
 	/** 一级属性名 */
 	public static String[] oneAttr = {"体质","精力","力量","敏捷","幸运"} ;
@@ -55,5 +56,7 @@ public class Constant {
 	/** 不同品质敌人给玩家提供经验的比率 */
 	public final static double[] npcExpLv = {1,2,3,4,5} ;
 	
+	/** 功法品质 */
+	public static String[] gongQu = {"黄品","玄品","地品","天品"} ;
 
 }

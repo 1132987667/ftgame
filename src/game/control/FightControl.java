@@ -4,7 +4,6 @@ import game.entity.Equip;
 import game.entity.NPC;
 import game.entity.Player;
 import game.listener.NpcListener;
-import game.utils.Constant;
 import game.view.frame.SpFrame;
 
 import java.util.ArrayList;

@@ -12,7 +12,7 @@ import game.view.frame.EnterFrame;
  * @author yilong22315
  *
  */
-public class Demo {
+public class Starter {
 	public static void main(String[] args) {
 		UIManager.LookAndFeelInfo[] info = UIManager.getInstalledLookAndFeels();
 		for (int i = 0; i < info.length; i++)

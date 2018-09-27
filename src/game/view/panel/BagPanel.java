@@ -4,15 +4,22 @@ import game.control.GameControl;
 import game.entity.Equip;
 import game.entity.Player;
 import game.utils.Constant;
+import game.utils.SUtils;
 import game.view.button.TButton;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
+import javax.swing.SwingUtilities;
+import javax.swing.UIDefaults;
+import javax.swing.UIManager;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
@@ -43,16 +50,16 @@ public class BagPanel extends JPanel {
 	
 	private Player player = null ;
 	private GameControl gameControl ;
-	public BagPanel(JPanel superPanel,Player player) {
+	public BagPanel(JPanel superPanel,final Player player) {
 		this.superPanel = superPanel;
 		this.player = player ;
 		gameControl = GameControl.getInstance();
 		/** 初始化 */
 		setLayout(null);
-		//setOpaque(false);
-		setBackground(Color.blue);
+		setOpaque(false);
+		//setBackground(Color.blue);
 		setSize(800, 300);
-		setVisible(false);
+		setVisible(true);
 		
 		/** 查看当前装备信息的两个面板 */
 		equipShow = new JPanel() ;
@@ -66,48 +73,55 @@ public class BagPanel extends JPanel {
 		selectEp = new EquipInfoPanel();
 		//selectEp.setVisible(false);
 		equipShow.add(selectEp);
-		selectEp.setBounds(0, 4, 170, 240);
+		selectEp.setBounds(0, 64, 170, 240);
 		/** 当前点击的 */
 		wearEp = new EquipInfoPanel();
 		//wearEp.setVisible(false);
 		equipShow.add(wearEp);
-		wearEp.setBounds(174,4,170,240);
+		wearEp.setBounds(174,64,170,240);
+		
+		/** 增加标签面板 */
+		bagPanel = new JTabbedPane();
+		SUtils.setUi(bagPanel);
+		bagPanel.setOpaque(false);
+		bagPanel.setFont(new Font("隶书",Font.PLAIN,14));
+		add(bagPanel);
+		//bagPanel.setBackground(Constant.colorAry[2]);
+		bagPanel.setBackground(Color.white);
+		bagPanel.setBounds(-5, 0, 304, 350);
+		/** 增加 */
+		for (int i = 0; i < bagJPanelAry.length; i++) {
+			/** 为背包分类制定具体面板 */
+			bagJPanelAry[i] = new BagClassifyPanel(this,i);
+			//bagJPanelAry[i].setBackground(Color.white);
+			bagPanel.addTab(Constant.bagClassifyAry[i], bagJPanelAry[i]);
+			bagPanel.setForegroundAt(i, Color.white); 
+			bagPanel.setBackgroundAt(i,Color.blue);
+		}
+		bagPanel.addChangeListener(new ChangeListener() {
+			@Override
+			public void stateChanged(ChangeEvent e) {
+				JTabbedPane tabbedPane = (JTabbedPane) e.getSource();
+				int selectedIndex = tabbedPane.getSelectedIndex();
+				clickEq = null ;
+				selectEp.setVisible(false);
+				wearEp.setVisible(false);
+			}
+		});
 		
 		/** 对装备进行操作的按钮 */
 		putOn = new TButton("装备", 2);
 		resolve = new TButton("分解", 2);
 		putOn.addActionListener(eqAc);
 		resolve.addActionListener(eqAc);
-		putOn.setBounds(0, selectEp.getY()+selectEp.getHeight()+2, 56, 22);
-		resolve.setBounds(60, selectEp.getY()+selectEp.getHeight()+2, 56, 22);
+		putOn.setBounds(54, 338, 56, 22);
+		resolve.setBounds(114, 338, 56, 22);
 		/** 先隐藏 */
 		//putOn.setVisible(false);
 		//resolve.setVisible(false);
-		equipShow.add(putOn);
-		equipShow.add(resolve);
+		superPanel.add(putOn);
+		superPanel.add(resolve);
 		
-		
-		/** 增加标签面板 */
-		bagPanel = new JTabbedPane();
-		bagPanel.addChangeListener(new ChangeListener() {
-			@Override
-			public void stateChanged(ChangeEvent e) {
-				System.out.println("页签面板被改变!");
-				clickEq = null ;
-			}
-		});
-		bagPanel.setFont(new Font("楷体",Font.PLAIN,14));
-		add(bagPanel);
-		bagPanel.setBackground(Constant.colorAry[2]);
-		bagPanel.setBounds(0, 0, 300, 270);
-		/** 增加 */
-		for (int i = 0; i < bagJPanelAry.length; i++) {
-			/** 为背包分类制定具体面板 */
-			bagJPanelAry[i] = new BagClassifyPanel(this,i);
-			bagJPanelAry[i].setBackground(Color.white);
-			bagJPanelAry[i].setLayout(null);
-			bagPanel.addTab(Constant.bagClassifyAry[i], bagJPanelAry[i]);
-		}
 		/*JLabel back = new JLabel();
 		ImageIcon image1 = new ImageIcon("src/game/img/back/bookA.png") ;
 		back.setIcon(image1);

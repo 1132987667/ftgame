@@ -19,7 +19,7 @@ public class EquipInfoPanel extends JPanel {
 	private static final long serialVersionUID = 1L;
 	Font font = new Font("宋体", Font.PLAIN, 12);
 	public static String[] ary = { "品质", "lv", "位置", "售价", "数量", "血", "攻", "防", "敏", "描述", "特效" };// ,
-	private TempLabel name,part,price,type,rank,attr1,attr2,attr3,attr4,attr5, tempLabel;	
+	private TempLabel name,part,price,type,rank,attr1,attr2,attr3,attr4,attr5;	
 	private TempLabel[] attrAry = {attr1,attr2,attr3,attr4,attr5} ;
 	
 	private JTextArea jta ;

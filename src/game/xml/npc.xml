@@ -108,8 +108,416 @@
 		<!-- 此npc的最低品质 -->
 		<type></type>
 	</npc>
-	<!-- <npc attrType="rd" >
+	<npc attrType="rd" >
+		<id>113</id>
+		<name>地鬼哨兵</name>
+		<des></des>
+		<msg></msg>
+		<rank>9</rank>
+		<type></type>
+	</npc>
+	<npc attrType="rd" >
+		<id>114</id>
+		<name>洞冥仙长</name>
+		<des></des>
+		<msg></msg>
+		<rank>9</rank>
+		<type></type>
+	</npc><npc attrType="rd" >
+		<id>115</id>
+		<name>冥牛之王</name>
+		<des></des>
+		<msg></msg>
+		<rank>9</rank>
+		<type></type>
+	</npc><npc attrType="rd" >
+		<id>112</id>
+		<name>观想兽</name>
+		<des>由人的杂念绮思所形成的观想兽，会缠住人的魂魄。</des>
+		<msg></msg>
+		<rank>9</rank>
+		<type></type>
+	</npc><npc attrType="rd" >
+		<id>112</id>
 		<name></name>
+		<des></des>
+		<msg></msg>
+		<rank>9</rank>
+		<type></type>
+	</npc><npc attrType="rd" >
+		<id>112</id>
+		<name></name>
+		<des></des>
+		<msg></msg>
+		<rank>9</rank>
+		<type></type>
+	</npc><npc attrType="rd" >
+		<id>112</id>
+		<name></name>
+		<des></des>
+		<msg></msg>
+		<rank>9</rank>
+		<type></type>
+	</npc><npc attrType="rd" >
+		<id>112</id>
+		<name></name>
+		<des></des>
+		<msg></msg>
+		<rank>9</rank>
+		<type></type>
+	</npc><npc attrType="rd" >
+		<id>112</id>
+		<name></name>
+		<des></des>
+		<msg></msg>
+		<rank>9</rank>
+		<type></type>
+	</npc><npc attrType="rd" >
+		<id>112</id>
+		<name></name>
+		<des></des>
+		<msg></msg>
+		<rank>9</rank>
+		<type></type>
+	</npc><npc attrType="rd" >
+		<id>112</id>
+		<name></name>
+		<des></des>
+		<msg></msg>
+		<rank>9</rank>
+		<type></type>
+	</npc><npc attrType="rd" >
+		<id>112</id>
+		<name></name>
+		<des></des>
+		<msg></msg>
+		<rank>9</rank>
+		<type></type>
+	</npc><npc attrType="rd" >
+		<id>112</id>
+		<name></name>
+		<des></des>
+		<msg></msg>
+		<rank>9</rank>
+		<type></type>
+	</npc><npc attrType="rd" >
+		<id>112</id>
+		<name></name>
+		<des></des>
+		<msg></msg>
+		<rank>9</rank>
+		<type></type>
+	</npc><npc attrType="rd" >
+		<id>112</id>
+		<name></name>
+		<des></des>
+		<msg></msg>
+		<rank>9</rank>
+		<type></type>
+	</npc><npc attrType="rd" >
+		<id>112</id>
+		<name></name>
+		<des></des>
+		<msg></msg>
+		<rank>9</rank>
+		<type></type>
+	</npc><npc attrType="rd" >
+		<id>112</id>
+		<name></name>
+		<des></des>
+		<msg></msg>
+		<rank>9</rank>
+		<type></type>
+	</npc><npc attrType="rd" >
+		<id>112</id>
+		<name></name>
+		<des></des>
+		<msg></msg>
+		<rank>9</rank>
+		<type></type>
+	</npc><npc attrType="rd" >
+		<id>112</id>
+		<name></name>
+		<des></des>
+		<msg></msg>
+		<rank>9</rank>
+		<type></type>
+	</npc><npc attrType="rd" >
+		<id>112</id>
+		<name></name>
+		<des></des>
+		<msg></msg>
+		<rank>9</rank>
+		<type></type>
+	</npc><npc attrType="rd" >
+		<id>112</id>
+		<name></name>
+		<des></des>
+		<msg></msg>
+		<rank>9</rank>
+		<type></type>
+	</npc><npc attrType="rd" >
+		<id>112</id>
+		<name></name>
+		<des></des>
+		<msg></msg>
+		<rank>9</rank>
+		<type></type>
+	</npc><npc attrType="rd" >
+		<id>112</id>
+		<name></name>
+		<des></des>
+		<msg></msg>
+		<rank>9</rank>
+		<type></type>
+	</npc><npc attrType="rd" >
+		<id>112</id>
+		<name></name>
+		<des></des>
+		<msg></msg>
+		<rank>9</rank>
+		<type></type>
+	</npc><npc attrType="rd" >
+		<id>112</id>
+		<name></name>
+		<des></des>
+		<msg></msg>
+		<rank>9</rank>
+		<type></type>
+	</npc><npc attrType="rd" >
+		<id>112</id>
+		<name></name>
+		<des></des>
+		<msg></msg>
+		<rank>9</rank>
+		<type></type>
+	</npc><npc attrType="rd" >
+		<id>112</id>
+		<name></name>
+		<des></des>
+		<msg></msg>
+		<rank>9</rank>
+		<type></type>
+	</npc><npc attrType="rd" >
+		<id>112</id>
+		<name></name>
+		<des></des>
+		<msg></msg>
+		<rank>9</rank>
+		<type></type>
+	</npc><npc attrType="rd" >
+		<id>112</id>
+		<name></name>
+		<des></des>
+		<msg></msg>
+		<rank>9</rank>
+		<type></type>
+	</npc><npc attrType="rd" >
+		<id>112</id>
+		<name></name>
+		<des></des>
+		<msg></msg>
+		<rank>9</rank>
+		<type></type>
+	</npc><npc attrType="rd" >
+		<id>112</id>
+		<name></name>
+		<des></des>
+		<msg></msg>
+		<rank>9</rank>
+		<type></type>
+	</npc><npc attrType="rd" >
+		<id>112</id>
+		<name></name>
+		<des></des>
+		<msg></msg>
+		<rank>9</rank>
+		<type></type>
+	</npc><npc attrType="rd" >
+		<id>112</id>
+		<name></name>
+		<des></des>
+		<msg></msg>
+		<rank>9</rank>
+		<type></type>
+	</npc><npc attrType="rd" >
+		<id>112</id>
+		<name></name>
+		<des></des>
+		<msg></msg>
+		<rank>9</rank>
+		<type></type>
+	</npc><npc attrType="rd" >
+		<id>112</id>
+		<name></name>
+		<des></des>
+		<msg></msg>
+		<rank>9</rank>
+		<type></type>
+	</npc><npc attrType="rd" >
+		<id>112</id>
+		<name></name>
+		<des></des>
+		<msg></msg>
+		<rank>9</rank>
+		<type></type>
+	</npc><npc attrType="rd" >
+		<id>112</id>
+		<name></name>
+		<des></des>
+		<msg></msg>
+		<rank>9</rank>
+		<type></type>
+	</npc><npc attrType="rd" >
+		<id>112</id>
+		<name></name>
+		<des></des>
+		<msg></msg>
+		<rank>9</rank>
+		<type></type>
+	</npc><npc attrType="rd" >
+		<id>112</id>
+		<name></name>
+		<des></des>
+		<msg></msg>
+		<rank>9</rank>
+		<type></type>
+	</npc><npc attrType="rd" >
+		<id>112</id>
+		<name></name>
+		<des></des>
+		<msg></msg>
+		<rank>9</rank>
+		<type></type>
+	</npc><npc attrType="rd" >
+		<id>112</id>
+		<name></name>
+		<des></des>
+		<msg></msg>
+		<rank>9</rank>
+		<type></type>
+	</npc><npc attrType="rd" >
+		<id>112</id>
+		<name></name>
+		<des></des>
+		<msg></msg>
+		<rank>9</rank>
+		<type></type>
+	</npc><npc attrType="rd" >
+		<id>112</id>
+		<name></name>
+		<des></des>
+		<msg></msg>
+		<rank>9</rank>
+		<type></type>
+	</npc><npc attrType="rd" >
+		<id>112</id>
+		<name></name>
+		<des></des>
+		<msg></msg>
+		<rank>9</rank>
+		<type></type>
+	</npc><npc attrType="rd" >
+		<id>112</id>
+		<name></name>
+		<des></des>
+		<msg></msg>
+		<rank>9</rank>
+		<type></type>
+	</npc><npc attrType="rd" >
+		<id>112</id>
+		<name></name>
+		<des></des>
+		<msg></msg>
+		<rank>9</rank>
+		<type></type>
+	</npc><npc attrType="rd" >
+		<id>112</id>
+		<name></name>
+		<des></des>
+		<msg></msg>
+		<rank>9</rank>
+		<type></type>
+	</npc><npc attrType="rd" >
+		<id>112</id>
+		<name></name>
+		<des></des>
+		<msg></msg>
+		<rank>9</rank>
+		<type></type>
+	</npc><npc attrType="rd" >
+		<id>112</id>
+		<name></name>
+		<des></des>
+		<msg></msg>
+		<rank>9</rank>
+		<type></type>
+	</npc><npc attrType="rd" >
+		<id>112</id>
+		<name></name>
+		<des></des>
+		<msg></msg>
+		<rank>9</rank>
+		<type></type>
+	</npc><npc attrType="rd" >
+		<id>112</id>
+		<name></name>
+		<des></des>
+		<msg></msg>
+		<rank>9</rank>
+		<type></type>
+	</npc><npc attrType="rd" >
+		<id>112</id>
+		<name></name>
+		<des></des>
+		<msg></msg>
+		<rank>9</rank>
+		<type></type>
+	</npc><npc attrType="rd" >
+		<id>112</id>
+		<name></name>
+		<des></des>
+		<msg></msg>
+		<rank>9</rank>
+		<type></type>
+	</npc><npc attrType="rd" >
+		<id>112</id>
+		<name></name>
+		<des></des>
+		<msg></msg>
+		<rank>9</rank>
+		<type></type>
+	</npc><npc attrType="rd" >
+		<id>112</id>
+		<name></name>
+		<des></des>
+		<msg></msg>
+		<rank>9</rank>
+		<type></type>
+	</npc><npc attrType="rd" >
+		<id>112</id>
+		<name></name>
+		<des></des>
+		<msg></msg>
+		<rank>9</rank>
+		<type></type>
+	</npc><npc attrType="rd" >
+		<id>112</id>
+		<name></name>
+		<des></des>
+		<msg></msg>
+		<rank>9</rank>
+		<type></type>
+	</npc><npc attrType="rd" >
+		<id>112</id>
+		<name></name>
+		<des></des>
+		<msg></msg>
+		<rank>9</rank>
+		<type></type>
+	</npc>
+	 <npc attrType="rd" >
+		<name>113</name>
 		<des></des>
 		<msg></msg>
 		<rank></rank>
@@ -180,7 +588,7 @@
 		此npc的最低品质
 		<type></type>
 	</npc>
-	<npc>
+	<!--<npc>
 		<name></name>
 		<des></des>
 		<msg></msg>

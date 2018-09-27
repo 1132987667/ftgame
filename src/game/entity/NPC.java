@@ -2,14 +2,11 @@ package game.entity;
 
 import game.control.GameControl;
 import game.utils.ArchiveUtils;
-import game.utils.ReflectUtils;
 import game.utils.SUtils;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.dom4j.Document;
 import org.dom4j.Node;
@@ -46,7 +43,8 @@ public class NPC implements Serializable{
 	/** 是否为强化怪 */
 	private boolean isIntensify = false ;
 	/** 是否被解析过 */
-	private boolean isAnalyze ;
+	@SuppressWarnings("unused")
+	private boolean isAnalyze = false ;
 	
 	/** 决定属性生成的方式，随机属性还是固定 */
 	private String attrType = null ;
@@ -143,6 +141,7 @@ public class NPC implements Serializable{
 		/** npc全部的收取物品信息 */
 		List<List<Item>> takeList = new ArrayList<>();
 		List<List<Item>> giveList = new ArrayList<>();
+		@SuppressWarnings("unused")
 		boolean giveFlag = true ;
 		boolean takeFlag = true ;
 		for (int i = 0; i < nodeList.size(); i++) {

@@ -14,19 +14,28 @@ import game.entity.Archive;
 
 
 public class ArchiveUtils {
-	/***
-	 * 序列化
-	 * 
-	 * @param Archive
-	 * @throws FileNotFoundException
+	/**
+	 *  * 序列化
+	 * @param archive
+	 * @param filePath
 	 */
-	private static void serializable(Archive archive, String filePath) {
+	private static boolean serializable(Archive archive, String filePath) {
 		/** 当前目录项目目录下 a.txt D:\java\workspace\w2\javaBase\a.txt */
 		ObjectOutputStream outputStream = null;
 		if ("".equals(filePath)) {
 			filePath = "a.player";
 		}
-		filePath+=".player";
+		filePath=System.getProperty("user.dir")+"\\"+filePath+".player";
+		System.out.println(filePath);
+		File file = new File(filePath);
+		if(!file.exists()){
+			try {
+				file.createNewFile();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			return false ; 
+		}
 		try {
 			outputStream = new ObjectOutputStream(new FileOutputStream(filePath));
 			outputStream.writeObject(archive);
@@ -40,16 +49,22 @@ public class ArchiveUtils {
 				e.printStackTrace();
 			}
 		}
+		return true ;
 	}
 	
-	/** 反序列化 */
+	/**
+	 * 反序列化
+	 * @param fileName
+	 * @return
+	 */
 	private static Object deSerializable(String fileName) {
 		Archive archive = null;
 		ObjectInputStream ois = null;
 		if ("".equals(fileName)) {
 			fileName = "autoArchive.player";
 		}else{
-			fileName = "D:/softworkspace/w1/yi/"+fileName+".player" ;
+			//fileName = "D:/softworkspace/w1/yi/"+fileName+".player" ;
+			fileName = System.getProperty("user.dir")+"\\"+fileName+".player" ;
 		}
 		File file = new File(fileName);
 		if(!file.exists()){
@@ -128,8 +143,8 @@ public class ArchiveUtils {
 	}
 	
 	/** 存档 */
-	public static void saveArchiving(Archive archive, String filePath) {
-		serializable(archive, filePath);
+	public static boolean saveArchiving(Archive archive, String filePath) {
+		return serializable(archive, filePath);
 	}
 
 	/** 读档 */

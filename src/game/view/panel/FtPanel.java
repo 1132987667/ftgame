@@ -46,6 +46,7 @@ public class FtPanel extends JPanel{
 	private Font font2 = new Font("隶书",Font.PLAIN,14) ;
 	private Font font3 = new Font("华文新魏",Font.PLAIN,16) ;
 	private Player player = null;
+	@SuppressWarnings("unused")
 	private NPC npc = null ;
 	private static Object obj = new Object();
 	/** 显示敌我姓名的标签 */
@@ -56,7 +57,9 @@ public class FtPanel extends JPanel{
 	/** 我和敌人的血条法力条 */
 	private static TLabel myXue,myFa,foeXue,foeFa,mySu,foeSu;
 	/** 用来显示敌我血量的jLabel */
-	private JLabel myTextHp , foeTextHp , myTextMp , foeTextMp  ;
+	private JLabel myTextHp , foeTextHp  ;
+	@SuppressWarnings("unused")
+	private JLabel myTextMp , foeTextMp ;
 	/** 显示攻击动作的两把剑 */
 	private JLabel myJian , foeJian ;
 	/** 我造成的伤害数值 */

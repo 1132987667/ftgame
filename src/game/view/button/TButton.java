@@ -138,6 +138,9 @@ public class TButton extends JButton implements MouseListener {
 		case 23:
 			imageName = "makeB";
 			break;
+		case 24:
+			imageName = "longTou";
+			break;
 		default:
 			imageName = "type";
 			break;

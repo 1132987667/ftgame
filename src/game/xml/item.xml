@@ -233,7 +233,7 @@
 	</item>
 	<item type="">
 		<id></id>
-		<name></name>
+		<name>黑晶矿石</name>
 		<des></des>
 		<type></type>
 		<action>
@@ -242,7 +242,7 @@
 	</item>
 	<item type="">
 		<id></id>
-		<name></name>
+		<name>白晶矿石</name>
 		<des></des>
 		<type></type>
 		<action>
@@ -251,7 +251,7 @@
 	</item>
 	<item type="">
 		<id></id>
-		<name></name>
+		<name>蓝晶矿石</name>
 		<des></des>
 		<type></type>
 		<action>
@@ -260,7 +260,7 @@
 	</item>
 	<item type="">
 		<id></id>
-		<name></name>
+		<name>妖牛护符</name>
 		<des></des>
 		<type></type>
 		<action>
@@ -269,7 +269,7 @@
 	</item>
 	<item type="">
 		<id></id>
-		<name></name>
+		<name>石吼护符</name>
 		<des></des>
 		<type></type>
 		<action>
@@ -278,7 +278,7 @@
 	</item>
 	<item type="">
 		<id></id>
-		<name></name>
+		<name>虚之金精石</name>
 		<des></des>
 		<type></type>
 		<action>
@@ -287,7 +287,7 @@
 	</item>
 	<item type="">
 		<id></id>
-		<name></name>
+		<name>虚之木精石</name>
 		<des></des>
 		<type></type>
 		<action>
@@ -296,15 +296,301 @@
 	</item>
 	<item type="">
 		<id></id>
-		<name></name>
+		<name>虚之水精石</name>
 		<des></des>
 		<type></type>
 		<action>
 			
 		</action>
 	</item>
-	<item>
-		
+	<item type="">
+		<id></id>
+		<name>虚之火精石</name>
+		<des></des>
+		<type></type>
+		<action>
+			
+		</action>
+	</item><item type="">
+		<id></id>
+		<name>虚之土精石</name>
+		<des></des>
+		<type></type>
+		<action>
+			
+		</action>
+	</item><item type="">
+		<id></id>
+		<name>源晶星尘</name>
+		<des>蕴含磅礴能量的星辰源晶碎片，集齐100个可兑换1枚任意职业的20级星辰源晶。</des>
+		<type></type>
+		<action>
+			
+		</action>
+	</item><item type="">
+		<id></id>
+		<name>不灭凤炎</name>
+		<des>不死鸟的灵魂之焰，不朽的永恒神火！即使是高高在上的主神，也泯灭不了它的光芒。</des>
+		<type></type>
+		<action>
+			
+		</action>
+	</item><item type="">
+		<id></id>
+		<name>芥子石</name>
+		<des>又称芥子纳须弥之石，一种含有空间之力的石头，极其稀有</des>
+		<type></type>
+		<action>
+			
+		</action>
+	</item><item type="">
+		<id></id>
+		<name>虚之水精石</name>
+		<des></des>
+		<type></type>
+		<action>
+			
+		</action>
+	</item><item type="">
+		<id></id>
+		<name>虚之水精石</name>
+		<des></des>
+		<type></type>
+		<action>
+			
+		</action>
+	</item><item type="">
+		<id></id>
+		<name>虚之水精石</name>
+		<des></des>
+		<type></type>
+		<action>
+			
+		</action>
+	</item><item type="">
+		<id></id>
+		<name>虚之水精石</name>
+		<des></des>
+		<type></type>
+		<action>
+			
+		</action>
+	</item><item type="">
+		<id></id>
+		<name>虚之水精石</name>
+		<des></des>
+		<type></type>
+		<action>
+			
+		</action>
+	</item><item type="">
+		<id></id>
+		<name>虚之水精石</name>
+		<des></des>
+		<type></type>
+		<action>
+			
+		</action>
+	</item><item type="">
+		<id></id>
+		<name>虚之水精石</name>
+		<des></des>
+		<type></type>
+		<action>
+			
+		</action>
+	</item><item type="">
+		<id></id>
+		<name>虚之水精石</name>
+		<des></des>
+		<type></type>
+		<action>
+			
+		</action>
+	</item><item type="">
+		<id></id>
+		<name>虚之水精石</name>
+		<des></des>
+		<type></type>
+		<action>
+			
+		</action>
+	</item><item type="">
+		<id></id>
+		<name>虚之水精石</name>
+		<des></des>
+		<type></type>
+		<action>
+			
+		</action>
+	</item><item type="">
+		<id></id>
+		<name>虚之水精石</name>
+		<des></des>
+		<type></type>
+		<action>
+			
+		</action>
+	</item><item type="">
+		<id></id>
+		<name>虚之水精石</name>
+		<des></des>
+		<type></type>
+		<action>
+			
+		</action>
+	</item><item type="">
+		<id></id>
+		<name>虚之水精石</name>
+		<des></des>
+		<type></type>
+		<action>
+			
+		</action>
+	</item><item type="">
+		<id></id>
+		<name>虚之水精石</name>
+		<des></des>
+		<type></type>
+		<action>
+			
+		</action>
+	</item><item type="">
+		<id></id>
+		<name>虚之水精石</name>
+		<des></des>
+		<type></type>
+		<action>
+			
+		</action>
+	</item><item type="">
+		<id></id>
+		<name>虚之水精石</name>
+		<des></des>
+		<type></type>
+		<action>
+			
+		</action>
+	</item><item type="">
+		<id></id>
+		<name>虚之水精石</name>
+		<des></des>
+		<type></type>
+		<action>
+			
+		</action>
+	</item><item type="">
+		<id></id>
+		<name>虚之水精石</name>
+		<des></des>
+		<type></type>
+		<action>
+			
+		</action>
+	</item><item type="">
+		<id></id>
+		<name>虚之水精石</name>
+		<des></des>
+		<type></type>
+		<action>
+			
+		</action>
+	</item><item type="">
+		<id></id>
+		<name>虚之水精石</name>
+		<des></des>
+		<type></type>
+		<action>
+			
+		</action>
+	</item><item type="">
+		<id></id>
+		<name>虚之水精石</name>
+		<des></des>
+		<type></type>
+		<action>
+			
+		</action>
+	</item><item type="">
+		<id></id>
+		<name>虚之水精石</name>
+		<des></des>
+		<type></type>
+		<action>
+			
+		</action>
+	</item><item type="">
+		<id></id>
+		<name>虚之水精石</name>
+		<des></des>
+		<type></type>
+		<action>
+			
+		</action>
+	</item><item type="">
+		<id></id>
+		<name>虚之水精石</name>
+		<des></des>
+		<type></type>
+		<action>
+			
+		</action>
+	</item><item type="">
+		<id></id>
+		<name>虚之水精石</name>
+		<des></des>
+		<type></type>
+		<action>
+			
+		</action>
+	</item><item type="">
+		<id></id>
+		<name>虚之水精石</name>
+		<des></des>
+		<type></type>
+		<action>
+			
+		</action>
+	</item><item type="">
+		<id></id>
+		<name>虚之水精石</name>
+		<des></des>
+		<type></type>
+		<action>
+			
+		</action>
+	</item><item type="">
+		<id></id>
+		<name>虚之水精石</name>
+		<des></des>
+		<type></type>
+		<action>
+			
+		</action>
+	</item><item type="">
+		<id></id>
+		<name>虚之水精石</name>
+		<des></des>
+		<type></type>
+		<action>
+			
+		</action>
+	</item><item type="">
+		<id></id>
+		<name>虚之水精石</name>
+		<des></des>
+		<type></type>
+		<action>
+			
+		</action>
+	</item><item type="">
+		<id></id>
+		<name>虚之水精石</name>
+		<des></des>
+		<type></type>
+		<action>
+			
+		</action>
 	</item>
 	
 </root>

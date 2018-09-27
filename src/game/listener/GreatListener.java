@@ -22,7 +22,7 @@ import javax.sound.sampled.Clip;
 public class GreatListener implements ActionListener{
 	private MainFrame f  ;
 	private GameControl gameControl ;
-	private SpFrame sp1,sp2,sp3,sp4 = null ;
+	private SpFrame sp1, sp2, sp3, sp4, sp5 = null ;
 	private Archive archive = null ;
 	private Player player ;
 	//private Clip bagOpen = SoundControl.jiemianMuc("openBag");
@@ -48,9 +48,6 @@ public class GreatListener implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		String str = e.getActionCommand() ;
 		System.out.println(str);
-		archive = SUtils.conPlayerToArc(player);
-		//System.out.println("存档ing:"+archive.toString());
-		ArchiveUtils.saveArchiving(archive, gameControl.getArchiveName());
 		int type = 0 ;
 		switch (str) {
 		case "副本":
@@ -63,7 +60,6 @@ public class GreatListener implements ActionListener{
 				sp1 = new SpFrame(f,1);
 			}
 			/** 关闭背包 */
-			gameControl.closeBag();
 			bagFlag = false ;
 			sp1.setVisible(true);
 			sp1.reload(1);
@@ -78,24 +74,18 @@ public class GreatListener implements ActionListener{
 				sp4 = new SpFrame(f,4);
 			}
 			/** 关闭背包 */
-			gameControl.closeBag();
 			bagFlag = false ;
 			sp4.setVisible(true);
 			sp4.reload(4);
 			break ;
 		case "背包":
 			SoundControl.jiemianMuc("openBag"); 
-			/** true为打开，按下则关闭 */
-			if(bagFlag){
-				gameControl.append("你关上了【背包】！\n", 0);
-				gameControl.beganExplore();
-				bagFlag = false ;
-			}else{
-				gameControl.append("你打开了【背包】！\n", 0);
-				gameControl.openBag();
-				bagFlag = true ;
+			if(sp5==null){
+				sp5 = new SpFrame(f,5);
 			}
-			type = 1 ;
+			sp5.setVisible(true);
+			sp5.reload(type);
+			type = 5 ;
 			break;
 		case "状态":
 			SoundControl.jiemianMuc("bu"); 
@@ -110,6 +100,8 @@ public class GreatListener implements ActionListener{
 			break;
 		case "存档":
 			type = 1 ;
+			archive = SUtils.conPlayerToArc(player);
+			ArchiveUtils.saveArchiving(archive, gameControl.getArchiveName());
 			break;
 		case "地图":
 			List<Equip> temp = new ArrayList<>();

@@ -1,3 +1,4 @@
+
 package game.view.frame;
 
 import game.control.GameControl;
@@ -19,6 +20,7 @@ import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.UIManager;
@@ -87,13 +89,12 @@ public class MainFrame extends JFrame{
 	Font font1 = new Font("楷体", Font.PLAIN, 14);
 	Font font2 = new Font("华文楷体", Font.BOLD, 14);
 	Font font3 = new Font("幼圆", Font.PLAIN, 14);
-	
 	/** 当前角色和存档 */
 	private Player player ;
 	private Archive archive ;
-	
 	/** 再使用背包功能时 */
 	EquipInfoPanel selectEp ;
+	private  JLayeredPane layeredPanel ;
 	
 	/** 构造方法 */
 	public MainFrame() {
@@ -259,12 +260,6 @@ public class MainFrame extends JFrame{
 
 		/** 功能 --结束  */
 		
-		/** 背包 --开始  */
-		bag = new BagPanel(fightJpanel,player) ;
-		bag.setLocation(-6, panelD.getHeight());
-		fightJpanel.add(bag);
-		/** 背包 --结束  */
-		
 		/** 传入重要组件 */
 		gameControl.sendPanel(panelA, panelB, panelC, panelD, panelE, panelF, panelG);
 		
@@ -359,26 +354,6 @@ public class MainFrame extends JFrame{
 		this.attrAry = attrAry;
 	}
 	
-	/** 隐藏战斗页面，显示及背包页面  */
-	public void openBag(){
-		if(tianPanel.isVisible()){
-			tianPanel.setVisible(false);
-		}
-		if(!bag.isVisible()){
-			bag.setVisible(true);
-		}
-		bag.openBag();
-	}
-	
-	
-	public void beganExplore(){
-		if(bag.isVisible()){
-			bag.setVisible(false);
-		}
-		if(!tianPanel.isVisible()){
-			tianPanel.setVisible(true);
-		}
-	}
 	
 	/**
 	 * 初始化人物主界面的属性面板
@@ -395,28 +370,4 @@ public class MainFrame extends JFrame{
 		attrAry[7].setText(player.getDefense()+"");
 	}
 
-	public void closeBag() {
-		/*if(panelE.isVisible()){
-			panelE.setVisible(false);
-		}
-		if(panelF.isVisible()){
-			panelF.setVisible(false);
-		}
-		if(panelG.isVisible()){
-			panelG.setVisible(false);
-		}*/
-		if(bag.isVisible()){
-			bag.setVisible(false);
-		}
-		if(!panelE.isVisible()){
-			panelE.setVisible(true);
-		}
-		if(!panelF.isVisible()){
-			panelF.setVisible(true);
-		}
-		if(!panelG.isVisible()){
-			panelG.setVisible(true);
-		}
-	}
-	
 }

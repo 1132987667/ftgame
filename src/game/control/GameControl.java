@@ -1,9 +1,10 @@
 package game.control;
 
-import game.control.EquipControl.AddAttrs;
+import game.entity.AddAttrs;
 import game.entity.Archive;
 import game.entity.Ditu;
 import game.entity.Equip;
+import game.entity.Gong;
 import game.entity.Material;
 import game.entity.NPC;
 import game.entity.Player;
@@ -33,6 +34,7 @@ import java.util.concurrent.ScheduledThreadPoolExecutor;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.JLayeredPane;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -44,6 +46,7 @@ import org.dom4j.Node;
 public class GameControl {
 	private EnterFrame enterFrame;
 	private MainFrame mainFrame;
+	private JLayeredPane layeredPanel ;
 	/**
 	 * 人物面板 房间描述 功能 游戏信息 小地图 npc与物品 与npc或物品交互
 	 */
@@ -77,6 +80,7 @@ public class GameControl {
 	private Map<String, Equip> equipMap = null ;
 	private  Map<String,NPC> npcMap = null ;
 	private Map<String,Tasks> taskMap =null ;
+	private Map<String,Gong> gongMap =null ;
 	/**
 	 * 加载游戏控制器
 	 * 应该在其中完成相应资料的加载
@@ -91,12 +95,13 @@ public class GameControl {
 		equipMap = SUtils.loadEquip();
 		npcMap = SUtils.loadNpc();
 		taskMap = SUtils.loadTask();
+		gongMap = SUtils.loadGong();
 	}
 	
 	/** 当前存档 */
 	private Archive archive = null ;
 	/** 当前玩家实体类 */
-	private Player player =null ;
+	private Player player = null ;
 	/** 当前与之战斗的npc */
 	private NPC fightNpc = null ;
 	
@@ -330,6 +335,7 @@ public class GameControl {
 	 * @param str
 	 * @return 返回包含场景内所悟npc信息的集合
 	 */
+	@SuppressWarnings("unused")
 	private List<NPC> getNPCList(String str){
 		List<NPC> list = new ArrayList<>();
 		String[] temp = null ;
@@ -530,7 +536,7 @@ public class GameControl {
 		return npcType;
 	}
 	
-	private TimeController t = TimeController.getInstance();
+	//private TimeController t = TimeController.getInstance();
 
 	/** 将主界面的界面传输过来 */
 	public void sendPanel(JPanel panelA, TTextPane panelB, JPanel panelC,
@@ -557,7 +563,7 @@ public class GameControl {
 	public void setSelect(Ditu fuben) {
 		this.curDitu = fuben;
 		List<Scene> list = fuben.getScene();
-		for (int i = 0; i < fuben.getScene().size(); i++) {
+		for (int i = 0; i < list.size(); i++) {
 			System.out.println(fuben.getScene().get(i).toString());
 		}
 		panelD.append("你选择了前往【", 0);
@@ -987,28 +993,12 @@ public class GameControl {
 		mainFrame.reloadPlayerAttr();
 	}
 	
-	
-	/** 隐藏战斗页面，显示及背包页面  */
-	public void openBag(){
-		mainFrame.openBag();
-	}
-	
-	/** 隐藏背包页面  */
-	public void closeBag(){
-		mainFrame.closeBag();
-	}
-	
-	/** 开始探索 */
-	public void beganExplore(){
-		mainFrame.beganExplore();
-	}
-	
 	/***/
 	public AddAttrs reloadAttr(){
 		/** 根据当前人物装备重新计算  */
 		Equip[] ary = player.getEquipAry();
 		
-		player.setBaseAttr();
+		player.reloadBaseAttr();
 		EquipControl equipControl = gameControl.equipControl;
 		
 		AddAttrs addAttrs = null ;
@@ -1039,19 +1029,6 @@ public class GameControl {
 		
 	}
 	
-	/**
-	 * 得到人物的出手速度
-	 * @param li
-	 * @param min
-	 * @return 返回出手所需要等待的时间 单位:ms
-	 */
-	public int getAtkSpeed(int li,int min){
-		int speed = SUtils.reDouPoint(2500*(1/(1+(0.5*li+min)*0.0067))) ;
-		if(speed<500){
-			speed = 500 ;
-		}
-		return speed ;
-	}
 	
 	/**
 	 * 解析人物的所有交互动作
@@ -1311,17 +1288,85 @@ public class GameControl {
 		}
 		return false ;
 	}
+
+	public JPanel getPanelA() {
+		return panelA;
+	}
+
+	public void setPanelA(JPanel panelA) {
+		this.panelA = panelA;
+	}
+
+	public JPanel getPanelC() {
+		return panelC;
+	}
+
+	public void setPanelC(JPanel panelC) {
+		this.panelC = panelC;
+	}
+	
+	/**
+	 * 判断背包空间是否满了
+	 * 装备空间，材料空间，技能书空间
+	 * @return
+	 */
+	public boolean isBagFull(){
+		int num = player.getEquipBag().size() ;
+		num += player.getMaterialBag().size() ;
+		num += player.getGongBag().size();
+		if(num>player.getBagSize()){
+			return false ;
+		}
+		return true ;
+	}
+	
+	/**
+	 * 扩大背包的大小|极其珍贵
+	 * 36 49 64 81 100 
+	 * 	  2  4  8  10
+	 */
+	public boolean expandBagSize(){
+		/** 判断条件 */
+		
+		return false ;
+	}
+
+	public JLayeredPane getLayeredPanel() {
+		return layeredPanel;
+	}
+
+	public void setLayeredPanel(JLayeredPane layeredPanel) {
+		this.layeredPanel = layeredPanel;
+	}
+	
+	/**
+	 * 输入功法ID
+	 * 查看玩家是否已经学会这门功法
+	 * @param id
+	 * @return
+	 */
+	public boolean hasLean(String id){
+		if(SUtils.isNullStr(id)){
+			return false ; 
+		}
+		List<Gong> list = player.getHasLeaNeiGongs() ;
+		for (int i = 0; i < list.size(); i++) {
+			if(list.get(i).getId().equals(id)){
+				return true ;
+			}
+		}
+		list = player.getHasLeaWaiGongs() ;
+		for (int i = 0; i < list.size(); i++) {
+			if(list.get(i).getId().equals(id)){
+				return true ;
+			}
+		}
+		return false ;
+	}
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	public Gong getGongByID(String id){
+		return gongMap.get(id);
+	}
 	
 }

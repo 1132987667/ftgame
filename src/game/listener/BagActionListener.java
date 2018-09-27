@@ -12,6 +12,7 @@ import java.awt.event.ActionListener;
 import java.util.List;
 
 /**
+ * 背包物品监听器
  * 对每件物品进行监听
  * @author yilong22315
  *

@@ -1,7 +1,7 @@
 package game.view.panel;
 
-import game.control.EquipControl.AddAttrs;
 import game.control.GameControl;
+import game.entity.AddAttrs;
 import game.entity.Equip;
 import game.entity.Player;
 import game.utils.Constant;
@@ -490,18 +490,17 @@ public class PlayerPanel extends JPanel {
 				public void run() {
 					if(e.getActionCommand().equals("attr")){
 						jumpBu.setActionCommand("equip");
-						jumpBu.reload(22);
-						jumpBu.setSize(40, 26);
-						jumpBu.setLocation(0, 380);
+						jumpBu.reload(17);
+						jumpBu.setBounds(222, 372, 64, 40);
 						
 						attrPanel.setVisible(false);
 						equipPanel.setVisible(true);
 						equipPanel.setBounds(0, 0, 303, 410);
 						/** 重置拖动按钮  */
-						drugBu.reload(17);
-						drugBu.setBounds(222, 394, 64, 40);
+						drugBu.reload(22);
+						drugBu.setBounds(0, 394, 40, 26);
 						/** 重新设置背景图 */
-						ImageIcon img = new ImageIcon("src/game/img/back/墨A.png");
+						ImageIcon img = new ImageIcon("src/game/img/back/equipAndGong.png");
 						back.setIcon(img);
 						parent.repaint();
 					}else{
@@ -516,7 +515,7 @@ public class PlayerPanel extends JPanel {
 						drugBu.reload(19);
 						drugBu.setBounds(8, 378, 64, 40);
 						/** 重新设置背景图 */
-						ImageIcon img = new ImageIcon("src/game/img/back/diao.png");
+						ImageIcon img = new ImageIcon("src/game/img/back/attrAndGong.png");
 						back.setIcon(img);
 						parent.repaint();
 					}
