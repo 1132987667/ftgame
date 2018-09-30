@@ -1733,7 +1733,12 @@ public class SUtils {
 					int tabPlacement, int selectedIndex, int x, int y, int w,
 					int h) {
 			}
+			
 		});
+	}
+	
+	public static void setEmptyBorder(JComponent c){
+		c.setBorder(new EmptyBorder(0, 0, 0, 0));
 	}
 	
 }

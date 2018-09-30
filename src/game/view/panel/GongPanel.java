@@ -3,21 +3,27 @@ package game.view.panel;
 import game.control.GameControl;
 import game.entity.Gong;
 import game.entity.Player;
-import game.utils.Constant;
 import game.utils.SUtils;
+import game.view.frame.SpFrame;
 
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
-
+import javax.swing.plaf.basic.BasicTabbedPaneUI;
+/**
+ * 用来显示人物功法信息的面板
+ * 当前装备功法，技能
+ * 当前已学会功法，技能
+ * @author yilong22315
+ *
+ */
 public class GongPanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
@@ -42,11 +48,11 @@ public class GongPanel extends JPanel {
 	private JPanel neiGongPanel, waiGongPanel, passiveSkill, activeSkill;
 	private JPanel[] ary = { neiGongPanel, waiGongPanel, passiveSkill,
 			activeSkill };
-	private String[] nameAry = { "内功", "外功", "被动技", "主动技" };
+	private String[] nameAry = { "内", "外", "被动", "主动" };
 	/** layered层 */
 	private static JLayeredPane layeredPanel;
 	/** 用来显示要查看信息面板 */
-	private static JPanel gongInfo = null;
+	private static BagGongPanel gongInfo = null;
 
 	private final int NeiGong = 1;
 	private final int WaiGong = 2;
@@ -55,11 +61,16 @@ public class GongPanel extends JPanel {
 	private final int FieldWidth = 90 ;
 	private final int FieldHeight = 20 ;
 
-	public GongPanel() {
+	public GongPanel(SpFrame superFrame) {
 		System.out.println("初始化功法面板");
 		setLayout(null);
 		setOpaque(false);
 		setBackground(Color.white);
+		
+		layeredPanel = superFrame.getLayeredPane();
+		layeredPanel.setLayout(null);
+		gongInfo = new BagGongPanel(BagGongPanel.DETAIL_GONG);
+		layeredPanel.add(gongInfo);
 
 		temp = new TempLabel("拥有经验:", 1, 0);
 		temp.addMouseListener(ml);
@@ -127,6 +138,8 @@ public class GongPanel extends JPanel {
 
 		/** 增加标签面板 */
 		skillPanel = new JTabbedPane();
+		skillPanel.setUI(new BasicTabbedPaneUI());
+		//SUtils.setUi(skillPanel);
 		skillPanel.setFont(new Font("楷体", Font.PLAIN, 12));
 		add(skillPanel);
 		skillPanel.setOpaque(false);
@@ -142,10 +155,6 @@ public class GongPanel extends JPanel {
 			ary[i].setOpaque(false);
 			skillPanel.addTab(nameAry[i], ary[i]);
 		}
-		gongInfo = new JPanel();
-		JLabel info = new JLabel("测试");
-		gongInfo.add(info);
-
 	}
 
 	MouseListener ml = new MouseListener() {
@@ -161,22 +170,16 @@ public class GongPanel extends JPanel {
 
 		@Override
 		public void mouseExited(MouseEvent e) {
-			TempLabel tl = (TempLabel) e.getSource();
-			System.out.println(tl.effectType);
-			JComponent cTmp = (JComponent) e.getSource();
 			gongInfo.setVisible(false);
-			gongInfo.setLocation(cTmp.getX() + cTmp.getWidth(), cTmp.getY()
-					+ cTmp.getHeight() / 2);
 		}
 
 		@Override
 		public void mouseEntered(MouseEvent e) {
 			TempLabel tl = (TempLabel) e.getSource();
 			System.out.println(tl.effectType);
-			JComponent cTmp = (JComponent) e.getSource();
 			gongInfo.setVisible(true);
-			gongInfo.setLocation(cTmp.getX() + cTmp.getWidth(), cTmp.getY()
-					+ cTmp.getHeight() / 2);
+			gongInfo.setLocation(tl.getX() + tl.getWidth()+300, tl.getY()
+					+ tl.getHeight() / 2);
 		}
 
 		@Override
@@ -225,14 +228,12 @@ public class GongPanel extends JPanel {
 
 	public static void main(String[] args) {
 		JFrame j = new JFrame();
-		GongPanel g = new GongPanel();
 		layeredPanel = j.getLayeredPane();
 		layeredPanel.setLayout(null);
 		layeredPanel.add(gongInfo, 80);
 		gongInfo.setVisible(false);
 		gongInfo.setBackground(Color.red);
 		gongInfo.setBounds(0, 0, 200, 100);
-		j.add(g);
 		j.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		j.setBounds(100, 100, 304, 434);
 		j.setResizable(false);

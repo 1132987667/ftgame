@@ -14,7 +14,11 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
-
+/**
+ * 负责显示人物所所穿戴的装备的信息
+ * @author yilong22315
+ *
+ */
 public class EquipInfoPanel extends JPanel {
 	private static final long serialVersionUID = 1L;
 	Font font = new Font("宋体", Font.PLAIN, 12);
@@ -116,14 +120,16 @@ public class EquipInfoPanel extends JPanel {
 	 * @param i
 	 */
 	public void setEpInfo(Equip equip,int theI){
+		if(equip==null){
+			emptyEquip();
+			return ;
+		}
 		String last = "" ;
 		if(theI==2){
 			last = "已装备" ;
 		}else{
 			last = "已选择" ;
 		}
-		System.out.println(equip);
-		System.out.println(name);
 		name.setText(equip.getName());
 		name.setForeground(Constant.equipColor[equip.getType()]);
 		//name.setText(equip.getName());
@@ -147,7 +153,20 @@ public class EquipInfoPanel extends JPanel {
 				}
 			}
 		}
-		
+	}
+	
+	/**
+	 * 某个部位没有穿戴装备
+	 */
+	public void emptyEquip(){
+		name.setText("");
+		part.setText("|无");
+		price.setText("");
+		type.setText("");
+		rank.setText("");
+		jta.setText("");
+		for (int i = 0; i < attrAry.length; i++) 
+			attrAry[i].setText("");
 	}
 	
 	

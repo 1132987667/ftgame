@@ -4,7 +4,8 @@ package game.view.frame;
 import game.control.GameControl;
 import game.entity.Archive;
 import game.entity.Player;
-import game.listener.GreatListener;
+import game.listener.FunListener;
+import game.listener.KeyMana;
 import game.utils.Constant;
 import game.view.TTextPane;
 import game.view.button.MButton;
@@ -15,6 +16,8 @@ import game.view.panel.TestPanel;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -29,7 +32,7 @@ import javax.swing.UIManager;
  * @author yilong22315
  *
  */
-public class MainFrame extends JFrame{
+public class MainFrame extends JFrame implements KeyListener{
 	private static final long serialVersionUID = 1L;
 	/**	
 	 *	1.人物面板
@@ -40,8 +43,8 @@ public class MainFrame extends JFrame{
 	 *  6.npc与物品
 	 *  7.与npc或物品交互
 	 */
-	private JPanel panelA ,panelC  ,panelE ,panelF ,panelG;
-	private TTextPane panelB,panelD ;
+	private JPanel playerP ,functionP ,mapP ,npcP ,controlP;
+	private TTextPane sceneP,infoP ;
 	/** 移动时可能会用到的全部按钮 */
 	private MButton t1,t2,t3,t4,t5,t6,t7,t8,t9 ;
 	private MButton[] mapButton = {t1,t2,t3,t4,t5,t6,t7,t8,t9} ;
@@ -77,7 +80,9 @@ public class MainFrame extends JFrame{
 	JPanel weapons,armor,skillsLabel,materials;
 	
 	/** 弹窗监听器 */
-	private GreatListener greatListener = null ;
+	private FunListener funListener = null ;
+	/** 快捷键接听 */
+	private KeyMana keyMana  ;
 	/** 控制游戏进行 */
 	private GameControl gameControl = null ;
 	
@@ -125,14 +130,14 @@ public class MainFrame extends JFrame{
 		attrWidth = x ;
 		
 		/** 我的属性面板 */
-		panelA = new JPanel();
-		add(panelA);
-		panelA.setOpaque(false);
-		panelA.setBounds(0, 0, attrWidth, attrHeight);
-		panelA.setLayout(null);
+		playerP = new JPanel();
+		add(playerP);
+		playerP.setOpaque(false);
+		playerP.setBounds(0, 0, attrWidth, attrHeight);
+		playerP.setLayout(null);
 		
 		tempL = new JLabel("啊啊啊啊") ;
-		panelA.add(tempL);
+		playerP.add(tempL);
 		tempL.setBounds(inset, 0, 180, inset+18);
 		tempL.setFont(new Font("隶书" ,Font.BOLD , 18));
 		
@@ -148,8 +153,8 @@ public class MainFrame extends JFrame{
 			attrAry[i].setFont(font2);
 			tempL.setForeground(Color.blue);
 			attrAry[i].setForeground(Color.blue);
-			panelA.add(tempL);
-			panelA.add(attrAry[i]);
+			playerP.add(tempL);
+			playerP.add(attrAry[i]);
 			tempL.setBounds(x, y, fontSize*3, fontSize+inset);
 			x = tempL.getX()+tempL.getWidth() ;
 			attrAry[i].setBounds(x,y,attrWidth-x-inset, fontSize+inset);
@@ -163,7 +168,7 @@ public class MainFrame extends JFrame{
 		back.setOpaque(false);
 		ImageIcon img = new ImageIcon("src/game/img/back/backC.png") ;
 		back.setIcon(img);
-		panelA.add(back);
+		playerP.add(back);
 		back.setBounds(0, 0, img.getIconWidth(), img.getIconHeight());
 		
 		
@@ -171,25 +176,29 @@ public class MainFrame extends JFrame{
 		int rightWidth = 600 ;
 		attrWidth = attrWidth - 8 ;
 		/** 房间系统 */
-		panelB = new TTextPane(rightWidth, 100) ;
-		add(panelB);
-		panelB.setLocation(attrWidth, 0);
-		panelB.setBorder(BorderFactory.createTitledBorder("土地庙"));
-		panelB.append("这儿一间破落的土地庙,因年久失修，土地庙四周都已经长满了杂草，土地神像也是锈迹斑斑，甚至两条胳膊上都已经生出了一条条裂痕，好似随时都有可能掉落下来", 0);
+		sceneP = new TTextPane(rightWidth, 100) ;
+		add(sceneP);
+		sceneP.setLocation(attrWidth, 0);
+		sceneP.setBorder(BorderFactory.createTitledBorder("土地庙"));
+		sceneP.append("这儿一间破落的土地庙,因年久失修，土地庙四周都已经长满了杂草，土地神像也是锈迹斑斑，甚至两条胳膊上都已经生出了一条条裂痕，好似随时都有可能掉落下来", 0);
 		
 		/** 战斗面板 */
 		fightJpanel = new JPanel() ;
 		fightJpanel.setLayout(null);
 		add(fightJpanel);
-		fightJpanel.setBounds(attrWidth, panelB.getY()+panelB.getHeight(), rightWidth+200, 460);
+		fightJpanel.setOpaque(false);
+		fightJpanel.setBounds(attrWidth, sceneP.getY()+sceneP.getHeight(), rightWidth+200, 460);
 		fightJpanel.setFont(font2);
-		fightJpanel.setBackground(Color.red);
+		//fightJpanel.setBackground(Color.red);
 		//fightJpanel.setBorder(BorderFactory.createEtchedBorder());
 		gameControl.setFightJpanel(fightJpanel);
 		
+		addKeyListener(this);
+		setFocusable(true);
+		
 		/** 游戏信息 */
-		panelD = new TTextPane( rightWidth, 180);
-		JScrollPane jsc = panelD.getInstance();
+		infoP = new TTextPane( rightWidth, 180);
+		JScrollPane jsc = infoP.getInstance();
 		fightJpanel.add(jsc);
 		jsc.setLocation(0, 0);
 		
@@ -200,33 +209,33 @@ public class MainFrame extends JFrame{
 		tianPanel.setBounds(0, jsc.getHeight(), 600, 198);
 		
 		/** 小地图 */
-		panelE = new JPanel() ;
-		panelE.setOpaque(false);
-		panelE.setBounds(0, 0, 302, 198);
-		panelE.setLayout(null);
-		tianPanel.add(panelE);
+		mapP = new JPanel() ;
+		mapP.setOpaque(false);
+		mapP.setBounds(0, 0, 302, 198);
+		mapP.setLayout(null);
+		tianPanel.add(mapP);
 		for (int j = 0; j < mapButton.length; j++) {
 			 int x = j%3 ; 
 			 int y = j/3 ;
 			 mapButton[j] = new MButton("1", 15);
 			 mapButton[j].setVisible(false);
 			 mapButton[j].addMouseListener(mapButton[j]);
-			 panelE.add(mapButton[j]);
+			 mapP.add(mapButton[j]);
 			 mapButton[j].setBounds(19+(12+80)*x, 19+(12+45)*y, 80, 45);
 		}
 		
 		/** 显示场景存在人物 */
-		panelF = new JPanel() ;
-		panelF.setOpaque(false);
-		panelF.setLayout(null);
-		panelF.setBounds(302 ,0, rightWidth-302, 99);
-		tianPanel.add(panelF);
+		npcP = new JPanel() ;
+		npcP.setOpaque(false);
+		npcP.setLayout(null);
+		npcP.setBounds(302 ,0, rightWidth-302, 99);
+		tianPanel.add(npcP);
 		/** 显示可以对人物进行的操作 */
-		panelG = new JPanel() ;
-		panelG.setOpaque(false);
-		panelG.setLayout(null);
-		panelG.setBounds(302, panelF.getY()+panelF.getHeight(), rightWidth-302, 99);
-		tianPanel.add(panelG);
+		controlP = new JPanel() ;
+		controlP.setOpaque(false);
+		controlP.setLayout(null);
+		controlP.setBounds(302, npcP.getY()+npcP.getHeight(), rightWidth-302, 99);
+		tianPanel.add(controlP);
 		//panelG.setBackground(Color.RED);
 		
 		JLabel tianBack = new JLabel();
@@ -235,19 +244,20 @@ public class MainFrame extends JFrame{
 		tianPanel.add(tianBack);
 		
 		/** 初始化弹窗监听器 */
-		greatListener = new GreatListener(this,archive,player);
+		funListener = new FunListener(this,archive,player);
+		
 		
 		/** 功能 装备技能。。。  */
-		panelC = new JPanel() ;
-		add(panelC);
-		panelC.setLayout(null);
-		panelC.setBounds(0, attrHeight, attrWidth-8, 200);
-		panelC.setBackground(Constant.colorAry[4]);
+		functionP = new JPanel() ;
+		add(functionP);
+		functionP.setLayout(null);
+		functionP.setBounds(0, attrHeight, attrWidth-8, 200);
+		functionP.setBackground(Constant.colorAry[4]);
 		//panelC.setBorder(BorderFactory.createEtchedBorder(1));
 		for (int i = 0; i < funAry.length; i++) {
 			funAry[i] = new TButton(Constant.funAry[i],1);
-			funAry[i].addActionListener(greatListener);
-			panelC.add(funAry[i]);
+			funAry[i].addActionListener(funListener);
+			functionP.add(funAry[i]);
 			if(i%2==0){
 				funAry[i].setLocation(6, 26*(i/2)+6);
 			}else{
@@ -261,7 +271,7 @@ public class MainFrame extends JFrame{
 		/** 功能 --结束  */
 		
 		/** 传入重要组件 */
-		gameControl.sendPanel(panelA, panelB, panelC, panelD, panelE, panelF, panelG);
+		gameControl.sendPanel(playerP, sceneP, functionP, infoP, mapP, npcP, controlP);
 		
 		/** 测试面板 testPanel */
 		testPanel = new TestPanel();
@@ -272,8 +282,9 @@ public class MainFrame extends JFrame{
 		//SoundControl.ftMuc(21);
 	}
 	
+	
 	public void close(int type){
-		greatListener.close(type);
+		funListener.close(type);
 	}
 	
 	public static void main(String[] args) {
@@ -292,8 +303,6 @@ public class MainFrame extends JFrame{
 				}
 			}
 		}
-		
-		
 		MainFrame frame = new MainFrame() ;
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setBounds(200, 100, 1028, 512);
@@ -312,17 +321,17 @@ public class MainFrame extends JFrame{
 	public void setMapBuHide() {
 		for (int i = 0; i < mapButton.length; i++) {
 			mapButton[i].setVisible(false);
-			mapButton[i].setFlag();
+			//mapButton[i].setFlag();
 			mapButton[i].mouseExited();
 		}
 	}
 	
 	public void removeNpc(){
-		panelF.removeAll();
+		npcP.removeAll();
 	}
 	
 	public void showNpc(MButton bu){
-		panelF.add(bu);
+		npcP.add(bu);
 	}
 	
 	public Player getPlayer() {
@@ -356,7 +365,7 @@ public class MainFrame extends JFrame{
 	
 	
 	/**
-	 * 初始化人物主界面的属性面板
+	 * 重新设置人物主界面的属性面板
 	 */
 	public void reloadPlayerAttr(){
 		//nameValue,rankValue,stateValue,ExpValue,hpValue,mpValue,atkValue,defValue
@@ -368,6 +377,54 @@ public class MainFrame extends JFrame{
 		attrAry[5].setText(player.getMp()+"");
 		attrAry[6].setText(player.getAttack()+"");
 		attrAry[7].setText(player.getDefense()+"");
+	}
+	
+	public static final String Map = "M" ;
+	public static final String Bag = "B" ;
+	public static final String Task = "Q" ;
+	public static final String State = "V" ;
+	public static final String Juqing = "J" ;
+	public static final String Fuben = "F" ;
+	
+	@Override
+	public void keyTyped(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		char a = e.getKeyChar();
+		String keyChar = (a+"").toUpperCase() ;
+		System.out.println("按键了"+a+"aa");
+		switch (keyChar) {
+		case Map:
+			funListener.call("地图");
+			break;
+		case Bag:
+			funListener.call("背包");
+			break;
+		case Task:
+			funListener.call("任务");
+			break;
+		case State:
+			funListener.call("状态");
+			break;
+		case Juqing:
+			funListener.call("剧情");
+			break;
+		case Fuben:
+			funListener.call("副本");
+			break;
+		default:
+			break;
+		}
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

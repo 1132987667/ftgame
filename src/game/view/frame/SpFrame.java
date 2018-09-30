@@ -4,6 +4,7 @@ import game.control.FightControl;
 import game.control.GameControl;
 import game.control.SoundControl;
 import game.entity.NPC;
+import game.utils.Constant;
 import game.view.TLabel;
 import game.view.button.TButton;
 import game.view.panel.BagPanel;
@@ -54,7 +55,7 @@ public class SpFrame extends JFrame implements WindowListener {
 	/** 主容器 */
 	private JPanel contentPane;
 	/** 拖动按钮和关闭按钮 */
-	private TButton drugBu,close ;
+	private TButton drugBu,closeBu ;
 	
 	private BagPanel bagPanel ;
 	
@@ -66,78 +67,57 @@ public class SpFrame extends JFrame implements WindowListener {
 	private FubenPanel juqingPanel ;
 	private JLabel back ;
 	private FtPanel ftPanel ;
+	public int type ;
 	
 	/**
 	 * 
 	 * @param parent
 	 * @param type type不同决定这个窗口作用的不同
 	 */
-	public SpFrame(final MainFrame parent, final int type) {
+	public SpFrame(final MainFrame parent, int type) {
 		super();
 		/** 得到游戏控制器 */
 		gameControl = GameControl.getInstance();
 		/** 取消容器装饰 */
 		setUndecorated(true);
 		setBackground(new Color(0, 0, 0, 0));
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		contentPane = new JPanel();
 		contentPane.setOpaque(false);// 可视化编辑下会自动创建一个JPanel,也要将这个JPanel设为透明，
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(null);
 		setContentPane(contentPane);
 		
-		close = new TButton("", 11);
-		contentPane.add(close);
-		close.addMouseListener(close);
-		close.setBounds(270, 13, 26, 26);
-		close.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				setVisible(false);
-				if (type == 1) {
-					SoundControl.jiemianMuc("closeMap"); 
-					gameControl.append("你犹豫了会，还是决定先不去【",0);
-					gameControl.append("副本", 1);
-					gameControl.append("】！\n", 0);
-				}else if(type == 2){
-					gameControl.append("你不再查看自己的【",0);
-					gameControl.append("状态", 1);
-					gameControl.append("】！\n", 0);
-				}else if(type == 3){
-					gameControl.append("战斗结束！\n", 1);
-				}else if(type == 4){
-					SoundControl.jiemianMuc("closeMap"); 
-					gameControl.append("你犹豫了会，还是决定先不去【",0);
-					gameControl.append("红尘", 1);
-					gameControl.append("】中！\n", 0);
-				}else if(type == 5){//背包
-					
-				}
-				gameControl.restore();
-			}
-		});
+		this.type = type ;
+		
+		closeBu = new TButton("", 11);
+		contentPane.add(closeBu);
+		closeBu.addMouseListener(closeBu);
+		closeBu.setBounds(270, 13, 26, 26);
+		closeBu.addActionListener(closeListener);
 		
 		/** 得到不同背景图片和设置 */
 		String imgPath = null;
 		switch (type) {
-		case 1://副本
-			imgPath = "src/game/img/back/水墨边框B.png";
-			init1(contentPane);
+		case Constant.Fuben://副本
+			imgPath = "src/game/img/back/fubenBorder.png";
+			initFuben(contentPane);
 			break ;
-		case 2:// 人物属性和装备图
+		case Constant.State:// 人物属性和装备图
 			imgPath = "src/game/img/back/attrAndGong.png";
-			init2(contentPane);
+			initPlayer(contentPane);
 			break;
 		case 3:
 			imgPath = "";
 			init3(contentPane);
 			break;
-		case 4:
-			imgPath = "src/game/img/back/水墨边框B.png";
-			init4(contentPane);
+		case Constant.JiangHu:
+			imgPath = "src/game/img/back/fubenBorder.png";
+			JiangHu(contentPane);
 			break ;
-		case 5:
+		case Constant.Bag:
 			imgPath = "src/game/img/back/bagBac.png";
-			init5();
+			initBag();
 		default:
 			break;
 		}
@@ -161,7 +141,6 @@ public class SpFrame extends JFrame implements WindowListener {
 		}
 		/** 添加父窗口控制监听器 */
 		this.addWindowListener(this);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setVisible(true);
 		if(type!=3){
 			setBounds(200, 100, image1.getIconWidth(), image1.getIconHeight());
@@ -172,13 +151,22 @@ public class SpFrame extends JFrame implements WindowListener {
 		/** 添加拖动功能 */
 		setDragable();
 	}
+	
+	ActionListener closeListener = new ActionListener() {
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			setVisible(false);
+			gameControl.funCloseInfo(type);
+			gameControl.restore();
+		}
+	};
 
-	private void init5() {
+	private void initBag() {
 		JLayeredPane layeredPanel = getLayeredPane() ;
 		layeredPanel.setLayout(null);
 		gameControl.setLayeredPanel(layeredPanel);
 		
-		close.setBounds(300, 11, 26, 26);
+		closeBu.setBounds(300, 11, 26, 26);
 		JLabel title = new JLabel("背包");
 		title.setBounds(170, 12, 80, 20);
 		title.setForeground(Color.white);
@@ -200,14 +188,14 @@ public class SpFrame extends JFrame implements WindowListener {
 		}
 	}
 
-	private void init4(JPanel contentPane2) {
+	private void JiangHu(JPanel contentPane2) {
 		drugBu = new TButton("", 13);
 		drugBu.setFont(new Font("幼圆",1,14));
 		contentPane.add(drugBu);
 		//t.setLocation(80, 50);
 		//t.setFocusable(false);
 		drugBu.setBounds(200, 40, 60, 42);
-		close.setBounds(726, 40, 26, 26);
+		closeBu.setBounds(726, 40, 26, 26);
 		TLabel title = new TLabel("红尘", 2);
 		contentPane.add(title);
 		title.setBounds(140, 40, 128, 30);//360
@@ -225,14 +213,14 @@ public class SpFrame extends JFrame implements WindowListener {
 	 * 初始化副本面板
 	 * @param contentPane
 	 */
-	private void init1(JPanel contentPane) {
+	private void initFuben(JPanel contentPane) {
 		drugBu = new TButton("", 13);
 		drugBu.setFont(new Font("幼圆",1,14));
 		contentPane.add(drugBu);
 		//t.setLocation(80, 50);
 		//t.setFocusable(false);
 		drugBu.setBounds(200, 40, 60, 42);
-		close.setBounds(726, 40, 26, 26);
+		closeBu.setBounds(726, 40, 26, 26);
 		TLabel title = new TLabel("副 本", 2);
 		contentPane.add(title);
 		title.setBounds(140, 40, 128, 30);//360
@@ -251,14 +239,14 @@ public class SpFrame extends JFrame implements WindowListener {
 	 * 人物功法面板初始化
 	 * @param contentPane
 	 */
-	private void init2(JPanel contentPane) {
+	private void initPlayer(JPanel contentPane) {
 		/** 添加特殊的拖动按钮 */
 		drugBu = new TButton("", 19);
 		drugBu.setToolTipText("拖动");
 		contentPane.add(drugBu);
 		drugBu.setBounds(8, 378, 64, 40);
 		
-		close.setBounds(276, 1, 26, 26);
+		closeBu.setBounds(276, 1, 26, 26);
 		TLabel title = new TLabel("人物属性", 0);
 		contentPane.add(title);
 		title.setBounds(10, 0, 128, 30);//360
@@ -266,7 +254,7 @@ public class SpFrame extends JFrame implements WindowListener {
 			playerPanel= new PlayerPanel(drugBu,contentPane);
 			contentPane.add(playerPanel);	
 			playerPanel.initData();
-			GongPanel gongPanel = new GongPanel() ;
+			GongPanel gongPanel = new GongPanel(this) ;
 			gongPanel.setBounds(playerPanel.getWidth(), 0, 300, 410);
 			contentPane.add(gongPanel);	
 		}else{
@@ -289,7 +277,7 @@ public class SpFrame extends JFrame implements WindowListener {
 		drugBu.setBounds(580, 456, 104, 46);
 		
 		
-		close.setBounds(242, 84, 26, 26);
+		closeBu.setBounds(242, 84, 26, 26);
 		/*TLabel title = new TLabel("战斗面板", 0);
 		title.setForeground(Color.black);
 		contentPane.add(title);

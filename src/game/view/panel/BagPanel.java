@@ -2,10 +2,12 @@ package game.view.panel;
 
 import game.control.GameControl;
 import game.entity.Equip;
+import game.entity.Gong;
 import game.entity.Player;
 import game.utils.Constant;
 import game.utils.SUtils;
 import game.view.button.TButton;
+import game.view.ui.TextField;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -26,8 +28,6 @@ import javax.swing.event.ChangeListener;
 /**
  * 背包显示面板
  * 
- * @author yilong22315
- * 
  */
 public class BagPanel extends JPanel {
 	private static final long serialVersionUID = 1L;
@@ -40,13 +40,20 @@ public class BagPanel extends JPanel {
 	/** 显示装备具体信息的面板 */
 	private EquipInfoPanel selectEp , wearEp;
 	/** 操作装备的按钮 */
-	private TButton putOn , resolve ; 
+	/** 装备 分解  出售  强化 锻造    */
+	private TButton wear , resolve , crafting, salv ; 
+	/** 操作功法的按钮 */
+	private TButton use ;
+	/** 公用按钮 */
+	private TButton sell ;
 	
-	private JPanel equipShow = null ;
+	private TextField capacity, money, lingshi ;
+	public TButton capacityAdd ;
 	
-	/** 当前选择的装备 */
-	private Equip clickEq = null ;
-	private int index = 0 ;
+	/** 当前点击和穿戴的装备 */
+	private Equip clickEq, enterEq, wearEq ;
+	/** 当前点击的功法 */
+	private Gong clickGong ;
 	
 	private Player player = null ;
 	private GameControl gameControl ;
@@ -57,70 +64,65 @@ public class BagPanel extends JPanel {
 		/** 初始化 */
 		setLayout(null);
 		setOpaque(false);
-		//setBackground(Color.blue);
 		setSize(800, 300);
 		setVisible(true);
 		
-		/** 查看当前装备信息的两个面板 */
-		equipShow = new JPanel() ;
-		equipShow.setLayout(null);
-		equipShow.setBounds(304, 0, 600, 300);
-		equipShow.setOpaque(false);
-		//equipShow.setBackground(Color.red);
-		add(equipShow);
-		
-		/** 当前穿戴的 */
+		/** 当前穿戴的装备显示面板 */
 		selectEp = new EquipInfoPanel();
-		//selectEp.setVisible(false);
-		equipShow.add(selectEp);
-		selectEp.setBounds(0, 64, 170, 240);
-		/** 当前点击的 */
+		selectEp.setVisible(false);
+		selectEp.setBounds(310, 64, 170, 240);
+		/** 当前点击的的装备面板 */
 		wearEp = new EquipInfoPanel();
-		//wearEp.setVisible(false);
-		equipShow.add(wearEp);
-		wearEp.setBounds(174,64,170,240);
+		wearEp.setVisible(false);
+		wearEp.setBounds(310+174,64,170,240);
+		add(wearEp);
+		add(selectEp);
+		
 		
 		/** 增加标签面板 */
 		bagPanel = new JTabbedPane();
+		/** 设置tab的样式 */
 		SUtils.setUi(bagPanel);
 		bagPanel.setOpaque(false);
 		bagPanel.setFont(new Font("隶书",Font.PLAIN,14));
 		add(bagPanel);
-		//bagPanel.setBackground(Constant.colorAry[2]);
-		bagPanel.setBackground(Color.white);
 		bagPanel.setBounds(-5, 0, 304, 350);
-		/** 增加 */
+		/** 增加4个具体背包面板 武器，防具，功法，材料 */
 		for (int i = 0; i < bagJPanelAry.length; i++) {
 			/** 为背包分类制定具体面板 */
 			bagJPanelAry[i] = new BagClassifyPanel(this,i);
-			//bagJPanelAry[i].setBackground(Color.white);
 			bagPanel.addTab(Constant.bagClassifyAry[i], bagJPanelAry[i]);
 			bagPanel.setForegroundAt(i, Color.white); 
-			bagPanel.setBackgroundAt(i,Color.blue);
 		}
-		bagPanel.addChangeListener(new ChangeListener() {
-			@Override
-			public void stateChanged(ChangeEvent e) {
-				JTabbedPane tabbedPane = (JTabbedPane) e.getSource();
-				int selectedIndex = tabbedPane.getSelectedIndex();
-				clickEq = null ;
-				selectEp.setVisible(false);
-				wearEp.setVisible(false);
-			}
-		});
+		bagPanel.addChangeListener(tabLin);
 		
 		/** 对装备进行操作的按钮 */
-		putOn = new TButton("装备", 2);
+		wear = new TButton("装备", 2);
 		resolve = new TButton("分解", 2);
-		putOn.addActionListener(eqAc);
+		wear.addActionListener(eqAc);
 		resolve.addActionListener(eqAc);
-		putOn.setBounds(54, 338, 56, 22);
+		wear.setBounds(54, 338, 56, 22);
 		resolve.setBounds(114, 338, 56, 22);
-		/** 先隐藏 */
-		//putOn.setVisible(false);
-		//resolve.setVisible(false);
-		superPanel.add(putOn);
+		
+		use = new TButton("使用", 2);
+		
+		capacity = new TextField("容量:10/40", 1);
+		capacity.setBounds(234, 362, 80, 20);
+		capacityAdd = new TButton("", 25);
+		capacityAdd.setLocation(324, 360);
+		
+		money = new TextField("1000", 3);
+		money.setBounds(80, 364, 60, 20);
+		lingshi = new TextField("1000", 3);
+		lingshi.setBounds(172, 364, 60, 20);
+		
+		superPanel.add(wear);
 		superPanel.add(resolve);
+		superPanel.add(use);
+		superPanel.add(capacity);
+		superPanel.add(capacityAdd);
+		superPanel.add(money);
+		superPanel.add(lingshi);
 		
 		/*JLabel back = new JLabel();
 		ImageIcon image1 = new ImageIcon("src/game/img/back/bookA.png") ;
@@ -133,28 +135,18 @@ public class BagPanel extends JPanel {
 	public EquipInfoPanel getWearEp() {
 		return wearEp;
 	}
-
-
 	public EquipInfoPanel getSelectEp() {
 		return selectEp;
 	}
-
-
-	public TButton getPutOn() {
-		return putOn;
+	public TButton getWear() {
+		return wear;
 	}
-
-
-	public void setPutOn(TButton putOn) {
-		this.putOn = putOn;
+	public void setWear(TButton wear) {
+		this.wear = wear;
 	}
-
-
 	public TButton getResolve() {
 		return resolve;
 	}
-
-
 	public void setResolve(TButton resolve) {
 		this.resolve = resolve;
 	}
@@ -180,9 +172,9 @@ public class BagPanel extends JPanel {
 					player.removeEquip(clickEq);
 					player.obtainEquip(cur);
 					if(part==0){
-						bagJPanelAry[0].equipBagShow();
+						bagJPanelAry[0].bagConShow();
 					}else{
-						bagJPanelAry[1].equipBagShow();
+						bagJPanelAry[1].bagConShow();
 					}
 					/** 刷新人物属性面板 */
 					gameControl.reloadAttr();
@@ -195,6 +187,25 @@ public class BagPanel extends JPanel {
 		}
 	};
 
+	ChangeListener tabLin = new ChangeListener() {
+		@Override
+		public void stateChanged(ChangeEvent e) {
+			clickEq = null ;
+			selectEp.setVisible(false);
+			wearEp.setVisible(false);
+			JTabbedPane tabbedPane = (JTabbedPane) e.getSource();
+			int index = tabbedPane.getSelectedIndex();
+			if(index==0||index==1){
+				/** 装备 */
+			}else if(index==2){
+				/** 功法 */
+			}else if(index==3){
+				/** 材料 */
+			}
+		}
+	};
+	
+	
 	public Equip getClickEq() {
 		return clickEq;
 	}
@@ -205,13 +216,19 @@ public class BagPanel extends JPanel {
 	}
 
 
-	public void setIndex(int index) {
-		this.index = index;
-	}
-	
 	public void openBag(){
-		bagJPanelAry[0].equipBagShow();
-		bagJPanelAry[1].equipBagShow();
+		bagJPanelAry[0].bagConShow();
+		bagJPanelAry[1].bagConShow();
+	}
+
+
+	public Equip getEnterEq() {
+		return enterEq;
+	}
+
+
+	public void setEnterEq(Equip enterEq) {
+		this.enterEq = enterEq;
 	}
 	
 }

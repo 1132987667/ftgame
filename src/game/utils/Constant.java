@@ -7,7 +7,35 @@ import java.util.Properties;
 public class Constant {
 	//Field字段
 	public static String[] attrAry = {"名号","等级","境界","经验","血量","法力","攻击","防御"} ;
-	public static String[] funAry = {"状态","技能","背包","任务","红尘","副本","存档","地图"} ;
+	
+	
+	
+	
+	
+	
+	public static final String SState = "状态" ;
+	public static final String SSkill = "技能" ;
+	public static final String SBag = "背包" ;
+	public static final String STask = "任务" ;
+	public static final String SJiangHu = "红尘" ;
+	public static final String SFuben = "副本" ;
+	public static final String SMap = "地图" ;
+	public static final String SArchive = "存档" ;
+	
+	
+	public static String[] funAry = {SState, SSkill, SBag, STask, SJiangHu, SFuben, SArchive, SMap} ;
+	/** {"状态","技能","背包","任务","红尘","副本","存档","地图"} */
+	public static final int State = 0 ;
+	public static final int Skill = 0 ;
+	public static final int Bag = 2 ;
+	public static final int Task = 3 ;
+	public static final int JiangHu = 4 ;
+	public static final int Fuben = 5 ;
+	public static final int Archive =6 ;
+	public static final int Map = 7 ;
+	
+	
+	
 	public static String[] bagClassifyAry = {"兵器","防具","技能书","材料"} ;
 	public static String[] bagClassify = {"equip","armor","skill","material"} ;
 	public static String[] equipAttrAry = {"名字","品质","种类","数量"} ;
@@ -45,7 +73,7 @@ public class Constant {
 	
 	/** 用来控制装备的生成  */
 	/** 一级属性向二级属性转换的比率  hp mp atk def baoji  */
-	public final static double[] oneToTwo = { 10 , 2.5 , 4 , 1 , 0.25  } ; 
+	public final static double[] oneToTwo = { 12 , 2.5 , 4 , 1 , 0.25  } ; 
 	
 	/** 每升一级对 一级 属性值的增长 体质，精神，力量，敏捷，幸运*/
 	public final static int[] lvUpValue = {5,5,5,5,1} ;

@@ -16,7 +16,24 @@ public class MButton extends TButton {
 	/**
 	 * flag的作用 当flag为false时，在鼠标移入移出才能有特效 当flag为true时，按钮保持被点击的状态
 	 */
-	private boolean flag = false;
+	/**
+	 * 需要控制场景
+	 * 在点击不能到达的地点时  移入移出没有效果 被点击时也没有效果
+	 * 
+	 * 移入移出有效果，但是点击无效果
+	 * 
+	 */
+	
+	
+	/** 移入移出点击都有效果 */
+	public static final int Well    = 1  ;
+	/** 移入移出有效果，点击无效果 */
+	public static final int Base    = 2 ;
+	/** 移入移出都无效果 */
+	public static final int Enabled = 3  ;
+
+	
+	private int flag = 1 ;;
 	private Scene curScene = null;
 	private int num = -1 ;
 	private NPC npc = null;
@@ -33,18 +50,17 @@ public class MButton extends TButton {
 		super(str, type);
 	}
 
-	public void setFlag() {
-		flag = false;
-	}
 
 	public void mouseClicked() {
-		if(flag==false){
+		/*if(flag==false){
 			this.setIcon(image2);
 			flag = true;
 		}else{
 			this.setIcon(image2);
+		}*/
+		if(flag==Well){
+			this.setIcon(image2);
 		}
-		
 		
 	}
 
@@ -54,7 +70,10 @@ public class MButton extends TButton {
 		} else if (type == 14) {
 
 		} else {
-			if (!flag) {
+			/*if (!flag) {
+				this.setIcon(image1);
+			}*/
+			if(flag!=Enabled){
 				this.setIcon(image1);
 			}
 		}
@@ -64,11 +83,7 @@ public class MButton extends TButton {
 		this.removeMouseListener(this);
 	}
 
-	public boolean isFlag() {
-		return flag;
-	}
-
-	public void setFlag(boolean flag) {
+	public void setFlag(int flag) {
 		this.flag = flag;
 	}
 
@@ -87,8 +102,11 @@ public class MButton extends TButton {
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-		if (!flag) {
+		/*if (!flag) {
 			flag = true;
+			this.setIcon(image2);
+		}*/
+		if(flag==Well){
 			this.setIcon(image2);
 		}
 		repaint();
@@ -100,14 +118,14 @@ public class MButton extends TButton {
 
 	@Override
 	public void mouseEntered(MouseEvent e) {
-		if(!flag){
+		if(flag!=Enabled){
 			this.setIcon(image3);
 		}
 	}
 
 	@Override
 	public void mouseExited(MouseEvent e) {
-		if(!flag){
+		if(flag!=Enabled){
 			this.setIcon(image1);
 		}
 	}

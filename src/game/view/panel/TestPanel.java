@@ -1,5 +1,6 @@
 package game.view.panel;
 
+import game.listener.KeyMana;
 import game.utils.Constant;
 import game.utils.SUtils;
 import game.view.TLabel;
@@ -108,6 +109,8 @@ public class TestPanel extends JPanel {
 						14 + attrHeight, attrName, attrHeight);
 			}
 		}
+		addKeyListener(new KeyMana(null));
+		
 		/** 二级属性 */
 		twoP = new JPanel();
 		twoP.setFont(font);

@@ -44,7 +44,7 @@ public class BagActionListener implements ActionListener {
 		this.pageNum = pageNum ;
 		selectEp = bagPanel.getSelectEp();
 		wearEp = bagPanel.getWearEp();
-		putOn = bagPanel.getPutOn();
+		putOn = bagPanel.getWear();
 		resolve = bagPanel.getResolve();
 	}
 	
@@ -56,7 +56,6 @@ public class BagActionListener implements ActionListener {
 		Equip selectEquip = eqList.get(index);
 		
 		bagPanel.setClickEq(selectEquip);
-		bagPanel.setIndex(pageNum);
 		System.out.println("当前点击物品信息:"+selectEquip.toString());
 		
 		/** 当前装备的类型 */

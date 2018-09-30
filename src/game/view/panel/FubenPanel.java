@@ -27,7 +27,6 @@ import javax.swing.border.EmptyBorder;
 /**
  * 进行副本选择的面板
  * @author yilong22315
- *
  */
 public class FubenPanel extends JPanel {
 	private static final long serialVersionUID = 1L;

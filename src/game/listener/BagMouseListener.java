@@ -17,14 +17,14 @@ import java.awt.event.MouseListener;
 public class BagMouseListener implements MouseListener{
 	
 	private Player player ;
-	private BagGongPanel bagPanel ;
+	private BagGongPanel gongPanel ;
 	private GameControl gameControl = GameControl.getInstance() ;
 	
 	public BagMouseListener(Player player) {
 		this.player = player ;
-		bagPanel = new BagGongPanel(1);
-		bagPanel.setVisible(false);
-		gameControl.getLayeredPanel().add(bagPanel);
+		gongPanel = new BagGongPanel(BagGongPanel.SIMPLE_GONG);
+		gongPanel.setVisible(false);
+		gameControl.getLayeredPanel().add(gongPanel);
 	}
 
 	@Override
@@ -49,14 +49,14 @@ public class BagMouseListener implements MouseListener{
 		Point p = gameControl.getMainFrame().getLocation();
 		Point p1 = e.getLocationOnScreen();
 		System.out.println((p1.getX()-p.getX())+","+(p1.getY()-p.getY()));
-		bagPanel.setLocation(358,90);
-		bagPanel.reloadGongPanel(gameControl.getGongByID(id));
-		bagPanel.setVisible(true);
+		gongPanel.setLocation(358,90);
+		gongPanel.reloadGongPanel(gameControl.getGongByID(id));
+		gongPanel.setVisible(true);
 	}
 
 	@Override
 	public void mouseExited(MouseEvent e) {
-		bagPanel.setVisible(false);
+		gongPanel.setVisible(false);
 	}
 	
 }

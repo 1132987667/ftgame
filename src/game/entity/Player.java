@@ -2,6 +2,7 @@ package game.entity;
 
 import game.control.GameControl;
 import game.control.SoundControl;
+import game.utils.DataCal;
 import game.utils.SUtils;
 
 import java.util.ArrayList;
@@ -462,7 +463,7 @@ public class Player {
 		curExp+=exp;
 		if(curExp>=Exp){
 			rank+=1;
-			Exp = GameControl.getUpgradeExp(rank);
+			Exp = DataCal.getUpgradeExp(rank);
 			SoundControl.jiemianMuc("lvUp");
 			JOptionPane.showConfirmDialog(null, "恭喜你，升级了~~","提示", JOptionPane.PLAIN_MESSAGE);
 		}

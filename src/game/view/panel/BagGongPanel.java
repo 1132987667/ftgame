@@ -29,16 +29,23 @@ public class BagGongPanel extends JPanel{
 	private final int TxtH = 20 ;
 	private JLabel back = null ; 
 	
+	public static final int SIMPLE_GONG = 1 ;
+	public static final int DETAIL_GONG = 2 ;
+	public static final int CAILIAO = 3 ;
 	
+	/**
+	 * 
+	 * @param type
+	 */
 	public BagGongPanel(int type) {
 		setLayout(null);
 		setBackground(new Color(0,0,0,0.6f));
 		setSize(150, 240);
 		this.type = type ; 
-		if(type==1)
-			initGongPanel();
-		else
+		if(type==CAILIAO)
 			initClPanel();
+		else
+			initGongPanel(type);
 	}
 	
 	/** 初始化材料面板 */
@@ -47,7 +54,7 @@ public class BagGongPanel extends JPanel{
 	}
 
 	/** 初始化功法信息面板 */
-	private void initGongPanel() {
+	private void initGongPanel(int type) {
 		name = new TextField("name", 1);
 		name.setBounds(INSET, INSET, 120, TxtH);
 		
@@ -84,6 +91,11 @@ public class BagGongPanel extends JPanel{
 		ImageIcon img = new ImageIcon(imgPath);
 		back.setIcon(img);
 		back.setBounds(0, 60, img.getIconWidth(), img.getIconHeight());*/
+		
+		/** 展示详细功法信息，根据修炼层数显示当前已学会技能 */
+		if(type==DETAIL_GONG){
+			
+		}
 		
 		add(name);
 		add(kind);

@@ -13,6 +13,7 @@ import game.entity.Tasks;
 import game.listener.NpcListener;
 import game.utils.ArchiveUtils;
 import game.utils.Constant;
+import game.utils.DataCal;
 import game.utils.SUtils;
 import game.view.TLabel;
 import game.view.TTextPane;
@@ -32,6 +33,7 @@ import java.util.Map;
 import java.util.Random;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 
+import javax.swing.DefaultButtonModel;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
@@ -50,20 +52,20 @@ public class GameControl {
 	/**
 	 * 人物面板 房间描述 功能 游戏信息 小地图 npc与物品 与npc或物品交互
 	 */
-	private JPanel panelA = null;
-	private TTextPane panelB = null;
-	private JPanel panelC = null;
-	private TTextPane panelD = null;
+	private JPanel playerP = null;
+	private TTextPane sceneP = null;
+	private JPanel functionP = null;
+	private TTextPane infoP = null;
 
-	private JPanel panelE = null;
-	private JPanel panelF = null;
-	private JPanel panelG = null;
+	private JPanel mapP = null;
+	private JPanel npcP = null;
+	private JPanel controlP = null;
 
 	private static GameControl gameControl = new GameControl();
 	/** 没有选择 空存档 存在存档 */
 	public static final int NotSelect = -1;
 	public static final int NewArchive = 0;
-	public static final int OldaArchive = 1;
+	public static final int OldArchive = 1;
 
 	public Map equipBag = new HashMap<>();
 	
@@ -127,7 +129,7 @@ public class GameControl {
 	
 	/** 在信息面板上显显示字符串 */
 	public void append(String str, int type) {
-		panelD.append(str, type);
+		infoP.append(str, type);
 	}
 	
 	/** 退出游戏 */
@@ -143,16 +145,15 @@ public class GameControl {
 	/** 关闭弹窗窗口 */
 	public void close(int type) {
 		if (type == 1) {
-			panelD.append("你犹豫了会，还是决定先不去【副本】了！\n", 0);
+			infoP.append("你犹豫了会，还是决定先不去【副本】了！\n", 0);
 		}else if(type == 2){
-			panelD.append("你不再查看自己的【状态】!\n", 0);
+			infoP.append("你不再查看自己的【状态】!\n", 0);
 		}
 		mainFrame.close(type);
 	}
 
 	/** 隐藏登陆面板 */
 	public void hideEnterFrame() {
-		System.out.println(enterFrame);
 		enterFrame.setVisible(false);
 	}
 
@@ -170,38 +171,44 @@ public class GameControl {
 			if (archive == null) {
 				return NewArchive;
 			} else {
-				return OldaArchive;
+				return OldArchive;
 			}
 		}
 	}
 	
-	/** 
-	 * 通过npc名字得到资料库中npc实体类的克隆体 
-	 * @param name 要查询的npc的name
-	 * @return 返回资料库中Npc实体类的克隆体
+	/***
+	 * 通过人物id得到人物编号
+	 * @param id
+	 * @return
 	 */
-	public NPC getNpcByName(String name){
-		System.out.println("npc总数:"+npcMap.size());
-		NPC npc = npcMap.get(name);
-		return  (NPC) ArchiveUtils.depthClone(npc);
-	}
-	
 	public Tasks getTaskByNaId(String id){
 		return taskMap.get(id);
 	}
 	
 	/** 
-	 * 通过npc名字得到资料库中npc实体类的克隆体 
+	 * 通过npc ID得到资料库中npc实体类的克隆体 
 	 * @param name 要查询的npc的name
 	 * @return 返回资料库中Npc实体类的克隆体
 	 */
 	public NPC getNpcById(String id){
-		System.out.println("npc总数:"+npcMap.size());
 		NPC npc = npcMap.get(id);
 		return  (NPC) ArchiveUtils.depthClone(npc);
 	}
 	
+	/**
+	 * 通过id得到装备对象
+	 * @param id
+	 * @return
+	 */
+	public Equip getEquipById(String id){
+		Equip equip = equipMap.get(id);
+		return (Equip) ArchiveUtils.depthClone(equip);
+	}
 	
+	/**
+	 * 加载剧情xml
+	 * @return
+	 */
 	public List<Ditu> loadJuqing() {
 		Ditu ditu = null ;
 		Document document = SUtils.load("src/game/xml/juqing.xml");
@@ -335,31 +342,25 @@ public class GameControl {
 	 * @param str
 	 * @return 返回包含场景内所悟npc信息的集合
 	 */
-	@SuppressWarnings("unused")
 	private List<NPC> getNPCList(String str){
 		List<NPC> list = new ArrayList<>();
 		String[] temp = null ;
 		String id = "" ;
-		String npcName = null ;
 		String[] ary = str.split(",");
 		int num = 0 ;
 		for (int i = 0; i < ary.length; i++) {
 			/**  1005:猎户大叔:1 */
 			temp = ary[i].split(":");
-			System.out.println(ary[i]+".split(':')"+temp.length);
 			id = temp[0];
-			npcName = temp[1];
 			num = SUtils.conStrtoInt(temp[2]);
 			NPC npc = getNpcById(id);
 			if(npc!=null){
 				for (int j = 0; j < num; j++) {
 					/** 和当前玩家的幸运值相关 */
-					npc = (NPC) ArchiveUtils.depthClone(npc) ;
 					list.add(npc);
 				}
 			}
 		}
-		System.out.println("npcList大小:"+list.size());
 		return list ;
 	}
 	
@@ -398,58 +399,39 @@ public class GameControl {
 	 * @param npc
 	 * @return
 	 */
-	public NPC npcMaker(NPC npc){
-		/** 设置npc的品质 */
-		npc.setType(rdNpcType(player.getLucky()));
-		/** 1 */
-		getNpcBaseAttr(npc);
-		/** 2 */
-		equipControl.getWholeBodyEq(npc, npc.getRank(), npc.getType());
-		/** 3 */
-		int expValue = getNpcExp(player.getRank(),npc.getRank(), npc.getType()) ;
-		npc.setCombatExp(expValue);//设置击杀经验
-		npc.setCombatMoney(getNpcMoney(player.getRank(),npc.getRank(), npc.getType()));//设置击杀金钱
+	public NPC npcMaker(NPC npc) {
+		int rank = npc.getRank();
+		int type = npc.getType();
+		/** 设置npc的品阶 */
+		npc.setType(DataCal.rdNpcType(player.getLucky()));
+		/** 1: 根据npc的品质生成npc的属性 */
+		setNpcBaseAttr(npc);
+		/** 2: 根据npc的品质生成npc的装备 */
+		equipControl.getWholeBodyEq(npc, rank, type);
+		/** 3: 根据npc的等级与品质设定npc击杀经验与金钱 */
+		int expValue = getNpcExp(player.getRank(), rank, type);
+		npc.setCombatExp(expValue);// 设置击杀经验
+		npc.setCombatMoney(DataCal.getNpcMoney(player.getRank(), rank, type));// 设置击杀金钱
 		/** 4:计算装备带来的属性加成 */
 		AddAttrs addAttrs = equipControl.newADdAttrs();
 		Equip[] equipAry = npc.getEquipAry();
 		for (int i = 0; i < equipAry.length; i++) {
-			if(equipAry[i]!=null&&!SUtils.isNullStr(equipAry[i].getName())){
-				equipControl.countAttr(addAttrs,equipAry[i].getAttrList());
+			if (equipAry[i] != null && !SUtils.isNullStr(equipAry[i].getName())) {
+				equipControl.countAttr(addAttrs, equipAry[i].getAttrList());
 			}
 		}
-		/** 5 */
-		equipControl.calNpcReallyAttr(npc, addAttrs);//5
-		return npc ;
+		/** 计算npc最后属性值 */
+		equipControl.calNpcReallyAttr(npc, addAttrs);// 5
+		return npc;
 	}
 
 	
-	/** 把属性设为基本属性 */
-	public void getNpcBaseAttr(NPC npc){
-		int rank = npc.getRank() ;
-		int type = npc.getType() ;
-		npc.setTili(SUtils.reDouPoint(((15+rank*5)*Constant.npcAttrLv[type])));
-		npc.setJingli(SUtils.reDouPoint(((15+rank*5)*Constant.npcAttrLv[type])));
-		npc.setLi(SUtils.reDouPoint(((15+rank*5)*Constant.npcAttrLv[type])));
-		npc.setMin(SUtils.reDouPoint(((15+rank*5)*Constant.npcAttrLv[type])));
-		npc.setLucky(SUtils.reDouPoint(((10+rank)*Constant.npcAttrLv[type])));
-		
-		npc.setHp(SUtils.reDouPoint(((10*npc.getTili())*Constant.npcAttrLv[type])));
-		npc.setCurHp(npc.getHp());
-		npc.setMp(SUtils.reDouPoint(((2.5*npc.getJingli())*Constant.npcAttrLv[type])));
-		npc.setMp(npc.getMp());
-		npc.setAttack(SUtils.reDouPoint(((4*npc.getLi()-35)*Constant.npcAttrLv[type])));
-		npc.setDefense(SUtils.reDouPoint(((npc.getMin())*Constant.npcAttrLv[type])));
-		
-		npc.setBaoji(SUtils.reDouPoint(((npc.getLucky()*0.4)*Constant.npcAttrLv[type])));
-	}
-	
 	/**
-	 * 得到一定等级下升级所需要的经验
-	 * @param rank
+	 * 重新设置npc的初始属性值
+	 * @param npc
 	 */
-	public static int getUpgradeExp(int rank){
-		int expValue = (int) Math.floor(((rank-1)*(rank-1)*20)/5*(rank+50));
-		return expValue; 
+	public void setNpcBaseAttr(NPC npc){
+		DataCal.setNpcBaseAttr(npc);
 	}
 	
 	/**
@@ -458,9 +440,9 @@ public class GameControl {
 	 * @param type
 	 */
 	public int getNpcExp(int myRank,int foeRank,int type){
-		int expValue = getUpgradeExp(foeRank);
+		int expValue = DataCal.getUpgradeExp(foeRank);
 		if(foeRank>1){
-			expValue -= getUpgradeExp(foeRank-1);
+			expValue -= DataCal.getUpgradeExp(foeRank-1);
 		}else{
 			expValue = 150 ;
 		}
@@ -477,77 +459,21 @@ public class GameControl {
 		return exp;
 	}
 	
-	/**
-	 * 得到不同品质npc掉落金钱
-	 * @param rank
-	 * @param type
-	 * @return
-	 */
-	public int getNpcMoney(int myRank,int foeRank,int type){
-		int money = foeRank*100 ;
-		money*=type+1 ;
-		money/=5;
-		if(myRank-foeRank>10){
-			money*=0.1;
-		}else{
-			money = SUtils.reDouPoint(money*(1-(myRank-foeRank)*0.1));
-		}
-		return money ;
-	}
 	
-	/**
-	 * 根据玩家幸运值得到遇见怪物品质
-	 * @param lucky
-	 * @return
-	 */
-	public int rdNpcType(int lucky){
-		int npcType = 0 ;
-		int type0 = 40 ;
-		int type1 = 32 ;
-		int type2 = 16 ;
-		int type3 = 8 ;
-		int type4 = 4 ;
-		int lv = lucky/25 ;
-		if(lv<=4){
-			type4 = type4 + 2*lv ;
-			type3 = type3 + 2*lv ;
-			type2 = type2 + 2*lv ;
-			type1 = type1 + 2*lv ;
-			type0 = 100 - type1 - type2 - type3 - type4 ;
-		}else{
-			type0 = 8 ;
-			type4 = type4 + 2*lv ;
-			type3 = type3 + 2*lv ;
-			type2 = type2 + 2*lv ;
-			type1 = 100 - type0 - type2 - type3 - type4 ;
-		}
-		int rdNum = new Random().nextInt(100)+1;
-		if (rdNum<type4) {
-			npcType = 4;
-		} else if (type4<rdNum&&rdNum<type3+type4) {
-			npcType = 3;
-		} else if (type4+type3<rdNum&&rdNum<type3+type4+type2) {
-			npcType = 2;
-		} else if (type4+type3+type2<rdNum&&rdNum<type3+type4+type2+type1) {
-			npcType = 1;
-		}else{
-			npcType = 0;
-		}
-		return npcType;
-	}
+	
 	
 	//private TimeController t = TimeController.getInstance();
 
 	/** 将主界面的界面传输过来 */
 	public void sendPanel(JPanel panelA, TTextPane panelB, JPanel panelC,
 			TTextPane panelD, JPanel panelE, JPanel panelF, JPanel panelG) {
-		this.panelA = panelA;
-		this.panelB = panelB;
-		this.panelC = panelC;
-		this.panelD = panelD;
-		this.panelE = panelE;
-		this.panelF = panelF;
-		this.panelG = panelG;
+		this.playerP = panelA;
+		this.sceneP = panelB;
+		this.functionP = panelC;
+		this.infoP = panelD;
+		this.mapP = panelE;
+		this.npcP = panelF;
+		this.controlP = panelG;
 	}
 
 	/** 恢复对mainFrame窗口的限制 */
@@ -566,9 +492,9 @@ public class GameControl {
 		for (int i = 0; i < list.size(); i++) {
 			System.out.println(fuben.getScene().get(i).toString());
 		}
-		panelD.append("你选择了前往【", 0);
-		panelD.append(fuben.getName(), 5);
-		panelD.append("】\n", 0);
+		infoP.append("你选择了前往【", 0);
+		infoP.append(fuben.getName(), 5);
+		infoP.append("】\n", 0);
 
 	}
 	
@@ -599,12 +525,12 @@ public class GameControl {
 		/** 重置场景 */
 		mainFrame.setMapBuHide();
 		/** 整套移出并重绘的流程 */
-		panelF.removeAll();
-		panelF.repaint();
-		panelF.revalidate();
+		npcP.removeAll();
+		npcP.repaint();
+		npcP.revalidate();
 		Scene temp = null;
 		temp = getScene(0, 1);
-		panelD.apendFubenInfo(temp.name, 0);
+		infoP.apendFubenInfo(temp.name, 0);
 		int x = 0, y = 1;
 		scene = temp;
 		list.add(getScene(x + 1, y - 1));
@@ -626,7 +552,7 @@ public class GameControl {
 				buTemp.setCurScene(list.get(i));
 				buTemp.setText(list.get(i).name);
 				buTemp.setNum(i + 1);
-				panelB.setText(list.get(i).des);
+				sceneP.setText(list.get(i).des);
 				buTemp.setVisible(true);
 			}
 			ary[i].addActionListener(maoBuAc);
@@ -634,7 +560,7 @@ public class GameControl {
 		/** 0,1坐标的位置设置为起点 */
 		ary[4].mouseClicked();
 		scene = ary[4].getCurScene();		
-		panelE.repaint();
+		mapP.repaint();
 		setFubenNpc();
 		
 	}
@@ -663,7 +589,7 @@ public class GameControl {
 					|| (sc.x == scene.x && sc.y == scene.y + 1);
 			if (!b) {
 				// type15 true
-				curBu.setFlag();
+				//curBu.setFlag();
 				curBu.mouseExited();
 				return;
 			}
@@ -693,7 +619,7 @@ public class GameControl {
 					temp.setCurScene(list.get(i));
 					temp.setText(list.get(i).name);
 					temp.setNum(i + 1);
-					panelB.setText(list.get(i).des);
+					sceneP.setText(list.get(i).des);
 					temp.setVisible(true);
 				}
 			}
@@ -713,9 +639,9 @@ public class GameControl {
 	 */
 	public void setFubenNpc() {
 		/** 移除人物 */
-		panelF.removeAll();
-		panelF.repaint();
-		panelF.revalidate();
+		npcP.removeAll();
+		npcP.repaint();
+		npcP.revalidate();
 		/** 得到当前场景内的人物 */
 		List<NPC> npcList = scene.npcList;
 		System.out.println("npcList的大小:" + npcList.size());
@@ -723,7 +649,7 @@ public class GameControl {
 			return;
 		}
 		List<MButton> buList = new ArrayList<>();
-		NpcListener npcListener = new NpcListener(panelF,scene);
+		NpcListener npcListener = new NpcListener(npcP,scene);
 		MButton temp = null;
 		/**
 		 * 为场景内的每一个人物创建一个按钮
@@ -752,7 +678,7 @@ public class GameControl {
 	 */
 	public void setFubenNpcPos(List<MButton> buList) {
 		System.out.println("正在重新设置场景内人物的位置!");
-		panelF.removeAll();
+		npcP.removeAll();
 		//ActionListener ac
 		int inset = 9;
 		for (int i = 0; i < buList.size(); i++) {
@@ -760,10 +686,10 @@ public class GameControl {
 			int y = i / 3;
 			buList.get(i).setBounds(inset + x * (72 + inset),
 					inset + y * (24 + inset), 72, 24);
-			panelF.add(buList.get(i));
+			npcP.add(buList.get(i));
 		}
-		panelF.repaint();
-		panelF.revalidate();
+		npcP.repaint();
+		npcP.revalidate();
 	}
 	
 	/**
@@ -771,24 +697,24 @@ public class GameControl {
 	 * @param buList
 	 */
 	public void setFbNpcActionPos(List<MButton> buList) {
-		panelG.removeAll();
+		controlP.removeAll();
 		int inset = 9;
 		for (int i = 0; i < buList.size(); i++) {
 			int x = i % 3;
 			int y = i / 3;
 			buList.get(i).setLocation(inset + x * (56 + inset),inset + y * (22 + inset));
 			buList.get(i).setSize(56, 22);
-			panelG.add(buList.get(i));
+			controlP.add(buList.get(i));
 		}
-		panelG.repaint();
-		panelG.revalidate();
+		controlP.repaint();
+		controlP.revalidate();
 	}
 
 	
 	public void reloadpanelG(){
-		panelG.removeAll();
-		panelG.repaint();
-		panelG.revalidate();
+		controlP.removeAll();
+		controlP.repaint();
+		controlP.revalidate();
 	}
 	
 	public EnterFrame getEnterFrame() {
@@ -1290,19 +1216,19 @@ public class GameControl {
 	}
 
 	public JPanel getPanelA() {
-		return panelA;
+		return playerP;
 	}
 
 	public void setPanelA(JPanel panelA) {
-		this.panelA = panelA;
+		this.playerP = panelA;
 	}
 
 	public JPanel getPanelC() {
-		return panelC;
+		return functionP;
 	}
 
 	public void setPanelC(JPanel panelC) {
-		this.panelC = panelC;
+		this.functionP = panelC;
 	}
 	
 	/**
@@ -1367,6 +1293,44 @@ public class GameControl {
 	
 	public Gong getGongByID(String id){
 		return gongMap.get(id);
+	}
+	
+	/**
+	 * 当功能关闭时，输出对应信息
+	 * @param type
+	 */
+	public void funCloseInfo(int type){
+		if(type == Constant.State){
+			append("你不再查看自己的【",0);
+		}else if(type == Constant.Bag){
+			append("你关上了【",0);
+		}else{
+			SoundControl.jiemianMuc("closeMap"); 
+			append("你犹豫了会，还是决定先不去【",0);
+		}
+		append(Constant.funAry[type], 1);
+		append("】！\n", 0);
+		new DefaultButtonModel();
+	}
+	
+	/**
+	 * 当功能开启时，输出对应信息
+	 * @param type
+	 */
+	public void funOpenInfo(int type){
+		if(type==Constant.State){
+			append("你闭上双目，精心查看自己的【",0);
+		}else if(type==Constant.Map){
+			append("你稍作停顿，准备好好的看看【",0);
+		}else if(type==Constant.Bag){
+			append("你心神一动，便打开了【",0);
+		}else if(type==Constant.Task){
+			append("你正准备查看【",0);
+		}else{
+			append("你正准备进入【",0);
+		}
+		append(Constant.funAry[type], 1);
+		append("】！\n", 0);
 	}
 	
 }

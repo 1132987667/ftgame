@@ -7,9 +7,11 @@ import game.entity.Archive;
 import game.entity.Equip;
 import game.entity.Player;
 import game.utils.ArchiveUtils;
+import game.utils.Constant;
 import game.utils.SUtils;
 import game.view.frame.MainFrame;
 import game.view.frame.SpFrame;
+import game.view.panel.BigMapP;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -18,92 +20,102 @@ import java.util.List;
 
 import javax.sound.sampled.Clip;
 
-
-public class GreatListener implements ActionListener{
+/**
+ * 对各个功能按钮进行监听
+ * @author yilong22315
+ *
+ */
+public class FunListener implements ActionListener{
 	private MainFrame f  ;
 	private GameControl gameControl ;
-	private SpFrame sp1, sp2, sp3, sp4, sp5 = null ;
+	private SpFrame fubenP, playerP, sp3, jiangHuP, bagP, mapP ;
 	private Archive archive = null ;
 	private Player player ;
 	//private Clip bagOpen = SoundControl.jiemianMuc("openBag");
 	//private Clip openMap = SoundControl.jiemianMuc("openMap");
 	//private Clip bu = SoundControl.jiemianMuc("bu");
 	
-	/** 背包打开标志 */
-	private boolean bagFlag = false ;
-	
-	public GreatListener(MainFrame mainFrame,Archive archive,Player player) {
+	public FunListener(MainFrame mainFrame,Archive archive,Player player) {
 		this.f = mainFrame ;
 		this.player = player ;
 		this.archive = archive ;
 		gameControl = GameControl.getInstance();
 	}
-	/**
-	 * SpFrame类型
-	 * 副本 sp1 1
-	 * 状态 sp2 2
-	 * 背包 sp3 3
-	 */
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		String str = e.getActionCommand() ;
-		System.out.println(str);
-		int type = 0 ;
-		switch (str) {
-		case "副本":
-			SoundControl.jiemianMuc("openMap"); 
-			gameControl.append("你正准备进入【",0);
-			gameControl.append("副本", 1);
-			gameControl.append("】！\n", 0);
-			type = 1 ;
-			if(sp1==null){
-				sp1 = new SpFrame(f,1);
-			}
-			/** 关闭背包 */
-			bagFlag = false ;
-			sp1.setVisible(true);
-			sp1.reload(1);
+		String command = e.getActionCommand() ;
+		call(command);
+	}
+	
+	public void close(int type){
+		switch (type) {
+		case 0:
 			break;
-		case "红尘":
+		case 1:
+			fubenP.setVisible(false);
+			break;
+		case 2:
+			playerP.setVisible(false);
+			break;
+		case 4:
+			jiangHuP.setVisible(false);
+			break;
+		case 5:
+			bagP.setVisible(false);
+		default:
+			break;
+		}
+	}
+	
+	public void call(String command){
+		switch (command) {
+		case Constant.SFuben:
 			SoundControl.jiemianMuc("openMap"); 
-			gameControl.append("你正准备进入【",0);
-			gameControl.append("红尘", 1);
-			gameControl.append("】！\n", 0);
-			type = 1 ;
-			if(sp4==null){
-				sp4 = new SpFrame(f,4);
+			gameControl.funOpenInfo(Constant.Fuben);
+			if(fubenP==null){
+				fubenP = new SpFrame(f,Constant.Fuben);
 			}
-			/** 关闭背包 */
-			bagFlag = false ;
-			sp4.setVisible(true);
-			sp4.reload(4);
+			fubenP.setVisible(true);
+			fubenP.reload(Constant.Fuben);
+			break;
+		case Constant.SJiangHu:
+			gameControl.funOpenInfo(Constant.JiangHu);
+			SoundControl.jiemianMuc("openMap"); 
+			if(jiangHuP==null){
+				jiangHuP = new SpFrame(f,Constant.JiangHu);
+			}
+			jiangHuP.setVisible(true);
+			jiangHuP.reload(Constant.JiangHu);
 			break ;
-		case "背包":
+		case Constant.SBag:
+			gameControl.funOpenInfo(Constant.Bag);
 			SoundControl.jiemianMuc("openBag"); 
-			if(sp5==null){
-				sp5 = new SpFrame(f,5);
+			if(bagP==null){
+				bagP = new SpFrame(f,Constant.Bag);
 			}
-			sp5.setVisible(true);
-			sp5.reload(type);
-			type = 5 ;
+			bagP.setVisible(true);
+			bagP.reload(Constant.Bag);
 			break;
 		case "状态":
+			gameControl.funOpenInfo(Constant.State);
 			SoundControl.jiemianMuc("bu"); 
 			//SUtils.sleep(bu.getMicrosecondLength()/1000);
-			gameControl.append("你想查看自己的【状态】！\n", 0);
-			type = 2 ;
-			if(sp2==null){
-				sp2 = new SpFrame(f,2);
+			if(playerP==null){
+				playerP = new SpFrame(f,Constant.State);
 			}
-			sp2.setVisible(true);
-			sp2.reload(2);
+			playerP.setVisible(true);
+			playerP.reload(Constant.State);
 			break;
 		case "存档":
-			type = 1 ;
+			gameControl.funOpenInfo(Constant.JiangHu);
 			archive = SUtils.conPlayerToArc(player);
 			ArchiveUtils.saveArchiving(archive, gameControl.getArchiveName());
 			break;
 		case "地图":
+			gameControl.funOpenInfo(Constant.Map);
+			
+			
 			List<Equip> temp = new ArrayList<>();
 			EquipControl equipControl = gameControl.equipControl;
 			for (int i = 0; i < 8; i++) {
@@ -135,22 +147,6 @@ public class GreatListener implements ActionListener{
 		}
 	}
 	
-	public void close(int type){
-		switch (type) {
-		case 0:
-			break;
-		case 1:
-			sp1.setVisible(false);
-			break;
-		case 2:
-			sp2.setVisible(false);
-			break;
-		case 4:
-			sp4.setVisible(false);
-			break;
-		default:
-			break;
-		}
-	}
+	
 
 }

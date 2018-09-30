@@ -50,6 +50,7 @@ public class Equip extends Item implements Serializable,Comparable<Equip>{
 	
 	/** 初始化 */
 	public Equip() {
+		id = "" ;
 		name = "" ;
 		unit = "" ;
 		des = "" ;
@@ -58,6 +59,7 @@ public class Equip extends Item implements Serializable,Comparable<Equip>{
 		rank = 0 ;
 		num = 1 ;
 		kind = "" ;
+		price = 0 ;
 	}
 	
 	@Override

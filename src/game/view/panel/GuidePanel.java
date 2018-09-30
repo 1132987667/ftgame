@@ -21,7 +21,10 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
-
+/**
+ * 新建角色时的引导面板 
+ *
+ */
 public class GuidePanel extends JPanel{
 	private static final long serialVersionUID = 1L;
 	private GameControl gameControl ;

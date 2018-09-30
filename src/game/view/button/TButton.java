@@ -1,5 +1,7 @@
 package game.view.button;
 
+import game.utils.SUtils;
+
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Font;
@@ -46,21 +48,22 @@ public class TButton extends JButton implements MouseListener {
 		// 设置边框
 		setBorder(null);
 		// 居中显示
-		setHorizontalTextPosition(SwingConstants.CENTER);
-		addMouseListener(this);
 		iconControl(type);
 		if (type != -1) {
 			// System.out.println(image1);
+			setHorizontalTextPosition(SwingConstants.CENTER);
 			this.setIcon(image1);
 			int x = image1.getIconHeight();
 			int y = image1.getIconWidth();
 			// System.out.println(x+" , "+y);
 			this.setSize(x, y);
+			addMouseListener(this);
 		} else {
-			setBorderPainted(true);
+			setForeground(Color.black);
+			setFont(new Font("幼圆", Font.PLAIN, 12));
 			setOpaque(true);
-			setBorder(BorderFactory.createEtchedBorder());
-			setBackground(c[0]);
+			SUtils.setEmptyBorder(this);
+			setHorizontalTextPosition(SwingConstants.LEFT);
 		}
 	}
 
@@ -140,6 +143,9 @@ public class TButton extends JButton implements MouseListener {
 			break;
 		case 24:
 			imageName = "longTou";
+			break;
+		case 25:
+			imageName = "capacity";
 			break;
 		default:
 			imageName = "type";

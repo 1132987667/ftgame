@@ -62,7 +62,7 @@ public class NpcListener implements ActionListener{
 		fightControl.setNpc(npc);
 		appendNpcInfo(npc);
 		for (int i = 0; i < buList.size(); i++) {
-			buList.get(i).setFlag();
+			//buList.get(i).setFlag();
 			//buList.get(i).mouseExited();
 		}
 		curBu.mouseClicked();
@@ -250,14 +250,6 @@ public class NpcListener implements ActionListener{
 		gameControl.setAction(actionBu);
 		
 	}
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	
 	ActionListener killListener = new ActionListener() {
