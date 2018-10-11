@@ -7,6 +7,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
+import game.utils.SUtils;
+
 public class TLabel extends JLabel {
 	private static final long serialVersionUID = 1L;
 	private String imageName = null;
@@ -26,9 +28,13 @@ public class TLabel extends JLabel {
 		setBorder(null);
 		iconControl(type);
 		this.setIcon(image1);
-		int x = image1.getIconHeight();
-		int y = image1.getIconWidth();
-		this.setSize(x, y);
+		if(type!=0) {
+			int x = image1.getIconHeight();
+			int y = image1.getIconWidth();
+			this.setSize(x, y);
+		}else {
+			this.setSize(80, 20);
+		}
 		// 居中显示
 		setHorizontalTextPosition(SwingConstants.CENTER);
 	}
@@ -90,6 +96,9 @@ public class TLabel extends JLabel {
 		default:
 			break;
 		}
-		image1 = new ImageIcon("src/game/img/one/" + imageName+ ".png");
+		if(type!=0) {
+			image1 = SUtils.loadImageIcon("/game/img/one/" + imageName+ ".png");
+		}
+		
 	}
 }

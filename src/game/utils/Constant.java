@@ -26,14 +26,14 @@ public class Constant {
 	public static String[] funAry = {SState, SSkill, SBag, STask, SJiangHu, SFuben, SArchive, SMap} ;
 	/** {"状态","技能","背包","任务","红尘","副本","存档","地图"} */
 	public static final int State = 0 ;
-	public static final int Skill = 0 ;
+	public static final int Skill = 1 ;
 	public static final int Bag = 2 ;
 	public static final int Task = 3 ;
 	public static final int JiangHu = 4 ;
 	public static final int Fuben = 5 ;
 	public static final int Archive =6 ;
 	public static final int Map = 7 ;
-	
+	public static final int Fight = 9 ;
 	
 	
 	public static String[] bagClassifyAry = {"兵器","防具","技能书","材料"} ;

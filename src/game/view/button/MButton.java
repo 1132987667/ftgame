@@ -7,7 +7,7 @@ import game.entity.Scene;
 
 /***
  * 场景和npc的承载按钮
- * 
+ * 交互按钮
  * @author yilong22315
  * 
  */
@@ -32,6 +32,8 @@ public class MButton extends TButton {
 	/** 移入移出都无效果 */
 	public static final int Enabled = 3  ;
 
+	
+	public boolean used = false ;
 	
 	private int flag = 1 ;;
 	private Scene curScene = null;

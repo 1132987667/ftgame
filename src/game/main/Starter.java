@@ -1,4 +1,4 @@
-package game.view;
+package game.main;
 
 import java.awt.Color;
 import java.awt.Font;

@@ -176,7 +176,7 @@ public class Cmf extends JPanel{
 				if(goodType==0){
 					
 				}else if(goodType==1){//功法
-					gongMap = SUtils.loadGong() ;
+					gongMap = new SUtils().loadGong() ;
 					System.out.println("背包内物品数量:"+player.getGongBag().size());
 					gong = gongMap.get(idInput.getText());
 					if(gong==null){

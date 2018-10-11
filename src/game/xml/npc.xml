@@ -123,35 +123,41 @@
 		<msg></msg>
 		<rank>9</rank>
 		<type></type>
-	</npc><npc attrType="rd" >
+	</npc>
+	
+	<npc attrType="rd" >
 		<id>115</id>
 		<name>冥牛之王</name>
 		<des></des>
 		<msg></msg>
 		<rank>9</rank>
 		<type></type>
-	</npc><npc attrType="rd" >
+	</npc>
+	<npc attrType="rd" >
 		<id>112</id>
 		<name>观想兽</name>
 		<des>由人的杂念绮思所形成的观想兽，会缠住人的魂魄。</des>
 		<msg></msg>
 		<rank>9</rank>
 		<type></type>
-	</npc><npc attrType="rd" >
+	</npc>
+	<npc attrType="rd" >
 		<id>112</id>
 		<name></name>
 		<des></des>
 		<msg></msg>
 		<rank>9</rank>
 		<type></type>
-	</npc><npc attrType="rd" >
+	</npc>
+	<npc attrType="rd" >
 		<id>112</id>
 		<name></name>
 		<des></des>
 		<msg></msg>
 		<rank>9</rank>
 		<type></type>
-	</npc><npc attrType="rd" >
+	</npc>
+	<npc attrType="rd" >
 		<id>112</id>
 		<name></name>
 		<des></des>
@@ -734,7 +740,7 @@
 		<type></type>
 		<action>
 			<ac	type="sell">
-				<item id="" name="" num="" ></item>
+				<item id="" name="" num="" />
 				<item></item>
 				<item></item>
 				<item></item>
@@ -764,6 +770,11 @@
 		<msg>
 			今年这些灵谷长的真喜人！
 		</msg>
+		<NeiGong>
+		</NeiGong>
+		<WaiGong>
+			2029:耕余剩技:B
+		</WaiGong>
 		<rank>3</rank>
 		<action>
 			<ac	type="sell">

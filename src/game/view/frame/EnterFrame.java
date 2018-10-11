@@ -8,6 +8,7 @@ import game.utils.SUtils;
 import game.view.TLabel;
 import game.view.button.TButton;
 import game.view.panel.GuidePanel;
+import game.view.ui.ImageIconCopy;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -64,12 +65,13 @@ public class EnterFrame extends JFrame{
 		gameControl.setEnterFrame(this);
 		
 		/** 设置图标 */
-		img = new ImageIcon("src/game/img/button/laugh.png");
+		img = SUtils.loadImageIcon("/game/img/button/laugh.png");
+		
 		this.setIconImage(img.getImage());
 		/** 设置背景 */
 		//this.getContentPane().setVisible(true);
 		//this.getContentPane().setBackground(Color.red);
-		img = new ImageIcon("src/game/img/button/back.png");
+		img = SUtils.loadImageIcon("/game/img/button/back.png");
 		
 		/** 新增关闭按钮 */
 		TButton close = new TButton("",11);
@@ -252,9 +254,10 @@ public class EnterFrame extends JFrame{
 	};
 	
 	class BackPanel extends JPanel{
+		private static final long serialVersionUID = 1L;
 		public ImageIcon img = null ;
 		public BackPanel() {
-			img = new ImageIcon("src/game/img/button/back.png");
+			img = SUtils.loadImageIcon("/game/img/button/back.png");
 			this.setOpaque(true);
 			setLayout(null);
 		}

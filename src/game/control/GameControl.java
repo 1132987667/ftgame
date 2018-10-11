@@ -10,6 +10,8 @@ import game.entity.NPC;
 import game.entity.Player;
 import game.entity.Scene;
 import game.entity.Tasks;
+import game.listener.FunListener;
+import game.listener.KeyMana;
 import game.listener.NpcListener;
 import game.utils.ArchiveUtils;
 import game.utils.Constant;
@@ -72,7 +74,9 @@ public class GameControl {
 	private Random rd = new Random(System.currentTimeMillis());
 
 	private String archiveName;
-
+	
+	private SUtils SUtils = new SUtils();
+	
 	/** 游戏信息 */
 	private Ditu curDitu = null;
 	/** 当前场景 */
@@ -83,6 +87,12 @@ public class GameControl {
 	private  Map<String,NPC> npcMap = null ;
 	private Map<String,Tasks> taskMap =null ;
 	private Map<String,Gong> gongMap =null ;
+	
+	
+	
+	private SpFrame fubenFrame, stateFrame, fightFrame, jiangHuFrame, bagFrame, mapFrame ;
+	
+	
 	/**
 	 * 加载游戏控制器
 	 * 应该在其中完成相应资料的加载
@@ -108,9 +118,7 @@ public class GameControl {
 	private NPC fightNpc = null ;
 	
 	
-	private MButton view, talk, kill, give, trading, tasks ;
-	private MButton[] actionBu = {view, talk, kill, give, trading, tasks} ;
-	
+	public String windowFlag = "无" ;
 	
 	public static GameControl getInstance() {
 		return gameControl;
@@ -126,6 +134,8 @@ public class GameControl {
 	/** 战斗面板 */
 	private SpFrame ftFrame = null ;
 	
+	
+	private KeyMana keyMana ;
 	
 	/** 在信息面板上显显示字符串 */
 	public void append(String str, int type) {
@@ -182,7 +192,7 @@ public class GameControl {
 	 * @return
 	 */
 	public Tasks getTaskByNaId(String id){
-		return taskMap.get(id);
+		return (Tasks) ArchiveUtils.depthClone(taskMap.get(id));
 	}
 	
 	/** 
@@ -211,7 +221,7 @@ public class GameControl {
 	 */
 	public List<Ditu> loadJuqing() {
 		Ditu ditu = null ;
-		Document document = SUtils.load("src/game/xml/juqing.xml");
+		Document document = SUtils.load("game/xml/juqing.xml");
 		Element root = document.getRootElement();
 		List<Element> temp  = root.elements();
 		List<Ditu> list = new ArrayList<>();
@@ -234,7 +244,7 @@ public class GameControl {
 	 */
 	public Ditu loadJuqing(String jqID){
 		Ditu ditu = null ;
-		Document document = SUtils.load("src/game/xml/juqing.xml");
+		Document document = SUtils.load("game/xml/juqing.xml");
 		Element root = document.getRootElement();
 		Element curJuqing = null ;
 		List<Element> temp  = root.elements();
@@ -290,7 +300,7 @@ public class GameControl {
 	 */
 	public List<Ditu> loadFuben(){
 		List<Ditu> list = new ArrayList<>();
-		Document document = SUtils.load("src/game/xml/fuben.xml");
+		Document document = SUtils.load("game/xml/fuben.xml");
 		/** 获取根目录 */
 		Element root = document.getRootElement();
 		List<Element> temp  = root.elements();
@@ -803,7 +813,7 @@ public class GameControl {
 		
 		/** 设置背景图片 */
 		JLabel back = new JLabel();
-		ImageIcon image1 = new ImageIcon("src/game/img/back/1.png");
+		ImageIcon image1 = SUtils.loadImageIcon("/game/img/back/1.png");
 		back.setIcon(image1);
 		ft.add(back);
 		back.setBounds(0, 0, image1.getIconWidth(), image1.getIconHeight());
@@ -964,7 +974,7 @@ public class GameControl {
 	 */
 	public void npcActionAnalyze(final NPC npc){
 		String id = npc.getId();
-		Document document = SUtils.load("src/game/xml/npc.xml");
+		Document document = SUtils.load("game/xml/npc.xml");
 		Node node = document.selectSingleNode("/root/npc[id='"+id+"']/action");
 		Element action ;
 		if(node!=null){
@@ -1292,7 +1302,7 @@ public class GameControl {
 	
 	
 	public Gong getGongByID(String id){
-		return gongMap.get(id);
+		return (Gong)ArchiveUtils.depthClone(gongMap.get(id));
 	}
 	
 	/**
@@ -1310,7 +1320,6 @@ public class GameControl {
 		}
 		append(Constant.funAry[type], 1);
 		append("】！\n", 0);
-		new DefaultButtonModel();
 	}
 	
 	/**
@@ -1332,5 +1341,73 @@ public class GameControl {
 		append(Constant.funAry[type], 1);
 		append("】！\n", 0);
 	}
+	
+	
+	/**
+	 * 初始化特殊窗口
+	 * @param funListener
+	 */
+	public void initFunFrame(FunListener funListener){
+		fubenFrame = new SpFrame(mainFrame, Constant.Fuben);
+		stateFrame = new SpFrame(mainFrame, Constant.State);
+		//fightFrame = new SpFrame(mainFrame, Constant.Fight);
+		jiangHuFrame = new SpFrame(mainFrame, Constant.JiangHu);
+		//mapFrame = new SpFrame(mainFrame, Constant.Map);
+		bagFrame = new SpFrame(mainFrame, Constant.Bag);
+		funListener.initFunFrame(fubenFrame, stateFrame, fightFrame, jiangHuFrame, bagFrame, mapFrame);
+	}
+
+	public KeyMana getKeyMana() {
+		return keyMana;
+	}
+
+	public void setKeyMana(KeyMana keyMana) {
+		this.keyMana = keyMana;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	private MButton view = new MButton("查看", 2);
+	private MButton talk = new MButton("交谈", 2);  
+	private MButton kill = new MButton("战斗", 2);
+	private MButton give = new MButton("给与", 2);
+	private MButton trading = new MButton("交易", 2);
+	private MButton tasks = new MButton("任务", 2);
+	private MButton[] actionBu = {view, talk, kill, give, trading, tasks} ;
+	/**
+	 * 把所有交互按钮设置为不启用
+	 */
+	public void initAcBustatus() {
+		for (int i = 0; i < actionBu.length; i++) {
+			actionBu[i].used = false ;
+		}
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 }

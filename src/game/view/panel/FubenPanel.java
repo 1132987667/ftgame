@@ -2,6 +2,7 @@ package game.view.panel;
 
 import game.control.GameControl;
 import game.entity.Ditu;
+import game.utils.Constant;
 import game.utils.SUtils;
 
 import java.awt.BorderLayout;
@@ -131,14 +132,14 @@ public class FubenPanel extends JPanel {
 
 		JLabel label = new JLabel("");
 		label.setOpaque(false);
-		ImageIcon img = new ImageIcon("src/game/img/back/backB.png");
+		ImageIcon img = SUtils.loadImageIcon("/game/img/back/backB.png");
 		label.setIcon(img);
 		showPanel.add(label, BorderLayout.CENTER);
 		label.setBounds(0, 0, img.getIconWidth(), img.getIconHeight());
 		
 		/** 确认按钮 */
 		jb = new JButton("<html>确<br>认</html>");
-		img = new ImageIcon("src/game/img/button/buD.png");
+		img = SUtils.loadImageIcon("/game/img/button/buD.png");
 		jb.setIcon(img);
 		// 设置字体颜色
 		jb.setForeground(Color.white);
@@ -167,13 +168,13 @@ public class FubenPanel extends JPanel {
 					text.setForeground(Color.red);
 				}else{
 					System.out.println("副本选择完毕！");
-					if(type==1){
+					if(type==Constant.Fuben){
 						gameControl.close(1);
-					}else if(type==2){
+					}else if(type==Constant.JiangHu){
 						gameControl.close(4);
 					}
 					gameControl.restore();
-					if(type==2){
+					if(type==Constant.JiangHu){
 						ditu = gameControl.loadJuqing(ditu.getId());
 					}
 					gameControl.setSelect(ditu);
@@ -184,7 +185,7 @@ public class FubenPanel extends JPanel {
 		});
 		JLabel jl = new JLabel();
 		//612,370
-		jl.setIcon(new ImageIcon("src/game/img/back/pingtai.png"));
+		jl.setIcon(SUtils.loadImageIcon("/game/img/back/pingtai.png"));
 		add(jl);
 		jl.setBounds(0, 0, 612, 370);
 		
@@ -229,13 +230,13 @@ public class FubenPanel extends JPanel {
 			this.jb = jb;
 			this.fuben = fuben;
 			if(type==1){
-				image1 = new ImageIcon("src/game/img/button/Fuben1.png"); 
-				image2 = new ImageIcon("src/game/img/button/Fuben2.png");
-				image3 = new ImageIcon("src/game/img/button/Fuben3.png");
+				image1 = SUtils.loadImageIcon("/game/img/button/Fuben1.png"); 
+				image2 = SUtils.loadImageIcon("/game/img/button/Fuben2.png");
+				image3 = SUtils.loadImageIcon("/game/img/button/Fuben3.png");
 			}else if(type==2){
-				image1 = new ImageIcon("src/game/img/button/Juqing1.png"); 
-				image2 = new ImageIcon("src/game/img/button/Juqing2.png");
-				image3 = new ImageIcon("src/game/img/button/Juqing3.png");
+				image1 = SUtils.loadImageIcon("/game/img/button/Juqing1.png"); 
+				image2 = SUtils.loadImageIcon("/game/img/button/Juqing2.png");
+				image3 = SUtils.loadImageIcon("/game/img/button/Juqing3.png");
 			}
 			
 			jb.setIcon(image1);

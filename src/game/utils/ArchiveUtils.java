@@ -14,6 +14,27 @@ import game.entity.Archive;
 
 
 public class ArchiveUtils {
+	public static void main(String[] args) {
+		String root = ArchiveUtils.class.getResource("/game/archive1.player").getPath() ;
+		System.out.println(root);
+		File file = new File(root);
+		System.out.println(file.exists());
+	}
+	
+	private static String load(String archiveName) {
+		try {
+			System.out.println("存档地址1："+ArchiveUtils.class.getResource("/"+archiveName+".player").getPath());
+			String path = ArchiveUtils.class.getResource("/").getPath()+archiveName+".player" ;
+			 String classLoader_str = ArchiveUtils.class.getClassLoader().getResource(archiveName+".player").getPath();
+			System.out.println("存档地址2："+path);
+			System.out.println("存档地址3："+classLoader_str);
+			return path ;
+		} catch (NullPointerException e) {
+			System.out.println("加载存档路径错误！(ArchiveUtils.load)");
+			return "" ;
+		}
+	}
+	
 	/**
 	 *  * 序列化
 	 * @param archive
@@ -25,9 +46,8 @@ public class ArchiveUtils {
 		if ("".equals(filePath)) {
 			filePath = "a.player";
 		}
-		filePath=System.getProperty("user.dir")+"\\"+filePath+".player";
-		System.out.println(filePath);
-		File file = new File(filePath);
+		/*filePath=System.getProperty("user.dir")+"\\"+filePath+".player";*/
+		File file = new File(load(filePath));
 		if(!file.exists()){
 			try {
 				file.createNewFile();
@@ -61,19 +81,16 @@ public class ArchiveUtils {
 		Archive archive = null;
 		ObjectInputStream ois = null;
 		if ("".equals(fileName)) {
-			fileName = "autoArchive.player";
-		}else{
-			//fileName = "D:/softworkspace/w1/yi/"+fileName+".player" ;
-			fileName = System.getProperty("user.dir")+"\\"+fileName+".player" ;
+			fileName = "autoArchive";
 		}
-		File file = new File(fileName);
+		File file = new File(load(fileName));
 		if(!file.exists()){
 			System.out.println("存档不存在");
 			return null ;
 		}
 		System.out.println("正在读取存档文件:"+fileName+","+file.exists());
 		try {
-			ois = new ObjectInputStream(new FileInputStream(fileName));
+			ois = new ObjectInputStream(new FileInputStream(load(fileName)));
 			archive = (Archive) ois.readObject();
 		} catch (Exception e) {
 			e.printStackTrace();

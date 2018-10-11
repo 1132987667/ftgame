@@ -152,7 +152,7 @@ public class SpecInfoFrame extends JFrame{
 				list.add(tmp);
 				System.out.println(tmp.info());
 			}
-			SUtils.saveGongTier(curID,list);
+			new SUtils().saveGongTier(curID,list);
 		}
 	};
 

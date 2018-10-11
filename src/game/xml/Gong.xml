@@ -1,4 +1,4 @@
-
+<?xml version="1.0" encoding="UTF-8"?>
 <root> 
   <!-- 内功的开始 -->  
   <gong id="2001"> 
@@ -387,6 +387,17 @@
     <name>蛊神诀</name>  
     <quality>0</quality>  
     <des>乃苗族一位控蛊大师所创，该内功以内力豢养“蛊虫”，反之以“蛊毒”润养内力，对敌时内力中暗藏万千“蛊毒”，令敌人防不胜防。</des>  
+    <maxTier>9</maxTier>  
+    <curTier>1</curTier>  
+    <type>1</type>
+    <req>人族</req>  
+    <needRank>0</needRank>  
+    <effect/> 
+  </gong>  
+  <gong id="2029"> 
+    <name>耕余剩技</name>  
+    <quality>0</quality>  
+    <des>心法讲求“形醉意不醉，意醉神不醉”。功法不拘一格，御敌时天地皆醉，醉梦醉醒，往往可出奇制胜。</des>  
     <maxTier>9</maxTier>  
     <curTier>1</curTier>  
     <type>1</type>

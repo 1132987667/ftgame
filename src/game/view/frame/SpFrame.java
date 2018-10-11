@@ -18,6 +18,7 @@ import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -74,7 +75,7 @@ public class SpFrame extends JFrame implements WindowListener {
 	 * @param parent
 	 * @param type type不同决定这个窗口作用的不同
 	 */
-	public SpFrame(final MainFrame parent, int type) {
+	public SpFrame(MainFrame parent, int type) {
 		super();
 		/** 得到游戏控制器 */
 		gameControl = GameControl.getInstance();
@@ -87,12 +88,11 @@ public class SpFrame extends JFrame implements WindowListener {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(null);
 		setContentPane(contentPane);
-		
 		this.type = type ;
+		contentPane.addKeyListener(gameControl.getKeyMana());
 		
 		closeBu = new TButton("", 11);
 		contentPane.add(closeBu);
-		closeBu.addMouseListener(closeBu);
 		closeBu.setBounds(270, 13, 26, 26);
 		closeBu.addActionListener(closeListener);
 		
@@ -136,12 +136,8 @@ public class SpFrame extends JFrame implements WindowListener {
 		}
 		
 		this.parent = parent ;
-		if(parent!=null){
-			parent.setEnabled(false);
-		}
 		/** 添加父窗口控制监听器 */
 		this.addWindowListener(this);
-		this.setVisible(true);
 		if(type!=3){
 			setBounds(200, 100, image1.getIconWidth(), image1.getIconHeight());
 		}else{
@@ -150,6 +146,7 @@ public class SpFrame extends JFrame implements WindowListener {
 		
 		/** 添加拖动功能 */
 		setDragable();
+		this.setVisible(false);
 	}
 	
 	ActionListener closeListener = new ActionListener() {
@@ -158,6 +155,7 @@ public class SpFrame extends JFrame implements WindowListener {
 			setVisible(false);
 			gameControl.funCloseInfo(type);
 			gameControl.restore();
+			gameControl.windowFlag="无";
 		}
 	};
 
@@ -182,9 +180,6 @@ public class SpFrame extends JFrame implements WindowListener {
 			bagPanel.setLocation(52, 42);
 			bagPanel.setSize(800, 300);
 			contentPane.add(bagPanel);
-		}else{
-			bagPanel.setVisible(true);
-			//bagPanel.initData();
 		}
 	}
 
@@ -227,10 +222,10 @@ public class SpFrame extends JFrame implements WindowListener {
 		if(fubenPanel==null){
 			fubenPanel =new FubenPanel(1);
 			contentPane.add(fubenPanel);
-		}else{
+		}/*else{
 			fubenPanel.setVisible(true);
 			fubenPanel.initData();
-		}
+		}*/
 		
 	}
 	
@@ -384,14 +379,14 @@ public class SpFrame extends JFrame implements WindowListener {
 		if(parent!=null){
 			parent.setEnabled(false);
 		}
-		if(type==1){
+		if(type==Constant.Fuben){
 			fubenPanel.initData();
-		}else if(type==2){
+		}else if(type==Constant.State){
 			playerPanel.initData();
-		}else if(type==3){
+		}else if(type==Constant.Fight){
 			npc = fightControl.getNpc();
 			ftPanel.reload(gameControl.getPlayer(), npc);
-		}else if(type==5){
+		}else if(type==Constant.Bag){
 			bagPanel.openBag();
 		}
 		

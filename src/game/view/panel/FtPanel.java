@@ -5,6 +5,7 @@ import game.entity.NPC;
 import game.entity.Player;
 import game.thread.AwakenThread;
 import game.utils.Constant;
+import game.utils.SUtils;
 import game.view.TLabel;
 import game.view.TTextPane;
 import game.view.button.TButton;
@@ -139,8 +140,8 @@ public class FtPanel extends JPanel{
 		add(foeSu);
 		
 		/** 显示战斗动作的两把剑 */
-		ImageIcon image1 = new ImageIcon("src/game/img/one/黑剑反.png");
-		ImageIcon image2 = new ImageIcon("src/game/img/one/黑剑.png");
+		ImageIcon image1 = SUtils.loadImageIcon("/game/img/one/黑剑反.png");
+		ImageIcon image2 = SUtils.loadImageIcon("/game/img/one/黑剑.png");
 		myJian = new JLabel(image1) ;
 		myJian.setSize(image1.getIconWidth(), image1.getIconHeight());
 		foeJian = new JLabel(image2) ;
@@ -228,7 +229,7 @@ public class FtPanel extends JPanel{
 		});*/
 		
 		JLabel back = new JLabel();
-		image1 = new ImageIcon("src/game/img/back/FtBackA.png");
+		image1 = SUtils.loadImageIcon("/game/img/back/FtBackA.png");
 		back.setIcon(image1);
 		add(back);
 		back.setBounds(0, 0, image1.getIconWidth(), image1.getIconHeight());

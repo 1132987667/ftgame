@@ -159,7 +159,8 @@ public class SoundControl {
 		DataLine.Info info;
 		Clip clip = null;
 		try {
-			file = new File("src/game/sounds/" + str + ".wav");
+			String path = SoundControl.class.getResource("/").getPath();
+			file = new File(path+"game/sounds/" + str + ".wav");
 			stream = AudioSystem.getAudioInputStream(file);
 			format = stream.getFormat();
 			info = new DataLine.Info(Clip.class, format);
@@ -174,6 +175,6 @@ public class SoundControl {
 	}
 
 	public static void main(String[] args) {
-		SoundControl s = new SoundControl();
+		//SoundControl s = new SoundControl();
 	}
 }

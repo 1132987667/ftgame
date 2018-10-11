@@ -10,145 +10,150 @@ import java.util.List;
 
 import org.dom4j.Document;
 import org.dom4j.Node;
+
 /***
- * 表示人物和小怪的实体类
- * 都具有id
+ * 表示人物和小怪的实体类 都具有id
  * 
  *
  */
-public class NPC implements Serializable{
-	
+public class NPC implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private GameControl gameControl = GameControl.getInstance();
-	
 	public NPC() {
-		
 	}
-	
-	private String id = "" ;
 
-	private String name = null  ;
+	private String id = "";
+
+	private String name = null;
 	/** 描述 */
-	private String des = null ;
+	private String des = null;
 	/** 单位 */
-	private String unit = null ;
+	private String unit = null;
 	/** 对话 */
-	private String msg = null ;
+	private String msg = null;
 	
-	/** 等级(通过等级来确认经济)  */
-	private int rank = -1 ;
+	private String[] msgs = null ;
+	
+
+	/** 等级(通过等级来确认经济) */
+	private int rank = -1;
 	/** 品质 [普通,精英,稀有,霸主,王者] */
-	private int type = 0 ;
+	private int type = 0;
 	/** 是否为强化怪 */
-	private boolean isIntensify = false ;
+	private boolean isIntensify = false;
 	/** 是否被解析过 */
 	@SuppressWarnings("unused")
-	private boolean isAnalyze = false ;
-	
+	private boolean isAnalyze = false;
+
 	/** 决定属性生成的方式，随机属性还是固定 */
-	private String attrType = null ;
-	
-	
-	/** 怪物一级属性 力,敏,体力,精力,幸运值  */
-	private int li = 0 ;
-	private int min = 0 ;
-	private int tili = 0 ;
-	private int jingli = 0 ;
-	private int lucky = 0 ;
-	private int hit = 0 ;
-	
+	private String attrType = null;
+	/** 内功设定 */
+	private String ngStr;
+	/** 外功设定 */
+	private String wgStr;
+
+	private List<Gong> hasLeaNGs = new ArrayList<>();
+	/** 已经学会的外功 */
+	private List<Gong> hasLeaWGs = new ArrayList<>();
+
+	/** 怪物一级属性 力,敏,体力,精力,幸运值 */
+	private int li = 0;
+	private int min = 0;
+	private int tili = 0;
+	private int jingli = 0;
+	private int lucky = 0;
+	private int hit = 0;
+
 	/** 怪物二级属性 当前血量,蓝量,当前攻击,当前防御力,当前暴击几率 */
-	private int curHp = 0 ;
-	private int hp = 0 ;
-	private int curMp = 0 ;
-	private int mp = 0 ;
-	private int curAttack = 0 ;
-	private int attack = 0 ;
-	private int curDefense = 0 ;
-	private int defense = 0 ;
-	private int baoji = 0 ;
-	
-	private int suck = 0 ;
-	
-	private String[] action = null ;
-	
-	/*** 角色身上装备设置  头盔 项链 上衣 腰带 裤子 鞋子*/
-	private Equip weapon,helmet,necklace,coat,ring,waistband,trousers,shoes;
-	private Equip[] equipAry = {weapon,helmet,necklace,coat,ring,waistband,trousers,shoes} ;
-	private List<Equip>  spEquipList = null ;
-	
-	/**===================判断NPC功能=======================*/
+	private int curHp = 0;
+	private int hp = 0;
+	private int curMp = 0;
+	private int mp = 0;
+	private int curAttack = 0;
+	private int attack = 0;
+	private int curDefense = 0;
+	private int defense = 0;
+	private int baoji = 0;
+
+	private int suck = 0;
+
+	private String[] action = null;
+
+	/*** 角色身上装备设置 头盔 项链 上衣 腰带 裤子 鞋子 */
+	private Equip weapon, helmet, necklace, coat, ring, waistband, trousers, shoes;
+	private Equip[] equipAry = { weapon, helmet, necklace, coat, ring, waistband, trousers, shoes };
+	private List<Equip> spEquipList = null;
+
+	/** ===================判断NPC功能======================= */
 	/*** 判断是否能击杀 默认为false */
-	private boolean cankill = true ;
+	private boolean cankill = true;
 	/*** 是否为商人 默认为false */
-	private boolean isSell = false ;
+	private boolean canSell = false;
 	/*** 能否向他学习技能 默认为false */
-	private boolean canStudy = false ;
+	private boolean canStudy = false;
 	/*** 给与 */
-	private boolean canGive = false ;
-	
-	
+	private boolean canGive = false;
+
 	/*** ===交易数据=== */
-	/** 交易模式 bestTrader[极品商人] petTrader[宠物商人] skillTrader[技能商人] commonTrader[普通商人] */
-	private String sellMode = "" ;
+	/**
+	 * 交易模式 bestTrader[极品商人] petTrader[宠物商人] skillTrader[技能商人] commonTrader[普通商人]
+	 */
+	private String sellMode = "";
 	/** 商人是否一直出现 */
-	private String appearMode = "" ;
+	private String appearMode = "";
 	/** 如果商人出现是概率出现，那么，设置它出现的概率 */
-	private int appearLv = 0 ;
+	private int appearLv = 0;
 	/** 商人货物的数量 |当为极品商人或其他商人时需要 */
-	private int goodsNum = 0 ;
+	private int goodsNum = 0;
 	/** 商人货物列表|[装备][材料][技能书][图纸][宠物蛋] */
-	private List<Object> sellList = null ;
+	private List<Object> sellList = null;
+	
+	
+	private List<Tasks> tasks ;
+	
 	
 	/*** ===掉落设置==== */
 	/** 掉落技能书 */
-	private List<Skill> skillAry = null  ;
+	private List<Skill> skillAry = null;
 	/** 掉落装备 */
-	private List<Equip> dropEquipAry = null ;
+	private List<Equip> dropEquipAry = null;
 	/** 掉落金钱数 */
-	private int combatMoney = 0 ;
+	private int combatMoney = 0;
 	/** 获得经验数 */
-	private int combatExp = 0 ;
+	private int combatExp = 0;
 	/*** 掉落宠物设置 */
-	private List<Pet> petAry = null ;
-	
-	public void talk(){
-		
+	private List<Pet> petAry = null;
+
+	public void talk() {
+
 	}
-	
-	public void give(){
-		
+
+	public void give() {
+
 	}
+
 	/**
-	 * 逻辑:
-	 * 得到npc take动作的内容
-	 * 得到npc take动作具体事件的数量
-	 * 	逐个分析take具体事件
-	 * 	得到take具体事件需要给与npc的物品
-	 * 		加入到单次事件npc收取集合
-	 *  得到take具体事件npc需要给玩家的物品
-	 * 		加入具体事件npc赠送集合
-	 * 	迭代npc收取集合，查看玩家是否满足条件
-	 *  	满足则查看是否存在对应give事件
-	 *  	存在则执行give事件
+	 * 逻辑: 得到npc take动作的内容 得到npc take动作具体事件的数量 逐个分析take具体事件 得到take具体事件需要给与npc的物品
+	 * 加入到单次事件npc收取集合 得到take具体事件npc需要给玩家的物品 加入具体事件npc赠送集合 迭代npc收取集合，查看玩家是否满足条件
+	 * 满足则查看是否存在对应give事件 存在则执行give事件
 	 */
-	public void task(){
+	public void task() {
+		SUtils SUtils = new SUtils();
 		Document document = SUtils.load("src/game/xml/npc.xml");
-		String xPath = "/root/npc[id='"+id+"']/action/ac[@type='take']/take" ;
-		//Node node = document.selectSingleNode(xPath);
+		String xPath = "/root/npc[id='" + id + "']/action/ac[@type='take']/take";
+		// Node node = document.selectSingleNode(xPath);
 		List<Node> nodeList = document.selectNodes(xPath);
 		/** npc全部的收取物品信息 */
 		List<List<Item>> takeList = new ArrayList<>();
 		List<List<Item>> giveList = new ArrayList<>();
 		@SuppressWarnings("unused")
-		boolean giveFlag = true ;
-		boolean takeFlag = true ;
+		boolean giveFlag = true;
+		boolean takeFlag = true;
 		for (int i = 0; i < nodeList.size(); i++) {
-			if(nodeList.get(i)!=null){
+			if (nodeList.get(i) != null) {
 				/**
-				 * need:[1001,,1];
-				 * give:[1002,name,1]
+				 * need:[1001,,1]; give:[1002,name,1]
 				 */
 				String str = nodeList.get(i).getText();
 				String[] strAry = str.split(";");
@@ -159,99 +164,89 @@ public class NPC implements Serializable{
 					/** 单个任务需要给予的物品集合 */
 					List<Item> singleTakeList = new ArrayList<>();
 					List<Item> singleGiveList = new ArrayList<>();
-					String tempStr = strAry[j] ;
+					String tempStr = strAry[j];
 					int start = tempStr.indexOf("[");
 					/** 1001,name,1 */
-					String temp = tempStr.substring(start+1,tempStr.length()-1);
-					/**[1001],[name],[1]*/
+					String temp = tempStr.substring(start + 1, tempStr.length() - 1);
+					/** [1001],[name],[1] */
 					String[] info = temp.split(",");
-					Item item = null ;
-					/*** id<8000 装备 id>8000 其他   */
-					if(SUtils.conStrtoInt(info[0])>=8000){
+					Item item = null;
+					/*** id<8000 装备 id>8000 其他 */
+					if (SUtils.conStrtoInt(info[0]) >= 8000) {
 						item = gameControl.getEquipMap().get(info[0]);
-					}else{
+					} else {
 						/** 还未进行处理 */
 					}
 					/** 设置数量 */
 					item.setNum(SUtils.conStrtoInt(info[2]));
 					item = (Item) ArchiveUtils.depthClone(item);
-					if(tempStr.startsWith("need")){//玩家需要给npc的
+					if (tempStr.startsWith("need")) {// 玩家需要给npc的
 						singleTakeList.add(item);
-					}else if(strAry[j].startsWith("give")){//npc需要给玩家的
+					} else if (strAry[j].startsWith("give")) {// npc需要给玩家的
 						singleGiveList.add(item);
 					}
-					if(singleTakeList.size()>0){
+					if (singleTakeList.size() > 0) {
 						takeList.add(singleTakeList);
 					}
-					if(singleGiveList.size()>0){
+					if (singleGiveList.size() > 0) {
 						giveList.add(singleGiveList);
 					}
 				}
 			}
 		}
-		/** 判断玩家是否满足give条件  */
+		/** 判断玩家是否满足give条件 */
 		Player player = gameControl.getPlayer();
 		for (int i = 0; i < takeList.size(); i++) {
 			List<Item> singleTakeList = takeList.get(i);
 			/** 判断单次任务物品清单是否满足 */
 			for (int j = 0; j < singleTakeList.size(); j++) {
-				Item tempItem= singleTakeList.get(i);
-				if(tempItem instanceof Equip){
+				Item tempItem = singleTakeList.get(i);
+				if (tempItem instanceof Equip) {
 					/** 如果不存在，不满足条件 */
-					if(!gameControl.isExistEquip(((Equip) tempItem).getId())){
-						takeFlag = false ;
+					if (!gameControl.isExistEquip(((Equip) tempItem).getId())) {
+						takeFlag = false;
 					}
-				}else{/** 是除了装备外的其他东西，还未进行处理 */
-					
+				} else {/** 是除了装备外的其他东西，还未进行处理 */
+
 				}
 			}
 			/** 满足则进行操作 */
-			if(takeFlag){
+			if (takeFlag) {
 				/** 先判断玩家背包容量是否充足 */
-				if(player.isBagFull()){
+				if (player.isBagFull()) {
 					gameControl.append("你的背包容量不足，请先进行清理！\n", 2);
-					return ;
+					return;
 				}
 				for (int j = 0; j < singleTakeList.size(); j++) {
-					Item tempItem= singleTakeList.get(i);
-					if(tempItem instanceof Equip){
+					Item tempItem = singleTakeList.get(i);
+					if (tempItem instanceof Equip) {
 						/** 移除 */
-						player.removeEquip((Equip)tempItem);
-						gameControl.append("你失去了"+tempItem.getName()+"!\n", 2);
-					}else{
+						player.removeEquip((Equip) tempItem);
+						gameControl.append("你失去了" + tempItem.getName() + "!\n", 2);
+					} else {
 						/** 还未进行处理 */
 					}
 				}
 				List<Item> singleGiveList = takeList.get(i);
 				for (int j = 0; j < singleGiveList.size(); j++) {
 					Item tempItem = singleGiveList.get(j);
-					if(tempItem instanceof Equip){
+					if (tempItem instanceof Equip) {
 						/** 加入背包,得到了装备 */
-						player.obtainEquip((Equip)tempItem);
-						gameControl.append("你得到了"+tempItem.getName()+",数量为:"+tempItem.getNum()+"!\n", 3);
-					}else{
+						player.obtainEquip((Equip) tempItem);
+						gameControl.append("你得到了" + tempItem.getName() + ",数量为:" + tempItem.getNum() + "!\n", 3);
+					} else {
 						/** 还未进行处理 */
 					}
 				}
 			}
 		}
-		
+
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 	/** npc接受玩家东西 */
-	public void take(){
-		
+	public void take() {
+
 	}
-	
-	
 
 	public String getName() {
 		return name;
@@ -493,20 +488,12 @@ public class NPC implements Serializable{
 		this.shoes = shoes;
 	}
 
-	public boolean isCankill() {
+	public boolean Cankill() {
 		return cankill;
 	}
 
 	public void setCankill(boolean cankill) {
 		this.cankill = cankill;
-	}
-
-	public boolean isSell() {
-		return isSell;
-	}
-
-	public void setSell(boolean isSell) {
-		this.isSell = isSell;
 	}
 
 	public boolean isCanStudy() {
@@ -525,7 +512,6 @@ public class NPC implements Serializable{
 		this.skillAry = skillAry;
 	}
 
-	
 	public Equip[] getEquipAry() {
 		return equipAry;
 	}
@@ -573,10 +559,10 @@ public class NPC implements Serializable{
 	public void setPetAry(List<Pet> petAry) {
 		this.petAry = petAry;
 	}
-	
-	public NPC getFubenNpc(NPC npc){
-		npc.cankill = true ;
-		return npc ;
+
+	public NPC getFubenNpc(NPC npc) {
+		npc.cankill = true;
+		return npc;
 	}
 
 	public int getSuck() {
@@ -587,43 +573,43 @@ public class NPC implements Serializable{
 		this.suck = suck;
 	}
 
-	//	public Equip weapon,helmet,necklace,coat,ring,waistband,trousers,shoes;
+	// public Equip weapon,helmet,necklace,coat,ring,waistband,trousers,shoes;
 	@Override
 	public String toString() {
-		return "NPC [name=" + name + ", rank=" + rank + ", type=" + type
-				+ ", li=" + li + ", min=" + min + ", tili=" + tili
-				+ ", jingli=" + jingli + ", lucky=" + lucky + ", hp=" + hp
-				+ ", mp=" + mp + ", attack=" + attack + ", defense=" + defense
-				+ ", baoji=" + baoji + ", suck=" + suck + ", weapon=" + equipAry[0]
-				+ ", helmet=" + equipAry[1] + ", necklace=" + equipAry[2] + ", coat="
-				+ equipAry[3] + ", ring=" + equipAry[4]+ ", waistband=" + equipAry[5] 
-				+ ", trousers=" + equipAry[6] + ", shoes=" + equipAry[7]  + "]";
+		return "NPC [name=" + name + ", rank=" + rank + ", type=" + type + ", li=" + li + ", min=" + min + ", tili="
+				+ tili + ", jingli=" + jingli + ", lucky=" + lucky + ", hp=" + hp + ", mp=" + mp + ", attack=" + attack
+				+ ", defense=" + defense + ", baoji=" + baoji + ", suck=" + suck + ", weapon=" + equipAry[0]
+				+ ", helmet=" + equipAry[1] + ", necklace=" + equipAry[2] + ", coat=" + equipAry[3] + ", ring="
+				+ equipAry[4] + ", waistband=" + equipAry[5] + ", trousers=" + equipAry[6] + ", shoes=" + equipAry[7]
+				+ "]";
 	}
-	
+
 	@Override
 	public boolean equals(Object obj) {
-		NPC npc = (NPC) obj ;
-		if(npc.getName().equals(name)&&npc.getRank()==rank&&npc.getType()==type){
-			if(npc.getLi()==li&&npc.getMin()==min&&npc.getTili()==tili&&npc.getJingli()==jingli&&npc.getLucky()==lucky){
-				if(npc.getAttack()==attack&&npc.getDefense()==defense&&npc.getHp()==hp&&npc.getMp()==mp){
+		NPC npc = (NPC) obj;
+		if (npc.getName().equals(name) && npc.getRank() == rank && npc.getType() == type) {
+			if (npc.getLi() == li && npc.getMin() == min && npc.getTili() == tili && npc.getJingli() == jingli
+					&& npc.getLucky() == lucky) {
+				if (npc.getAttack() == attack && npc.getDefense() == defense && npc.getHp() == hp
+						&& npc.getMp() == mp) {
 					return true;
 				}
 			}
 		}
 		return false;
 	}
-	
-	public String npcInfo(){
-		StringBuffer str = new StringBuffer("敌人信息:\n") ;
-		str.append(name+"	rank:"+rank+"	type:"+Equip.typeDesAry[type]+"\n");
-		str.append("hp:"+hp+"  mp:"+mp+"  atk:"+attack+"  def:"+defense+"\n");
+
+	public String npcInfo() {
+		StringBuffer str = new StringBuffer("敌人信息:\n");
+		str.append(name + "	rank:" + rank + "	type:" + Equip.typeDesAry[type] + "\n");
+		str.append("hp:" + hp + "  mp:" + mp + "  atk:" + attack + "  def:" + defense + "\n");
 		for (int i = 0; i < equipAry.length; i++) {
-			if(equipAry[i]!=null){
+			if (equipAry[i] != null) {
 				str.append(equipAry[i]);
 			}
 		}
 		return str.toString();
-		
+
 	}
 
 	public String getId() {
@@ -642,7 +628,7 @@ public class NPC implements Serializable{
 		this.ring = ring;
 	}
 
-	public boolean isCanGive() {
+	public boolean CanGive() {
 		return canGive;
 	}
 
@@ -697,6 +683,60 @@ public class NPC implements Serializable{
 	public void setAttrType(String attrType) {
 		this.attrType = attrType;
 	}
-	
 
+	public String getNgStr() {
+		return ngStr;
+	}
+
+	public void setNgStr(String ngStr) {
+		this.ngStr = ngStr;
+	}
+
+	public String getWgStr() {
+		return wgStr;
+	}
+
+	public void setWgStr(String wgStr) {
+		this.wgStr = wgStr;
+	}
+
+	public List<Gong> getHasLeaNGs() {
+		return hasLeaNGs;
+	}
+
+	public void setHasLeaNGs(List<Gong> hasLeaNGs) {
+		this.hasLeaNGs = hasLeaNGs;
+	}
+
+	public List<Gong> getHasLeaWGs() {
+		return hasLeaWGs;
+	}
+
+	public void setHasLeaWGs(List<Gong> hasLeaWGs) {
+		this.hasLeaWGs = hasLeaWGs;
+	}
+
+	public List<Tasks> getTasks() {
+		return tasks;
+	}
+
+	public void setTasks(List<Tasks> tasks) {
+		this.tasks = tasks;
+	}
+
+	public String[] getMsgs() {
+		return msgs;
+	}
+
+	public void setMsgs(String[] msgs) {
+		this.msgs = msgs;
+	}
+
+	public boolean CanSell() {
+		return canSell;
+	}
+
+	public void setCanSell(boolean canSell) {
+		this.canSell = canSell;
+	}
 }

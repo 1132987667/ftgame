@@ -53,7 +53,7 @@ public class XMLTool extends JFrame{
 	private JTextField name,des,rank ;
 	private static JTable table ;
 	private static JTable gongEffect;
-	
+	private SUtils sUtils = new SUtils(); 
 	private int width , height ;
 	
 	private DefaultTableModel tableModel ;
@@ -233,7 +233,7 @@ public class XMLTool extends JFrame{
 					int rankR = SUtils.conStrtoInt(ary[1]);
 					Ditu fb = new Ditu(0+"",name.getText(), des.getText(), rankL, rankR);
 					fb.setScene(list); 
-					SUtils.editXML("", curInx, fb);
+					sUtils.editXML("", curInx, fb);
 				}else if(curInx==3){
 					int length = table.getRowCount() ;
 					System.out.println("保存功法信息,共:"+length+"条！");
@@ -252,7 +252,7 @@ public class XMLTool extends JFrame{
 						tmpGong.setType(SUtils.conStrtoInt(table.getValueAt(i, 6).toString()));
 						gongList.add(tmpGong);
 					}
-					SUtils.saveGongInfo(gongList);
+					sUtils.saveGongInfo(gongList);
 				}else if(curInx==4){
 					int length = table.getRowCount() ;
 					System.out.println("保存技能信息,共:"+length+"条！");
@@ -286,7 +286,7 @@ public class XMLTool extends JFrame{
 						tmpGong.curCd = 0 ;
 						gongList.add(tmpGong);
 					}
-					SUtils.saveSkillInfo(gongList);
+					sUtils.saveSkillInfo(gongList);
 				}
 				
 			}
@@ -394,7 +394,7 @@ public class XMLTool extends JFrame{
 		/** 重新设置 数据 */
 		String key = null;
 		NPC value = null;
-		Map<String, NPC> equipMap = SUtils.loadNpc();
+		Map<String, NPC> equipMap = sUtils.loadNpc();
 		Iterator<String> iter = equipMap.keySet().iterator();
 		String[] textAry = null ;
 		/** 填充表格 */
@@ -425,7 +425,7 @@ public class XMLTool extends JFrame{
 		/** 重新设置 数据 */
 		String key = null;
 		Gong value = null;
-		gongMap = SUtils.loadGong();
+		gongMap = sUtils.loadGong();
 		initSize = gongMap.size() ;
 		Iterator<String> iter = gongMap.keySet().iterator();
 		String[] textAry = null ;
@@ -461,7 +461,7 @@ public class XMLTool extends JFrame{
 		/** 重新设置 数据 */
 		String key = null;
 		Skill value = null;
-		skillmap = SUtils.loadSkill();
+		skillmap = sUtils.loadSkill();
 		initSize = skillmap.size() ;
 		Iterator<String> iter = skillmap.keySet().iterator();
 		String[] textAry = null ;
@@ -602,7 +602,7 @@ public class XMLTool extends JFrame{
 	}
 	
 	public void updateGong(){
-		gongMap = SUtils.loadGong() ;
+		gongMap = sUtils.loadGong() ;
 	}
 	
 }

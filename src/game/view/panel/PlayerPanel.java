@@ -500,7 +500,7 @@ public class PlayerPanel extends JPanel {
 						drugBu.reload(22);
 						drugBu.setBounds(0, 394, 40, 26);
 						/** 重新设置背景图 */
-						ImageIcon img = new ImageIcon("src/game/img/back/equipAndGong.png");
+						ImageIcon img = SUtils.loadImageIcon("/game/img/back/equipAndGong.png");
 						back.setIcon(img);
 						parent.repaint();
 					}else{
@@ -515,7 +515,7 @@ public class PlayerPanel extends JPanel {
 						drugBu.reload(19);
 						drugBu.setBounds(8, 378, 64, 40);
 						/** 重新设置背景图 */
-						ImageIcon img = new ImageIcon("src/game/img/back/attrAndGong.png");
+						ImageIcon img = SUtils.loadImageIcon("/game/img/back/attrAndGong.png");
 						back.setIcon(img);
 						parent.repaint();
 					}

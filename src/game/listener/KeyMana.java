@@ -17,12 +17,12 @@ import java.awt.event.KeyListener;
  *
  */
 public class KeyMana implements KeyListener{
-	public static final char Map = 'M' ;
-	public static final char Bag = 'B' ;
-	public static final char Task = 'Q' ;
-	public static final char State = 'V' ;
-	public static final char Juqing = 'J' ;
-	public static final char Fuben = 'F' ;
+	public static final String Map = "M" ;
+	public static final String Bag = "B" ;
+	public static final String Task = "Q" ;
+	public static final String State = "V" ;
+	public static final String Juqing = "J" ;
+	public static final String Fuben = "F" ;
 	
 	public FunListener funListener ;
 	
@@ -32,31 +32,31 @@ public class KeyMana implements KeyListener{
 	
 	@Override
 	public void keyTyped(KeyEvent e) {
-		System.out.println(";;;;;;;;;;;;;;;;;;;;;;");
 	}
 
 	@Override
 	public void keyPressed(KeyEvent e) {
-		System.out.println("按键了");
 		char a = e.getKeyChar();
-		switch (a) {
+		String keyChar = (a+"").toUpperCase() ;
+		System.out.println("按键了"+a+"键");
+		switch (keyChar) {
 		case Map:
-			funListener.call("地图");
+			funListener.call(Constant.SMap);
 			break;
 		case Bag:
-			funListener.call("背包");
+			funListener.call(Constant.SBag);
 			break;
 		case Task:
-			funListener.call("任务");
+			funListener.call(Constant.STask);
 			break;
 		case State:
-			funListener.call("状态");
+			funListener.call(Constant.SState);
 			break;
 		case Juqing:
-			funListener.call("剧情");
+			funListener.call(Constant.SJiangHu);
 			break;
 		case Fuben:
-			funListener.call("副本");
+			funListener.call(Constant.SFuben);
 			break;
 		default:
 			break;
@@ -65,7 +65,6 @@ public class KeyMana implements KeyListener{
 
 	@Override
 	public void keyReleased(KeyEvent e) {
-	System.out.println(".................");	
 	}
 
 }

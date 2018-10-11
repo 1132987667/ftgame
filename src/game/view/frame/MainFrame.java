@@ -1,4 +1,3 @@
-
 package game.view.frame;
 
 import game.control.GameControl;
@@ -7,6 +6,7 @@ import game.entity.Player;
 import game.listener.FunListener;
 import game.listener.KeyMana;
 import game.utils.Constant;
+import game.utils.SUtils;
 import game.view.TTextPane;
 import game.view.button.MButton;
 import game.view.button.TButton;
@@ -16,8 +16,6 @@ import game.view.panel.TestPanel;
 
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -32,7 +30,7 @@ import javax.swing.UIManager;
  * @author yilong22315
  *
  */
-public class MainFrame extends JFrame implements KeyListener{
+public class MainFrame extends JFrame {
 	private static final long serialVersionUID = 1L;
 	/**	
 	 *	1.人物面板
@@ -166,7 +164,7 @@ public class MainFrame extends JFrame implements KeyListener{
 		/** 设置人物属性的背景面板 */
 		JLabel back = new JLabel();
 		back.setOpaque(false);
-		ImageIcon img = new ImageIcon("src/game/img/back/backC.png") ;
+		ImageIcon img = SUtils.loadImageIcon("/game/img/back/backC.png") ;
 		back.setIcon(img);
 		playerP.add(back);
 		back.setBounds(0, 0, img.getIconWidth(), img.getIconHeight());
@@ -192,9 +190,6 @@ public class MainFrame extends JFrame implements KeyListener{
 		//fightJpanel.setBackground(Color.red);
 		//fightJpanel.setBorder(BorderFactory.createEtchedBorder());
 		gameControl.setFightJpanel(fightJpanel);
-		
-		addKeyListener(this);
-		setFocusable(true);
 		
 		/** 游戏信息 */
 		infoP = new TTextPane( rightWidth, 180);
@@ -239,13 +234,18 @@ public class MainFrame extends JFrame implements KeyListener{
 		//panelG.setBackground(Color.RED);
 		
 		JLabel tianBack = new JLabel();
-		tianBack.setIcon(new ImageIcon("src/game/img/back/select2.png"));
+		tianBack.setIcon(SUtils.loadImageIcon("/game/img/back/select2.png"));
 		tianBack.setBounds(0, 0, tianPanel.getWidth(), tianPanel.getHeight());
 		tianPanel.add(tianBack);
 		
 		/** 初始化弹窗监听器 */
 		funListener = new FunListener(this,archive,player);
-		
+		gameControl.initFunFrame(funListener);
+		keyMana = new KeyMana(funListener);
+		gameControl.setKeyMana(keyMana);
+		addKeyListener(keyMana);
+		infoP.addKeyListener(keyMana);
+		setFocusable(true);
 		
 		/** 功能 装备技能。。。  */
 		functionP = new JPanel() ;
@@ -378,53 +378,6 @@ public class MainFrame extends JFrame implements KeyListener{
 		attrAry[6].setText(player.getAttack()+"");
 		attrAry[7].setText(player.getDefense()+"");
 	}
+
 	
-	public static final String Map = "M" ;
-	public static final String Bag = "B" ;
-	public static final String Task = "Q" ;
-	public static final String State = "V" ;
-	public static final String Juqing = "J" ;
-	public static final String Fuben = "F" ;
-	
-	@Override
-	public void keyTyped(KeyEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void keyPressed(KeyEvent e) {
-		char a = e.getKeyChar();
-		String keyChar = (a+"").toUpperCase() ;
-		System.out.println("按键了"+a+"aa");
-		switch (keyChar) {
-		case Map:
-			funListener.call("地图");
-			break;
-		case Bag:
-			funListener.call("背包");
-			break;
-		case Task:
-			funListener.call("任务");
-			break;
-		case State:
-			funListener.call("状态");
-			break;
-		case Juqing:
-			funListener.call("剧情");
-			break;
-		case Fuben:
-			funListener.call("副本");
-			break;
-		default:
-			break;
-		}
-	}
-
-	@Override
-	public void keyReleased(KeyEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
 }

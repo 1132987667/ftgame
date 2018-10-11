@@ -28,6 +28,7 @@ import org.dom4j.Element;
 import org.dom4j.Node;
 
 public class NpcListener implements ActionListener{
+	private Random rd = new Random() ;
 	private GameControl gameControl = GameControl.getInstance();
 	/** 战斗控制器 */
 	private FightControl fightControl = FightControl.getInstance();
@@ -56,7 +57,8 @@ public class NpcListener implements ActionListener{
 		curBu = (MButton) e.getSource();
 		npc = curBu.getNpc();
 		/** 此时的npc实体类中只有基本数据 */
-		npcActionAnalyze(npc);
+		showNpcAc(npc);
+		//npcActionAnalyze(npc);
 		
 		System.out.println(npc.getName()+"被点击！");
 		fightControl.setNpc(npc);
@@ -100,6 +102,50 @@ public class NpcListener implements ActionListener{
 		}
 	}
 	
+	/**
+	 * 界面上设置各个交互按钮
+	 * @param npc
+	 */
+	public void showNpcAc(NPC npc) {
+		/* view, talk, kill, give, trading, tasks */
+		MButton[] actionBu = gameControl.getAction();
+		gameControl.initAcBustatus();
+		
+		/** 交流 */
+		actionBu[1].used = true ;
+		if(npc.getTasks().size()==0) {
+			final String[] msgs = npc.getMsgs() ;
+			if(actionBu[1].getActionListeners().length==0) {
+				actionBu[1].addActionListener(new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						int num = rd.nextInt(msgs.length);		
+						gameControl.append(msgs[num].trim()+"\n", 1);
+					}
+				});
+			}
+		}else {
+			
+		}
+		
+		if(npc.Cankill()) {
+			actionBu[2].used = true ;
+			/** 无监听则增加监听 */
+			if(actionBu[2].getActionListeners().length==0) 
+				actionBu[2].addActionListener(killListener);
+		}
+		
+		if(npc.CanGive()) {
+			actionBu[3].used = true ;
+		}
+		
+		if(npc.CanSell()) {
+			actionBu[4].used = true ;
+			actionBu[4].addActionListener(tradListener);
+		}
+		gameControl.setAction(actionBu);
+	}
+	
 	
 	/***
 	 * 在点击了副本场景中的npc之后，在信息面板中显示npc的信息
@@ -141,7 +187,8 @@ public class NpcListener implements ActionListener{
 	 */
 	public void npcActionAnalyze(final NPC npc){
 		String id = npc.getId();
-		Document document = SUtils.load("src/game/xml/npc.xml");
+		SUtils SUtils = new SUtils() ;
+		Document document = SUtils.load("game/xml/npc.xml");
 		Node node = document.selectSingleNode("/root/npc[id='"+id+"']/action");
 		Element action = null ;
 		if(node==null){
@@ -227,8 +274,8 @@ public class NpcListener implements ActionListener{
 		}
 		/*** 得到所有动作按钮 */
 		MButton[] actionBu = gameControl.getAction();
-		System.out.println(npc.getName()+"能否击杀?"+npc.isCankill());
-		if(npc.isCankill()){
+		System.out.println(npc.getName()+"能否击杀?"+npc.Cankill());
+		if(npc.Cankill()){
 			actionBu[2] = new MButton("战斗", 2);
 			/** 添加击杀动作 */
 			actionBu[2].addActionListener(killListener);
@@ -270,10 +317,20 @@ public class NpcListener implements ActionListener{
 				player.setCurHp(player.getHp());
 				fightControl.getFtFrame().setVisible(true);
 				sp3.reload(3);
-				
 			}
 		}
 	};
 	
+	ActionListener tradListener = new ActionListener() {
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			gameControl.append("进行【", 0);
+			gameControl.append("交易", 5);
+			gameControl.append("】!\n", 0);
+			List<Object> list = npc.getSellList() ;
+			/** 显示商人交易的物品 */
+		}
+	};
+			
 	
 }

@@ -296,7 +296,7 @@ public class TestPanel extends JPanel {
 	ActionListener ac = new ActionListener() {
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			ImageIcon image = new ImageIcon("src/game/img/button/type1.png");
+			ImageIcon image = SUtils.loadImageIcon("/game/img/button/type1.png");
 			JOptionPane.showMessageDialog(panel, "", "测试", 0, image);
 		}
 	};

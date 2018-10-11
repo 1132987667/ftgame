@@ -45,7 +45,7 @@ public class GongPanel extends JPanel {
 	/** 标签面板 */
 	private JTabbedPane skillPanel;
 	/** 四种已习得功法 */
-	private JPanel neiGongPanel, waiGongPanel, passiveSkill, activeSkill;
+	private JPanel neiGongPanel = null, waiGongPanel = null, passiveSkill = null, activeSkill = null ;
 	private JPanel[] ary = { neiGongPanel, waiGongPanel, passiveSkill,
 			activeSkill };
 	private String[] nameAry = { "内", "外", "被动", "主动" };

@@ -1,14 +1,22 @@
 package game.view.button;
 
 import game.utils.SUtils;
+import game.view.ui.ImageIconCopy;
 
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.Insets;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.image.ImageObserver;
+import java.awt.image.ImageProducer;
+import java.io.IOException;
+import java.io.InputStream;
 
+import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -16,18 +24,17 @@ import javax.swing.SwingConstants;
 
 /**
  * 放置了图片的按钮
+ * 
  * @author yilong22315
  *
  */
 public class TButton extends JButton implements MouseListener {
-	Color[] c = { new Color(67, 110, 238), new Color(28, 134, 238),
-			new Color(16, 78, 139) };
+	Color[] c = { new Color(67, 110, 238), new Color(28, 134, 238), new Color(16, 78, 139) };
 	private static final long serialVersionUID = 1L;
 	private String imageName = null;
 	protected ImageIcon image1 = null;
 	protected ImageIcon image2 = null;
 	protected ImageIcon image3 = null;
-	protected ImageIcon image4 = null;
 	public int type;
 
 	public TButton(String str, int type) {
@@ -76,19 +83,19 @@ public class TButton extends JButton implements MouseListener {
 			imageName = "type";
 			break;
 		case 2:
-			imageName = "灰黑";
+			imageName = "huihei";
 			break;
 		case 3:
-			imageName = "蓝灰";
+			imageName = "lanhui";
 			break;
 		case 4:
-			imageName = "棕";
+			imageName = "zong";
 			break;
 		case 5:
-			imageName = "存档";
+			imageName = "archive";
 			break;
 		case 6:
-			imageName = "type1";
+			imageName = "type";
 			break;
 		case 7:
 			imageName = "type2";
@@ -112,7 +119,7 @@ public class TButton extends JButton implements MouseListener {
 			imageName = "dragA";
 			break;
 		case 14:
-			imageName = "picA";
+			imageName = "PicA";
 			break;
 		case 15:
 			imageName = "BuF";
@@ -151,20 +158,24 @@ public class TButton extends JButton implements MouseListener {
 			imageName = "type";
 			break;
 		}
+		System.out.println("type:" + type);
 		if (type == 5) {
-			image1 = new ImageIcon("src/game/img/archive/" + imageName
-					+ "1.png");
-			image2 = new ImageIcon("src/game/img/archive/" + imageName
-					+ "2.png");
-			image3 = new ImageIcon("src/game/img/archive/" + imageName
-					+ "3.png");
+			image1 = SUtils.loadImageIcon("/game/img/archive/" + imageName + "1.png");
+			image2 = SUtils.loadImageIcon("/game/img/archive/" + imageName + "2.png");
+			image3 = SUtils.loadImageIcon("/game/img/archive/" + imageName + "3.png");
 		} else if (type == 14) {
-			image1 = new ImageIcon("src/game/img/one/" + imageName + ".png");
+			image1 = SUtils.loadImageIcon("/game/img/one/" + imageName + ".png");
+		} else if (type == -1) {
+
 		} else {
-			image1 = new ImageIcon("src/game/img/button/" + imageName + "1.png");
-			image2 = new ImageIcon("src/game/img/button/" + imageName + "2.png");
-			image3 = new ImageIcon("src/game/img/button/" + imageName + "3.png");
-			image4 = new ImageIcon("src/game/img/button/" + imageName + "4.png");
+			try {
+				image1 = SUtils.loadImageIcon("/game/img/button/" + imageName + "1.png");
+				image2 = SUtils.loadImageIcon("/game/img/button/" + imageName + "2.png");
+				image3 = SUtils.loadImageIcon("/game/img/button/" + imageName + "3.png");
+
+			} catch (NullPointerException e) {
+			}
+			// image4 = new ImageIcon("/game/img/button/" + imageName + "4.png");
 		}
 
 	}
@@ -220,100 +231,105 @@ public class TButton extends JButton implements MouseListener {
 			this.setIcon(image1);
 		}
 	}
-	
-	public void reload(int theType){
-			// System.out.println("type:"+type);
-			switch (theType) {
-			case -1:
-				break;
-			case 1:
-				imageName = "type";
-				break;
-			case 2:
-				imageName = "灰黑";
-				break;
-			case 3:
-				imageName = "蓝灰";
-				break;
-			case 4:
-				imageName = "棕";
-				break;
-			case 5:
-				imageName = "存档";
-				break;
-			case 6:
-				imageName = "type1";
-				break;
-			case 7:
-				imageName = "type2";
-				break;
-			case 8:
-				imageName = "纯色";
-				break;
-			case 9:
-				imageName = "精致";
-				break;
-			case 10:
-				imageName = "蓝色";
-				break;
-			case 11:
-				imageName = "close";
-				break;
-			case 12:
-				imageName = "yd";
-				break;
-			case 13:
-				imageName = "dragA";
-				break;
-			case 14:
-				imageName = "picA";
-				break;
-			case 15:
-				imageName = "BuF";
-				break;
-			case 16:
-				imageName = "BuK";
-				break;
-			case 17:
-				imageName = "macheA";
-				break;
-			case 18:
-				imageName = "baiheA";
-				break;
-			case 19:
-				imageName = "chuanA";
-				break;
-			case 20:
-				imageName = "chuanB";
-				break;
-			case 21:
-				imageName = "shuzhi";
-				break;
-			case 22:
-				imageName = "jiuqi";
-				break;
-			case 23:
-				imageName = "makeB";
-				break;
-			default:
-				imageName = "type";
-				break;
+
+	public void reload(int theType) {
+		// System.out.println("type:"+type);
+		switch (theType) {
+		case -1:
+			break;
+		case 1:
+			imageName = "type";
+			break;
+		case 2:
+			imageName = "huihei";
+			break;
+		case 3:
+			imageName = "lanhui";
+			break;
+		case 4:
+			imageName = "zong";
+			break;
+		case 5:
+			imageName = "archive";
+			break;
+		case 6:
+			imageName = "type";
+			break;
+		case 7:
+			imageName = "type2";
+			break;
+		case 8:
+			imageName = "纯色";
+			break;
+		case 9:
+			imageName = "精致";
+			break;
+		case 10:
+			imageName = "蓝色";
+			break;
+		case 11:
+			imageName = "close";
+			break;
+		case 12:
+			imageName = "yd";
+			break;
+		case 13:
+			imageName = "dragA";
+			break;
+		case 14:
+			imageName = "picA";
+			break;
+		case 15:
+			imageName = "BuF";
+			break;
+		case 16:
+			imageName = "BuK";
+			break;
+		case 17:
+			imageName = "macheA";
+			break;
+		case 18:
+			imageName = "baiheA";
+			break;
+		case 19:
+			imageName = "chuanA";
+			break;
+		case 20:
+			imageName = "chuanB";
+			break;
+		case 21:
+			imageName = "shuzhi";
+			break;
+		case 22:
+			imageName = "jiuqi";
+			break;
+		case 23:
+			imageName = "makeB";
+			break;
+		default:
+			imageName = "type";
+			break;
+		}
+		if (type == 5) {
+			image1 = SUtils.loadImageIcon("/game/img/archive/" + imageName + "1.png");
+			image2 = SUtils.loadImageIcon("/game/img/archive/" + imageName + "2.png");
+			image3 = SUtils.loadImageIcon("/game/img/archive/" + imageName + "3.png");
+		} else if (type == 14) {
+			image1 = SUtils.loadImageIcon("/game/img/one/" + imageName + ".png");
+		} else if (type == -1) {
+
+		} else {
+			try {
+				image1 = SUtils.loadImageIcon("/game/img/button/" + imageName + "1.png");
+				image2 = SUtils.loadImageIcon("/game/img/button/" + imageName + "2.png");
+				image3 = SUtils.loadImageIcon("/game/img/button/" + imageName + "3.png");
+
+			} catch (NullPointerException e) {
 			}
-			if (type == 5) {
-				image1 = new ImageIcon("src/game/img/archive/" + imageName
-						+ "1.png");
-				image2 = new ImageIcon("src/game/img/archive/" + imageName
-						+ "2.png");
-				image3 = new ImageIcon("src/game/img/archive/" + imageName
-						+ "3.png");
-			} else if (type == 14) {
-				image1 = new ImageIcon("src/game/img/one/" + imageName + ".png");
-			} else {
-				image1 = new ImageIcon("src/game/img/button/" + imageName + "1.png");
-				image2 = new ImageIcon("src/game/img/button/" + imageName + "2.png");
-				image3 = new ImageIcon("src/game/img/button/" + imageName + "3.png");
-				image4 = new ImageIcon("src/game/img/button/" + imageName + "4.png");
-			}
-			setIcon(image1);
+			// image4 = new ImageIcon("/game/img/button/" + imageName + "4.png");
+		}
+
+		setIcon(image1);
 	}
+
 }

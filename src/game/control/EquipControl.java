@@ -57,6 +57,8 @@ public class EquipControl {
 	/** 武器资料库所有武器信息 */
 	public Map<String,Equip> equipMap = null;
 
+	private SUtils SUtils = new SUtils() ;
+	
 	protected EquipControl() {
 		/** 加载武器信息 */
 		equipMap = SUtils.loadEquip();
@@ -470,7 +472,7 @@ public class EquipControl {
 		String attrValueStr = null;
 		/** 判断词条中种类，根据不同规则设定属性 */
 		/** oneAdd 词条中属性为生成一级属性 */
-		if (attrType[0].equals(attr.type)) {
+		if (attrType[0].equals(attr.attrName)) {
 			switch (attrName) {
 			case "tili":// 10 - 234
 			case "jingli": // 10 - 234
@@ -503,7 +505,7 @@ public class EquipControl {
 			attrValueStr = addAttr.attrValue + "";
 			addAttr.des = "● " + oneAttrNameAry[addAttr.type] + "+"
 					+ attrValueStr.substring(0, attrValueStr.length() - 2);
-		} else if (attrType[1].equals(attr.type)) {
+		} else if (attrType[1].equals(attr.attrName)) {
 			/** 二级属性 */
 			switch (attrName) {// "hp","mp","attack","defense","baoji","baolv"
 			case "hp":// 10 + rank + rd.nextInt(){} 200 - 2360
@@ -558,7 +560,7 @@ public class EquipControl {
 			 * "● "+twoAttrAry[addAttr.type]+"+"+attrValueStr.substring(0,
 			 * attrValueStr.length()-2) ; }
 			 */
-		} else if (attrType[2].equals(attr.type)) {
+		} else if (attrType[2].equals(attr.attrName)) {
 			/** 特殊属性 attack|defense|hp|mp|suck|exp|money */
 			switch (attrName) {
 			case "suck": // 10 - 35
@@ -605,7 +607,7 @@ public class EquipControl {
 			addAttr.des = "● " + specialAttrNameAry[addAttr.type]
 					+ attrValueStr.substring(0, attrValueStr.length() - 2)
 					+ "%";
-		} else if (attrType[3].equals(attr.type)) {
+		} else if (attrType[3].equals(attr.attrName)) {
 			/** 宠物属性 attack|defense|hp|all */
 			switch (attrName) {
 			case "attack":// 0.3 - 1.1

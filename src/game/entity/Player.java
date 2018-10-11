@@ -1,10 +1,5 @@
 package game.entity;
 
-import game.control.GameControl;
-import game.control.SoundControl;
-import game.utils.DataCal;
-import game.utils.SUtils;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -13,6 +8,10 @@ import java.util.Map;
 import java.util.Random;
 
 import javax.swing.JOptionPane;
+
+import game.control.SoundControl;
+import game.utils.DataCal;
+import game.utils.SUtils;
 
 /**
  * 游戏角色实体类

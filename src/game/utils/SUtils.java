@@ -17,6 +17,7 @@ import game.entity.Skill;
 import game.entity.Tasks;
 import game.entity.Tier;
 import game.listener.BagActionListener;
+import game.view.button.TButton;
 
 import java.awt.Color;
 import java.awt.Component;
@@ -40,8 +41,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
+import java.util.Set;
 
+import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
@@ -156,15 +160,32 @@ public class SUtils {
 	 * @return
 	 */
 	public static Document load(String filename) {
+		System.out.println(filename);
+		//System.out.println(this.getClass().getClassLoader().getResource(filename).getPath());
+		System.out.println(SUtils.class.getResourceAsStream("/"+filename));
 		Document document = null;
 		try {
 			SAXReader saxReader = new SAXReader();
 			saxReader.setEncoding("UTF-8");
-			document = saxReader.read(new File(filename)); // 读取XML文件,获得document对象
+			document = saxReader.read(SUtils.class.getResourceAsStream("/"+filename)); // 读取XML文件,获得document对象
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
 		return document;
+	}
+	
+	static void t() {
+		try {
+			InputStream in = SUtils.class.getClassLoader().getResourceAsStream("game/img/back/1.png");
+			System.out.println(in);
+			byte[] bytes = new byte[1024];
+			int length;
+			while((length = in.read(bytes)) != -1) {
+			    System.out.write(bytes, 0, length);
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	/**
@@ -173,10 +194,10 @@ public class SUtils {
 	 * @param part
 	 * @return
 	 */
-	public static List<CitiaoSD> loadEquipSetting(int part) {
+	public List<CitiaoSD> loadEquipSetting(int part) {
 		/** 对应部位的设定列表 */
 		List<CitiaoSD> list = new ArrayList<>();
-		Document document = load("src/game/xml/equipSetting.xml");
+		Document document = load("game/xml/equipSetting.xml");
 		/** 获取根目录 */
 		Element root = document.getRootElement();
 		List<Element> temp = root.elements();
@@ -208,9 +229,9 @@ public class SUtils {
 	 * 武器，防具
 	 * @return
 	 */
-	public static Map<String,Equip> loadEquip() {
+	public Map<String,Equip> loadEquip() {
 		Map<String,Equip> equipMap = new HashMap<>();
-		Document document = load("src/game/xml/equip.xml");
+		Document document = load("game/xml/equip.xml");
 		/** 迭代获得所有元素 */
 		/** 获取根目录 */
 		Element root = document.getRootElement();
@@ -241,9 +262,9 @@ public class SUtils {
 		return equipMap;
 	}
 	
-	public static Map<String,Skill> loadSkill(){
+	public Map<String,Skill> loadSkill(){
 		Map<String,Gong> map = new HashMap<>() ;
-		Document document = load("src/game/xml/skill.xml");
+		Document document = load("game/xml/skill.xml");
 		Element root = document.getRootElement();
 		List<Element> eleList = root.elements("skill");
 		Skill skillTmp = null ;
@@ -295,9 +316,9 @@ public class SUtils {
 	 * 加载功法
 	 * @return
 	 */
-	public static Map<String,Gong> loadGong(){
+	public Map<String,Gong> loadGong(){
 		Map<String,Gong> map = new HashMap<>() ;
-		Document document = load("src/game/xml/gong.xml");
+		Document document = load("game/xml/Gong.xml");
 		Element root = document.getRootElement();
 		List<Element> eleList = root.elements();
 		List<Element> tierList = root.elements();
@@ -509,9 +530,9 @@ public class SUtils {
 	
 	
 	/** 加载任务信息 */
-	public static Map<String,Tasks> loadTask() {
+	public Map<String,Tasks> loadTask() {
 		Map<String,Tasks> map = new HashMap<>();
-		Document document = load("src/game/xml/npc.xml");
+		Document document = load("game/xml/npc.xml");
 		Element root = document.getRootElement();
 		List<Element> eleList = root.elements("task");
 		Tasks tasks = null;
@@ -555,40 +576,50 @@ public class SUtils {
 	 * 和与玩家的交互在之后解析
 	 * @return
 	 */
-	public static Map<String, NPC> loadNpc() {
+	public Map<String, NPC> loadNpc() {
 		Map<String, NPC> map = new HashMap<>();
-		Document document = load("src/game/xml/npc.xml");
+		Document document = load("game/xml/npc.xml");
 		Element root = document.getRootElement();
 		List<Element> elementList = root.elements();
 		Element npcEle = null , action = null ;
-		NPC tempNpc = null;
-		int type, rank = 0 ;
-		String id, name, des, msg, npcType, attrType = "";
-		/** 开始每个npc的信息 */
+		NPC npc = null;
+		/** 开始初始化每个npc的信息 */
 		for (int i = 0; i < elementList.size(); i++) {
-			/** 得到npc节点 */
+			/** 循环每个npc节点 */
 			npcEle = elementList.get(i);
-			id = npcEle.elementText("id");
+			String id = npcEle.elementText("id");
 			if (!isNullStr(id)) {// 不为空则加入
-				name = npcEle.elementText("name");
-				des = npcEle.elementText("des");
-				msg = npcEle.elementText("msg");
-				rank = conStrtoInt(npcEle.element("rank").getText());
-				type = conStrtoInt(npcEle.element("type").getText());
-				attrType = npcEle.attributeValue("attrType");
-				tempNpc = new NPC();
-				tempNpc.setId(id);
-				tempNpc.setName(name);
-				tempNpc.setDes(des);
-				tempNpc.setMsg(msg);
-				tempNpc.setRank(rank); 
-				tempNpc.setType(type);
-				tempNpc.setAttrType(attrType);
-				map.put(id, tempNpc);
+				String name = npcEle.elementText("name");
+				String des = npcEle.elementText("des");
+				String msg = npcEle.elementText("msg").trim();
+				String[] msgs = msg.split("\\|");
+				int rank = conStrtoInt(npcEle.element("rank").getText());
+				int type = conStrtoInt(npcEle.element("type").getText());
+				String attrType = npcEle.attributeValue("attrType");
+				if(npcEle.selectNodes("NeiGong").size()>0) {
+					String NGStr = npcEle.elementText("NeiGong").trim();
+					npc.setNgStr(NGStr);
+				}
+				if(npcEle.selectNodes("WaiGong").size()>0) {
+					String WGStr = npcEle.elementText("WaiGong").trim();
+					npc.setWgStr(WGStr);
+				}	
+				npc = new NPC();
+				npc.setMsgs(msgs);
+				npc.setId(id);
+				npc.setName(name);
+				npc.setDes(des);
+				npc.setMsg(msg);
+				npc.setRank(rank); 
+				npc.setType(type);
+				npc.setAttrType(attrType);
+				
+				map.put(id, npc);
 			}
 		}
 		return map;
 	}
+	
 	
 	
 	
@@ -692,7 +723,7 @@ public class SUtils {
 	 * @return
 	 */
 	/*public static Map<String, List<Equip>> loadArmor() {
-		Document document = load("src/game/xml/armor.xml");
+		Document document = load("game/xml/armor.xml");
 		*//** 迭代获得所有元素 *//*
 		*//** 获取根目录 *//*
 		Element root = document.getRootElement();
@@ -993,9 +1024,9 @@ public class SUtils {
 	 * @param index
 	 * @param fb
 	 */
-	public static void editXML(String str, int index, Ditu fb) {
+	public void editXML(String str, int index, Ditu fb) {
 
-		Document document = load("src/game/xml/fuben.xml");
+		Document document = load("game/xml/fuben.xml");
 		/** 获取根目录 */
 		Element root = document.getRootElement();
 		List<Element> temp = root.elements();
@@ -1324,7 +1355,7 @@ public class SUtils {
 		/*try {
 			// 打开一个写文件器，构造函数中的第二个参数true表示以追加形式写文件,如果为
 			// true，则将字节写入文件末尾处，而不是写入文件开始处
-			FileWriter writer = new FileWriter("src/game/log/ftlog.txt", true);
+			FileWriter writer = new FileWriter("game/log/ftlog.txt", true);
 			writer.write(str);
 			writer.close();
 		} catch (IOException e) {
@@ -1337,7 +1368,7 @@ public class SUtils {
 	public static void main(String[] args) {
 		/*SUtils s = new SUtils();
 		// SUtils.loadWeapon();
-		Document document = SUtils.load("src/game/xml/npc.xml");
+		Document document = SUtils.load("game/xml/npc.xml");
 		Node node = document.selectSingleNode("/root/npc[id='1003']/action");
 		Element e = node.getParent().element("action");
 		System.out.println(e);
@@ -1398,8 +1429,8 @@ public class SUtils {
 		return value ;
 	}
 	
-	public static void saveGongInfo(List<Gong> gongList){
-		Document document = load("src/game/xml/Gong.xml");
+	public void saveGongInfo(List<Gong> gongList){
+		Document document = load("game/xml/Gong.xml");
 		/** 获取根目录 */
 		Element root = document.getRootElement();
 		List<Element> temp = root.elements();
@@ -1450,7 +1481,7 @@ public class SUtils {
 		outFormat.setOmitEncoding(true);
 		outFormat.setEncoding("UTF-8");
 		try {
-			writer = new XMLWriter(new FileOutputStream("src/game/xml/Gong.xml"), outFormat);
+			writer = new XMLWriter(new FileOutputStream("game/xml/Gong.xml"), outFormat);
 			System.err.println(writer);
 			writer.write(document);
 		} catch (IOException e1) {
@@ -1483,8 +1514,8 @@ public class SUtils {
 	 * curCd 默认0
 	 * @param skillList
 	 */
-	public static void saveSkillInfo(List<Skill> skillList){
-		Document document = load("src/game/xml/skill.xml");
+	public void saveSkillInfo(List<Skill> skillList){
+		Document document = load("game/xml/skill.xml");
 		/** 获取根目录 */
 		Element root = document.getRootElement();
 		List<Element> temp = root.elements("skill");
@@ -1549,7 +1580,7 @@ public class SUtils {
 		outFormat.setOmitEncoding(true);
 		outFormat.setEncoding("UTF-8");
 		try {
-			writer = new XMLWriter(new FileOutputStream("src/game/xml/Skill.xml"), outFormat);
+			writer = new XMLWriter(new FileOutputStream("game/xml/Skill.xml"), outFormat);
 			System.err.println(writer);
 			writer.write(document);
 		} catch (IOException e1) {
@@ -1568,9 +1599,9 @@ public class SUtils {
 	 * @param id 功法id
 	 * @param tierList 功法每层信息
 	 */
-	public static void saveGongTier(String id,List<Tier> tierList){
+	public void saveGongTier(String id,List<Tier> tierList){
 		System.out.println("开始保存id:"+id+"的功法信息!");
-		Document document = load("src/game/xml/Gong.xml");
+		Document document = load("game/xml/Gong.xml");
 		/** 获取根目录 */
 		Element root = document.getRootElement();
 		List<Element> temp = root.elements();
@@ -1615,7 +1646,7 @@ public class SUtils {
 		outFormat.setOmitEncoding(true);
 		outFormat.setEncoding("UTF-8");
 		try {
-			writer = new XMLWriter(new FileOutputStream("src/game/xml/Gong.xml"), outFormat);
+			writer = new XMLWriter(new FileOutputStream("game/xml/Gong.xml"), outFormat);
 			System.err.println(writer);
 			writer.write(document);
 		} catch (IOException e1) {
@@ -1632,11 +1663,11 @@ public class SUtils {
 	public static int conGongQua(String qua){
 		if(qua.equals("天品")){
 			return 0 ;
-		}else if(qua.equals("天品")){
+		}else if(qua.equals("地品")){
 			return 1 ;
-		}else if(qua.equals("天品")){
+		}else if(qua.equals("玄品")){
 			return 2 ;
-		}else if(qua.equals("天品")){
+		}else if(qua.equals("黄品")){
 			return 3 ;
 		}
 		return 0;
@@ -1739,6 +1770,16 @@ public class SUtils {
 	
 	public static void setEmptyBorder(JComponent c){
 		c.setBorder(new EmptyBorder(0, 0, 0, 0));
+	}
+	
+	public static ImageIcon loadImageIcon(String fileName) {
+		ImageIcon imageIcon = null ;
+		try {
+			imageIcon = new ImageIcon(ImageIO.read(SUtils.class.getResourceAsStream(fileName))) ;
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return imageIcon ;
 	}
 	
 }
