@@ -1,4 +1,7 @@
 package game.entity;
+
+import java.io.Serializable;
+
 /**
  * 功法每一重效果和条件
  * curTier 当前层数
@@ -6,7 +9,8 @@ package game.entity;
  * addAttrs 带来的属性加成
  * @author yilong22315
  */
-public class Tier{
+public class Tier implements Serializable{
+	private static final long serialVersionUID = 1L;
 	public int curTier = 1 ;
 	public int needRank = 1 ;
 	public String needExp  ; 

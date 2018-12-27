@@ -1,14 +1,8 @@
 package game.utils.xmltool;
 
-import game.entity.Gong;
-import game.entity.Skill;
-import game.entity.Tier;
-import game.utils.SUtils;
-
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -31,10 +25,15 @@ import javax.swing.table.TableCellEditor;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableRowSorter;
 
+import game.entity.Gong;
+import game.entity.Skill;
+import game.entity.Tier;
+import game.utils.SUtils;
+
 /**
  * 用来显示特殊信息的界面
  * 如 每层功法具体信息
- * 	 功法带来的技能
+ * 	  功法带来的技能
  * @author yilong22315
  *
  */
@@ -51,13 +50,20 @@ public class SpecInfoFrame extends JFrame{
 	private Map<String, Skill> skillmap = null ;
 	public JLabel jl ;
 	public XMLTool xmlTool = null ;
+	/** 1-功法效果  2-技能 */
 	private int roleType = 0 ;
+	String[] effectAry = {"层数","等级","经验","属性加成","无"} ;
+	String[] skillAry  = {"层数","技能Id","技能名","解锁条件","使用条件"} ;
+	int[] effectHeadWidth = {40,80,80,380,380} ;//1000
+	int[] skillHeadWidth = {60,60,200,200,200} ;//1000
 	
-	public SpecInfoFrame(int width, int height) {
+	
+	public SpecInfoFrame(int width, int height, int roleType) {
 		setDefaultCloseOperation(HIDE_ON_CLOSE);
 		setBackground(Color.white);
 		setSize(width, height);
-		//setUndecorated(false);
+		this.roleType = roleType ;
+		setUndecorated(false);
 		setResizable(false);
 		
 		detailPanel = new JPanel();
@@ -67,15 +73,18 @@ public class SpecInfoFrame extends JFrame{
 		
 		JPanel jbPanel = new JPanel() ;
 		jbPanel.setOpaque(false);
-		jbPanel.setLayout(new FlowLayout());
-		jbPanel.setBounds(0,-3,1000, 34);
-		jl = new JLabel("功法:") ;
-		jbPanel.add(jl);
+		jbPanel.setLayout(null);
+		jbPanel.setBounds(4,0,500, 20);
+		jl = new JLabel("功法:");
+		jl.setFont(new Font("隶书", 0, 14));
+		jl.setBounds(0, 0, 140, 20);
 		JButton close = new JButton("关闭");
-		jbPanel.add(close);
+		close.setBounds(144, 0, 80, 20);
 		JButton save = new JButton("保存");
+		save.setBounds(312, 0, 80, 20);
 		save.addActionListener(saveAc);
 		JButton addBu = new JButton("新增");
+		addBu.setBounds(228, 0, 80, 20);
 		addBu.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -86,15 +95,38 @@ public class SpecInfoFrame extends JFrame{
 				}
 			}
 		});
+		JButton deleteBu = new JButton("删除");
+		deleteBu.setBounds(396, 0, 80, 20);
+		deleteBu.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				//删除选中的当前行，把下一行设置为当前行
+				int rowcount = tableModel.getRowCount() - 1;
+				//需要>0
+				 if (rowcount >= 0) {
+					 tableModel.removeRow(rowcount);
+					 tableModel.setRowCount(rowcount);
+		             /**
+		              * 删除行比较简单，只要用DefaultTableModel的removeRow方法即可
+		              * 删除行完毕后必须重新设置列数，也就是使用DefaultTableModel的setRowCount()方法来设置当前行
+		             */
+		         }
+			}
+		});
+		jbPanel.add(jl);
+		jbPanel.add(close);
 		jbPanel.add(addBu);
 		jbPanel.add(save);
+		jbPanel.add(deleteBu);
 		detailPanel.add(jbPanel);
 		
 		String[][] ary = new String[0][0] ;
-		String[] strAry = {"层数","要求等级","需要经验","属性加成","解锁技能"} ;
-		int[] headWidth = {40,80,80,380,380} ;//1000
-		int w = 960 ;
-		tableModel = new DefaultTableModel(ary,strAry);
+		int w = width - 20 ;
+		if(roleType==1) {
+			tableModel = new DefaultTableModel(ary,effectAry);
+		}else {
+			tableModel = new DefaultTableModel(ary,skillAry);
+		}
 		effect = new JTable(tableModel);
 		effect.setSize(w, 300);
 		effect.setPreferredSize(new Dimension(w,300));
@@ -105,9 +137,12 @@ public class SpecInfoFrame extends JFrame{
 		head.setPreferredSize(new Dimension(w, 20));
 		head.setFont(new Font("微软雅黑", Font.PLAIN, 14));// 设置表格字体
 		TableColumn column = null ;
-		for (int i = 0; i < headWidth.length; i++) {
+		for (int i = 0; i < effectHeadWidth.length; i++) {
 			column = effect.getColumnModel().getColumn(i);
-			column.setPreferredWidth(headWidth[i]);
+			if(roleType==1)
+				column.setPreferredWidth(effectHeadWidth[i]);
+			else
+				column.setPreferredWidth(skillHeadWidth[i]);
 		}
 		effect.setCellSelectionEnabled(false);
 		
@@ -128,6 +163,9 @@ public class SpecInfoFrame extends JFrame{
 		this.curID = gong.getId();
 	}
 	
+	/**
+	 * 保存按钮的监听
+	 */
 	ActionListener saveAc = new ActionListener() {
 		@Override
 		public void actionPerformed(ActionEvent e) {
@@ -138,21 +176,40 @@ public class SpecInfoFrame extends JFrame{
 					cellEditor.stopCellEditing();
 			}
 			int length = effect.getRowCount() ;
-			List<Tier> list = new ArrayList<>();
-			Tier tmp = null ;
-			for (int i = 0; i < length; i++) {
-				if(effect.getValueAt(i, 0).toString().trim().length()==0){
-					continue;
+			if(roleType==1) {
+				List<Tier> list = new ArrayList<>();
+				Tier tmp = null ;
+				for (int i = 0; i < length; i++) {
+					if(effect.getValueAt(i, 0).toString().trim().length()==0){
+						continue;
+					}
+					tmp = new Tier() ;
+					tmp.curTier =  SUtils.conObjtoInt( effect.getValueAt(i, 0) ) ;
+					tmp.needRank = SUtils.conObjtoInt( effect.getValueAt(i, 1) ) ;
+					tmp.needExp = SUtils.conObjToStr( effect.getValueAt(i, 2) );
+					tmp.addAttrStr = SUtils.conObjToStr( effect.getValueAt(i, 3) );
+					list.add(tmp);
+					System.out.println(tmp.info());
 				}
-				tmp = new Tier() ;
-				tmp.curTier =  SUtils.conobjtoInt( effect.getValueAt(i, 0) ) ;
-				tmp.needRank = SUtils.conobjtoInt( effect.getValueAt(i, 1) ) ;
-				tmp.needExp = SUtils.conObjToStr( effect.getValueAt(i, 2) );
-				tmp.addAttrStr = SUtils.conObjToStr( effect.getValueAt(i, 3) );
-				list.add(tmp);
-				System.out.println(tmp.info());
+				new SUtils().saveGongSkillOrEffect(roleType, curID, list, null);
+			}else if(roleType==2){
+				List<Skill> list = new ArrayList<>();
+				Skill tmp = null ;
+				for (int i = 0; i < length; i++) {
+					if(effect.getValueAt(i, 0).toString().trim().length()==0){
+						continue;
+					}
+					tmp = new Skill() ;
+					/** "层数","技能Id","技能名","解锁条件","使用条件" */
+					tmp.needTier  = SUtils.conObjtoInt( effect.getValueAt(i, 0) ) ;
+					tmp.id        = SUtils.conObjToStr( effect.getValueAt(i, 1) ) ;
+					tmp.name      = SUtils.conObjToStr( effect.getValueAt(i, 2) );
+					tmp.studyCase = SUtils.conObjToStr( effect.getValueAt(i, 3) );
+					tmp.useCase   = SUtils.conObjToStr( effect.getValueAt(i, 4) );
+					list.add(tmp);
+				}
+				new SUtils().saveGongSkillOrEffect(roleType, curID, null, list);
 			}
-			new SUtils().saveGongTier(curID,list);
 		}
 	};
 

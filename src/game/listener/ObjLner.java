@@ -1,79 +1,118 @@
 package game.listener;
 
-import game.control.EquipControl;
-import game.control.FightControl;
-import game.control.GameControl;
-import game.control.SoundControl;
-import game.entity.Equip;
-import game.entity.Material;
-import game.entity.NPC;
-import game.entity.Player;
-import game.entity.Scene;
-import game.entity.Tasks;
-import game.utils.Constant;
-import game.utils.SUtils;
-import game.view.button.MButton;
-import game.view.frame.SpFrame;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import javax.swing.JPanel;
-
 import org.dom4j.Document;
 import org.dom4j.Element;
 import org.dom4j.Node;
 
-public class NpcListener implements ActionListener{
-	private Random rd = new Random() ;
-	private GameControl gameControl = GameControl.getInstance();
+import game.control.EquipControl;
+import game.control.FightControl;
+import game.control.GameControl;
+import game.control.NpcCtrl;
+import game.control.TaskCtrl;
+import game.entity.Equip;
+import game.entity.Item;
+import game.entity.Material;
+import game.entity.NPC;
+import game.entity.Player;
+import game.entity.Scene;
+import game.entity.Tasks;
+import game.utils.C;
+import game.utils.SUtils;
+import game.view.button.MButton;
+import game.view.frame.SpFrame;
+
+/**
+ * 监听和设置
+ * 对象(场景，人物，物品)
+ * 对应动作和反应
+ * @author yilong22315
+ */
+public class ObjLner implements ActionListener{
+	
 	/** 战斗控制器 */
-	private FightControl fightControl = FightControl.getInstance();
-	private MButton view , kill  ;
-	private List<MButton> buList = null  ;
-	private List<MButton> actionList = null ;
+	private List<MButton> buList = new ArrayList<>()  ;
+	private List<MButton> acList = null ;
 	private SpFrame sp3 = null ;
 	/** 显示人物的面板 */
-	private JPanel panel = null ;
-	
 	private MButton curBu = null ;
 	
+	/** 存储信息实体类 */
 	private Scene scene ;
-	
 	private NPC npc ;
+	private Item item ;
 	
-	public NpcListener(JPanel panel,Scene scene) {
-		this.panel = panel ;
+	private NpcCtrl npcCtrl = NpcCtrl.getInstance();
+	private GameControl gameCtrl = GameControl.getInstance();
+	private TaskCtrl taskCtrl = new TaskCtrl();
+	private FightControl fightCtrl = FightControl.getInstance();
+	
+	/** 监听器 */
+	private TalkLner talkLner = null ;
+	private ViewLner viewLner = null ;
+	
+	private int objType = 0 ;
+	private final int SCENE = 1 ;
+	private final int NPC   = 2 ;
+	private final int ITEM  = 3 ;
+	
+	
+	public ObjLner(Scene scene) {
 		this.scene = scene ;
-		fightControl.setNpcListener(this);
+		fightCtrl.setNpcListener(this);
 	}
 	
+	public void objBelong() {
+		npc = curBu.getNpc() ;
+		scene = curBu.getScene();
+		item = curBu.getItem();
+ 		if(scene!=null) objType = SCENE ;
+		if(npc!=null) objType = NPC ;
+		if(item!=null) objType = ITEM ;
+	}
+	
+	/**
+	 * 在点击了对应按钮后
+	 * 判断按钮代表的类型 人.场景.物品
+	 * 显示可以和此人物进行交互的动作
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		//npcActionAnalyze
 		curBu = (MButton) e.getSource();
-		npc = curBu.getNpc();
-		/** 此时的npc实体类中只有基本数据 */
-		showNpcAc(npc);
+		objBelong();
+		
+		if(objType==NPC) {
+			npcCtrl.setNpcAc(npc);
+			taskCtrl.setNpc(npc);
+		}else if(objType==ITEM) {
+			
+		}
+		
+		
+		
+		/** 加载人物动作 */
+		/** 显示每个人物动作并添加监听 */
+		showNpcAc();
 		//npcActionAnalyze(npc);
 		
-		System.out.println(npc.getName()+"被点击！");
-		fightControl.setNpc(npc);
-		appendNpcInfo(npc);
+		fightCtrl.setNpc(npc);
+		//appendNpcInfo(npc);
 		for (int i = 0; i < buList.size(); i++) {
 			//buList.get(i).setFlag();
 			//buList.get(i).mouseExited();
 		}
 		curBu.mouseClicked();
 		/** 用来包含npc的全部动作的集合 */
-		actionList = new ArrayList<>();
-		MButton[] actionBu = gameControl.getAction();
+		acList = new ArrayList<>();
+		MButton[] actionBu = gameCtrl.getAction();
 		for (int i = 0; i < actionBu.length; i++) {
-			if(actionBu[i]!=null){
-				actionList.add(actionBu[i]);
+			if(actionBu[i].used==true){
+				acList.add(actionBu[i]);
 			}
 		}
 		
@@ -84,7 +123,7 @@ public class NpcListener implements ActionListener{
 			kill.addActionListener(killListener);
 			actionList.add(kill);
 		}*/
-		gameControl.setFbNpcActionPos(actionList);
+		gameCtrl.setFbNpcActionPos(acList);
 	}
 	
 	
@@ -93,39 +132,40 @@ public class NpcListener implements ActionListener{
 	 */
 	public void remove(){
 		if(curBu!=null){
-			panel.remove(curBu);
+			gameCtrl.removeNPC(curBu);
 			boolean flag = buList.remove(curBu);
-			gameControl.setFubenNpcPos(buList);
+			gameCtrl.setSceneCellPos(buList);
 			flag = scene.npcList.remove(npc);
 			System.out.println("移出死亡npc"+flag);
-			gameControl.reloadpanelG();
+			gameCtrl.reloadpanelG();
 		}
 	}
 	
 	/**
-	 * 界面上设置各个交互按钮
+	 * 显示人物交互动作
+	 * 设置交互动作
 	 * @param npc
 	 */
-	public void showNpcAc(NPC npc) {
-		/* view, talk, kill, give, trading, tasks */
-		MButton[] actionBu = gameControl.getAction();
-		gameControl.initAcBustatus();
+	public void showNpcAc() {
+		System.err.println(npc.getName()+npc);
+		MButton[] actionBu = gameCtrl.getAction();
+		gameCtrl.initAcBustatus();
 		
-		/** 交流 */
+		/** 查看 */
+		actionBu[0].used = true ;
+		SUtils.removeActionLner(actionBu[0]);
+		viewLner = new ViewLner(npc); 
+		actionBu[0].addActionListener(viewLner);
+		
+		/** 交谈 */
 		actionBu[1].used = true ;
+		SUtils.removeActionLner(actionBu[1]);
 		if(npc.getTasks().size()==0) {
-			final String[] msgs = npc.getMsgs() ;
-			if(actionBu[1].getActionListeners().length==0) {
-				actionBu[1].addActionListener(new ActionListener() {
-					@Override
-					public void actionPerformed(ActionEvent e) {
-						int num = rd.nextInt(msgs.length);		
-						gameControl.append(msgs[num].trim()+"\n", 1);
-					}
-				});
-			}
+			talkLner = new TalkLner(npc); 
+			actionBu[1].addActionListener(talkLner);
 		}else {
-			
+			taskCtrl.setTaskInfo(npc);
+			actionBu[1].addActionListener(taskCtrl.newTaskListener());
 		}
 		
 		if(npc.Cankill()) {
@@ -143,7 +183,21 @@ public class NpcListener implements ActionListener{
 			actionBu[4].used = true ;
 			actionBu[4].addActionListener(tradListener);
 		}
-		gameControl.setAction(actionBu);
+		gameCtrl.setAction(actionBu);
+	}
+	
+	
+	public void npcMsg(String[] msgs) {
+		int num = new Random().nextInt(msgs.length);
+		gameCtrl.append(npc.getName()+" : ", 4);
+		gameCtrl.append(msgs[num].trim()+"\n", 0);
+	}
+	
+
+	
+	
+	public void checkNpcTask() {
+		
 	}
 	
 	
@@ -156,19 +210,19 @@ public class NpcListener implements ActionListener{
 		if(type==0){
 			type=5;
 		}
-		gameControl.append("\n"+npc.getName(), type+10);//品质颜色
-		gameControl.append("【"+Constant.npcTypeDes[type]+"】", type+10);//品质颜色 npcTypeDes
-		gameControl.append("lv"+npc.getRank()+"\n", 15);//黑色
-		gameControl.append("hp:"+npc.getHp()+"  mp:"+npc.getMp()+"  atk:"+npc.getAttack()+"  def:"+npc.getDefense()+"\n",15);
+		gameCtrl.append("\n"+npc.getName(), type+10);//品质颜色
+		gameCtrl.append("【"+C.npcTypeDes[type]+"】", type+10);//品质颜色 npcTypeDes
+		gameCtrl.append("lv"+npc.getRank()+"\n", 15);//黑色
+		gameCtrl.append("hp:"+npc.getHp()+"  mp:"+npc.getMp()+"  atk:"+npc.getAttack()+"  def:"+npc.getDefense()+"\n",15);
 		Equip[] equipAry = npc.getEquipAry() ;
 		for (int i = 0; i < equipAry.length; i++) {
 			if(equipAry[i]!=null&&equipAry[i].getName().length()>0){
-				gameControl.append(Constant.partDes[i]+": ", 15);
+				gameCtrl.append(C.partDes[i]+": ", 15);
 				type = equipAry[i].getType()==0?5:equipAry[i].getType();
-				gameControl.append(equipAry[i].getName()+"	", type+10);
+				gameCtrl.append(equipAry[i].getName()+"	", type+10);
 			}
 			if((i+1)%2==0){
-				gameControl.append("\n", 1);
+				gameCtrl.append("\n", 1);
 			}
 			
 		}
@@ -187,7 +241,6 @@ public class NpcListener implements ActionListener{
 	 */
 	public void npcActionAnalyze(final NPC npc){
 		String id = npc.getId();
-		SUtils SUtils = new SUtils() ;
 		Document document = SUtils.load("game/xml/npc.xml");
 		Node node = document.selectSingleNode("/root/npc[id='"+id+"']/action");
 		Element action = null ;
@@ -240,7 +293,7 @@ public class NpcListener implements ActionListener{
 						//普通商人，储存货物信息 <item id="101" itemType="equip" name="长剑" num="1" type="2,3" ></item>
 						itemType = acList.get(i).attributeValue("itemType");
 						if(itemType.equals("equip")){//装备
-							Equip equip = gameControl.getEquipMap().get(id);
+							Equip equip = gameCtrl.getEquipMap().get(id);
 							equip.setType(2);
 							npc.getSellList().add(equip);
 						}else if(itemType.equals("cailiao")){//材料
@@ -264,8 +317,8 @@ public class NpcListener implements ActionListener{
 				actionvalue = actionList.get(i).getText().trim();
 				String[] info = actionvalue.split(":");
 				if(info[0].equals("task")){
-					gameControl.getTaskByNaId(info[1]);
-					Tasks task =  gameControl.getPlayer().getCurTasksList().get(info[1]);
+					gameCtrl.getTaskByNaId(info[1]);
+					Tasks task =  gameCtrl.getPlayer().getCurTasksList().get(info[1]);
 					if(task!=null){
 						
 					}
@@ -273,7 +326,7 @@ public class NpcListener implements ActionListener{
 			}
 		}
 		/*** 得到所有动作按钮 */
-		MButton[] actionBu = gameControl.getAction();
+		MButton[] actionBu = gameCtrl.getAction();
 		System.out.println(npc.getName()+"能否击杀?"+npc.Cankill());
 		if(npc.Cankill()){
 			actionBu[2] = new MButton("战斗", 2);
@@ -291,10 +344,10 @@ public class NpcListener implements ActionListener{
 			public void actionPerformed(ActionEvent e) {
 				String[] msg = npc.getMsg().split("\\|");
 				int num = new Random().nextInt(msg.length) ;
-				gameControl.append(msg[num].trim()+"\n", 1);
+				gameCtrl.append(msg[num].trim()+"\n", 1);
 			}
 		});
-		gameControl.setAction(actionBu);
+		gameCtrl.setAction(actionBu);
 		
 	}
 	
@@ -303,19 +356,19 @@ public class NpcListener implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			int type = npc.getType()==0?5:npc.getType();
-			gameControl.append("你决定向【", 0);
-			gameControl.append(Constant.npcTypeDes[npc.getType()]+"】"+npc.getName(), 10+type);
-			gameControl.append("发起挑战!\n", 0);
-			gameControl.append("战斗开始!\n", 0);
+			gameCtrl.append("你决定向【", 0);
+			gameCtrl.append(C.npcTypeDes[npc.getType()]+"】"+npc.getName(), 10+type);
+			gameCtrl.append("发起挑战!\n", 0);
+			gameCtrl.append("战斗开始!\n", 0);
 			/** 在点击时，已经将npc信息和战斗面板放入战斗控制器 */
 			if(sp3==null){
-				sp3 = new SpFrame(gameControl.getMainFrame(), 3);
-				fightControl.setFtFrame(sp3);
+				sp3 = new SpFrame(gameCtrl.getMainFrame(), 3);
+				fightCtrl.setFtFrame(sp3);
 			}else{
 				System.out.println("再次打开战斗面板");
-				Player player = gameControl.getPlayer();
+				Player player = gameCtrl.getPlayer();
 				player.setCurHp(player.getHp());
-				fightControl.getFtFrame().setVisible(true);
+				fightCtrl.getFtFrame().setVisible(true);
 				sp3.reload(3);
 			}
 		}
@@ -324,13 +377,30 @@ public class NpcListener implements ActionListener{
 	ActionListener tradListener = new ActionListener() {
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			gameControl.append("进行【", 0);
-			gameControl.append("交易", 5);
-			gameControl.append("】!\n", 0);
+			gameCtrl.append("进行【", 0);
+			gameCtrl.append("交易", 5);
+			gameCtrl.append("】!\n", 0);
 			List<Object> list = npc.getSellList() ;
 			/** 显示商人交易的物品 */
 		}
 	};
+		
+	ActionListener viewListener = new ActionListener() {
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			gameCtrl.append(npc.getName()+" : ", 4);
+			gameCtrl.append(npc.getDes()+"\n", 0);
 			
+		}
+	};
+
+
+	public int getObjType() {
+		return objType;
+	}
+
+	public void setObjType(int objType) {
+		this.objType = objType;
+	}
 	
 }

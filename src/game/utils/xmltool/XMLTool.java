@@ -1,17 +1,5 @@
 package game.utils.xmltool;
 
-import game.control.GameControl;
-import game.entity.Citiao;
-import game.entity.Ditu;
-import game.entity.Equip;
-import game.entity.Gong;
-import game.entity.NPC;
-import game.entity.Scene;
-import game.entity.Skill;
-import game.entity.Tier;
-import game.utils.Constant;
-import game.utils.SUtils;
-
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -20,14 +8,15 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import javax.swing.Box;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -44,6 +33,19 @@ import javax.swing.table.TableCellEditor;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableRowSorter;
 
+import game.control.GameControl;
+import game.entity.Citiao;
+import game.entity.Ditu;
+import game.entity.Equip;
+import game.entity.Gong;
+import game.entity.NPC;
+import game.entity.Scene;
+import game.entity.Skill;
+import game.entity.Tier;
+import game.utils.C;
+import game.utils.SUtils;
+import game.utils.XmlUtils;
+
 public class XMLTool extends JFrame{
 	private static final long serialVersionUID = 1L;
 	/***  主面板,jp1[查询菜单]         */
@@ -51,20 +53,18 @@ public class XMLTool extends JFrame{
 	private int inset = 9 ;
 	/** 查询条件 */
 	private JTextField name,des,rank ;
+	JLabel temp ;
 	private static JTable table ;
 	private static JTable gongEffect;
 	private SUtils sUtils = new SUtils(); 
-	private int width , height ;
 	
 	private DefaultTableModel tableModel ;
 	private static DefaultTableModel gongModel = null;
 	
 	private JComboBox<String> cb1 = null , cb2 = null ;
 	private String[] defFun = {"副本","装备","npc","功法","技能"} ;
-	private String curSelect = null ; 
 	private int curInx = 0 ;
 	private JScrollPane jsc ;
-	private static JScrollPane gongJsc ; 
 	private static JLayeredPane layeredPanel = null ;
 	private static XMLTool frame ;
 	private static SpecInfoFrame gongInfoFrame ;
@@ -78,21 +78,20 @@ public class XMLTool extends JFrame{
 	/** 加载完时的大小 */
 	private int initSize = 0 ;
 	
+	int w = 960 ;
+	int h = 720 ;
 	
 	public XMLTool() {
-		Dimension screensize = Toolkit.getDefaultToolkit().getScreenSize();
-		width = (int) screensize.getWidth();
-		height = (int) screensize.getHeight();
-		System.out.println(width);
+		setSize(new Dimension(w, h));
 		rootpane = new JPanel() ;
 		setContentPane(rootpane);
-		this.getContentPane().setBackground(Color.white);
+		rootpane.setBackground(Color.white);
 		rootpane.setLayout(null);
-		rootpane.setSize(width, height);
+		rootpane.setSize(w, h);
 		
 		jp1 = new JPanel() ;
 		jp1.setOpaque(false);
-		jp1.setBounds(inset, inset, rootpane.getWidth()-inset*2, 24 );
+		jp1.setBounds(inset, inset, w, 24 );
 		jp1.setLayout(null);
 		
 		cb1 = new JComboBox<String>(defFun);
@@ -127,33 +126,38 @@ public class XMLTool extends JFrame{
 		
 		jp2 = new JPanel() ;
 		jp2.setOpaque(false);
-		jp2.setBounds(inset, jp1.getY()+jp1.getHeight()+inset, rootpane.getWidth()-inset*2, 34 );
-		Box box = Box.createHorizontalBox();
-		box.setOpaque(false);
-		box.add(Box.createHorizontalStrut(inset));	
-		box.add(new Field("name:"));
+		jp2.setLocation(-240, 34);
+		jp2.setSize(w-2*inset, 34);
+		temp = new JLabel("name:");
+		temp.setLocation(0, 0);
 		name = new JTextField();
 		name.setPreferredSize(new Dimension(50, 30));
-		box.add(name);
-		box.add(Box.createHorizontalStrut(inset));	
-		box.add(new Field("des:"));
+		name.setLocation(temp.getX()+temp.getWidth(), 0);
+		jp2.add(temp);
+		jp2.add(name);
+		temp = new JLabel("des");
+		temp.setLocation(name.getX()+name.getWidth(), 0);
 		des = new JTextField();
 		des.setPreferredSize(new Dimension(290, 30));
-		box.add(des);
-		box.add(Box.createHorizontalStrut(inset));	
-		box.add(new Field("rank:"));
+		des.setLocation(temp.getX()+temp.getWidth(), 0);
+		jp2.add(temp);
+		jp2.add(des);
+		temp = new JLabel("des");
+		temp.setLocation(des.getX()+des.getWidth(), 0);
 		rank = new JTextField();
 		rank.setPreferredSize(new Dimension(40, 30));
-		box.add(rank);
-		jp2.add(box);
+		rank.setLocation(temp.getX()+temp.getWidth(), 0);
+		jp2.add(temp);
+		jp2.add(des);
 		
 		jsc = new JScrollPane(null);
-		jsc.setPreferredSize(new Dimension(width, height-30));
-		jsc.setBounds(inset, jp2.getY()+jp2.getHeight()+inset, width-30, height-(jp2.getY()+jp2.getHeight()+inset)-80 );
-		jsc.setOpaque(false);
-		jsc.getViewport().setOpaque(false);
+		jsc.setPreferredSize(new Dimension(w*2,( h-30)*2));
+		jsc.setBounds(inset, jp2.getY()+jp2.getHeight()+inset, w-30, h-(jp2.getY()+jp2.getHeight()+inset)-80 );
+		//jsc.setOpaque(false);
+		//jsc.getViewport().setOpaque(false);
 		jsc.setVerticalScrollBarPolicy( ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-
+		jsc.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
+		
 		rootpane.add(jp1);
 		rootpane.add(jp2);
 		rootpane.add(jsc);
@@ -178,7 +182,7 @@ public class XMLTool extends JFrame{
 		}
 		frame = new XMLTool();
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setBounds(0, 0, (int)screensize.getWidth(), (int)screensize.getHeight());
+		frame.setLocation(0, 0);
 		//frame.setResizable(false);
 		frame.setVisible(true);
 	}
@@ -225,7 +229,6 @@ public class XMLTool extends JFrame{
 						temp.x = SUtils.conStrtoInt(ary[0]);
 						temp.y = SUtils.conStrtoInt(ary[1]);
 						temp.npcStr = (String) table.getValueAt(i, 3);
-						System.out.println(temp.toString());
 						list.add(temp);
 					}
 					String[] ary = rank.getText().split(",");
@@ -233,7 +236,7 @@ public class XMLTool extends JFrame{
 					int rankR = SUtils.conStrtoInt(ary[1]);
 					Ditu fb = new Ditu(0+"",name.getText(), des.getText(), rankL, rankR);
 					fb.setScene(list); 
-					sUtils.editXML("", curInx, fb);
+					sUtils.saveDituInfo("", curInx, fb);
 				}else if(curInx==3){
 					int length = table.getRowCount() ;
 					System.out.println("保存功法信息,共:"+length+"条！");
@@ -243,14 +246,21 @@ public class XMLTool extends JFrame{
 						tmpGong = new Gong();
 						tmpGong.setId(SUtils.conObjToStr(table.getValueAt(i, 0)));
 						tmpGong.setName(SUtils.conObjToStr(table.getValueAt(i, 1)));
-						tmpGong.setQuality(SUtils.conGongQua(table.getValueAt(i, 2).toString()));
-						tmpGong.setDes(SUtils.conObjToStr(table.getValueAt(i, 3)));
-						tmpGong.setNeedRank(SUtils.conStrtoInt(table.getValueAt(i, 4).toString()));
-						tmpGong.setMaxTier(SUtils.conStrtoInt(table.getValueAt(i, 5).toString()));
+						tmpGong.setDes(SUtils.conObjToStr(table.getValueAt(i, 2)));
+						tmpGong.setQua(SUtils.conGongQua(table.getValueAt(i, 3).toString()));
+						tmpGong.setMaxTier(SUtils.conStrtoInt(table.getValueAt(i, 4).toString()));
+						tmpGong.setType(SUtils.conStrtoInt(table.getValueAt(i, 5).toString()));
+						tmpGong.setNeedRank(SUtils.conStrtoInt(table.getValueAt(i, 6).toString()));
+						tmpGong.setEffectStr(SUtils.strTrim(table.getValueAt(i, 7).toString()));
+						tmpGong.setRequire(table.getValueAt(i, 8).toString());
+						tmpGong.setPrice(SUtils.conStrtoInt(table.getValueAt(i, 9).toString()));
 						tmpGong.setCurTier(1);
-						tmpGong.setRequire(table.getValueAt(i, 7).toString());
-						tmpGong.setType(SUtils.conStrtoInt(table.getValueAt(i, 6).toString()));
+						tmpGong.setNum(1);
 						gongList.add(tmpGong);
+					}
+					Collections.sort(gongList);
+					for (int j = 0; j < gongList.size(); j++) {
+						System.out.println("排序后:"+gongList.get(j).getId());
 					}
 					sUtils.saveGongInfo(gongList);
 				}else if(curInx==4){
@@ -266,9 +276,7 @@ public class XMLTool extends JFrame{
 						String type = SUtils.strTrim(table.getValueAt(i, 3)) ;
 						tmpGong.type = type.equals("")?"主动":type;
 						tmpGong.consume = SUtils.strTrim(table.getValueAt(i, 4));
-						tmpGong.result = SUtils.strTrim(table.getValueAt(i, 5));
 						String target = SUtils.strTrim(table.getValueAt(i, 6));
-						tmpGong.target = target.equals("")?"敌方":target ;
 						String scope = SUtils.strTrim(table.getValueAt(i, 7)); 
 						tmpGong.scope = scope.equals("")?"单体":scope ;
 						String gongId = SUtils.strTrim(table.getValueAt(i, 8)); ;
@@ -366,7 +374,7 @@ public class XMLTool extends JFrame{
 		String[] tableHead = {"name","des","pos","npc"} ; 
 		int[] headWidth = {50,360,50,100} ;
 		setTable(tableHead, headWidth);		
-		List<Ditu> fbList =  GameControl.getInstance().loadFuben();
+		List<Ditu> fbList =  new XmlUtils().loadFuben();
 		String[] fbAry = new String[fbList.size()];
 		for (int i = 0; i < fbAry.length; i++) {
 			fbAry[i] = fbList.get(i).getName();
@@ -419,49 +427,54 @@ public class XMLTool extends JFrame{
 	
 	/** 设置功法表 1360 */
 	public void setGongTable(){
-		String[] tableHead = {"id","功法名","品质","描述","需要等级","max层数","type","学习条件","效果","技能"} ; 
-		int[] headWidth = {50,140,80,620,80,80,80,80,60,60} ;
+		String[] tableHead = {"id","功法名","描述","品质","max层数","type","need等级","加成",  "require","价格","当前层数","数量","技能","属性"} ; 
+		int[] headWidth    = {90,  160,   300,   90,  120,     90,    120,     200,     120,     90,   90,     90,   100, 100  } ;
 		setTable(tableHead, headWidth);		
 		/** 重新设置 数据 */
 		String key = null;
 		Gong value = null;
 		gongMap = sUtils.loadGong();
+		List<Gong> gongList = new ArrayList<>(gongMap.values());
 		initSize = gongMap.size() ;
-		Iterator<String> iter = gongMap.keySet().iterator();
+		Collections.sort(gongList);
 		String[] textAry = null ;
 		/** 填充表格 */
 		/** id","name","attrType","des","msg","rank","type","action */
-		while (iter.hasNext()) {
-			key = iter.next();
-			value = gongMap.get(key);
-			textAry = new String[8];
+		for (int i = 0; i < gongList.size(); i++) {
+			value = gongList.get(i);
+			textAry = new String[20];
 			textAry[0] = value.getId();
 			textAry[1] = value.getName();
-			textAry[2] = Constant.gongQu[value.getQuality()];
-			textAry[3] = value.getDes()+"";
-			textAry[4] = value.getNeedRank()+"";
-			textAry[5] = value.getMaxTier()+"";
-			textAry[6] = value.getType()+"";
-			textAry[7] = value.getRequire() ;
+			textAry[2] = value.getDes();
+			textAry[3] = C.gongQu[value.getQua()];
+			textAry[4] = value.getMaxTier()+"";
+			textAry[5] = value.getType()+"";
+			textAry[6] = value.getNeedRank()+"";
+			textAry[7] = value.getEffectStr()+"";
+			textAry[8] = value.getRequire() ;
+			textAry[9] = value.getPrice()+"" ;
+			textAry[10] = value.getCurTier()+"" ;
+			textAry[11] = value.getNum()+"" ;
 			tableModel.addRow(textAry);
 		}
-		table.getColumnModel().getColumn(8).setCellEditor(new MyRender(1));
-		table.getColumnModel().getColumn(8).setCellRenderer(new MyRender(1));
-		table.getColumnModel().getColumn(9).setCellEditor(new MyRender(2));
-		table.getColumnModel().getColumn(9).setCellRenderer(new MyRender(2));
+		table.getColumnModel().getColumn(12).setCellEditor(new MyRender(2));
+		table.getColumnModel().getColumn(12).setCellRenderer(new MyRender(2));
+		table.getColumnModel().getColumn(13).setCellEditor(new MyRender(1));
+		table.getColumnModel().getColumn(13).setCellRenderer(new MyRender(1));
 		jsc.setViewportView(table);
 		setGongEffectView();
+		setSkillEffectView();
 	}
 	
 	/** 设置功法表 1360 */
 	public void setSkillTable(){
-		String[] tableHead = {"id","name","des","类型","消耗","结果","目标","范围","功ID","功name","使用条件","学习条件","need等级","cd","curCd"} ; 
-		int[] headWidth = {40,100,300,60,100,100,40,40,50,100,100,100,70,30,50} ;
+		String[] tableHead = {"id","name","des","品质","类型","范围","消耗","效果","max等级","伤害系数","cur等级","功ID","Gong名","使用条件","学习条件","CD","curCD"} ; 
+		int[] headWidth =    {80,  100,   300,  100,   100,   100,   100, 200,  120,     150,     150,      100,   120,    200,     200,    80,     100} ;
 		setTable(tableHead, headWidth);		
 		/** 重新设置 数据 */
 		String key = null;
 		Skill value = null;
-		skillmap = sUtils.loadSkill();
+		//skillmap = sUtils.loadSkill();
 		initSize = skillmap.size() ;
 		Iterator<String> iter = skillmap.keySet().iterator();
 		String[] textAry = null ;
@@ -470,25 +483,27 @@ public class XMLTool extends JFrame{
 		while (iter.hasNext()) {
 			key = iter.next();
 			value = skillmap.get(key);
-			textAry = new String[15];
+			textAry = new String[18];
 			textAry[0] = value.id;
 			textAry[1] = value.name ;
 			textAry[2] = value.des ;
-			textAry[3] = value.type ;
-			textAry[4] = value.consume ;
-			textAry[5] = value.result ;
-			textAry[6] = value.target ;
-			textAry[7] = value.scope ;
-			textAry[8] = value.gongId ;
-			textAry[9] = value.gongName ;
-			textAry[10] = value.useCase ;
-			textAry[11] = value.studyCase ;
-			textAry[12] = value.needTier+"" ;
-			textAry[13] = value.cd+"" ;
-			textAry[14] = value.curCd+"" ;
+			textAry[3] = value.qua+"" ;
+			textAry[4] = value.type ;
+			textAry[5] = value.scope ;
+			textAry[6] = value.consume ;
+			textAry[7] = value.effectStr ;
+			textAry[8] = value.skillMaxRank+"";
+			textAry[9] = value.baseDamageRatio+"" ;
+			textAry[10] = value.skillCurRank +"";
+			textAry[11] = value.gongId ;
+			textAry[12] = value.gongName+"" ;
+			textAry[13] = value.useCase+"" ;
+			textAry[14] = value.studyCase+"" ;
+			textAry[15] = value.needTier+"" ;
+			textAry[16] = value.cd+"" ;
+			textAry[17] = value.curCd+"" ;
 			tableModel.addRow(textAry);
 		}
-		jsc.setViewportView(table);
 		setGongEffectView();
 	}
 	
@@ -514,11 +529,19 @@ public class XMLTool extends JFrame{
 			}
 		};
 		table = new JTable(tableModel);// 创建表格组件
+		table.setAutoResizeMode(0);
+		table.setSize(1200, 600);
+		table.setPreferredSize(new Dimension(1200, 1200));
+		jsc.setViewportView(table);
 		RowSorter<DefaultTableModel> sorter = new TableRowSorter<DefaultTableModel>(tableModel);
 		table.setRowSorter(sorter);
+		int headW = 0 ;
+		for (int i = 0; i < headWidth.length; i++) {
+			headW+=headWidth[i];
+		}
 		JTableHeader head = table.getTableHeader(); // 创建表格标题对象
-		head.setPreferredSize(new Dimension(500, 24));
-		head.setFont(new Font("幼圆", Font.PLAIN, 14));// 设置表格字体
+		head.setPreferredSize(new Dimension(headW, 24));
+		head.setFont(new Font("微软雅黑", Font.PLAIN, 14));// 设置表格字体
 		table.setRowHeight(20);// 设置表格行宽
 		TableColumn column = null ;
 		for (int i = 0; i < headWidth.length; i++) {
@@ -561,10 +584,10 @@ public class XMLTool extends JFrame{
 		}
 	}
 	
+	/** 设置功法详细界面信息 */
 	public void setGongEffectView(){
 		/** 功法详细信息 */
-		gongInfoFrame = new SpecInfoFrame(1000, 400);
-		gongInfoFrame.setRoleType(1);
+		gongInfoFrame = new SpecInfoFrame(1000, 400, 1);
 		gongInfoFrame.setXmlTool(this);
 		gongInfoFrame.setGongMap(gongMap);
 		gongModel = gongInfoFrame.tableModel ;
@@ -572,31 +595,35 @@ public class XMLTool extends JFrame{
 	}
 	
 	public void setSkillEffectView(){
-		skillInfoFrame = new SpecInfoFrame(400, 200);
-		skillInfoFrame.setRoleType(2);
-		gongInfoFrame.setXmlTool(this);
-		gongInfoFrame.setSkillmap(skillmap);
-		gongModel = gongInfoFrame.tableModel ;
-		gongEffect = gongInfoFrame.effect ;
+		skillInfoFrame = new SpecInfoFrame(750, 360, 2);
+		skillInfoFrame.setXmlTool(this);
+		skillInfoFrame.setSkillmap(skillmap);
+		gongModel = skillInfoFrame.tableModel ;
+		gongEffect = skillInfoFrame.effect ;
 	}
 	
 	/** 重新设置功法的信息 */
-	public static void setSkillEffectInfo(int tier){
-		gongInfoFrame.setVisible(true);
+	public static void setSkillEffectInfo(int row){
+		skillInfoFrame.setVisible(true);
+		/** 清空表格 */
+		gongModel.setRowCount(0);
+		String id = SUtils.conObjToStr(table.getValueAt(row, 0));
+		System.out.println("得到当前点击技能ID:"+id);
 		/** 通过id得到功法 */
-		gongModel.setRowCount( 0 );
-		Gong gong = gongMap.get(table.getValueAt(tier, 0)); 
-		gongInfoFrame.setGong(gong);
-		gongInfoFrame.jl.setText("功法:"+gong.getName());
-		List<Tier> tierList = gong.getTiers();
-		System.out.println("该功法一共"+tierList.size()+"层");
+		Gong gong = gongMap.get(id); 
+		skillInfoFrame.setGong(gong);
+		skillInfoFrame.jl.setText("功法:"+gong.getName());
+		gongModel = skillInfoFrame.tableModel ;
+		List<Skill> skillList = gong.getAllSkills();
+		System.out.println("该功法一共"+skillList.size()+"层");
 		String tempAry[] = null ;
-		for (int i = 0; i < tierList.size(); i++) {
-			tempAry = new String[8];
-			tempAry[0] = tierList.get(i).curTier+"";
-			tempAry[1] = tierList.get(i).needRank+"";
-			tempAry[2] = tierList.get(i).needExp+"";
-			tempAry[3] = tierList.get(i).addAttrStr ;
+		for (int i = 0; i < skillList.size(); i++) {
+			tempAry = new String[5];
+			tempAry[0] = skillList.get(i).needTier+"";
+			tempAry[1] = skillList.get(i).id+"";
+			tempAry[2] = skillList.get(i).name ;
+			tempAry[3] = skillList.get(i).studyCase ;
+			tempAry[4] = skillList.get(i).useCase ;
 			gongModel.addRow(tempAry);
 		}
 	}

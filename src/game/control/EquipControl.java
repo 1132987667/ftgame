@@ -7,9 +7,10 @@ import game.entity.Equip;
 import game.entity.NPC;
 import game.entity.Player;
 import game.utils.ArchiveUtils;
-import game.utils.Constant;
+import game.utils.C;
 import game.utils.ReflectUtils;
 import game.utils.SUtils;
+import game.utils.XmlUtils;
 import game.view.frame.DataCheckFrame;
 
 import java.util.ArrayList;
@@ -57,11 +58,11 @@ public class EquipControl {
 	/** 武器资料库所有武器信息 */
 	public Map<String,Equip> equipMap = null;
 
-	private SUtils SUtils = new SUtils() ;
+	private SUtils sUtils = new SUtils() ;
 	
 	protected EquipControl() {
 		/** 加载武器信息 */
-		equipMap = SUtils.loadEquip();
+		equipMap = new XmlUtils().loadEquip();
 		dataCheck = new DataCheckFrame();
 		dataCheck.setVisible(false);
 	}
@@ -243,7 +244,7 @@ public class EquipControl {
 		/**
 		 * 先根据部位得到该装备类型的设定 再根据num得到第几条词条数
 		 */
-		List<CitiaoSD> list = SUtils.loadEquipSetting(part);
+		List<CitiaoSD> list = sUtils.loadEquipSetting(part);
 		/** 得到装备第num条词条设定 */
 		CitiaoSD citiaoSD = list.get(num);
 
@@ -285,10 +286,10 @@ public class EquipControl {
 			case "jingli":
 			case "li":
 			case "min":
-				citiao.attrValue = rdAttrValue(Constant.lvUpValue[0], rank);
+				citiao.attrValue = rdAttrValue(C.lvUpValue[0], rank);
 				break;
 			case "lucky":
-				citiao.attrValue = rdAttrValue(Constant.lvUpValue[4], rank);
+				citiao.attrValue = rdAttrValue(C.lvUpValue[4], rank);
 				break;
 			default:
 				break;
@@ -297,20 +298,20 @@ public class EquipControl {
 			/** 二级属性 */
 			switch (attrName) {// "hp","mp","attack","defense","baoji","baolv"
 			case "hp":// min 30 max 2600
-				citiao.attrValue = rdAttrValue(Constant.oneToTwo[0]*Constant.lvUpValue[0], rank);
+				citiao.attrValue = rdAttrValue(C.oneToTwo[0]*C.lvUpValue[0], rank);
 				break;
 			case "mp": // min 9 max 845
-				citiao.attrValue = rdAttrValue(Constant.oneToTwo[1]*Constant.lvUpValue[1], rank);
+				citiao.attrValue = rdAttrValue(C.oneToTwo[1]*C.lvUpValue[1], rank);
 				break;
 			case "attack":// min 14 max 1300
-				citiao.attrValue = rdAttrValue(Constant.oneToTwo[2]*Constant.lvUpValue[2], rank);
+				citiao.attrValue = rdAttrValue(C.oneToTwo[2]*C.lvUpValue[2], rank);
 				break;
 			case "defense":// min 3.5 max 250
-				citiao.attrValue = rdAttrValue(Constant.oneToTwo[3]*Constant.lvUpValue[3], rank);
+				citiao.attrValue = rdAttrValue(C.oneToTwo[3]*C.lvUpValue[3], rank);
 				break;
 			case "baoji":
-				System.out.println(Constant.oneToTwo[4]*Constant.lvUpValue[4]+":"+rank);
-				citiao.attrValue = rdAttrValue(Constant.oneToTwo[4]*Constant.lvUpValue[4], rank);
+				System.out.println(C.oneToTwo[4]*C.lvUpValue[4]+":"+rank);
+				citiao.attrValue = rdAttrValue(C.oneToTwo[4]*C.lvUpValue[4], rank);
 				break;
 			default:
 				break;
@@ -326,7 +327,7 @@ public class EquipControl {
 			case "baolv": //1-75
 				citiao.attrValue = rd.nextInt(rank)+rank/2+1 ;
 				break;
-			case "attack": // 5 - 105 
+			case "attatk": // 5 - 105 
 				citiao.attrValue = rd.nextInt(rank*2) + 5;
 				break;
 			case "defense": // 0.2 - 1.0

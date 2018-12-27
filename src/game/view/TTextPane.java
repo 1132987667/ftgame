@@ -1,11 +1,16 @@
 package game.view;
 
-import game.utils.Constant;
+import game.utils.C;
+import game.utils.SUtils;
+import game.view.button.TButton;
 
+import java.awt.Button;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
 
+import javax.swing.JButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTextPane;
 import javax.swing.plaf.basic.BasicTextPaneUI;
@@ -69,7 +74,10 @@ public class TTextPane extends JTextPane{
 	 */
 	public void apendFubenInfo(String str,int type){
 		if(type==0){
-			append("你到达了"+str+"!\n", 0);
+			
+			append("你到达了【", 0);
+			append(str, 5);
+			append("】\n", 0);
 		}else{
 			
 		}
@@ -98,17 +106,22 @@ public class TTextPane extends JTextPane{
 		case 1:
 			fontSize = 14 ;
 			fontStr = "微软雅黑";
-			color = Color.blue ;
+			color = SUtils.LightBlue ;
 			break;
 		case 2:
 			fontSize = 14 ;
 			fontStr = "微软雅黑";
-			color = Color.red ;
+			color = SUtils.Red ;
 			break;
 		case 3:
 			fontSize = 14 ;
 			fontStr = "微软雅黑";
 			color = Color.green ;
+			break;
+		case 4:
+			fontSize = 14 ;
+			fontStr = "微软雅黑";
+			color = Color.BLUE ;
 			break;
 		case 5:
 			fontSize = 16 ;
@@ -134,7 +147,7 @@ public class TTextPane extends JTextPane{
 		case 12:
 		case 13:
 		case 14:
-			color = Constant.equipColor[type-10] ;
+			color = C.equipColor[type-10] ;
 			fontSize = 14 ;
 			fontStr = "微软雅黑";
 			break;
@@ -180,6 +193,7 @@ public class TTextPane extends JTextPane{
 			System.out.println("BadLocationException:" + ble);
 		}
 	}
+	
 	
 }
 

@@ -1,7 +1,9 @@
 package game.view.panel;
 
+import game.control.UICtrl;
 import game.listener.KeyMana;
-import game.utils.Constant;
+import game.utils.C;
+import game.utils.DataCal;
 import game.utils.SUtils;
 import game.view.TLabel;
 import game.view.TTextPane;
@@ -82,7 +84,7 @@ public class TestPanel extends JPanel {
 	public TestPanel() {
 		setLayout(null);
 		// setBounds(4,416,300,150);
-		this.setBackground(Constant.colorAry[4]);
+		this.setBackground(C.colorAry[4]);
 		this.setBorder(BorderFactory.createTitledBorder("测试面板"));
 
 		oneP = new JPanel();
@@ -93,11 +95,11 @@ public class TestPanel extends JPanel {
 		add(oneP);
 		oneP.setBounds(100, 100, 20 + (attrName + attrValue) * 3,
 				28 + 2 * fontSize);// 10 + (30+58)*3 + 10 = 284
-		SUtils.setBorder(oneP, "一级属性", font);
+		UICtrl.setBorder(oneP, "一级属性", font);
 		// oneP.setBorder(BorderFactory.createTitledBorder("一级属性"));
-		int length = Constant.oneAttr.length;
+		int length = C.oneAttr.length;
 		for (int i = 0; i < length; i++) {
-			oneAttr[i] = new JLabel(Constant.oneAttr[i] + ":");
+			oneAttr[i] = new JLabel(C.oneAttr[i] + ":");
 			oneP.add(oneAttr[i]);
 			oneAttr[i].setAlignmentX(LEFT_ALIGNMENT);
 			oneAttr[i].setFont(font);
@@ -121,10 +123,10 @@ public class TestPanel extends JPanel {
 				20 + (attrName + attrValue) * 2, 28 + 2 * fontSize);// 10 +
 																	// (30+58)*3
 																	// + 10
-		SUtils.setBorder(twoP, "二级属性", font);
-		length = Constant.twoAttr.length;
+		UICtrl.setBorder(twoP, "二级属性", font);
+		length = C.twoAttr.length;
 		for (int i = 0; i < length; i++) {
-			twoAttr[i] = new JLabel(Constant.twoAttr[i] + ":");
+			twoAttr[i] = new JLabel(C.twoAttr[i] + ":");
 			twoP.add(twoAttr[i]);
 			twoAttr[i].setAlignmentX(LEFT_ALIGNMENT);
 			twoAttr[i].setFont(font);
@@ -217,10 +219,10 @@ public class TestPanel extends JPanel {
 		/** 一列，8行 */
 		equipPanelView.setBounds( 0, 0,
 				20 + (attrName + attrValue) , 28 + 8*fontSize);
-		SUtils.setBorder(equipPanelView, "角色装备", font);
-		length = Constant.partDes.length;
+		UICtrl.setBorder(equipPanelView, "角色装备", font);
+		length = C.partDes.length;
 		for (int i = 0; i < length; i++) {
-			equipAttr[i] = new JLabel(Constant.partDes[i] + ":");
+			equipAttr[i] = new JLabel(C.partDes[i] + ":");
 			equipPanelView.add(equipAttr[i]);
 			equipAttr[i].setAlignmentX(LEFT_ALIGNMENT);
 			equipAttr[i].setFont(font);
@@ -343,13 +345,13 @@ public class TestPanel extends JPanel {
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				f.setExtendedState(Frame.ICONIFIED); // 最小化
+				/*f.setExtendedState(Frame.ICONIFIED); // 最小化
 
 				if (f.getExtendedState() != Frame.MAXIMIZED_BOTH)
 					f.setExtendedState(Frame.MAXIMIZED_BOTH);
 				else
 					f.setExtendedState(Frame.NORMAL);
-				System.exit(0);
+				System.exit(0);*/
 
 				// 关闭，退出程序
 			}

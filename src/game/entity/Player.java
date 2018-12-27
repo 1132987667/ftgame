@@ -1,4 +1,4 @@
-package game.entity;
+ package game.entity;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -10,6 +10,7 @@ import java.util.Random;
 import javax.swing.JOptionPane;
 
 import game.control.SoundControl;
+import game.utils.C;
 import game.utils.DataCal;
 import game.utils.SUtils;
 
@@ -19,8 +20,11 @@ import game.utils.SUtils;
  * @author yilong22315
  */
 public class Player {
+	
 	private String name = "" ;
+	/** 当前境界 */
 	private String state = "" ;
+	
 	private int rank = 0 ;
 	private int Exp ;
 	private int curExp ;
@@ -134,21 +138,23 @@ public class Player {
 		petAdd = 0;
 	}
 	
-	/** 重新设置基本属性 */
+	/** 
+	 * 重新设置基本属性 
+	 */
 	public void reloadBaseAttr(){
-		tili = 15+rank*5 ;
-		jingli = 15+rank*5 ;
-		li = 15+rank*5 ;
-		min = 15+rank*5 ;
-		lucky = 10+rank ;
+		tili = DataCal.getBaseTili(1);
+		jingli = DataCal.getBaseJingli(1);
+		li = DataCal.getBaseLi(1);
+		min = DataCal.getBaseMin(1);
+		lucky = DataCal.getBaseLucky(1);
 		
-		hp = tili*10 ;
+		hp = DataCal.getBaseHp(1);
 		curHp = hp ;
-		mp = jingli*5/2 ;
+		mp = DataCal.getBaseMp(1);
 		curMp = mp ;
-		attack = 4*li-35 ;
+		attack = DataCal.getBaseAtk(1);
 		curAttack = attack ;
-		defense = min ;
+		defense = DataCal.getBaseDef(1);
 		curDefense = defense ;
 
 		speed = getAtkSpeed(jingli, min);
@@ -197,6 +203,40 @@ public class Player {
 		return armorBag ;
 	}
 	
+	/**
+	 * 查看玩家背包内是否存在某物品
+	 * 存在则返回物品数量
+	 * @param id
+	 * @return
+	 */
+	public Item getItem(String id) {
+		for (Item item : equipBag) {
+			if(item.getId().equals(id)) {
+				return item;
+			}
+		}
+		for (Item item : gongBag ) {
+			if(item.getId().equals(id)) {
+				return item;
+			}
+		}
+		for (Item item : materialBag) {
+			if(item.getId().equals(id)) {
+				return item;
+			}
+		}
+		return null;
+	}
+	
+	public int getItemNum(String id) {
+		Item item = getItem(id);
+		if(item==null)
+			return -1 ;
+		else 
+			return item.getNum();
+	}
+	
+	
 	public static void main(String[] args) {
 		Random rd = new Random(System.currentTimeMillis());
 		for (int i = 0; i < 10; i++) {
@@ -238,7 +278,31 @@ public class Player {
 		return flag ;
 	}
 	
+	public void gainExp(int exp){
+		curExp+=exp;
+		if(curExp>=Exp){
+			rank+=1;
+			Exp = DataCal.getUpgradeExp(rank);
+			SoundControl.jiemianMuc("lvUp");
+			JOptionPane.showConfirmDialog(null, "恭喜你，升级了~~","提示", JOptionPane.PLAIN_MESSAGE);
+		}
+		
+	}
 	
+	/** 升级对属性的加成 */
+	public void Upgrade() {
+		this.tili   += C.lvUpValue[0];
+		this.jingli += C.lvUpValue[1];
+		this.li     += C.lvUpValue[2];
+		this.min    += C.lvUpValue[3];
+		this.lucky  += C.lvUpValue[4];
+
+		this.hp      += SUtils.reDouPoint(C.lvUpValue[0]*C.oneToTwo[0]);
+		this.mp      += SUtils.reDouPoint(C.lvUpValue[1]*C.oneToTwo[1]);
+		this.attack  += SUtils.reDouPoint(C.lvUpValue[2]*C.oneToTwo[2]);
+		this.defense += SUtils.reDouPoint(C.lvUpValue[3]*C.oneToTwo[3]);
+		this.baoji   += SUtils.reDouPoint(C.lvUpValue[4]*C.oneToTwo[4]);
+	}
 	
 	public List<Equip> getEquipBag(int index){
 		if(index==0){
@@ -458,30 +522,6 @@ public class Player {
 	}
 	
 	
-	public void gainExp(int exp){
-		curExp+=exp;
-		if(curExp>=Exp){
-			rank+=1;
-			Exp = DataCal.getUpgradeExp(rank);
-			SoundControl.jiemianMuc("lvUp");
-			JOptionPane.showConfirmDialog(null, "恭喜你，升级了~~","提示", JOptionPane.PLAIN_MESSAGE);
-		}
-		
-	}
-	
-	public void Upgrade(){
-		this.tili+=5;
-		this.jingli+=5;
-		this.li+=5;
-		this.min+=5;
-		this.lucky+=1;
-		
-		this.hp+=50;
-		this.mp+=13;
-		this.attack+=4*5;
-		this.defense+=1*5;
-	}
-	
 	public void gainMoney(int money){
 		
 	}
@@ -499,7 +539,6 @@ public class Player {
 	}
 
 	public boolean isBagFull() {
-		// TODO Auto-generated method stub
 		return false;
 	}
 

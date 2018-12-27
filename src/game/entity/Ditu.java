@@ -1,5 +1,6 @@
 package game.entity;
 
+import java.awt.Point;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,6 +20,10 @@ public class Ditu{
 	private int rankR = 0;
 	private List<NPC> list = null ;
 	private List<Scene> scene = null ;
+	private boolean isSpDitu = false ;
+	private List<Ditu> spList = new ArrayList<>() ;
+	
+	public Point initPoint ;
 	
 	public Ditu(String id,String name, String des, int rankL, int rankR) {
 		super();
@@ -29,6 +34,13 @@ public class Ditu{
 		this.rankR = rankR;
 		list = new ArrayList<>();
 		scene = new ArrayList<>();
+	}
+	
+	public Ditu getSpDitu(String id) {
+		for (int i = 0; i < spList.size(); i++) 
+			if(spList.get(i).id.equals(id)) 
+				return spList.get(i);
+		return null ;
 	}
 
 	public String getId() {
@@ -85,5 +97,21 @@ public class Ditu{
 
 	public void setScene(List<Scene> scene) {
 		this.scene = scene;
+	}
+
+	public boolean isSpDitu() {
+		return isSpDitu;
+	}
+
+	public void setSpDitu(boolean isSpDitu) {
+		this.isSpDitu = isSpDitu;
+	}
+
+	public List<Ditu> getSpList() {
+		return spList;
+	}
+
+	public void setSpList(List<Ditu> spList) {
+		this.spList = spList;
 	}
 }

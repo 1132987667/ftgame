@@ -2,7 +2,7 @@ package game.view.panel;
 
 import game.control.GameControl;
 import game.entity.Gong;
-import game.utils.Constant;
+import game.utils.C;
 import game.view.ui.TTextArea;
 import game.view.ui.TextField;
 
@@ -70,7 +70,7 @@ public class BagGongPanel extends JPanel{
 		state = new TextField("tier", 0);
 		state.setBounds(qua.getX()+qua.getWidth()+INSET, qua.getY(), 60, TxtH);
 		
-		tta = new TTextArea();
+		tta = new TTextArea(0);
 		tta.setBounds(INSET, qua.getY()+qua.getHeight(), 146, 72);
 		tta.setPreferredSize(new Dimension( 146, 72));
 		tta.setText("七十二变七十二变七十二变七十二变七十二变七十二变七十二变七十二变七十二变七十二变七十二变七十二变七十二变七十二变七十二变"
@@ -120,8 +120,8 @@ public class BagGongPanel extends JPanel{
 		name.setText(gong.getName());
 		kind.setText(gong.getType()+"");
 		tier.setText("共"+gong.getMaxTier()+"重");
-		qua.setText(Constant.gongQu[gong.getQuality()]);
-		state.setText(Constant.STATE[gong.getNeedRank()%10]);
+		qua.setText(C.gongQu[gong.getQua()]);
+		state.setText(C.STATE[gong.getNeedRank()%10]);
 		tta.setText(gong.getDes());
 		boolean hasLearn =  GameControl.getInstance().hasLean(gong.getId());
 		String learnStr = hasLearn?"已学习":"未学习";

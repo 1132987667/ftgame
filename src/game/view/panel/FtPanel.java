@@ -4,7 +4,7 @@ import game.control.GameControl;
 import game.entity.NPC;
 import game.entity.Player;
 import game.thread.AwakenThread;
-import game.utils.Constant;
+import game.utils.C;
 import game.utils.SUtils;
 import game.view.TLabel;
 import game.view.TTextPane;
@@ -169,7 +169,7 @@ public class FtPanel extends JPanel{
 		myRank.setBounds(myName.getX(),myName.getY()+myName.getHeight(),60,20);
 		foeRank.setBounds(foeName.getX(), foeName.getY()+foeName.getHeight(), 60, 20);
 		foeType.setBounds(foeRank.getX()+foeRank.getWidth(), foeRank.getY(), 60, 20);
-		foeType.setForeground(Constant.equipColor[npc.getType()]);
+		foeType.setForeground(C.equipColor[npc.getType()]);
 		
 		info.add(myRank);
 		info.add(foeRank);
@@ -291,7 +291,7 @@ public class FtPanel extends JPanel{
 		myRank.setText("lv:"+player.getRank());
 		foeRank.setText("lv:"+npc.getRank());
 		
-		foeType.setText(Constant.npcTypeDes[npc.getType()]);
+		foeType.setText(C.npcTypeDes[npc.getType()]);
 		
 		/** 清空战斗信息 */
 		showInfo.setText("");

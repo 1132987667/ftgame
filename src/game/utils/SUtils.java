@@ -1,36 +1,15 @@
 package game.utils;
 
-import game.control.EquipControl;
-import game.control.GameControl;
-import game.entity.AddAttrs;
-import game.entity.Archive;
-import game.entity.CitiaoSD;
-import game.entity.Ditu;
-import game.entity.Equip;
-import game.entity.Gong;
-import game.entity.Item;
-import game.entity.Material;
-import game.entity.NPC;
-import game.entity.Player;
-import game.entity.Scene;
-import game.entity.Skill;
-import game.entity.Tasks;
-import game.entity.Tier;
-import game.listener.BagActionListener;
-import game.view.button.TButton;
-
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.Graphics;
-import java.awt.Rectangle;
+import java.awt.Point;
 import java.awt.Toolkit;
+import java.awt.event.ActionListener;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.net.URL;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
@@ -41,29 +20,42 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
-import java.util.Set;
 
 import javax.imageio.ImageIO;
-import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
-import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
-import javax.swing.border.TitledBorder;
-import javax.swing.plaf.metal.MetalLookAndFeel;
 
 import org.dom4j.Document;
 import org.dom4j.Element;
+import org.dom4j.Node;
 import org.dom4j.io.OutputFormat;
 import org.dom4j.io.SAXReader;
 import org.dom4j.io.XMLWriter;
 
-import sun.audio.AudioStream;
+import game.control.EquipControl;
+import game.control.GameControl;
+import game.control.GongCtrl;
+import game.control.TaskCtrl;
+import game.entity.AddAttrs;
+import game.entity.Archive;
+import game.entity.CitiaoSD;
+import game.entity.Ditu;
+import game.entity.Equip;
+import game.entity.Gong;
+import game.entity.NPC;
+import game.entity.Player;
+import game.entity.Scene;
+import game.entity.Skill;
+import game.entity.Tasks;
+import game.entity.Tier;
+import game.view.ui.DemoScrollBarUI;
 
 public class SUtils {
 	public static final Color Red = new Color(0xF44336);
@@ -88,7 +80,11 @@ public class SUtils {
 	public static final Color Black = new Color(0x000000);
 	public static final Color White = new Color(0xFFFFFF);
 	
-	
+	private DataCal dataCal ;
+	{
+		dataCal = new DataCal();
+	}
+
 	private static int count = 21;
 
 	/**
@@ -98,12 +94,16 @@ public class SUtils {
 
 	private static GameControl gameControl = GameControl.getInstance();
 
+	
+	/*****************************************************************
+	 * 基本方法
+	 ******************************************************************/
 	/**
-	 * 判断字符串是否为空
+	 * 判断字符串是否为空 不为空则去空格
 	 * 
 	 * @param s
 	 *            字符串
-	 * @return true为空 false 不为空
+	 * @return true为空 false不为空
 	 */
 	public static boolean isNullStr(String s) {
 		if (s == null || s.trim().length() <= 0)
@@ -112,24 +112,22 @@ public class SUtils {
 			return false;
 	}
 
-	public static String strTrim(String s){
-		return s==null?"":s.trim();
+	public static String strTrim(String s) {
+		return s == null ? "" : s.trim();
 	}
-	
-	public static String strTrim(Object obj){
+
+	public static String strTrim(Object obj) {
 		String s = conObjToStr(obj);
-		return s==null?"":s.trim();
+		return s == null ? "" : s.trim();
 	}
-	
+
 	/**
 	 * Object 转化成 int
-	 * 
 	 * @param obj
 	 * @return
 	 */
 	public static int conObjToInt(Object obj) {
-		return obj == null || "".equals(obj.toString()) ? 0 : Integer
-				.parseInt(obj.toString().trim());
+		return obj == null || "".equals(obj.toString()) ? 0 : Integer.parseInt(obj.toString().trim());
 	}
 
 	/**
@@ -141,10 +139,9 @@ public class SUtils {
 	public static double conStrToDou(String str) {
 		return isNullStr(str) ? 0.0 : Double.parseDouble(str);
 	}
-	
+
 	/**
 	 * String转化为boolean
-	 * 
 	 * @param str
 	 * @return
 	 */
@@ -152,632 +149,11 @@ public class SUtils {
 		return isNullStr(str) ? false : Boolean.parseBoolean(str);
 	}
 
-	
-	/**
-	 * 加载xml文件
-	 * 
-	 * @param filename
-	 * @return
-	 */
-	public static Document load(String filename) {
-		System.out.println(filename);
-		//System.out.println(this.getClass().getClassLoader().getResource(filename).getPath());
-		System.out.println(SUtils.class.getResourceAsStream("/"+filename));
-		Document document = null;
-		try {
-			SAXReader saxReader = new SAXReader();
-			saxReader.setEncoding("UTF-8");
-			document = saxReader.read(SUtils.class.getResourceAsStream("/"+filename)); // 读取XML文件,获得document对象
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		}
-		return document;
-	}
-	
-	static void t() {
-		try {
-			InputStream in = SUtils.class.getClassLoader().getResourceAsStream("game/img/back/1.png");
-			System.out.println(in);
-			byte[] bytes = new byte[1024];
-			int length;
-			while((length = in.read(bytes)) != -1) {
-			    System.out.write(bytes, 0, length);
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-
-	/**
-	 * 加载对应装备的属性生成设定
-	 * 
-	 * @param part
-	 * @return
-	 */
-	public List<CitiaoSD> loadEquipSetting(int part) {
-		/** 对应部位的设定列表 */
-		List<CitiaoSD> list = new ArrayList<>();
-		Document document = load("game/xml/equipSetting.xml");
-		/** 获取根目录 */
-		Element root = document.getRootElement();
-		List<Element> temp = root.elements();
-		/**  */
-		for (int i = 0; i < temp.size(); i++) {
-			if (temp.get(i).attribute("name").getText()
-					.equals(EquipControl.partAry[part])) {
-				temp = temp.get(i).elements();
-				break;
-			}
-		}
-		// System.out.println("size:"+temp.size()+" , "+EquipControl.partAry[part]);
-		/** 5条设定 每条设定六个属性 */
-		for (int i = 0; i < temp.size(); i++) {
-			String type = temp.get(i).element("type").getText();
-			String attrType = temp.get(i).element("attrType").getText();
-			String attrName = temp.get(i).element("attrName").getText();
-			String ratio = temp.get(i).element("value").getText();
-			CitiaoSD theAttr = new CitiaoSD(part, i, conStrtoInt(type),
-					attrType, attrName, conStrtoDou(ratio));
-			// System.out.println(theAttr.toString());
-			list.add(theAttr);
-		}
-		return list;
-	}
-
-	/**
-	 * 加载所有的装备信息
-	 * 武器，防具
-	 * @return
-	 */
-	public Map<String,Equip> loadEquip() {
-		Map<String,Equip> equipMap = new HashMap<>();
-		Document document = load("game/xml/equip.xml");
-		/** 迭代获得所有元素 */
-		/** 获取根目录 */
-		Element root = document.getRootElement();
-		/** 获取根目录下所有元素 */
-		List<Element> list = root.elements();
-		int part = 0, rank = 0;
-		String mode, name, kind, des, id ;
-		Equip temp = null;
-		for (Element e : list) {
-			// 获取属性值 
-			part = conStrtoInt(e.attributeValue("part"));
-			mode = e.attributeValue("mode");
-			id = e.element("id").getText(); ;
-			name = e.element("name").getText();
-			kind = e.element("kind").getText();
-			des = e.element("des").getText();
-			rank = conStrtoInt(e.element("rank").getText());
-			temp = new Equip();
-			temp.setId(id);
-			temp.setPart(part);
-			temp.setMode(mode);
-			temp.setName(name);
-			temp.setKind(kind);
-			temp.setDes(des);
-			temp.setRank(rank);
-			equipMap.put(id, temp);
-		}
-		return equipMap;
-	}
-	
-	public Map<String,Skill> loadSkill(){
-		Map<String,Gong> map = new HashMap<>() ;
-		Document document = load("game/xml/skill.xml");
-		Element root = document.getRootElement();
-		List<Element> eleList = root.elements("skill");
-		Skill skillTmp = null ;
-		/**
-		<name></name>
-		<des></des>
-		<!-- 消耗 -->
-		<consume></consume>
-		<!-- 结果 -->
-		<result></result>
-		<!-- 目标 -->
-		<target></target>
-		<scope></scope>
-		<gongId></gongId>
-		<gongName></gongName>
-		<useCase></useCase>
-		<studyCase></studyCase>
-		<needTier></needTier>
-		<cd></cd>
-		<curCd></curCd>
-		 */
-		Map<String,Skill> skillMap  = new HashMap<>() ;
-		//String id,name,des,consume,result,target,scope,gongId,gongName,useCase,studyCase;
-		//int needTier,cd,curCd ; 
-		for (int i = 0; i < eleList.size(); i++) {
-			skillTmp = new Skill();
-			skillTmp.id = strTrim(eleList.get(i).attributeValue("id"));
-			skillTmp.name = strTrim(eleList.get(i).elementText("name"));
-			skillTmp.des = strTrim(eleList.get(i).elementText("des"));
-			skillTmp.type = strTrim(eleList.get(i).elementText("type"));
-			skillTmp.consume = strTrim(eleList.get(i).elementText("consume"));
-			skillTmp.result = strTrim(eleList.get(i).elementText("result"));
-			skillTmp.target = strTrim(eleList.get(i).elementText("target"));
-			skillTmp.scope = strTrim(eleList.get(i).elementText("scope"));
-			skillTmp.gongId = strTrim(eleList.get(i).elementText("gongId"));
-			skillTmp.gongName = strTrim(eleList.get(i).elementText("gongName"));
-			skillTmp.useCase = strTrim(eleList.get(i).elementText("useCase"));
-			skillTmp.studyCase = strTrim(eleList.get(i).elementText("studyCase"));
-			skillTmp.needTier = conStrtoInt(eleList.get(i).elementText("needTier"));
-			skillTmp.cd = conStrtoInt(eleList.get(i).elementText("cd"));
-			skillTmp.curCd = conStrtoInt(eleList.get(i).elementText("curCd"));
-			skillMap.put(skillTmp.id, skillTmp);
-		}
-		System.out.println("加载了"+skillMap.size()+"个技能");
-		return skillMap;
-	}
-	
-	/**
-	 * 加载功法
-	 * @return
-	 */
-	public Map<String,Gong> loadGong(){
-		Map<String,Gong> map = new HashMap<>() ;
-		Document document = load("game/xml/Gong.xml");
-		Element root = document.getRootElement();
-		List<Element> eleList = root.elements();
-		List<Element> tierList = root.elements();
-		Gong gong = null ;
-		/** 功的属性 */
-		String id, name, des, req ;
-		int quality, maxTier, curTier, type, needRank ;
-		List<Skill> allSkills , hasLearn ;
-		AddAttrs addAttrs ;
-		Tier tier ;
-		for (int i = 0; i < eleList.size(); i++) {
-			gong = new Gong() ;
-			id = eleList.get(i).attributeValue("id");
-			name = eleList.get(i).elementText("name");
-			des = eleList.get(i).elementText("des");
-			type = conStrtoInt(eleList.get(i).elementText("type"));
-			maxTier = conStrtoInt(eleList.get(i).elementText("maxTier"));
-			curTier = conStrtoInt(eleList.get(i).elementText("curTier"));
-			quality = conStrtoInt(eleList.get(i).elementText("quality"));
-			needRank = conStrtoInt(eleList.get(i).elementText("needRank"));
-			req = eleList.get(i).elementText("req") ;
-			gong.setId(id);
-			gong.setName(name);
-			gong.setDes(des);
-			gong.setType(type);
-			gong.setNeedRank(needRank);
-			gong.setMaxTier(maxTier);
-			gong.setCurTier(curTier);
-			gong.setQuality(quality);
-			gong.setRequire(req);
-			gong.setPrice(getGongPrice(1, quality));
-			/** 加载功法每一层的信息 */
-			Element effect = eleList.get(i).element("effect");
-			tierList = effect.elements();
-			/**
-			 * <tier value="4">
-			 *		<needRank>7</needRank>
-			 *		<AddAttrs>
-			 *			hp:60%;
-			 *			mp:60%
-			 *		</AddAttrs>
-			 *	</tier>
-			 */
-			for (int j = 0; j < tierList.size(); j++) {
-				tier = new Tier() ;
-				tier.curTier = conStrtoInt(tierList.get(j).attributeValue("value"));
-				tier.needRank = conStrtoInt(tierList.get(j).elementText("needRank"));
-				tier.needExp = conObjToStr(tierList.get(j).elementText("needExp"));
-				addAttrs = new AddAttrs();
-				String addAttrsValue =  tierList.get(j).elementText("AddAttrs");
-				String[] ary = addAttrsValue.trim().split(";");
-				String addAttrStr = "" ;
-				/**
-				 * hp:60%;
-       			 * mp:60%
-				 */
-				for (int k = 0; k < ary.length; k++) {
-					addAttrStr+=ary[k].trim()+";";
-					/** hp:60% */
-					String[] temp = ary[k].split(":");
-					/** hp */
-					String attrName = temp[0].trim();
-					/** 60% */
-					String value = temp[1].trim();
-					addAttrs = calAddAttrsValue(addAttrs,attrName, value, tier.needRank);
-				}
-				tier.addAttrStr = addAttrStr ;
-				tier.addAttrs = addAttrs ;
-				gong.getTiers().add(tier);
-			}
-			Element skills = eleList.get(i).element("skills");
-			List<Element> skillsList = null ;
-			if(skills!=null){
-				skillsList = skills.elements();
-			}
-			if(skillsList!=null){
-				for (int j = 0; j < skillsList.size(); j++) {
-					Skill skillTmp = new Skill() ;
-					skillTmp.id = skillsList.get(j).attributeValue("id");
-					skillTmp.name = skillsList.get(j).elementText("name");
-					gong.getAllSkills().add(skillTmp);
-					
-				}
-			}
-			map.put(id, gong);
-		}
-		System.out.println("加载得到了:"+map.size()+"部功法!");
-		return map;
-	}
-	
-	
-	public List<Skill> analyzeSkill(Element element){
-		List<Element> eleList = element.elements();
-		List<Skill> skillList = new ArrayList<>() ;
-		Element temp ; 
-		Skill skill = null ;
-		/**  */
-		for (int i = 0; i < eleList.size(); i++) {
-			temp = eleList.get(i);
-			skill = new Skill();
-			skill.id = temp.attributeValue("id");
-			skill.name = temp.elementText("name");
-			skill.des = temp.elementText("des");
-			skill.type = temp.elementText("type");
-			skill.target = temp.element("target").attributeValue("type");
-			skill.scope = temp.elementText("target");
-			skill.result = temp.elementText("result");
-			skill.studyCase = temp.elementText("studyCase");
-			skill.cd = conStrtoInt(temp.elementText("cd"));
-			skill.useCase = temp.elementText("useCase")==null?"":temp.elementText("useCase");
-			skillList.add(skill);
-		}
-		return skillList; 
-	}
-	
-	/**
-	 * 计算属性加成
-	 * @param name 属性名
-	 * @param value 属性值
-	 * @param rank 等级
-	 * @return
-	 */
-	public static AddAttrs calAddAttrsValue(AddAttrs addAttrs,String name,String value,int rank){
-		boolean flag = false ;
-		int attrValue = 0 ;
-		if(value.endsWith("%")){
-			/** 表示为百分比加成 */
-			flag = true ;
-			attrValue = getBaseAttrByRank(name, rank); 
-			value = value.substring(0,value.length()-1);
-			attrValue = reDouPoint(attrValue*conStrtoInt(value)*0.01);
-			System.out.println(name+":"+value);
-		}else{
-			attrValue = conStrtoInt(value);
-		}
-		switch (name) {
-		case "hp":
-			addAttrs.hp+=attrValue;
-			break;
-		case "mp":
-			addAttrs.mp+=attrValue;
-			break;
-		case "atk":
-			addAttrs.attack+=attrValue;
-			break;
-		case "def":
-			addAttrs.defense+=attrValue;
-			break;
-		case "baoji":
-			addAttrs.baoji+=attrValue;
-			break;
-		case "suck":
-			break;
-		case "reHp":/** 生命回复 */
-			addAttrs.reHp+=attrValue;
-			break;
-		case "reMp":/** 法力回复 */
-			addAttrs.reMp+=attrValue;
-			break;
-		case "atkUp":
-			addAttrs.atkUp+=attrValue;
-			break;
-		case "atkDown":
-			addAttrs.atkDown+=attrValue;
-			break;
-		case "defUp":
-			addAttrs.defUp+=attrValue;
-			break;
-		case "defDown":
-			addAttrs.defDown+=attrValue;
-			break;
-		case "speedUp":
-			addAttrs.speedUp+=attrValue;
-			break;
-		case "speedDown":
-			addAttrs.speedDown+=attrValue;
-			break;
-		case "hitUp":/** 命中上升 */
-			addAttrs.hitUp+=attrValue;
-			break;
-		case "hitDown":/** 命中下降 */
-			addAttrs.hitDown+=attrValue;
-			break;
-		case "dodgeUp":/** 闪避上升 */
-			addAttrs.dodgeUp+=attrValue;
-			break;
-		case "dodgeDown":/** 闪避下降 */
-			addAttrs.dodgeDown+=attrValue;
-			break;
-		case "wuRebound":/** 物理伤害反弹 */
-			addAttrs.wuRebound+=attrValue;
-			break;
-		case "bufRe":/** 增益移除 */
-			addAttrs.bufRe+=attrValue;
-			break;
-		case "debufRe":/** 减益移除 */
-			addAttrs.debufRe+=attrValue;
-			break;
-		case "daze":/** 眩晕 */
-			addAttrs.daze+=attrValue;
-			break;
-		default:
-			break;
-		}
-		return addAttrs;
-	}
-	
-	
-	
-	
-	/** 加载任务信息 */
-	public Map<String,Tasks> loadTask() {
-		Map<String,Tasks> map = new HashMap<>();
-		Document document = load("game/xml/npc.xml");
-		Element root = document.getRootElement();
-		List<Element> eleList = root.elements("task");
-		Tasks tasks = null;
-		int curState = 0 ;
-		String id , taskName = "", npcId = "", taskDes = "";
-		String task1, task2, task3 ;
-		String startCond, acceptCond,endCond ;
-		for (int i = 0; i < eleList.size(); i++) {
-			id = eleList.get(i).attributeValue("id");
-			taskName = eleList.get(i).element("taskName").getText();
-			curState = conStrtoInt(eleList.get(i).element("curState").getText());
-			npcId = eleList.get(i).element("npcId").getText() ;
-			taskDes = eleList.get(i).element("taskDes").getText();
-			task1 = eleList.get(i).element("task1").getText() ;
-			task2 = eleList.get(i).element("task2").getText() ;
-			task3 = eleList.get(i).element("task3").getText() ;
-			startCond = eleList.get(i).element("startCond").getText();
-			acceptCond = eleList.get(i).element("acceptCond").getText();
-			endCond = eleList.get(i).element("endCond").getText();
-			tasks = new Tasks(); 
-			tasks.setId(id);
-			tasks.setTaskName(taskName);
-			tasks.setCurState(curState);
-			tasks.setNpcId(npcId);
-			tasks.setTaskDes(taskDes);
-			tasks.setTask1(task1);
-			tasks.setTask2(task2);
-			tasks.setTask3(task3);
-			tasks.setStartCond(startCond);
-			tasks.setAcceptCond(acceptCond);
-			tasks.setEndCond(endCond);
-			map.put(id, tasks);
-		}
-		return map;
-	}
-	
-	/**
-	 * 加载npc的基本信息
-	 * id , name , des , msg , rank , type
-	 * 而人物的属性
-	 * 和与玩家的交互在之后解析
-	 * @return
-	 */
-	public Map<String, NPC> loadNpc() {
-		Map<String, NPC> map = new HashMap<>();
-		Document document = load("game/xml/npc.xml");
-		Element root = document.getRootElement();
-		List<Element> elementList = root.elements();
-		Element npcEle = null , action = null ;
-		NPC npc = null;
-		/** 开始初始化每个npc的信息 */
-		for (int i = 0; i < elementList.size(); i++) {
-			/** 循环每个npc节点 */
-			npcEle = elementList.get(i);
-			String id = npcEle.elementText("id");
-			if (!isNullStr(id)) {// 不为空则加入
-				String name = npcEle.elementText("name");
-				String des = npcEle.elementText("des");
-				String msg = npcEle.elementText("msg").trim();
-				String[] msgs = msg.split("\\|");
-				int rank = conStrtoInt(npcEle.element("rank").getText());
-				int type = conStrtoInt(npcEle.element("type").getText());
-				String attrType = npcEle.attributeValue("attrType");
-				if(npcEle.selectNodes("NeiGong").size()>0) {
-					String NGStr = npcEle.elementText("NeiGong").trim();
-					npc.setNgStr(NGStr);
-				}
-				if(npcEle.selectNodes("WaiGong").size()>0) {
-					String WGStr = npcEle.elementText("WaiGong").trim();
-					npc.setWgStr(WGStr);
-				}	
-				npc = new NPC();
-				npc.setMsgs(msgs);
-				npc.setId(id);
-				npc.setName(name);
-				npc.setDes(des);
-				npc.setMsg(msg);
-				npc.setRank(rank); 
-				npc.setType(type);
-				npc.setAttrType(attrType);
-				
-				map.put(id, npc);
-			}
-		}
-		return map;
-	}
-	
-	
-	
-	
-	/**
-	 * 把xml中的npc解析成npc实体
-	 * @param action
-	 * @param npc
-	 */
-	private static void npcActionAnalyze(Element action,NPC npc) {
-		if(action==null){
-			return ;
-		}
-		List<Object> goods = null;
-		List<Element> list = action.elements();
-		Element tempE = null ;
-		String type = "" ;
-		String id,name,appear,itemType ;
-		int appearLv = 0 , num = 0 ;
-		/** 遍历人物所有可能动作 */
-		for (int i = 0; i < list.size(); i++) {
-			tempE = list.get(i);
-			/** 动作的种类 */
-			type = tempE.attribute("type").getText();
-			List<Element> acList = tempE.elements();
-			switch (type) {
-			case "sell":/** 交易动作 */
-				/**
-				 * <ac>tempE
-				 * 		<item></item>acList
-				 * 		<item></item>acList
-				 * </ac>
-				 */
-				for (int j = 0; j < acList.size(); j++) {
-					id = acList.get(i).attributeValue("id") ;
-					name = acList.get(i).attributeValue("name") ;
-					num = SUtils.conStrtoInt(acList.get(i).attributeValue("num")) ;
-					if(id.equals("bestTrader")||id.equals("bestTrader")||id.equals("bestTrader")){
-						/*if(id.equals("bestTrader")){//极品商人|卖装备和图纸和材料
-							goods = getBestTraderGoods(num);
-						}else if(id.equals("petTrader")){//售卖宠物蛋
-							goods = getPetTraderGoods(num);
-						}else if(id.equals("skillTrader")){//售卖技能书
-							goods = getSkillTraderGoods(num);
-						}*/
-						appear = acList.get(i).attributeValue("appear") ;
-						npc.setAppearMode(appear);
-						if(appear.equals("lvAppear")){//当商人为随机出现时才会有随即出现率
-							appearLv = SUtils.conStrtoInt(acList.get(i).attributeValue("appearLv")) ;
-							npc.setAppearLv(appearLv);
-						}
-					}else{
-						//普通商人，储存货物信息 <item id="101" itemType="equip" name="长剑" num="1" type="2,3" ></item>
-						itemType = acList.get(i).attributeValue("itemType");
-						if(itemType.equals("equip")){//装备
-							Equip equip = gameControl.getEquipMap().get(id);
-							equip.setType(2);
-							npc.getSellList().add(equip);
-						}else if(itemType.equals("cailiao")){//材料
-							Material mat = null ;
-						}else if(itemType.equals("pet")){//宠物蛋
-							
-						}else if(itemType.equals("drawings")){//图纸
-							
-						}else if(itemType.equals("skillBook")){//技能书
-							
-						}
-					}
-				}
-				break;
-			case "detect":/** 监测动作 */
-				break ;
-			case "study":/** 学习动作 */
-				break ;
-			case "give":/** 玩家收取npc物品 */
-				for (int j = 0; j < acList.size(); j++) {
-					id = acList.get(i).attributeValue("id") ;
-					itemType = acList.get(i).attributeValue("itemType");
-					if(itemType.equals("equip")){
-						/** 得到给与玩家的物品 */
-						Equip equip = gameControl.getEquipMap().get(id);
-					}else if(itemType.equals("cailiao")){
-						
-					}
-				}
-				break ;
-			case "take":/** npc收取玩家物品 */
-				
-				break ;
-			case "forge":/** 锻造动作 */
-				break ;
-			default:
-				break;
-			}
-		}
-		
-	}
-	
-	/**
-	 * 加载所有的防具信息 ,存放在Map中
-	 * 
-	 * @return
-	 */
-	/*public static Map<String, List<Equip>> loadArmor() {
-		Document document = load("game/xml/armor.xml");
-		*//** 迭代获得所有元素 *//*
-		*//** 获取根目录 *//*
-		Element root = document.getRootElement();
-		*//** 获取根目录下所有元素 *//*
-		// List<Element> list = root.elements();
-		Element[] armorAry = { root.element("helmet"),
-				root.element("necklace"), root.element("coat"),
-				root.element("ring"), root.element("waistband"),
-				root.element("trousers"), root.element("shoes") };
-
-		List<Equip> armorList = null;
-		*//**  *//*
-		Map<String, List<Equip>> armorMap = new HashMap<>();
-		Equip temp = null;
-		for (int i = 0; i < armorAry.length; i++) {
-			armorList = new ArrayList<Equip>();
-			for (Element e : armorAry[i].elements()) {
-				temp = new Equip();
-				// 获取属性值
-				// String name = e.attributeValue("name");
-				String name = e.element("name").getText();
-				String unit = e.element("unit").getText();
-				String kind = e.element("kind").getText();
-				String des = e.element("des").getText();
-				String rank = e.element("rank").getText();
-				String part = e.element("part").getText();
-				temp.setName(name);
-				temp.setUnit(unit);
-				temp.setKind(kind);
-				temp.setDes(des);
-				temp.setRank(conStrtoInt(rank));
-				temp.setPart(conStrtoInt(part));
-				armorList.add(temp);
-				// System.out.println(temp.toString());
-			}
-			armorMap.put(EquipControl.partAry[i + 1], armorList);
-		}
-		return armorMap;
-		
-		 * List<Node> list= document.selectNodes("root/weapon"); for (int i = 0;
-		 * i < list.size(); i++) { System.out.println(list.get(i)); }
-		 
-	}*/
+	/**********************************************************************
+	 * 解析  
+	 **********************************************************************/
 
 	
-
-	/*
-	 * public static String addSpaces(Object str) { int standard = 7;
-	 * 
-	 * int len = str.toString().trim().length(); StringBuffer bf = new
-	 * StringBuffer(str.toString().trim()); if (len < standard) { for (int i =
-	 * 0; i < standard - len; i++) { bf.append(" "); } }
-	 * System.out.println("bf:" + bf.toString()); return new String(bf); }
-	 */
 
 	public static String autoNewline(String str) {
 		int len = str.length();
@@ -807,87 +183,6 @@ public class SUtils {
 		return sb.toString();
 	}
 
-	public static void otherBagShow(JPanel bag, List equipList,
-			BagActionListener bgac) {
-		Item item = null;
-		JButton tempBu;
-		JLabel tempField;
-		if (item == null) {
-			return;
-		}
-		/** 先设置第一个，再设置其他 */
-		/*
-		 * for (int i = 0; i < equipList.size(); i++) { item = (Item)
-		 * equipList.get(i); System.out.println(item.toString()); tempBu = new
-		 * JButton(item.getName());
-		 *//** 设置组件边距 */
-		/*
-		 * // tempBu.setBorder(BorderFactory.createEtchedBorder());
-		 * tempBu.setMargin(new Insets(0, 2, 0, 0));
-		 * tempBu.setHorizontalAlignment(SwingConstants.LEFT);
-		 *//** 设置按钮透明 */
-		/*
-		 * tempBu.setContentAreaFilled(false);
-		 * tempBu.setForeground(Color.white); tempBu.addActionListener(bgac);
-		 * tempBu.setFocusable(false); tempBu.setBounds(4, i * 20 + 1, 98, 20);
-		 * bag.add(tempBu); for (int j = 1; j < 4; j++) { String tempStr =
-		 * getShowField(i, i); tempField = new JLabel(tempStr);
-		 * tempField.setForeground(Color.white);
-		 * tempField.setHorizontalTextPosition(SwingConstants.CENTER);
-		 * tempField.setBackground(Color.red); tempField.setBounds(6 + j *
-		 * 60+38, i * 20 + 1, 60, 20); bag.add(tempField); } }
-		 */
-	}
-
-	/**
-	 * 把背包内装备物品显示在面板上，并增加监听
-	 * 
-	 * @param bag
-	 * @param equipList
-	 * @param bals
-	 */
-	public static void equipBagShow(JPanel bag, List equipList,
-			BagActionListener bals) {
-		Font f = new Font("隶书", Font.PLAIN, 16);
-		Equip equip = null;
-		JButton tempBu;
-		JLabel tempField;
-		if (equipList == null) {
-			return;
-		}
-		System.out.println("背包里物品的数量:" + equipList.size());
-		/** 先设置第一个，再设置其他 */
-		for (int i = 0; i < equipList.size(); i++) {
-			equip = (Equip) equipList.get(i);
-			tempBu = new JButton(equip.getName());
-			/** ActionCommand为在当前list中的序号 */
-			tempBu.setActionCommand(i + "");
-			/** 设置组件边距 */
-			tempBu.setBorder(new EmptyBorder(0, 4, 0, 0));
-			// tempBu.setMargin(new Insets(0, 2, 0, 0));
-			tempBu.setHorizontalAlignment(SwingConstants.LEFT);
-			/** 设置按钮透明 */
-			tempBu.setFont(f);
-			tempBu.setContentAreaFilled(false);
-			/** 设置字体颜色 */
-			tempBu.setForeground(Constant.equipColor[equip.getType()]);
-			tempBu.addActionListener(bals);
-			tempBu.setFocusable(false);
-			tempBu.setBounds(0, i * 20 + 1, 98, 20);
-			bag.add(tempBu);
-			for (int j = 1; j < 4; j++) {
-				String tempStr = getEquipField(j, equip);
-				tempField = new JLabel(tempStr);
-				tempField.setFont(f);
-				tempField.setBorder(new EmptyBorder(0, 4, 0, 0));
-				tempField.setForeground(new Color(250, 255, 240));
-				tempField.setHorizontalTextPosition(SwingConstants.CENTER);
-				tempField.setBounds(2 + j * 60 + 38, i * 20 + 1, 60, 20);
-				bag.add(tempField);
-			}
-		}
-	}
-
 	/** 得到装备字段信息 */
 	public static String getEquipField(int i, Equip e) {
 		String temp = null;
@@ -899,25 +194,23 @@ public class SUtils {
 			temp = e.getNum() + "";
 		return temp;
 	}
-	
+
 	/** 得到功法对应的字段 */
-	public static String getGongField(int i,Gong gong){
-		String text = null ;
-		if(i == 1)
-			text = gong.getNum()+"" ;
-		else if(i == 2)
-			text = gong.getQuality()+"" ;
-		else if(i == 3){
-			int rank = gong.getNeedRank() ;
-			text = Constant.STATE[rank/10];
+	public static String getGongField(int i, Gong gong) {
+		String text = null;
+		if (i == 1)
+			text = gong.getNum() + "";
+		else if (i == 2)
+			text = gong.getQua() + "";
+		else if (i == 3) {
+			int rank = gong.getNeedRank();
+			text = C.STATE[rank / 10];
 		}
 		return text;
 	}
-	
 
 	/**
 	 * 自动设置组件居中
-	 * 
 	 * @param jf
 	 */
 	public static void setFrameCenter(Component jf) {
@@ -942,7 +235,6 @@ public class SUtils {
 
 	/**
 	 * 字符串 转换为 数字
-	 * 
 	 * @param num
 	 * @return
 	 */
@@ -950,16 +242,11 @@ public class SUtils {
 		num = strTrim(num);
 		return "".equals(num) ? 0 : Integer.valueOf(num.trim());
 	}
-	
-	public static int conobjtoInt(Object num) {
-		return "".equals(conObjToStr(num)) ? 0 : Integer.valueOf(conObjToStr(num));
-	}
 
 	/**
 	 * Object 转化为 数字
-	 * 
 	 * @param obj
-	 * @return
+	 * @return 数字
 	 */
 	public static int conObjtoInt(Object obj) {
 		return obj == null ? 0 : Integer.valueOf(obj.toString());
@@ -977,7 +264,6 @@ public class SUtils {
 
 	/**
 	 * 将数据保留两位小数
-	 * 
 	 * @param num
 	 * @return
 	 */
@@ -989,197 +275,41 @@ public class SUtils {
 	}
 
 	/**
-	 * 为容器设置带 标题 和 指定 字体的边框
-	 * 
-	 * @param c
-	 * @param str
-	 * @param f
-	 */
-	public static void setBorder(JComponent c, String str, Font f) {
-		/** 样式 标题 位置 字体 边框颜色 */
-		c.setBorder(new TitledBorder(BorderFactory.createMatteBorder(2, 2, 2,
-				2, new Color(128, 29, 174)), str, TitledBorder.LEFT,
-				TitledBorder.TOP, new Font("楷体", 0, 12), Color.BLUE));
-	}
-
-	/**
-	 * 为容器设置带 标题 和 指定字体 和 颜色 的边框
-	 * 
-	 * @param c
-	 * @param str
-	 * @param color
-	 * @param f
-	 */
-	public static void setBorder(JComponent c, String str, Color color, Font f) {
-		TitledBorder border = BorderFactory.createTitledBorder(str);
-		border.setTitleFont(f);
-		border.setTitleColor(color);
-		c.setBorder(border);
-	}
-
-	/**
-	 * 先读取 xml 文件 要保存第几个fb
-	 * 
-	 * @param str
-	 * @param index
-	 * @param fb
-	 */
-	public void editXML(String str, int index, Ditu fb) {
-
-		Document document = load("game/xml/fuben.xml");
-		/** 获取根目录 */
-		Element root = document.getRootElement();
-		List<Element> temp = root.elements();
-		for (int i = 0; i < temp.size(); i++) {
-			if (temp.get(i).attribute("name").getText().equals("副本")) {
-				temp = temp.get(i).elements();
-				break;
-			}
-		}
-		Element ele = temp.get(index);
-
-		ele.element("name").setText(fb.getName());
-		ele.element("des").setText(fb.getDes());
-		ele.element("rankL").setText(fb.getRankL() + "");
-		ele.element("rankR").setText(fb.getRankR() + "");
-		Element e = ele.element("map");
-		Element map = ele.addElement("map");
-		Element point, name, des, x, y, npcStr;
-		ele.remove(e);
-		Scene sc = null;
-		List<Scene> sceneList = fb.getScene() ;
-		for (int j = 0; j < sceneList.size(); j++) {
-			sc = sceneList.get(j);
-			point = map.addElement("point");
-
-			name = point.addElement("name");
-			des = point.addElement("des");
-			x = point.addElement("x");
-			y = point.addElement("y");
-			npcStr = point.addElement("npcStr");
-
-			name.setText(sc.name);
-			des.setText(sc.des);
-			x.setText(sc.x + "");
-			y.setText(sc.y + "");
-			npcStr.setText(sc.npcStr);
-		}
-		XMLWriter writer = null;
-		OutputFormat outFormat = new OutputFormat();
-		// 设置换行 为false时输出的xml不分行
-		outFormat.setNewlines(true);
-		// 生成缩进
-		outFormat.setIndent(true);
-		// 指定使用tab键缩进
-		outFormat.setIndent("  ");
-		// 不在文件头生成 XML 声明 (<?xml version="1.0" encoding="UTF-8"?>)
-		outFormat.setSuppressDeclaration(true);
-		// 不在文件头生成 XML 声明 (<?xml version="1.0" encoding="UTF-8"?>)中加入encoding 属性
-		outFormat.setOmitEncoding(true);
-		outFormat.setEncoding("UTF-8");
-		try {
-			writer = new XMLWriter(new FileOutputStream("E:/1.xml"), outFormat);
-			writer.write(document);
-		} catch (IOException e1) {
-			e1.printStackTrace();
-		} finally {
-			try {
-				writer.close();
-			} catch (IOException e1) {
-				e1.printStackTrace();
-			}
-		}
-	}
-
-	/**
 	 * Object 转化为 String
 	 * 
 	 * @param obj
 	 * @return
 	 */
 	public static String conObjToStr(Object obj) {
-		return obj == null ? "" : obj.toString();
+		return obj == null ? "" : obj.toString().trim();
 	}
 
 	/**
-	 * 计算 一次攻击 发生的实际情况 0 友方 1敌方 1暴击 2普通攻击 3miss
-	 * 
-	 * @param player
-	 * @param npc
-	 * @param type
-	 * @return
+	 * 去掉浮点类型小数点，四舍五入
+	 * @param str 传入String
+	 * @return 返回String
 	 */
-	public static Map<String, Object> fightHelper(Player player, NPC npc,int type) {
-		Map<String, Object> map = new HashMap<>();
-		/** 此次攻击的攻击加成 两位小数 */
-		double atkAdd = getTwoDecimal((rd.nextInt(5) + 7) * 0.1);
-		/** value造成的伤害显示 atkType伤害的类型1：普攻 2：暴击 3:miss */
-		String value = "";
-		int atkType = 0;
-		int atk = 0, def = 0, baoji = 0, atkDemage = 0;
-		/** atkAdd 这次攻击的攻击加成 atkDemage这次攻击造成伤害数值 lv命中率 rankLv等级比 */
-		double lv = 0.0, rankLv = 0.0;
-		if (type == 0) {
-			atk = player.getAttack();
-			baoji = player.getBaoji();
-			if(player.getRank()<6){
-				rankLv = player.getRank() * 3.0 / (player.getRank() + npc.getRank());
-			}else{
-				rankLv = player.getRank() * 2.0 / (player.getRank() + npc.getRank());
-			}
-			def = npc.getDefense();
-		} else {
-			atk = npc.getAttack();
-			baoji = npc.getBaoji();
-			if(player.getRank()<6){
-				rankLv = npc.getRank() * 2.0 / (player.getRank() * 2 + npc.getRank());
-			}else{
-				rankLv = npc.getRank() * 2.0 / (player.getRank() + npc.getRank());
-			}
-			def = player.getDefense();
-		}
-		/**
-		 * 先判断是否暴击 暴击双倍伤害
-		 * 
-		 */
-		int rdValue = rd.nextInt(100) + 1;
-		if (rdValue < baoji) {
-			atkDemage = (int) ((atkAdd * 2) * atk);
-			value = conObjToStr(atkDemage);
-			atkType = 2;
-		} else {
-			/** 判断是否普攻击 */
-			lv = getTwoDecimal(atk * 100 / (atk + def));
-			lv = lv * rankLv;
-			rdValue = rd.nextInt(100) + 1;
-			// System.out.println("没有打出暴击,判断是否命中,随机数为:"+rdValue+",命中率为:"+lv);
-			if (rdValue < lv) {
-				atkAdd = (rd.nextInt(5) + 7) * 0.1;
-				atkDemage = (int) (atkAdd * atk);
-				value = conObjToStr(atkDemage);
-				// System.out.println("耶,打中了,基数为"+atkAdd+",伤害值是:"+value);
-				atkType = 1;
-			} else {
-				atkType = 3;
-			}
-		}
-		/** 将战斗信息写入日志 */
-		if(type==0){
-			SUtils.writeFtLog("我方进行攻击,我攻击力为:"+atk+",我的暴击率为:"+baoji+",敌人防御力为:"+def+",此次攻击加成为:"+atkAdd+"\n");
-		}else{
-			SUtils.writeFtLog("敌方进行攻击,敌方攻击力为:"+atk+",敌方的暴击率为:"+baoji+",我的防御力为:"+def+",此次攻击加成为:"+atkAdd+"\n");
-		}
-		SUtils.writeFtLog("此次攻击命中率为:"+lv+",此次攻击判定数数值为:"+rdValue+"\n");
-		
-		map.put("atkType", atkType);
-		map.put("value", value);
-		map.put("atkDemage", atkDemage);
-		return map;
+	public static String reDouPointStr(String str) {
+		return formatDouble(conStrtoDou(str), 0);
 	}
 
 	/**
-	 * 是当前线程睡眠 time 毫秒
+	 * 去掉浮点类型小数点，四舍五入
 	 * 
+	 * @param str
+	 *            传入String
+	 * @return 返回int
+	 */
+	public static int reDouPoint(double dou) {
+		// BigDecimal b = new BigDecimal(dou);
+		int num = new Long(Math.round(dou)).intValue();
+		// double num = b.setScale(0, RoundingMode.HALF_UP).doubleValue();
+		return num;
+	}
+
+
+	/**
+	 * 使当前线程睡眠 time 毫秒
 	 * @param time
 	 */
 	public static void sleep(long time) {
@@ -1226,7 +356,7 @@ public class SUtils {
 		player.setEquipBag(archive.getEquipBag());
 		player.setEquipAry(archive.getEquipAry());
 		player.setGongBag(archive.getGongBag());
-		
+
 		return player;
 	}
 
@@ -1267,13 +397,12 @@ public class SUtils {
 		archive.setEquipAry(player.getEquipAry());
 		archive.setEquipBag(player.getEquipBag());
 		archive.setGongBag(player.getGongBag());
-		System.out.println("背包功法书数量:"+player.getGongBag().size());
+		System.out.println("背包功法书数量:" + player.getGongBag().size());
 		return archive;
 	}
 
 	/**
 	 * 把毫秒变为一定格式的时间
-	 * 
 	 * @param millSec
 	 * @return
 	 */
@@ -1284,28 +413,6 @@ public class SUtils {
 		return sdf.format(date);
 	}
 
-	/**
-	 * 去掉浮点类型小数点，四舍五入
-	 * 
-	 * @param str
-	 *            传入String
-	 * @return 返回String
-	 */
-	public static String reDouPointStr(String str) {
-		return formatDouble(conStrtoDou(str), 0);
-	}
-
-	/**
-	 * 去掉浮点类型小数点，四舍五入
-	 * 
-	 * @param str
-	 *            传入String
-	 * @return 返回int
-	 */
-	public static int reDouPoint(double dou) {
-		String num = formatDouble(dou, 0);
-		return conStrtoInt(num);
-	}
 
 	/**
 	 * 格式化浮点值为字符串型, 指定小数位数长度。
@@ -1335,14 +442,18 @@ public class SUtils {
 		return ret;
 	}
 
+	public static double formatDou(double data, int len) {
+		String str = formatDouble(data, len);
+		return conStrtoDou(str);
+	}
+
 	public static void showThread() {
 		ThreadGroup currentGroup = Thread.currentThread().getThreadGroup();
 		int noThreads = currentGroup.activeCount();
 		Thread[] lstThreads = new Thread[noThreads];
 		currentGroup.enumerate(lstThreads);
 		for (int i = 0; i < noThreads; i++)
-			System.out.println("Thread No:" + i + " = "
-					+ lstThreads[i].getName());
+			System.out.println("Thread No:" + i + " = " + lstThreads[i].getName());
 	}
 
 	/**
@@ -1351,182 +462,323 @@ public class SUtils {
 	 * @param str
 	 */
 	public static void writeFtLog(String str) {
-		//暂时关闭
-		/*try {
-			// 打开一个写文件器，构造函数中的第二个参数true表示以追加形式写文件,如果为
-			// true，则将字节写入文件末尾处，而不是写入文件开始处
-			FileWriter writer = new FileWriter("game/log/ftlog.txt", true);
-			writer.write(str);
-			writer.close();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}*/
+		// 暂时关闭
+		/*
+		 * try { // 打开一个写文件器，构造函数中的第二个参数true表示以追加形式写文件,如果为 //
+		 * true，则将字节写入文件末尾处，而不是写入文件开始处 FileWriter writer = new
+		 * FileWriter("game/log/ftlog.txt", true); writer.write(str); writer.close(); }
+		 * catch (IOException e) { // TODO Auto-generated catch block
+		 * e.printStackTrace(); }
+		 */
 	}
+
 	
-	/** 测试 */
-	public static void main(String[] args) {
-		/*SUtils s = new SUtils();
-		// SUtils.loadWeapon();
-		Document document = SUtils.load("game/xml/npc.xml");
-		Node node = document.selectSingleNode("/root/npc[id='1003']/action");
-		Element e = node.getParent().element("action");
-		System.out.println(e);
-		System.out.println(node.asXML());*/
-		
-		/*Map<String, Gong> map = SUtils.loadGong();
-		System.out.println(map.get("2001").getName());
-		System.out.println(map.get("2001").getTiers().get(4).addAttrs);*/
-		//s.writeFtLog("日志写入测试！");
-		//s.writeFtLog("写入内容");
-		
-		new SUtils().getProjectPath() ;
-	}
-	
-	public static void playMusic(){
-		try {
-			String gongFile ="/ Users / al / DevDaily / Project / MeditationApp / resources / gong.au";
-		    InputStream in = new FileInputStream(gongFile);
-		    AudioStream as = new AudioStream(in); 
-//		    AudioClip ac = getAudioClip(getCodeBase(), soundFile);
-			}
-			catch (Exception e) {}
-	}
-	
-	/**
-	 * 得到不同等级之下人物的属性
-	 * @param attrName 属性名
-	 * @param rank 任务等级
-	 * @return
-	 */
-	public static int getBaseAttrByRank(String attrName,int rank){
-		int value = 0 ;
-		Player player = new Player() ;
-		player.setRank(rank);
-		player.reloadBaseAttr();
+
+	/** 把传入的属性名转为对应数字 */
+	public int conNameToCode(String attrName) {
+		int value = 0;
 		switch (attrName) {
-		case "hp":
-			value = player.getHp() ;
+		case C.TiLi:
+			value = C.tiLi;
 			break;
-		case "mp":
-			value = player.getMp() ;
+		case C.JingLi:
+			value = C.jingLi;
 			break;
-		case "atk":
-			value = player.getAttack() ;
+		case C.Li:
+			value = C.li;
 			break;
-		case "def":
-			value = player.getDefense() ;
+		case C.Min:
+			value = C.min;
 			break;
-		case "baoji":
-			value = player.getBaoji() ;
+		case C.Lucky:
+			value = C.lucky;
 			break;
-		case "speed":
-			value = player.getSpeed() ;
+		case C.Hp:
+			value = C.hp;
+			break;
+		case C.Mp:
+			value = C.mp;
+			break;
+		case C.Atk:
+			value = C.atk;
+			break;
+		case C.Def:
+			value = C.def;
+			break;
+		case C.BaoJi:
+			value = C.baoJi;
+			break;
+		case C.MonAdd:
+			value = C.monAdd;
+			break;
+		case C.EqDrop:
+			value = C.eqDrop;
+			break;
+		case C.ExpAdd:
+			value = C.expAdd;
+			break;
+		case C.WMs:
+			value = C.wms;
+			break;
+		case C.FMs:
+			value = C.fms;
+			break;
+		case C.Lj2:
+			value = C.lj2;
+			break;
+		case C.Lj3:
+			value = C.lj3;
+			break;
+		case C.Suck:
+			value = C.suck;
 			break;
 		default:
 			break;
 		}
-		return value ;
+		return value;
 	}
+
+	/**
+	 * 把传入的属性数字转为对应属性名
+	 * 
+	 * @param attrName
+	 * @return
+	 */
+	public String conCodeToName(int attrCode) {
+		String value = "";
+		switch (attrCode) {
+		case C.tiLi:
+			value = C.TiLi;
+			break;
+		case C.jingLi:
+			value = C.JingLi;
+			break;
+		case C.li:
+			value = C.Li;
+			break;
+		case C.min:
+			value = C.Min;
+			break;
+		case C.lucky:
+			value = C.Lucky;
+			break;
+		case C.hp:
+			value = C.Hp;
+			break;
+		case C.mp:
+			value = C.Mp;
+			break;
+		case C.atk:
+			value = C.Atk;
+			break;
+		case C.def:
+			value = C.Def;
+			break;
+		case C.baoJi:
+			value = C.BaoJi;
+			break;
+		case C.monAdd:
+			value = C.MonAdd;
+			break;
+		case C.eqDrop:
+			value = C.EqDrop;
+			break;
+		case C.expAdd:
+			value = C.ExpAdd;
+			break;
+		case C.wms:
+			value = C.WMs;
+			break;
+		case C.fms:
+			value = C.FMs;
+			break;
+		case C.lj2:
+			value = C.Lj2;
+			break;
+		case C.lj3:
+			value = C.Lj3;
+			break;
+		case C.suck:
+			value = C.Suck;
+			break;
+
+		case C.reHp:
+			value = C.ReHp;
+			break;
+		case C.reMp:
+			value = C.ReMp;
+			break;
+		case C.atkUp:
+			value = C.AtkUp;
+			break;
+		case C.atkDown:
+			value = C.AtkDown;
+			break;
+		case C.defUp:
+			value = C.DefUp;
+			break;
+		case C.defDown:
+			value = C.DefDown;
+			break;
+		case C.speedUp:
+			value = C.SpeedUp;
+			break;
+		case C.speedDown:
+			value = C.SpeedDown;
+			break;
+		case C.hitUp:
+			value = C.HitUp;
+			break;
+		case C.hitDown:
+			value = C.HitDown;
+			break;
+		case C.dodgeUp:
+			value = C.DodgeUp;
+			break;
+		case C.dodgeDown:
+			value = C.DodgeDown;
+			break;
+		case C.wuRebound:
+			value = C.WuRebound;
+			break;
+		case C.bufRe:
+			value = C.BufRe;
+			break;
+		case C.debufRe:
+			value = C.DebufRe;
+			break;
+		case C.daze:
+			value = C.Daze;
+			break;
+
+		default:
+			break;
+		}
+		return value;
+	}
+
 	
-	public void saveGongInfo(List<Gong> gongList){
-		Document document = load("game/xml/Gong.xml");
+	/***************************************************
+	 * 开始xml操作
+	 ***************************************************/
+	
+	/**
+	 * 保存功法信息
+	 * 
+	 * @param gongList
+	 */
+	public void saveGongInfo(List<Gong> gongList) {
+		Document document = getXmlDoc(C.xml_Gong);
 		/** 获取根目录 */
 		Element root = document.getRootElement();
+
 		List<Element> temp = root.elements();
-		Element target = null ;
-		Gong gongTmp = null ;
+		Element target = null;
+		Gong gongTmp = null;
 		for (int i = 0; i < temp.size(); i++) {
-			target = temp.get(i) ;
-			for (int j = 0; j < gongList.size(); j++) {
-				System.out.println("id:"+gongList.get(j).getId());
-				if(gongList.get(j).getId().equals(target.attributeValue("id"))){
-					gongTmp = gongList.get(j) ;
-					gongList.remove(j);
-				}
-			}
-			target.element("name").setText(gongTmp.getName());
-			target.element("quality").setText(gongTmp.getQuality()+"");
-			target.element("des").setText(gongTmp.getDes());
-			target.element("req").setText(gongTmp.getRequire()+"");
-			target.element("needRank").setText(gongTmp.getNeedRank()+"");
-			target.element("maxTier").setText(gongTmp.getMaxTier()+"");
-			target.element("curTier").setText(gongTmp.getCurTier()+"");
-			target.element("type").setText(gongTmp.getType()+"");
+			target = temp.get(i);
+			root.remove(target);
+			/*
+			 * for (int j = 0; j < gongList.size(); j++) {
+			 * if(gongList.get(j).getId().equals(target.attributeValue("id"))){ gongTmp =
+			 * gongList.get(j) ; gongList.remove(j); } }
+			 * target.element("name").setText(gongTmp.getName());
+			 * target.element("quality").setText(gongTmp.getQuality()+"");
+			 * target.element("des").setText(gongTmp.getDes());
+			 * target.element("req").setText(gongTmp.getRequire()+"");
+			 * target.element("needRank").setText(gongTmp.getNeedRank()+"");
+			 * target.element("maxTier").setText(gongTmp.getMaxTier()+"");
+			 * target.element("curTier").setText(gongTmp.getCurTier()+"");
+			 * target.element("type").setText(gongTmp.getType()+"");
+			 */
 		}
 		for (int i = 0; i < gongList.size(); i++) {
 			Element newEle = root.addElement("gong");
-			newEle.addAttribute("id", gongList.get(i).getId());
-			newEle.addElement("name").setText(gongList.get(i).getName());
-			newEle.addElement("quality").setText(gongList.get(i).getQuality()+"");
-			newEle.addElement("des").setText(gongList.get(i).getDes());
-			newEle.addElement("req").setText(gongTmp.getRequire()+"");
-			newEle.addElement("needRank").setText(gongTmp.getNeedRank()+"");
-			newEle.addElement("maxTier").setText(gongList.get(i).getMaxTier()+"");
-			newEle.addElement("curTier").setText(gongList.get(i).getCurTier()+"");
-			newEle.addElement("type").setText(gongList.get(i).getType()+"");
+			Gong gong = gongList.get(i);
+			newEle.addAttribute("id", gong.getId());
+			newEle.addElement("name").setText(gong.getName());
+			newEle.addElement("des").setText(gong.getDes());
+			newEle.addElement("qua").setText(gong.getQua() + "");
+			newEle.addElement("maxTier").setText(gong.getMaxTier() + "");
+			newEle.addElement("type").setText(gong.getType() + "");
+			newEle.addElement("needRank").setText(gong.getNeedRank() + "");
+			newEle.addElement("effectStr").setText(gong.getEffectStr() + "");
+
+			newEle.addElement("req").setText(gong.getRequire() + "");
+			newEle.addElement("price").setText(gong.getPrice() + "");
+			newEle.addElement("curTier").setText(gong.getCurTier() + "");
 			newEle.addElement("effect");
 		}
-		XMLWriter writer = null;
-		OutputFormat outFormat = OutputFormat.createPrettyPrint();
-		// 设置换行 为false时输出的xml不分行
-		outFormat.setNewlines(true);
-		// 生成缩进
-		outFormat.setIndent(false);
-		// 指定使用tab键缩进
-		outFormat.setIndent("  ");
-		// 不在文件头生成 XML 声明 (<?xml version="1.0" encoding="UTF-8"?>)
-		outFormat.setSuppressDeclaration(true);
-		// 不在文件头生成 XML 声明 (<?xml version="1.0" encoding="UTF-8"?>)中加入encoding 属性
-		outFormat.setOmitEncoding(true);
-		outFormat.setEncoding("UTF-8");
-		try {
-			writer = new XMLWriter(new FileOutputStream("game/xml/Gong.xml"), outFormat);
-			System.err.println(writer);
-			writer.write(document);
-		} catch (IOException e1) {
-			e1.printStackTrace();
-		} finally {
-			try {
-				writer.close();
-			} catch (IOException e1) {
-				e1.printStackTrace();
+		xmlSave(getXmlPath(C.xml_Gong), document);
+	}
+
+	/**
+	 * 先读取 xml 文件 要保存第几个fb
+	 * 
+	 * @param str
+	 * @param index
+	 * @param fb
+	 */
+	public void saveDituInfo(String str, int index, Ditu fb) {
+		Document document = getXmlDoc(C.xml_Fuben);
+		/** 获取根目录 */
+		Element root = document.getRootElement();
+		List<Element> temp = root.elements();
+		for (int i = 0; i < temp.size(); i++) {
+			if (temp.get(i).attribute("name").getText().equals("副本")) {
+				temp = temp.get(i).elements();
+				break;
 			}
 		}
+		Element ele = temp.get(index);
+		ele.element("name").setText(fb.getName());
+		ele.element("des").setText(fb.getDes());
+		ele.element("rankL").setText(fb.getRankL() + "");
+		ele.element("rankR").setText(fb.getRankR() + "");
+		Element e = ele.element("map");
+		Element map = ele.addElement("map");
+		Element point, name, des, x, y, npcStr;
+		ele.remove(e);
+		Scene sc = null;
+		List<Scene> sceneList = fb.getScene();
+		for (int j = 0; j < sceneList.size(); j++) {
+			sc = sceneList.get(j);
+			point = map.addElement("point");
+
+			name = point.addElement("name");
+			des = point.addElement("des");
+			x = point.addElement("x");
+			y = point.addElement("y");
+			npcStr = point.addElement("npcStr");
+
+			name.setText(sc.name);
+			des.setText(sc.des);
+			x.setText(sc.x + "");
+			y.setText(sc.y + "");
+			npcStr.setText(sc.npcStr);
+		}
+		xmlSave(getXmlPath(C.xml_Fuben), document);
 	}
-	
+
 	/**
-	 * 保存技能信息
-	 * id 不为空
-	 * name 不为空
-	 * des 不为空
-	 * 类型 不为空 1主动 2被动
-	 * 消耗 默认为0
-	 * 结果 不能为空 
-	 * 目标 默认敌方
-	 * 范围 默认单体
-	 * 功法id 默认为2000
-	 * 功法name 默认为暂无
-	 * 使用条件 默认无
-	 * 学习条件 默认无
-	 * 需要等级 默认0
-	 * cd 默认0
-	 * curCd 默认0
+	 * 保存技能信息 id 不为空 name 不为空 des 不为空 类型 不为空 1主动 2被动 消耗 默认为0 结果 不能为空 目标 默认敌方 范围 默认单体
+	 * 功法id 默认为2000 功法name 默认为暂无 使用条件 默认无 学习条件 默认无 需要等级 默认0 cd 默认0 curCd 默认0
+	 * 
 	 * @param skillList
 	 */
-	public void saveSkillInfo(List<Skill> skillList){
+	public void saveSkillInfo(List<Skill> skillList) {
 		Document document = load("game/xml/skill.xml");
 		/** 获取根目录 */
 		Element root = document.getRootElement();
 		List<Element> temp = root.elements("skill");
-		Element target = null ;
-		Skill skillTmp = null ;
+		Element target = null;
+		Skill skillTmp = null;
 		for (int i = 0; i < temp.size(); i++) {
-			target = temp.get(i) ;
+			target = temp.get(i);
 			for (int j = 0; j < skillList.size(); j++) {
-				System.out.println("id:"+skillList.get(j).id+","+target.attributeValue("id"));
-				if(skillList.get(j).id.equals(target.attributeValue("id"))){
-					skillTmp = skillList.get(j) ;
+				System.out.println("id:" + skillList.get(j).id + "," + target.attributeValue("id"));
+				if (skillList.get(j).id.equals(target.attributeValue("id"))) {
+					skillTmp = skillList.get(j);
 					skillList.remove(j);
 				}
 			}
@@ -1534,18 +786,16 @@ public class SUtils {
 			target.element("des").setText(strTrim(skillTmp.des));
 			target.element("type").setText(strTrim(strTrim(skillTmp.type)));
 			target.element("consume").setText(strTrim(skillTmp.consume));
-			target.element("result").setText(strTrim(skillTmp.result));
-			target.element("target").setText(strTrim(skillTmp.target));
 			target.element("scope").setText(strTrim(skillTmp.scope));
 			target.element("gongId").setText(strTrim(skillTmp.gongId));
 			target.element("gongName").setText(strTrim(skillTmp.gongName));
 			target.element("useCase").setText(strTrim(skillTmp.useCase));
 			target.element("studyCase").setText(strTrim(skillTmp.studyCase));
-			target.element("needTier").setText(strTrim(skillTmp.needTier+""));
-			target.element("cd").setText(strTrim(skillTmp.cd+""));
+			target.element("needTier").setText(strTrim(skillTmp.needTier + ""));
+			target.element("cd").setText(strTrim(skillTmp.cd + ""));
 			target.element("curCd").setText(strTrim("0"));
 		}
-		System.out.println("新增了"+skillList.size()+"条!");
+		System.out.println("新增了" + skillList.size() + "条!");
 		for (int i = 0; i < skillList.size(); i++) {
 			Element newEle = root.addElement("skill");
 			newEle.addAttribute("id", skillList.get(i).id);
@@ -1554,16 +804,13 @@ public class SUtils {
 			newEle.addElement("des").setText(skillList.get(i).des);
 			newEle.addElement("type").setText(skillList.get(i).type);
 			newEle.addElement("consume").setText(skillList.get(i).consume);
-			newEle.addElement("result").setText(skillList.get(i).result);
-			newEle.addElement("newEle").setText(skillList.get(i).target);
 			newEle.addElement("scope").setText(skillList.get(i).scope);
-			newEle.addElement("target").setText(skillList.get(i).target);
 			newEle.addElement("gongId").setText(skillList.get(i).gongId);
 			newEle.addElement("gongName").setText(skillList.get(i).gongName);
 			newEle.addElement("useCase").setText(skillList.get(i).useCase);
 			newEle.addElement("studyCase").setText(skillList.get(i).studyCase);
-			newEle.addElement("needTier").setText(skillList.get(i).needTier+"");
-			newEle.addElement("cd").setText(skillList.get(i).cd+"");
+			newEle.addElement("needTier").setText(skillList.get(i).needTier + "");
+			newEle.addElement("cd").setText(skillList.get(i).cd + "");
 			newEle.addElement("curCd").setText("0");
 		}
 		XMLWriter writer = null;
@@ -1593,45 +840,80 @@ public class SUtils {
 			}
 		}
 	}
-	
+
 	/**
+	 * 加载xml文件
 	 * 
-	 * @param id 功法id
-	 * @param tierList 功法每层信息
+	 * @param filename
+	 * @return
 	 */
-	public void saveGongTier(String id,List<Tier> tierList){
-		System.out.println("开始保存id:"+id+"的功法信息!");
-		Document document = load("game/xml/Gong.xml");
-		/** 获取根目录 */
-		Element root = document.getRootElement();
-		List<Element> temp = root.elements();
-		Element target = null ;
-		for (int i = 0; i < temp.size(); i++) {
-			if (temp.get(i).attribute("id").getText().equals(id)) {
-				target = temp.get(i) ;
-				break;
-			}
+	public static Document load(String filename) {
+		Document document = null;
+		try {
+			SAXReader saxReader = new SAXReader();
+			saxReader.setEncoding("UTF-8");
+			document = saxReader.read(SUtils.class.getResourceAsStream("/" + filename)); // 读取XML文件,获得document对象
+		} catch (Exception ex) {
+			ex.printStackTrace();
 		}
-		if(target==null){
-			return ;
+		return document;
+	}
+
+	/***
+	 * 返回xml的路径
+	 * 
+	 * @param type
+	 * @return
+	 */
+	public String getXmlPath(int type) {
+		String path = "game/xml/";
+		switch (type) {
+		case C.xml_Gong:
+			path += "Gong.xml";
+			break;
+		case C.xml_Skill:
+			path += "skill.xml";
+			break;
+		case C.xml_Equip:
+			path += "equip.xml";
+			break;
+		case C.xml_Npc:
+			path += "npc.xml";
+			break;
+		case C.xml_Task:
+			path += "task.xml";
+			break;
+		case C.xml_Fuben:
+			path += "fuben.xml";
+			break;
+		case C.xml_EquipSet:
+			path += "equipSetting.xml";
+			break;
+		case C.xml_Scene:
+			path += "scene.xml" ;
+			break;
+		default:
+			break;
 		}
-		target = target.element("effect");
-		/** 移除所有的 */
-		List<Element> tierL = target.elements() ;
-		for (int i = 0; i < tierL.size(); i++) {
-			target.remove(tierL.get(i));
-		}
-		/** 根据提交内容新增 */
-		for (int i = 0; i < tierList.size(); i++) {
-			Element tier = target.addElement("tier");
-			tier.addAttribute("value", tierList.get(i).curTier+"");
-			Element needRank = tier.addElement("needRank");
-			needRank.setText(tierList.get(i).needRank+"");
-			Element needExp = tier.addElement("needExp");
-			needExp.setText(tierList.get(i).needExp+"");
-			Element addAttrs = tier.addElement("AddAttrs");
-			addAttrs.setText(tierList.get(i).addAttrStr.trim());
-		}
+		return path;
+	}
+
+	/***
+	 * 通过类型读取不同xml文档节点
+	 * 
+	 * @param type
+	 * @return
+	 */
+	public Document getXmlDoc(int type) {
+		Document doc = null;
+		doc = load(getXmlPath(type));
+		return doc;
+	}
+
+	/**
+	 * xml保存的通用方法
+	 */
+	public void xmlSave(String path, Document doc) {
 		XMLWriter writer = null;
 		OutputFormat outFormat = OutputFormat.createPrettyPrint();
 		// 设置换行 为false时输出的xml不分行
@@ -1646,140 +928,685 @@ public class SUtils {
 		outFormat.setOmitEncoding(true);
 		outFormat.setEncoding("UTF-8");
 		try {
-			writer = new XMLWriter(new FileOutputStream("game/xml/Gong.xml"), outFormat);
-			System.err.println(writer);
-			writer.write(document);
+			// this.getClass().getResource("/"+path).getPath()
+			writer = new XMLWriter(new FileOutputStream("src/" + path), outFormat);
+			writer.write(doc);
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		} finally {
 			try {
 				writer.close();
+				System.err.println("保存xml信息成功！");
 			} catch (IOException e1) {
 				e1.printStackTrace();
 			}
 		}
 	}
-	
-	public static int conGongQua(String qua){
-		if(qua.equals("天品")){
-			return 0 ;
-		}else if(qua.equals("地品")){
-			return 1 ;
-		}else if(qua.equals("玄品")){
-			return 2 ;
-		}else if(qua.equals("黄品")){
-			return 3 ;
+
+	/**
+	 * 加载对应装备的属性生成设定
+	 * 
+	 * @param part
+	 * @return
+	 */
+	public List<CitiaoSD> loadEquipSetting(int part) {
+		// System.err.println("--加载装备设定xml文件!");
+		/** 对应部位的设定列表 */
+		List<CitiaoSD> list = new ArrayList<>();
+		Document doc = getXmlDoc(C.xml_EquipSet);
+		Element targetEle = doc.selectSingleNode("/root/equip[@name='" + EquipControl.partAry[part] + "']/attr")
+				.getParent();
+		List<Element> temp = targetEle.elements();
+		/** 5条设定 每条设定六个属性 */
+		for (int i = 0; i < temp.size(); i++) {
+			String type = temp.get(i).element("type").getText();
+			String attrType = temp.get(i).element("attrType").getText();
+			String attrName = temp.get(i).element("attrName").getText();
+			String ratio = temp.get(i).element("value").getText();
+			CitiaoSD theAttr = new CitiaoSD(part, i, conStrtoInt(type), attrType, attrName, conStrtoDou(ratio));
+			list.add(theAttr);
+		}
+		return list;
+	}
+
+	/**
+	 * 加载任务信息
+	 * 
+	 * @return 返回所有任务信息的map
+	 */
+	public Map<String, Tasks> loadTask() {
+		System.err.println("--加载任务xml文件!");
+		Map<String, Tasks> map = new HashMap<>();
+		Document document = getXmlDoc(C.xml_Task);
+		Element root = document.getRootElement();
+		List<Element> eleList = root.elements("task");
+		System.err.println("task.xml任务数量" + eleList.size());
+		Tasks task = null;
+		for (int i = 0; i < eleList.size(); i++) {
+			String id = eleList.get(i).attributeValue("id");
+			Element e = eleList.get(i);
+			String taskName = e.element("taskName").getText();
+			int curState = conStrtoInt(eleList.get(i).element("curState").getText());
+			String npcId = e.element("npcId").getText();
+			String taskDes = e.element("taskDes").getText();
+
+			String startMsg = e.element("startMsg").getText();
+			String undoMsg = "";
+			if (e.selectNodes("undoMsg").size() > 0) {
+				undoMsg = e.element("undoMsg").getText();
+			}
+			String acceptMsg = e.element("acceptMsg").getText();
+			String endMsg = e.element("acceptMsg").getText();
+
+			String startCond = e.element("startCond").getText();
+			String acceptCond = e.element("acceptCond").getText();
+			String endCond = e.element("endCond").getText();
+			String type = TaskCtrl.reset_task;
+			if (e.selectNodes("type").size() > 0) {
+				type = e.element("type").getText();
+			}
+			task = new Tasks();
+			task.setId(id);
+			task.setTaskName(taskName);
+			task.setNpcId(npcId);
+			task.setTaskDes(taskDes);
+			task.setType(type);
+
+			task.setCurState(curState);
+
+			task.setStartMsg(startMsg);
+			task.setUndoMsg(undoMsg);
+			task.setAcceptMsg(acceptMsg);
+			task.setEndMsg(endMsg);
+
+			task.setStartCond(startCond);
+			task.setAcceptCond(acceptCond);
+			task.setEndCond(endCond);
+			map.put(id, task);
+		}
+		return map;
+	}
+
+	/**
+	 * 加载npc的基本信息 id , name , des , msg , rank , type 而人物的属性 和与玩家的交互在之后解析
+	 * 
+	 * @return
+	 */
+	public Map<String, NPC> loadNpc() {
+		System.err.println("--加载人物xml文件!");
+		Map<String, NPC> map = new HashMap<>();
+		Document document = getXmlDoc(C.xml_Npc);
+		Element root = document.getRootElement();
+		List<Element> elementList = root.elements();
+		Element npcEle = null;
+		NPC npc = null;
+		/** 开始初始化每个npc的信息 */
+		for (int i = 0; i < elementList.size(); i++) {
+			/** 循环每个npc节点 */
+			npcEle = elementList.get(i);
+			String id = npcEle.elementText("id");
+			if (!isNullStr(id)) {// 不为空则加入
+				String name = npcEle.elementText("name");
+				String des = npcEle.elementText("des");
+				String msg = npcEle.elementText("msg").trim();
+				String[] msgs = msg.split("\\|");
+				int rank = conStrtoInt(npcEle.element("rank").getText());
+				int type = conStrtoInt(npcEle.element("type").getText());
+				String attrType = npcEle.attributeValue("attrType");
+				if (npcEle.selectNodes("NeiGong").size() > 0) {
+					String NGStr = npcEle.elementText("NeiGong").trim();
+					npc.setNgStr(NGStr);
+				}
+				if (npcEle.selectNodes("WaiGong").size() > 0) {
+					String WGStr = npcEle.elementText("WaiGong").trim();
+					npc.setWgStr(WGStr);
+				}
+				npc = new NPC();
+				npc.setMsgs(msgs);
+				npc.setId(id);
+				npc.setName(name);
+				npc.setDes(des);
+				npc.setMsg(msg);
+				npc.setRank(rank);
+				npc.setType(type);
+				npc.setAttrType(attrType);
+
+				map.put(id, npc);
+			}
+		}
+		return map;
+	}
+
+	/**
+	 * 加载功法
+	 * 
+	 * @return
+	 */
+	public Map<String, Gong> loadGong() {
+		System.err.println("--加载功法xml文件!");
+		Map<String, Gong> map = new HashMap<>();
+		Document document = getXmlDoc(C.xml_Gong);
+		Element root = document.getRootElement();
+		List<Element> eleList = root.elements();
+		Gong gong = null;
+		/** 功的属性 */
+		GongCtrl gongCtrl = new GongCtrl();
+		String id, name, des, req, effectStr = "";
+		int quality, maxTier, curTier, type, needRank;
+		Tier tier;
+		for (int i = 0; i < eleList.size(); i++) {
+			Element ele = eleList.get(i);
+			gong = new Gong();
+			id = ele.attributeValue("id");
+			name = ele.elementText("name");
+			des = ele.elementText("des");
+			gong.setId(id);
+			gong.setName(name);
+			gong.setDes(des);
+			gong.setPrice(100);
+			gong.setWeight(conStrtoInt(ele.elementText("weight")));
+			if (isExistEle(ele, "type")) {
+				type = conStrtoInt(ele.elementText("type"));
+				gong.setType(type);
+			}
+			if (isExistEle(ele, "maxTier")) {
+				maxTier = conStrtoInt(ele.elementText("maxTier"));
+				gong.setMaxTier(maxTier);
+			}
+			if (isExistEle(ele, "curTier")) {
+				curTier = conStrtoInt(ele.elementText("curTier"));
+				gong.setCurTier(curTier);
+			}
+			if (isExistEle(ele, "quality")) {
+				quality = conStrtoInt(ele.elementText("quality"));
+				gong.setQua(quality);
+			}
+			if (isExistEle(ele, "needRank")) {
+				needRank = conStrtoInt(ele.elementText("needRank"));
+				gong.setNeedRank(needRank);
+			}
+			if (ele.selectNodes("effectStr").size() > 0) {
+				effectStr = ele.elementText("effectStr");
+			}
+			if (ele.selectNodes("req").size() > 0) {
+				req = ele.elementText("req");
+				gong.setRequire(req);
+			}
+			/** 存在技能设定 */
+			if (ele.selectNodes("skills").size() > 0) {
+				List<Element> skillEle = ele.element("skills").elements("skill");
+				for (int j = 0; j < skillEle.size(); j++) {
+					Element e = skillEle.get(j);
+					Skill skill = new Skill();
+					skill.id = e.attributeValue("id");
+					skill.name = e.attributeValue("name");
+					skill.needTier = conStrtoInt(e.attributeValue("needTier"));
+					gong.getAllSkills().add(skill);
+				}
+			}
+			if (isExistEle(ele, "baseEff") && !isNullStr(ele.elementText("baseEff"))) {
+				String baseEffStr = ele.elementText("baseEff").trim();
+				System.out.println(baseEffStr);
+				String[] baseEffAry = baseEffStr.split(";");
+				AddAttrs addAttrs = new AddAttrs();
+				for (int j = 0; j < baseEffAry.length; j++) {
+					String[] key = baseEffAry[j].split(":");
+					System.out.println(baseEffAry[j]+","+key[1]+","+addAttrs+","+gong+","+key[0]+","+dataCal);
+					addAttrs = dataCal.accGongAddAttrs(addAttrs, key[0], gong, SUtils.conStrtoInt(key[1]));
+				}
+				System.out.println("功法加成:" + addAttrs.info());
+				gong.setAddAttrs(addAttrs);
+			}
+			gong.setEffectStr(effectStr);
+			/*
+			 * for (int j = 0; j < maxTier; j++) { tier = new Tier() ; tier.curTier = j ;
+			 * tier.needRank = needRank + curTier*2 - 2 ; if(effectStr.length()>0) {
+			 * tier.addAttrs = gongCtrl.getGongEffect(effectStr, j, needRank, type); }
+			 * gong.getTiers().add(tier); }
+			 */
+			/** 加载功法每一层的信息 */
+			/*
+			 * Element effect = eleList.get(i).element("effect"); tierList =
+			 * effect.elements();
+			 */
+			/**
+			 * <tier value="4"> <needRank>7</needRank> <AddAttrs> hp:60%; mp:60% </AddAttrs>
+			 * </tier>
+			 */
+			/*
+			 * for (int j = 0; j < tierList.size(); j++) { tier = new Tier() ; tier.curTier
+			 * = conStrtoInt(tierList.get(j).attributeValue("value")); tier.needRank =
+			 * conStrtoInt(tierList.get(j).elementText("needRank")); tier.needExp =
+			 * conObjToStr(tierList.get(j).elementText("needExp")); addAttrs = new
+			 * AddAttrs(); String addAttrsValue = tierList.get(j).elementText("AddAttrs");
+			 * String[] ary = addAttrsValue.trim().split(";"); String addAttrStr = "" ;
+			 *//**
+				 * hp:60%; mp:60%
+				 */
+			/*
+			 * for (int k = 0; k < ary.length; k++) { addAttrStr+=ary[k].trim()+";";
+			 *//** hp:60% */
+			/*
+			 * String[] temp = ary[k].split(":");
+			 *//** hp */
+			/*
+			 * String attrName = temp[0].trim();
+			 *//** 60% */
+			/*
+			 * String value = temp[1].trim(); int attrValue = 0 ; if(value.endsWith("%")){
+			 *//** 表示为百分比加成 *//*
+								 * attrValue = getBaseAttrByRank(name, tier.needRank); value =
+								 * value.substring(0,value.length()-1); attrValue =
+								 * reDouPoint(attrValue*conStrtoInt(value)*0.01); }else { attrValue =
+								 * conStrtoInt(value); } addAttrs = calAddAttrsValue(addAttrs,attrName,
+								 * attrValue); } tier.addAttrStr = addAttrStr ; tier.addAttrs = addAttrs ;
+								 * gong.getTiers().add(tier); }
+								 */
+			map.put(id, gong);
+		}
+		System.err.println("加载得到了:" + map.size() + "部功法!");
+		return map;
+	}
+
+	/**
+	 * 保存功法 每一层带来属性加成和可能解锁的技能信息
+	 * 
+	 * @param type
+	 * @param id
+	 * @param tierList
+	 * @param skillList
+	 */
+	public void saveGongSkillOrEffect(int type, String id, List<Tier> tierList, List<Skill> skillList) {
+		Document doc = getXmlDoc(C.xml_Gong);
+		Node gongNode = doc.selectSingleNode("/root/gong[@id='" + id.trim() + "']/name");
+		Element gongEle = gongNode.getParent();
+		if (gongEle == null) {
+			return;
+		}
+		if (type == 1) {
+			saveGongEffectInfo(gongEle, tierList);
+		} else if (type == 2) {
+			saveGongSkillInfo(gongEle, skillList);
+		}
+		xmlSave(getXmlPath(C.xml_Gong), doc);
+	}
+
+	/**
+	 * 保存功法信息中每种功法可以解锁的技能的信息
+	 * 
+	 * @param gongEle
+	 * @param skillList
+	 */
+	private void saveGongSkillInfo(Element gongEle, List<Skill> skillList) {
+		if (skillList.size() == 0)
+			return;
+		if (gongEle.selectNodes("skills").size() > 0) {
+			gongEle = gongEle.element("skills");
+		} else {
+			gongEle = gongEle.addElement("skills");
+		}
+		/** 移除之前的 */
+		List<Element> eleList = gongEle.elements();
+		for (int i = 0; i < eleList.size(); i++) {
+			gongEle.remove(eleList.get(i));
+		}
+		/** 根据提交内容新增 */
+		for (int i = 0; i < skillList.size(); i++) {
+			Element ele = gongEle.addElement("skill");
+			ele.addAttribute("id", skillList.get(i).id + "");
+			ele.addAttribute("name", skillList.get(i).name + "");
+			ele.addAttribute("needTier", skillList.get(i).needTier + "");
+			ele.addAttribute("useCase", skillList.get(i).useCase + "");
+			ele.addAttribute("studyCase", skillList.get(i).studyCase + "");
+		}
+	}
+
+	/**
+	 * 保存功法信息中每种每一层的效果
+	 * 
+	 * @param gongEle
+	 * @param skillList
+	 */
+	private void saveGongEffectInfo(Element gongEle, List<Tier> tierList) {
+		if (tierList.size() == 0)
+			return;
+		if (gongEle.selectNodes("effect").size() > 0) {
+			gongEle = gongEle.element("effect");
+		} else {
+			gongEle = gongEle.addElement("effect");
+		}
+		/** 移除之前的 */
+		List<Element> eleList = gongEle.elements();
+		for (int i = 0; i < eleList.size(); i++) {
+			gongEle.remove(eleList.get(i));
+		}
+		/** 根据提交内容新增 */
+		for (int i = 0; i < tierList.size(); i++) {
+			Element ele = gongEle.addElement("tier");
+			ele.addAttribute("value", tierList.get(i).curTier + "");
+			Element needRank = ele.addElement("needRank");
+			needRank.setText(tierList.get(i).needRank + "");
+			Element needExp = ele.addElement("needExp");
+			needExp.setText(tierList.get(i).needExp + "");
+			Element addAttrs = ele.addElement("AddAttrs");
+			addAttrs.setText(tierList.get(i).addAttrStr.trim());
+		}
+	}
+
+	public static int conGongQua(String qua) {
+		if (qua.equals("天品")) {
+			return 0;
+		} else if (qua.equals("地品")) {
+			return 1;
+		} else if (qua.equals("玄品")) {
+			return 2;
+		} else if (qua.equals("黄品")) {
+			return 3;
 		}
 		return 0;
 	}
-	
-	public String getProjectPath(){
-		// 第一种：获取类加载的根路径   D:\git\daotie\daotie\target\classes
-        File f = new File(this.getClass().getResource("/").getPath());
-        System.out.println(f);
 
-        // 获取当前类的所在工程路径; 如果不加“/”  获取当前类的加载目录  D:\git\daotie\daotie\target\classes\my
-        File f2 = new File(this.getClass().getResource("").getPath());
-        System.out.println(f2);
+	public String getProjectPath() {
+		// 第一种：获取类加载的根路径 D:\git\daotie\daotie\target\classes
+		File f = new File(this.getClass().getResource("/").getPath());
+		System.out.println(f);
 
-        // 第二种：获取项目路径    D:\git\daotie\daotie
-        File directory = new File("");// 参数为空
-        String courseFile = null;
+		// 获取当前类的所在工程路径; 如果不加“/” 获取当前类的加载目录 D:\git\daotie\daotie\target\classes\my
+		File f2 = new File(this.getClass().getResource("").getPath());
+		System.out.println(f2);
+
+		// 第二种：获取项目路径 D:\git\daotie\daotie
+		File directory = new File("");// 参数为空
+		String courseFile = null;
 		try {
 			courseFile = directory.getCanonicalPath();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-        System.out.println(courseFile);
+		System.out.println(courseFile);
 
+		// 第三种： file:/D:/git/daotie/daotie/target/classes/
+		URL xmlpath = this.getClass().getClassLoader().getResource("");
+		System.out.println(xmlpath);
 
-        // 第三种：  file:/D:/git/daotie/daotie/target/classes/
-        URL xmlpath = this.getClass().getClassLoader().getResource("");
-        System.out.println(xmlpath);
+		// 第四种： D:\git\daotie\daotie
+		System.out.println(System.getProperty("user.dir"));
+		/*
+		 * 结果： C:\Documents and Settings\Administrator\workspace\projectName 获取当前工程路径
+		 */
 
-
-        // 第四种： D:\git\daotie\daotie
-        System.out.println(System.getProperty("user.dir"));
-        /*
-         * 结果： C:\Documents and Settings\Administrator\workspace\projectName
-         * 获取当前工程路径
-         */
-
-        // 第五种：  获取所有的类路径 包括jar包的路径
-        System.out.println(System.getProperty("java.class.path"));
-        return "" ;
+		// 第五种： 获取所有的类路径 包括jar包的路径
+		System.out.println(System.getProperty("java.class.path"));
+		return "";
 	}
-	
+
 	/**
 	 * 基数 1000
-	 * @param needRank 10
-	 * @param qua 3
+	 * 
+	 * @param needRank
+	 *            10
+	 * @param qua
+	 *            3
 	 * @return
 	 */
-	public static int getGongPrice(int needRank, int qua){
-		int price = 1000 ;
-		int state  = needRank%10 ;
+	public static int getGongPrice(int needRank, int qua) {
+		int price = 1000;
+		int state = needRank % 10;
 		for (int i = 0; i < state; i++) {
-			price *= 10 ; 
+			price *= 10;
 		}
 		for (int i = 0; i < qua; i++) {
-			price *= 3 ;
+			price *= 3;
 		}
-		return price ;
+		return price;
 	}
-	
-	public static void setUi(JTabbedPane jtp) {
-		jtp.setUI(new javax.swing.plaf.metal.MetalTabbedPaneUI() {
-			@Override
-			protected void paintTopTabBorder(int tabIndex, Graphics g, int x,
-					int y, int w, int h, int btm, int rght, boolean isSelected) {
-				     g.drawLine(x, y, x+w-2, y);
-				    // g.setColor(MetalLookAndFeel.getWhite());
-				   //  g.drawLine(x, y + 2, x+w-2, y + 2);
-			};
-			@Override
-			protected void paintTabBorder(Graphics g, int tabPlacement,
-					int tabIndex, int x, int y, int w, int h, boolean isSelected) {
-				int bottom = y + (h-1);
-		        int right = x + (w-1);
-		        g.setColor(Color.orange);
-		        paintTopTabBorder(tabIndex, g, x, y, w, h, bottom, right, isSelected);
-			}
-			@Override
-			protected void paintLeftTabBorder(int tabIndex, Graphics g, int x,
-					int y, int w, int h, int btm, int rght, boolean isSelected) {
-			};
-			@Override
-			protected void paintRightTabBorder(int tabIndex, Graphics g, int x,
-					int y, int w, int h, int btm, int rght, boolean isSelected) {
-			};
-			@Override
-			protected void paintContentBorderLeftEdge(Graphics g,
-					int tabPlacement, int selectedIndex, int x, int y, int w,
-					int h) {
-			}
-			@Override
-			protected void paintContentBorderRightEdge(Graphics g,
-					int tabPlacement, int selectedIndex, int x, int y, int w,
-					int h) {
-			}
-			
-		});
-	}
-	
-	public static void setEmptyBorder(JComponent c){
+
+
+	/** 样式设置 */
+
+	public static void setEmptyBorder(JComponent c) {
 		c.setBorder(new EmptyBorder(0, 0, 0, 0));
 	}
-	
+
 	public static ImageIcon loadImageIcon(String fileName) {
-		ImageIcon imageIcon = null ;
+		ImageIcon imageIcon = null;
 		try {
-			imageIcon = new ImageIcon(ImageIO.read(SUtils.class.getResourceAsStream(fileName))) ;
+			imageIcon = new ImageIcon(ImageIO.read(SUtils.class.getResourceAsStream(fileName)));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		return imageIcon ;
+		return imageIcon;
+	}
+
+	public static int rd(int num) {
+		return rd.nextInt(num);
+	}
+
+	/** 设置自定义滑轮样式 */
+	public static void setScrollUI(JScrollPane jsc) {
+		jsc.getVerticalScrollBar().setUI(new DemoScrollBarUI());
+		jsc.getHorizontalScrollBar().setUI(new DemoScrollBarUI());
+	}
+
+	public static void setBackImg(JPanel c, String bacPath) {
+		if (isNullStr(bacPath))
+			return;
+		JLabel back = new JLabel();
+		ImageIcon img = SUtils.loadImageIcon("/game/img/back/GameBack.png");
+		back.setIcon(img);
+		back.setBounds(0, 0, img.getIconWidth(), img.getIconHeight());
+		c.add(back);
+	}
+
+	/*******************************
+	 ***** 技能相关
+	 *******************************/
+	public double calSkDamageRatio(Skill skill) {
+		int skillCurRank = skill.skillCurRank;
+		String skillQua = skill.qua;
+		int qua = getQuaNum(skillQua);
+		/** 基础系数 + 每级*2%/3%/4%/5% */
+		double ratio = skillCurRank * C.skillQuaAdd[qua] * 0.01 + skill.baseDamageRatio;
+		return ratio;
+	}
+
+	public int getQuaNum(String qua) {
+		int quaNum = 0;
+		switch (qua) {
+		case "天":
+			quaNum = 3;
+			break;
+		case "地":
+			quaNum = 2;
+			break;
+		case "玄":
+			quaNum = 1;
+			break;
+		case "黄":
+			quaNum = 0;
+			break;
+		default:
+			break;
+		}
+		return quaNum;
+	}
+
+	public static void npcMsg(NPC npc, String[] msgs) {
+		int num = new Random().nextInt(msgs.length);
+		gameControl.append(npc.getName() + " : ", 2);
+		gameControl.append(msgs[num].trim() + "\n", 0);
+	}
+
+	public static void removeActionLner(JButton jb) {
+		ActionListener[] acAry = jb.getActionListeners();
+		for (int i = 0; i < acAry.length; i++) {
+			jb.removeActionListener(acAry[i]);
+		}
+	}
+
+	/**
+	 * 某个节点下是否存在名为xx的节点且节点的内容不为空
+	 * 
+	 * @param ele
+	 * @param name
+	 * @return
+	 */
+	public static boolean isExistEle(Element ele, String name) {
+		boolean flag = ele.selectNodes(name).size() > 0;
+		flag = flag && !isNullStr(ele.elementText(name));
+		return flag;
+	}
+
+	/**
+	 * 解析坐标
+	 * 
+	 * @return
+	 */
+	public static Point psCoord(String coordStr) {
+		String[] tempAry = coordStr.split(",");
+		Point p = new Point();
+		/** x,y坐标 */
+		p.x = SUtils.conStrtoInt(tempAry[0]);
+		p.y = SUtils.conStrtoInt(tempAry[1]);
+		return p;
+	}
+
+	/**
+	 * 把特定格式的字符串分割成数组
+	 * 
+	 * @param str
+	 * @return
+	 */
+	public static String[] strToAry(String str) {
+		String[] ary;
+		ary = str.split(",");
+		if (ary.length < 2)
+			ary = str.split(":");
+		return ary;
+	}
+
+	/**  */
+	public static boolean canArrived(Scene sc, Scene sc2) {
+		List<Point> points = sc.points;
+		int x = sc2.x;
+		int y = sc2.y;
+		for (Point point : points) {
+			if (point.x == x && point.y == y) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	/**
+	 * 判断某场景四周的连接线情况 每行第一个元素判断左上右 其他欧安段上右
+	 * 
+	 * @param scene
+	 *            当前场景
+	 * @param list
+	 * @return
+	 */
+	public static boolean[] CanConnects(Scene scene, List<Scene> list) {
+		boolean[] flags = { false, false };
+		flags[0] = isExistScene(list, scene, scene.x, scene.y - 1);
+		flags[1] = isExistScene(list, scene, scene.x + 1, scene.y);
+		return flags;
+	}
+
+	/***
+	 * 列表中是否存在 坐标为x,y的场景 找到的场景是否能到达原场景
+	 * 
+	 * @param list
+	 * @param theSc
+	 *            当前场景
+	 */
+	public static boolean isExistScene(List<Scene> list, Scene theSc, int x, int y) {
+		Scene sc = null;
+		for (Scene scene : list) {
+			if (scene.x == x && scene.y == y) {
+				sc = scene;
+			}
+		}
+		if (sc != null) {
+			List<Point> points = theSc.points;
+			for (Point point : points) {
+				/** 场景不能到达 */
+				if (point.x == x && point.y == y) {
+					return false;
+				}
+			}
+			/** 存在场景切 */
+			return true;
+		}
+		return false;
+	}
+
+	/****************************************************
+	 * 控制台
+	 ****************************************************/
+	/**
+	 * 分析控制台的代码 如 get:20000:1 如 clear:gongBag
+	 */
+	public static void psConsoleStr(String str) {
+		System.out.println(str);
+		if (str.startsWith("get:")) {
+			String[] ary = str.split(":");
+			int id = SUtils.conStrtoInt(ary[1]);
+			int num = SUtils.conStrtoInt(ary[2].trim());
+			if (20000 <= id && id < 29999) {
+				Gong gong = gameControl.getGongByID(id + "");
+				System.out.println(num);
+				gong.setNum(num);
+				gameControl.getPlayer().getGongBag().add(gong);
+				System.out.println(gameControl.getPlayer().getGongBag().size());
+			} else if (30000 < id && id < 39999) {
+
+			}
+		} else if (str.startsWith("clear:")) {
+			String[] ary = str.split(":");
+			String cmd = ary[1];
+			switch (cmd) {
+			case "gongBag":
+				System.err.println("清除背包中功法书成功!");
+				List<Gong> list = new ArrayList<>();
+				gameControl.getPlayer().setGongBag(list);
+				break;
+			case "equipBag":
+
+				break;
+			default:
+				break;
+			}
+		} else if (str.startsWith("reload:")) {
+			String[] ary = str.split(":");
+			String cmd = ary[1];
+			if (cmd.equals("xml")) {
+				gameControl.loadXml();
+			}
+		}
 	}
 	
+	public List<Skill> analyzeSkill(Element element) {
+		List<Element> eleList = element.elements();
+		List<Skill> skillList = new ArrayList<>();
+		Element temp;
+		Skill skill = null;
+		/**  */
+		for (int i = 0; i < eleList.size(); i++) {
+			temp = eleList.get(i);
+			skill = new Skill();
+			skill.id = temp.attributeValue("id");
+			skill.name = temp.elementText("name");
+			skill.des = temp.elementText("des");
+			skill.type = temp.elementText("type");
+			skill.scope = temp.elementText("target");
+			skill.studyCase = temp.elementText("studyCase");
+			skill.cd = conStrtoInt(temp.elementText("cd"));
+			skill.useCase = temp.elementText("useCase") == null ? "" : temp.elementText("useCase");
+			skillList.add(skill);
+		}
+		return skillList;
+	}
+
 }

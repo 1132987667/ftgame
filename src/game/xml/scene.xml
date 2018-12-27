@@ -1,0 +1,1267 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+	<place id="0">
+		<name>第一章:苏醒</name>
+		<des>初来异世的你,即将面对的,将会是什么？</des>
+		<initPoint>0,1</initPoint>
+		<scene>
+			<point name="正房" pos="0,1">
+				<des>这是一间陈设简单屋子,土炕铺的是一张大的吓人的老虎皮,墙上挂满了鹿,狼,豹等等的兽皮皮,一张一张,冲击力十足,最中间的是一柄长弓和一个老得发紫的药葫芦。
+				</des>
+				<npcList>1004:小花:1</npcList>
+			</point>
+			<point name="厢房" pos="1,0">
+				<des>屋子不大,靠窗的地方摆了一张床,屋中一张桌,几只椅,非常简单。
+				</des>
+				<npcList></npcList>
+				<unArrive>2,0</unArrive>
+			</point>
+			<point name="院子" pos="1,1">
+				<des>这里是一个不大的院子,角落里栽了几棵树,地上零零散散有一些碎落叶片。院门虚掩,穿过院子就是一个小屋,非常精致。
+				</des>
+				<npcList>1005:猎户大叔:1,</npcList>
+			</point>
+			<point name="厢房" pos="1,2">
+				<des>厢房白墙红梁,窗棂上挂满了野鸡、水鸭、大雁等等的羽毛皮,窗台上放有几个瓦罐,里面载着些大叔搜集来的花草。
+				</des>
+				<npcList></npcList>
+				<unArrive>2,2</unArrive>
+				<items>
+					<!-- <item id="" name="" num="" type="once" /> -->
+					60001:瓦罐:1:once
+				</items>
+			</point>
+			<point name="杂货间" pos="2,0">
+				<des>杂货间亮着一盏油灯,里面堆着不少粮食,还有多年来猎户大叔打猎得到的稀奇玩意。
+				</des>
+				<npcList>1005:猎户大叔:1,</npcList>
+				<unArrive>1,0</unArrive>
+			</point>
+			<point name="院子" pos="2,1">
+				<des>这里是一个不大的院子,角落里栽了几棵树,地上零零散散有一些碎落叶片。院门虚掩,穿过院子就是一个正房,非常粗犷。
+				</des>
+				<npcList>1005:猎户大叔:1,</npcList>
+			</point>
+			<point name="厨房" pos="2,2">
+				<des>厨房里挂着许多晒干的肉食,灶旁堆满了木柴。</des>
+				<npcList>1005:猎户大叔:1,</npcList>
+				<unArrive>1,2</unArrive>
+			</point>
+			<point name="院门前" pos="3,1">
+				<des>前面就是猎户大叔的院子了,由苇篱圈了起来,两边还载着些果蔬
+				</des>
+				<npcList></npcList>
+			</point>
+			<point name="土路" pos="4,1">
+				<des>这是上山的一条土路,两旁山林茂盛</des>
+				<npcList></npcList>
+			</point>
+			<point name="林间小道" pos="5,1">
+				<des>这里是一条林间小道,在树丛中蜿蜒。两旁树林中有有着砍伐的痕迹。
+				</des>
+				<npcList></npcList>
+			</point>
+			<point name="林间小道" pos="6,1">
+				<des>这里是一条林间小道,在树丛中蜿蜒。这里开始出现了一些动物的足迹和粪便。
+				</des>
+				<npcList></npcList>
+			</point>
+			<point name="外山" pos="7,1">
+				<des>走了许久,你终于到达了这座大山的外山,地势险恶、树大林深,从山上看去,附近几乎毫无人烟。
+				</des>
+				<npcList></npcList>
+			</point>
+			<point name="小山坡" pos="8,0">
+				<des>这是一个山坡,山坡之隐藏着一个露天的铁矿,规模不大,但是看起来品相不错
+				</des>
+				<npcList></npcList>
+			</point>
+			<point name="林间小道" pos="8,1">
+				<des>这里是一条林间小道,在树丛中蜿蜒。再向前走,就要进入大山深处,熊虎等猛兽时常出没,鸟兽蛇虫游荡不穷。
+				</des>
+				<npcList></npcList>
+			</point>
+			<point name="密林" pos="8,2">
+				<des>大山的茂密树林,阴森可怖。抬头不见天日,灌木野草皆有人高,鸟兽蛇虫游荡不穷。请你务必小心！
+				</des>
+				<npcList></npcList>
+			</point>
+			<point name="林间小道" pos="9,1">
+				<des>此处与之前的林间小道完全不同,不仅道路被清理过,而且两旁的参天大树尽然有序,拔地而起,而且大树周围更有许多奇花异草,而且往前看去,居然是一片桃花林！
+				</des>
+				<npcList></npcList>
+			</point>
+			<point name="桃花林" pos="10,1">
+				<des>
+					哇,谁能想到,在这大山深处,居然有着这样一片桃花里,当时正是桃花烂漫的时刻,实在美不胜收,令人心旷神怡。桃花深处隐约有一间小屋。
+				</des>
+				<npcList></npcList>
+				<enters>
+					<enter name="林间小道;50,1" />
+				</enters>
+			</point>
+		</scene>
+		<spScene>
+			<scene id="林间小屋">
+				<point name="林间小屋" pos="50,1">
+					<des>你走进了一间小屋。四周墙壁都由青竹篾编成,窗外是一望无际的桃林。屋里的桌椅、床铺均为竹制。好一个清雅之地。
+					</des>
+					<npcList></npcList>
+				</point>
+				<point name="卧室" pos="50,1">
+					<des>这是一间卧室,屋内弥漫着阵阵花香</des>
+					<npcList></npcList>
+				</point>
+				<point name="门" pos="50,0">
+					<des>离开</des>
+					<exit pos="10,1" />
+				</point>
+			</scene>
+		</spScene>
+	</place>
+	<place id="1">
+		<name>第二章:乱世初现</name>
+		<des>暴虐的野兽,丧失人性的马贼,面对突如其来的乱世,你是选择独善其身还是除恶扬善呢？
+		</des>
+		<initPoint>0,1</initPoint>
+		<scene>
+			<point name="土路" pos="0,1">
+				<des></des>
+			</point>
+			<point name="小茶馆" pos="1,0">
+				<des>这是一件本地人开的小茶馆,里面吵吵嚷嚷,一群乡下的二流子在里面赌点小钱玩
+				</des>
+			</point>
+			<point name="土路" pos="1,1">
+				<des>路旁一条小溪。溪水哗哗地流着,不时有鱼儿(fish)跃出水面。溪旁几各男孩正低着头专心在钓鱼。</des>
+				<!-- "哗"一条大鱼跃水而出,"噗"的一声又掉回水里。渐得男孩一身水。 -->
+				<npcList></npcList>
+			</point>
+			<point name="土路" pos="2,1">
+				<des></des>
+			</point>
+			<point name="农田" pos="3,0">
+				<name></name>
+				<des>这一片都是丁家种的农田,不远处有一些村庄,炊烟袅袅升起。村庄周围是一块块的田地,很有次序的排成一个个井字,田里有一些正在耕作的农人
+				</des>
+			</point>
+			<point name="土路" pos="3,1">
+				<des>这是一条乡下常见的土路,两边都是农田</des>
+			</point>
+			<point name="农田" pos="4,0">
+				<des>这一片都是丁家种的农田,不远处有一些村庄,炊烟袅袅升起。村庄周围是一块块的田地,很有次序的排成一个个井字,田里有一些正在耕作的农人
+				</des>
+			</point>
+			<point name="土路" pos="4,1">
+				<des>这是一条乡下常见的土路,两边都是农田</des>
+			</point>
+			<point name="土路" pos="5,0">
+				<des>这是一条乡下常见的土路,两边都是农田</des>
+				<unArrive>6,0</unArrive>
+			</point>
+			<point name="土路" pos="5,1">
+				<des>这是一条乡下常见的土路,两边都是农田</des>
+			</point>
+			<point name="盘溪镇口" pos="6,1">
+				<des></des>
+				<!-- <npcList> <npc type="item"> <id></id> 
+					<name>镇界石</name> </npc> </npcList> -->
+			</point>
+			<point name="牌坊" pos="7,1">
+				<des>此乃天子御赐的牌坊,光辉和荣耀一直笼罩着小镇</des>
+			</point>
+			<point name="祠堂大门" pos="6,0">
+				<des>大门绘着彩色门神,前面还有两块石碑,乃镇上一进士所刻,门上还有两块巨大匾额,一前一后,分别写着《丁氏宗祠》,《聚德堂》
+				</des>
+				<unArrive>5,0</unArrive>
+			</point>
+			<point name="祠堂大厅" pos="6,-1">
+				<des>祠堂整体建筑为三进旁门砖瓦木结构"卧狮"造型,前中后脊俱飞火星檐,三山略去,设倒反照壁,内设正殿正龛,拜亭,雕栏画栋,气象万千,无不显示丁家多年的底蕴
+				</des>
+				<!-- <npcList> <npc> <name>浮雕石刻</name> 
+					<des>雕刻的是福、禄、寿三星图</des> </npc> <npc> <name>道国世家</name> 
+					<des>这是一块匾额,刀法古朴有力,线条遒劲豪放,做工讲究</des> </npc> 
+					<npc> <name>族谱</name> <des></des> </npc> 
+					</npcList> -->
+			</point>
+			<point name="青石路" pos="6,1">
+				<des></des>
+			</point>
+			<point name="丁府大门" pos="7,1">
+				<des></des>
+			</point>
+			<point name="偏房" pos="8,0">
+				<des></des>
+				<npcList></npcList>
+				<unArrive>9,0</unArrive>
+			</point>
+			<point name="影壁" pos="8,1">
+				<des></des>
+				<npcList></npcList>
+			</point>
+			<point name="厨房" pos="8,2">
+				<des></des>
+				<npcList></npcList>
+				<unArrive>9,2</unArrive>
+			</point>
+			<point name="西厢" pos="9,0">
+				<des></des>
+				<npcList></npcList>
+				<unArrive>10,0;8,0</unArrive>
+			</point>
+			<point name="院子" pos="9,1">
+				<name></name>
+				<des></des>
+				<npcList></npcList>
+			</point>
+			<point name="东厢" pos="9,2">
+				<name></name>
+				<des></des>
+				<npcList></npcList>
+				<unArrive>10,2;8,2</unArrive>
+			</point>
+			<point name="柴房" pos="10,0">
+				<des>柴房,木柴已经快烧光了,墙角放着几把『柴刀』。</des>
+				<npcList>1100:老材:1</npcList>
+				<unArrive>9,0</unArrive>
+			</point>
+			<point name="大堂" pos="10,1">
+				<des></des>
+				<npcList></npcList>
+			</point>
+			<point name="书房" pos="10,2">
+				<des></des>
+				<npcList></npcList>
+				<unArrive>9,2;11,2</unArrive>
+			</point>
+			<point name="后院" pos="11,1">
+				<des>这是密实的后院,正中一个假山,傲然而立、非常雄伟。下有一水池,环山而走,悠然不息。
+				</des>
+				<npcList></npcList>
+			</point>
+			<point name="偏房" pos="11,2">
+				<des></des>
+				<npcList></npcList>
+				<unArrive>10,2</unArrive>
+			</point>
+			<point name="花园" pos="12,1">
+				<des>这是个美丽的大花园,园子里面种着鲜艳的芙蓉。女弟子们常来这里嬉戏。沿着弯弯曲曲的花径,可以通到山庄的许多地方。
+				</des>
+				<!-- 女弟子 -->
+				<npcList></npcList>
+			</point>
+			<point name="假山" pos="13,1">
+				<des></des>
+				<npcList></npcList>
+				<enters>
+					<enter name="入口;50,1" />
+				</enters>
+			</point>
+		</scene>
+		<spScene>
+			<scene id="入口">
+				<point name="密室" pos="50,1">
+					<des>你走进了一间小屋。四周墙壁都由青竹篾编成,窗外是一望无际的桃林。屋里的桌椅、床铺均为竹制。好一个清雅之地。
+					</des>
+					<npcList></npcList>
+				</point>
+				<point name="密道" pos="50,1">
+					<des>不管什么地方,总少不了一条黑乎乎的地道</des>
+					<npcList></npcList>
+				</point>
+				<point name="出口" pos="50,0">
+					<des>离开</des>
+					<exit pos="13,1" />
+				</point>
+			</scene>
+		</spScene>
+	</place>
+	<place id="2">
+		<name>白驼山</name>
+		<des></des>
+		<initPoint>6,18</initPoint>
+		<scene>
+			<point name="岩洞" pos="1,10">
+				<des>这里是大岩洞,它是在『白驼山』特殊的地质条件下经过漫长的年代形成的。南边是青竹林。再往北走就进洞了。
+				</des>
+				<npcList>121:蟒蛇:1</npcList>
+				<enters>
+					<enter name="岩洞;60,1" />
+				</enters>
+			</point>
+			<point name="竹林" pos="1,11">
+				<des>这里是青竹林,常有蛇出没。</des>
+				<npcList></npcList>
+			</point>
+			<point name="草丛" pos="1,12">
+				<des>这里是乱草丛,都是齐腰高的蒿草,常有蛇出没。东边是扇拱月形小敞门。
+				</des>
+				<npcList></npcList>
+			</point>
+			<point name="西门" pos="2,12">
+				<des>这是个山庄的西门。拱月形的竹门分外雅致,门上挂着一块竹牌(pai)。西门外面杂草丛生。
+				</des>
+				<npcList></npcList>
+			</point>
+			<point name="长廊" pos="3,12">
+				<des>这里是非常气派的长廊。北边是间休息室。南边有间药房,里面传来一阵器皿碰击的声音。西边是扇拱月形小敞门。东边是练功场。
+				</des>
+				<npcList></npcList>
+			</point>
+			<point name="休息室" pos="3,11">
+				<des>这里是间休息室,里面有张大床。在这里睡觉非常舒服,没人能打扰。南面是气派的长廊。
+				</des>
+				<npcList></npcList>
+				<unArrive>3,10;4,11</unArrive>
+			</point>
+			<point name="练武场" pos="4,12">
+				<des>这里是白驼山弟子的练功场。</des>
+				<npcList></npcList>
+			</point>
+			<point name="练武房" pos="5,12">
+				<des>这里是白驼山弟子的练功房。里面有几个单间,是练功室。第子们在里边砌磋武艺,绝对不允许外人打搅。
+				</des>
+				<npcList></npcList>
+			</point>
+			<point name="门廊" pos="4,11">
+				<des>这是个门廊,门廊的飞檐上挂着一串串的小铜铃,在清风中发出清脆动听的铃声。
+				</des>
+				<npcList></npcList>
+			</point>
+			<point name="花园" pos="4,10">
+				<des></des>
+				<npcList></npcList>
+			</point>
+			<point name="内室" pos="3,10">
+				<des>这是『欧阳克』的内室,内部摆设很有情趣。屋角摆着一盆名贵兰花,正骄傲地吐露芳蕊。花盆(pen)
+					下撒落一些浮土,可能是被人搬出去晒太阳时撒下的。
+				</des>
+				<npcList></npcList>
+				<!-- 花盆:这是个大花盆,很结实,作工很考究。你要搬什么？你搬不动它！搬动了花盆,只见花盆下面露出一个黑幽幽 
+					的洞口。外面传来一阵搬动花盆的声音,一束光线射了进来。把花盆搬回了原位。洞口被封住了。 -->
+			</point>
+			<point name="厨房" pos="5,10">
+				<des>快到饭点了,厨师们正在展示各自的烹饪绝活。整个房间弥漫着令人垂涎欲滴的菜香。墙上贴着一张醒目的启事。
+				</des>
+				<npcList></npcList>
+				<unArrive>5,9</unArrive>
+			</point>
+			<point name="柴房" pos="6,10">
+				<des>这是间不宽的柴房,木柴已经快烧光了,墙角放着几把『柴刀』。
+				</des>
+				<npcList></npcList>
+			</point>
+			<point name="竹园" pos="4,9">
+				<des>这里是一个幽静的竹园,高高低低的翠竹把这里装点得别有情致。
+				</des>
+				<npcList></npcList>
+			</point>
+			<point name="兔苑" pos="5,9">
+				<des>这是个好玩的兔苑,几只大白兔静静地蹲在绿草地上吃草。
+				</des>
+				<npcList></npcList>
+				<unArrive>5,10</unArrive>
+			</point>
+			<point name="后门" pos="5,8">
+				<des>这是个山庄的后门。</des>
+				<!-- 门卫 -->
+				<npcList></npcList>
+			</point>
+			<point name="后院" pos="4,8">
+				<des>这是一间僻静的后院</des>
+				<npcList></npcList>
+			</point>
+			<point name="药房" pos="3,13">
+				<des>这里是间药房,靠墙放着一只大药柜。屋子里有张桌子,上边摆满了炼药用的瓶瓶罐罐。其中一个药瓶(bottle)里只装了清水。炼药师是位小姑娘\,正在那里发呆,不知在想什么。北面是气派的长廊。
+				</des>
+				<npcList></npcList>
+				<unArrive>4,13</unArrive>
+			</point>
+			<point name="大厅" pos="4,13">
+				<des>这是『白驼山庄』的大厅,内部摆设极尽豪华,当中一张黑色檀木条案,上面陈放着精美的花瓶和一些珍贵的瓷器,四壁挂满名家的字画。
+				</des>
+				<npcList></npcList>
+				<unArrive>3,13</unArrive>
+			</point>
+			<point name="大门" pos="4,14">
+				<des>这就是闻名天下的『白驼山庄』的大门。大门梁上雕龙刻凤,美奂美仑,不知凝聚着多少能工巧匠的心血。更显出庄主的富有与显贵。
+				</des>
+				<npcList></npcList>
+			</point>
+			<point name="院子" pos="4,15">
+				<des>这是一个大院子,打扫得一尘不染。四周装点着青青翠竹,错落有致。
+				</des>
+				<npcList></npcList>
+			</point>
+			<point name="武器库" pos="3,15">
+				<des>这里是『白驼山』弟子的武器库,『白驼山』弟子可以到此拿取练功用的各种武器。不过别派弟子是不允许进来的
+				</des>
+				<npcList></npcList>
+				<unArrive>3,16</unArrive>
+			</point>
+			<point name="储藏室" pos="5,15">
+				<des>这是一个储藏室,四周密不透风。只有关闭着的大门(door)。
+				</des>
+				<npcList></npcList>
+				<unArrive>5,16</unArrive>
+			</point>
+			<point name="石阶" pos="4,16">
+				<des>你走在青石板铺成的石阶上。这里就是传说中神秘的白驼山。远远望去,两座白沙堆积形成的山峰好像一只骆驼的脊背。一座山门立在你的眼前。
+				</des>
+				<npcList></npcList>
+				<unArrive>3,16</unArrive>
+			</point>
+			<point name="草坪" pos="5,16">
+				<des>这里是一块芳草坪,绿草茵茵,蝴蝶漫舞,让人感到惬意。不过偶尔也会碰到菜花蛇。
+				</des>
+				<npcList></npcList>
+				<unArrive>5,15;5,17</unArrive>
+			</point>
+			<point name="广场" pos="4,17">
+				<des>这里是一块不小的广场,上面堆着农家晒的谷物。北上是『白驼山庄』。东面有间小农舍,西边有块菜地,东南方是一座小桥。
+				</des>
+				<npcList></npcList>
+			</point>
+			<point name="山路" pos="3,17">
+				<des>这里是山上的泥路。</des>
+				<npcList></npcList>
+			</point>
+			<point name="树林" pos="3,16">
+				<des>这里是一片茂密的树林,已经有一些弟子在砍树了。</des>
+				<npcList></npcList>
+				<unArrive>3,15;4,16</unArrive>
+			</point>
+			<point name="草莓地" pos="2,16">
+				<des>这里是一块草莓地,鲜红的草莓散落在绿草中,让人感到美妙惬意。
+				</des>
+				<npcList></npcList>
+			</point>
+			<point name="农舍" pos="5,17">
+				<des></des>
+				<npcList></npcList>
+				<unArrive>5,16;5,18</unArrive>
+			</point>
+			<point name="小桥" pos="4,18">
+				<des>这是一座小竹桥,『山』上的冰雪融化形成一条清澈的小溪,从桥下缓缓流过。不时有顽皮的小鱼跃出水面,在阳光下划出一条银白色的弧线。
+				</des>
+				<npcList></npcList>
+			</point>
+			<point name="西街" pos="5,18">
+				<des>这里是小镇的西街。北边有个酒店,门前树立着高高的旗杆,一块青布幌子迎风飘扬,上面印着朱红色的大字'酒'。
+				</des>
+				<npcList></npcList>
+				<unArrive>5,17</unArrive>
+				<enters>
+					<enter name="客栈;50,1" />
+				</enters>
+			</point>
+			<point name="东街" pos="6,18">
+				<des>这里是小镇的东街。南边有个打铁铺,里面传来丁丁当当的声音。东南方是荒凉的戈壁,东北方有条小路可上山。
+				</des>
+				<npcList></npcList>
+			</point>
+			<point name="戈壁" pos="7,18">
+				<des>这里是临近沙漠的戈壁滩,荒无人烟。东边是一望无际的大沙漠,西北方可以看见一座小镇。
+				</des>
+				<npcList></npcList>
+			</point>
+			<point name="大漠" pos="8,18">
+				<des></des>
+				<npcList></npcList>
+			</point>
+			<point name="打铁铺" pos="7,19">
+				<des>这里是一家打铁铺,铁匠忙着打制铁制兵器,听闻当家的是一位大师,只见江湖侠客来来往往。
+				</des>
+				<npcList></npcList>
+			</point>
+			<point name="小路" pos="7,17">
+				<des></des>
+				<npcList></npcList>
+			</point>
+			<point name="坟地" pos="7,16">
+				<des>这里是荒凉阴森的荒坟地。</des>
+				<npcList></npcList>
+			</point>
+			<point name="山贼窝" pos="7,15">
+				<des></des>
+				<npcList></npcList>
+			</point>
+		</scene>
+		<spScene>
+			<scene id="客栈">
+				<point name="客栈" pos="50,1">
+					<des>这里是一家独具特色的酒店,可以供应风味食品－－蛇肉,许多人都爱来尝尝鲜。酒店还经营打散装酒的业务。
+					</des>
+					<!-- 服务员 -->
+					<npcList></npcList>
+				</point>
+				<point name="离开" pos="50,0">
+					<des>离开</des>
+					<exit pos="5,18" />
+				</point>
+			</scene>
+			<scene id="岩洞">
+				<point name="洞口" pos="60,4">
+					<des>这里是山贼的老窝的洞口,守备森严。</des>
+					<!-- 山贼,2 -->
+					<npcList></npcList>
+				</point>
+				<point name="洞内" pos="60,3">
+					<des>这里是山贼的老窝的所在。旁边有一侧洞,里面隐隐传来女子的哭声。
+					</des>
+					<npcList></npcList>
+				</point>
+				<point name="侧洞" pos="61,3">
+					<des>这里是一个小小的侧洞,里面有张梳妆台,上边摆放着一些女人的用品。
+					</des>
+					<npcList></npcList>
+				</point>
+				<point name="岩洞内" pos="60,2">
+					<des>这里是岩洞内部,洞顶上悬挂着洁白的钟乳石。</des>
+					<npcList></npcList>
+				</point>
+				<point name="岩洞内" pos="60,1">
+					<des>这里是岩洞内部,洞顶上悬挂着洁白的钟乳石。</des>
+					<npcList></npcList>
+				</point>
+				<point name="离开" pos="60,0">
+					<des>离开</des>
+					<exit pos="1,10" />
+				</point>
+			</scene>
+		</spScene>
+	</place>
+	<place id="3">
+		<name>恒山</name>
+		<des></des>
+		<initPoint>5,15</initPoint>
+		<scene>
+			<point name="云阁卧波" pos="5,15">
+				<des></des>
+				<npcList></npcList>
+				<enters>
+				</enters>
+			</point>
+			<point name="梯式栈道" pos="5,14">
+				<des>栈道悬于壁,由无数的掾铺成,每节掾宽尺许,九节并排在一起,每根掾插入岩壁,上铺木板,长约十丈,下临深渊。人必须踏上悬空的木板,紧攀铁索,屏息静气,缓步挪动,才能过去。
+				</des>
+				<npcList></npcList>
+			</point>
+			<point name="悬空寺南楼" pos="5,13">
+				<des>这里是悬空寺的南门楼,也是南碑亭。悬空寺于陡崖上凿石穴插悬梁为基,楼宇间栈桥相连。全寺面东座西,南北危楼对望,断崖分断,很是艰险。
+				</des>
+				<npcList></npcList>
+			</point>
+			<point name="悬空栈桥" pos="5,12">
+				<des>栈道悬于南北危楼之间,由无数的掾铺成,每节掾宽尺许,九节并排在一起,每根掾绑在铁索上,上铺木板,长数十丈,下临深渊。山风呼啸,惊心动魄。
+				</des>
+				<npcList></npcList>
+			</point>
+			<point name="悬空寺北楼" pos="5,11">
+				<des>这里是悬空寺的北门楼,也是北碑亭。登楼俯视,如临深渊,谷底仰望,如壁间丹凤。向南有悬空栈桥通往南楼。
+				</des>
+				<npcList></npcList>
+			</point>
+			<point name="三教殿" pos="5,10">
+				<des>这里是全寺最高处的三教殿,也是悬空寺最大的殿宇。三层九脊,全部由每根插入崖石的木梁承受,真是"公输天巧", 古今奇迹。
+				</des>
+				<npcList></npcList>
+			</point>
+			<point name="翠屏山道" pos="6,11">
+				<des>你爬在翠屏山道上,石阶陡峭,近在目前。回头外望,恒山重峦叠嶂,林木幽深,倍感静谧。
+				</des>
+				<npcList></npcList>
+			</point>
+			<point name="翠屏山道" pos="7,11">
+				<des>你爬在翠屏山道上,树木遮天,难见天日。山林静谧,隐隐晨钟轻敲,一切尘俗尽皆洗尽,山深有静气,恒山本色。
+				</des>
+				<npcList></npcList>
+			</point>
+			<point name="翠屏谷" pos="7,10">
+				<des>浑河在谷中冲刷而过,天峰岭和翠屏山分列峡谷两侧,绝壁千仞,犹如刀削斧劈,高耸入云,这里自古就是塞外通往内地的咽喉要道,真有一夫当关万夫莫开之势。
+				</des>
+				<npcList></npcList>
+			</point>
+			<point name="翠屏谷" pos="7,9">
+				<des>这里峡谷幽深,石壁陡直,两崖壁立,一涧中流。就在这地势绝险的恒山山谷中,却有数十殿堂悬挂在翠屏山腰。它们上载危岩,下临深谷,错落有致,如玉宇琼楼自空中冉冉降落。那就是悬空寺了。
+				</des>
+				<npcList></npcList>
+			</point>
+			<point name="金龙峡" pos="7,8">
+				<des>金龙峡又称唐峪,是进入恒山的入口。恒山一名太恒山,或称玄岳,是五岳中的北岳,道教以之为"第五小洞天"。它横亘三百余里,如一队行进中的队列,昔人以为"恒山如行" 来相对 "泰山如坐","华山如立","嵩山如卧"和"衡山如飞"。
+				</des>
+				<npcList></npcList>
+			</point>
+			<point name="大字岭" pos="6,15">
+				<des>大字岭是入恒山必由之路。石壁上镌有 "恒宗"二字,高可两丈,笔力遒劲,气势雄浑。</des>
+				<npcList></npcList>
+			</point>
+			<point name="大字岭" pos="7,15">
+				<des></des>
+				<npcList></npcList>
+			</point>
+			<point name="大字岭" pos="8,15">
+				<des></des>
+				<npcList></npcList>
+			</point>
+			<point name="大字岭" pos="9,15">
+				<des></des>
+				<npcList></npcList>
+				<unArrive>9,14</unArrive>
+			</point>
+			<point name="大字岭" pos="10,15">
+				<des></des>
+				<npcList></npcList>
+			</point>
+			<point name="虎风口" pos="10,14">
+				<des>到了一个峰回路转的陡峭路口,这里是一处风口,大风来处,声如虎啸,比别处强劲多多,故有是名。
+				</des>
+				<npcList></npcList>
+			</point>
+			<point name="悬根松" pos="9,14">
+				<des>就在虎风口这个风口险地,却有一株古松,虽被大风吹得树根裸露,千百年来仍迎风挺立,这就是恒山著名的"梵宫悬根" 。</des>
+				<npcList></npcList>
+				<unArrive>9,15;9,13</unArrive>
+			</point>
+			<point name="果老岭" pos="10,13">
+				<des>光滑的岩面上断续分布着行行马蹄形凹坑,坑径三四寸,深寸许。传说这就是当年八仙中的张果老在恒山修道时,骑小毛驴由此登天。由于路陡坡滑,他不得不牵驴步行,留下这些脚印。后人诗云:"盘跚云路岭头那,凹石相传果老过,想是婆心来度世,故留遗迹使人摩。"
+				</des>
+				<npcList></npcList>
+			</point>
+			<point name="通元谷" pos="9,13">
+				<des>通元谷孤处见性峰下,相传为张果老成仙前修道之所,由于他道号"通元" ,这里也就成了通元谷。</des>
+				<npcList></npcList>
+				<unArrive>9,12;9,14</unArrive>
+			</point>
+			<point name="北岳庙" pos="10,12">
+				<des>北岳庙是个巍巍壮观的宫殿庙宇,山门三重,高列阜上,其下石阶数层。这里是北岳庙最大最高的"朝殿" 。</des>
+				<npcList></npcList>
+			</point>
+			<point name="鸡叫石" pos="9,12">
+				<des>北岳庙的西侧,有一尺许见方的石头,称鸡叫石。击之, "咯咯"作鸡鸣声,故名。清晨敲击,引起山谷回声,如群鸡争鸣,就称"金鸡报晓"`。
+				</des>
+				<npcList></npcList>
+				<unArrive>9,11;9,13</unArrive>
+			</point>
+			<point name="苦甜井" pos="11,12">
+				<des>北岳庙的右下角,有二井相距不过三尺,而水质一苦一甜,称为苦甜井。甜井中水味清洌甘甜,道家弟子奉为圣水,游人到此,每感口枯舌燥,饮此水确有消暑清热之益。
+				</des>
+				<npcList></npcList>
+			</point>
+			<point name="北岳殿" pos="10,11">
+				<des>北岳殿上负绝壁,下临宫廨,下云级插天,庑门上下,穹碑森立。殿正中悬风字形匾,上书"贞元之殿",殿内北岳恒山之神全身塑像,高可丈余。
+				</des>
+				<npcList></npcList>
+			</point>
+			<point name="会仙台" pos="9,11">
+				<des>走出北岳殿,就能看见一个石窟,紧靠在绝壁中凿出的一个小室,就是会仙台。台上排列群仙雕像,密密麻麻,不能胜数。
+				</des>
+				<npcList></npcList>
+				<unArrive>9,12</unArrive>
+			</point>
+			<point name="见性峰山道" pos="10,10">
+				<des>你走在见性峰山脊小路上,听着山下庙宇的钟鼓,眼前白云漂荡,感觉幽逸极了。
+				</des>
+				<npcList></npcList>
+			</point>
+			<point name="见性峰山道" pos="11,10">
+				<des>你走在见性峰山脊小路上,听着山下庙宇的钟鼓,眼前白云漂荡,远远看到前面就是峰顶了。
+				</des>
+				<npcList></npcList>
+			</point>
+			<point name="见性峰" pos="12,10">
+				<des></des>
+				<npcList></npcList>
+			</point>
+			<point name="见性峰广场" pos="13,10">
+				<des>在这里俯瞰群山,才能领会何以恒山是华夏北方万山之宗,这里也是威震江湖的恒山派的根本重地。
+				</des>
+				<npcList></npcList>
+			</point>
+			<point name="玉羊游云" pos="14,10">
+				<des>东峰峭壁崖顶上,白石累累,散布有致,在云雾拂动下,似有动感,象正在吃草的羊只。这就是和"金鸡报晓"齐名的恒山胜景"玉羊游云"。
+				</des>
+				<npcList></npcList>
+			</point>
+			<point name="白云居" pos="12,9">
+				<des>这里就是恒山派掌门人的居所。除了一床一桌一凳一蒲团,四壁萧然。恒山派威震江湖,没想到主庵居然简朴一至如斯。
+				</des>
+				<npcList></npcList>
+			</point>
+		</scene>
+		<spScene>
+			<scene id="">
+
+			</scene>
+		</spScene>
+	</place>
+	<place id="4">
+		<name>杭州</name>
+		<des></des>
+		<initPoint>30,30</initPoint>
+		<scene>
+			<point name="钱塘江畔" pos="30,30">
+				<des>钱塘江,每年八月十八是观潮的好日子。"八月十八潮,壮观天下无"。潮水来时"远若素练横江,声如金鼓；近则亘如山岳,奋如雷霆",刹那间,漫江沸腾,泼涛万顷,潮高丈馀,万马奔腾,真有"涛来势转雄,猎猎驾长风。雷震云霓里,山飞霜雪中"的壮丽气势。
+				</des>
+				<npcList>1101:小道士:1</npcList>
+				<enters>
+				</enters>
+			</point>
+			<point name="六和塔" pos="29,30">
+				<des>来到了六和塔之前。六和塔亦名六合塔,"六和"名来之佛家的六种规约,"六合"就是"天,地,四方"的意思。这座八角塔外看13层,塔内只有7层。外形雍容大度,气宇不凡,在它的飞檐翘角上括有一百零四只大铁铃。
+				</des>
+				<npcList></npcList>
+				<unArrive>29,29</unArrive>
+				<enters>
+					<enter name="六和塔;5,49" />
+				</enters>
+				<!-- 六和塔内部 -->
+			</point>
+			<point name="青石大道" pos="30,29">
+				<des>大道上游人,或步行,或乘轿,或骑马。个个喜气洋洋的来游西湖。大道伸向南北两边,往西是虎跑泉。
+				</des>
+				<npcList></npcList>
+			</point>
+			<point name="虎跑泉" pos="29,29">
+				<des>只见泉水从沙岩中渗流而出,清澈见底,清香甘冽。相传有位名叫性空的和尚深爱此山风景灵秀,居于此地。后因水源奇缺,准备迁走。夜,梦中神说"南岳衡山童子泉,当遣二虎移来。"翌日,果见两只老虎跑地作穴,泉涌而出,名为"虎跑泉"。
+				</des>
+				<npcList></npcList>
+				<unArrive>29,30;29,28</unArrive>
+			</point>
+			<point name="青山大道" pos="30,28">
+				<des></des>
+				<npcList></npcList>
+			</point>
+			<point name="玉皇山" pos="31,28">
+				<des>山脚有一座小亭,德意亭。不少游客登山前或下山後都在此小歇。
+				</des>
+				<npcList></npcList>
+			</point>
+			<point name="山路" pos="32,28">
+				<des>山路崎岖,曲折蜿延。四周林木苍翠,修竹茂密。</des>
+				<npcList></npcList>
+			</point>
+			<point name="玉皇山脚" pos="33,28">
+				<des>只见往上的山路曲折蜿延。山路旁有一座小六角亭,几个游人正在亭里歇脚。往西是上山的路。
+				</des>
+				<npcList></npcList>
+			</point>
+			<point name="玉皇山顶" pos="33,29">
+				<des>登上玉皇山,俯瞰山下,可以看到"八卦田"。据说这是皇帝祭先农时亲耕的籍田。山顶有福星观,建于唐朝。廊宇旁有天一池和白石井,并建有望湖亭。
+				</des>
+				<npcList></npcList>
+			</point>
+			<point name="青石大道" pos="29,28">
+				<des>大道上游人,或步行,或乘轿,或骑马。个个喜气洋洋的来游西湖。大道伸向东北和南两边,往西是石屋洞。
+				</des>
+				<npcList></npcList>
+			</point>
+			<point name="石屋洞" pos="28,28">
+				<des>山路旁是石屋洞。石屋洞,洞中有洞,洞洞相连。主洞高大宽敞,洁净明亮,上宽下窄,状如浮螺。西上便到了满觉陇；山路的尽头连着一条由北至南的大道。
+				</des>
+				<npcList></npcList>
+			</point>
+			<point name="满觉陇" pos="27,28">
+				<des>山路旁有一个小村落,村落四周桂花成林。每当仲秋,桂花盛开,飘香数里。被称为"金雪世界"。西上是水乐洞,东下石屋洞。
+				</des>
+				<npcList></npcList>
+			</point>
+			<point name="水乐洞" pos="26,28">
+				<des>水乐洞有两个洞口,洞的左口有股山泉从石缝中涌出。泉水声如金石,和谐悦耳。旁有"天然琴声","听无弦琴"等石刻字句。洞内两壁有很多钟乳石。往东是下山的路,西上便到了烟霞洞。
+				</des>
+				<npcList></npcList>
+			</point>
+			<point name="山路" pos="25,27">
+				<des></des>
+				<npcList></npcList>
+				<unArrive>9,14</unArrive>
+			</point>
+			<point name="烟霞洞" pos="25,28">
+				<des>据说站在山头,清晨观看山村缭绕炊烟,傍晚仰望蓝天彩霞,景色优美,故称"烟霞"。洞口两旁有精美的"观音"和"大势至菩萨"洞内两壁的天然岩穴里有各代的石刻。</des>
+				<npcList></npcList>
+			</point>
+			<point name="山路" pos="24,28">
+				<des>小溪横过山路,跨溪有一座小石桥。溪边农家小孩在嬉戏玩乐。
+				</des>
+				<npcList></npcList>
+				<unArrive>9,14</unArrive>
+			</point>
+			<point name="法喜寺" pos="23,28">
+				<des>法喜寺是天竺三寺中最敞朗深幽的一座。进香的游客不时的进进出出。往东可达龙井,朝北是下山的路。
+				</des>
+				<!-- 僧人 -->
+				<npcList></npcList>
+			</point>
+			<point name="山路" pos="23,27">
+				<des>走在这弯弯的小路上,看着沿途山峰云影,松竹青葱,岩石斑驳。不禁感到胸怀舒畅。
+				</des>
+				<npcList></npcList>
+			</point>
+			<point name="法净寺" pos="23,26">
+				<des>法净寺依山而立,寺前小溪流水。进香的游客不时的进进出出。
+				</des>
+				<!-- 沙弥,游客 -->
+				<npcList></npcList>
+				<unArrive></unArrive>
+			</point>
+			<point name="山路" pos="23,25">
+				<des>一条被人走出来的山路,弯弯曲曲地向上延伸。走在山路上,只见两旁峰峦秀丽,景色怡人。不时有进香客擦肩而过。</des>
+				<npcList></npcList>
+			</point>
+			<point name="法镜寺" pos="23,24">
+				<des>法镜寺建在小溪旁,格外的幽雅。进香的游客不时的进进出出。
+				</des>
+				<!-- 沙弥,游客 -->
+				<npcList></npcList>
+				<unArrive></unArrive>
+			</point>
+			<point name="山路" pos="23,23">
+				<des>走在这条不是很宽的山路上,只见两旁峰峦秀丽,景色怡人。一条小溪在路边潺潺流过,溪畔有一农家。山村小景,使人有退隐江湖之意。</des>
+				<npcList></npcList>
+			</point>
+			<point name="青石大道" pos="23,22">
+				<des></des>
+				<npcList></npcList>
+				<unArrive></unArrive>
+			</point>
+			<point name="青石大道" pos="20,26">
+				<des>大道上挤满了来灵隐寺上香和上飞来峰的游客。北边过了小溪就是灵隐寺了。</des>
+				<npcList></npcList>
+			</point>
+			<point name="灵隐寺" pos="20,25">
+				<des>灵隐寺又名云林寺,寺前有清澈的小溪,溪旁建有冷泉亭和赫雷亭。天王殿举目可见,殿外有两座经幢。往南便回到大道。</des>
+				<!-- 僧人 -->
+				<npcList></npcList>
+			</point>
+			<point name="天王殿" pos="20,24">
+				<des></des>
+				<npcList></npcList>
+				<unArrive></unArrive>
+			</point>
+			<point name="大雄宝殿" pos="20,23">
+				<des>天王殿后是另一座高达三十几米的大殿。匾上写着"大雄宝殿"。殿前有两座八角九层石塔。往南又进了天王殿。
+				</des>
+				<npcList></npcList>
+			</point>
+			<point name="大雄宝殿" pos="20,22">
+				<des>殿内正中一尊如来佛像,两旁塑有二十尊诸天的佛像,大殿後壁有五十三参海岛像,岛上有姿态各异的大小佛像一百五十个。
+				</des>
+				<npcList></npcList>
+			</point>
+			<point name="嘉兴南门" pos="19,26">
+				<des></des>
+				<npcList></npcList>
+				<unArrive>19,27</unArrive>
+			</point>
+			<point name="飞来峰" pos="20,27">
+				<des>飞来峰又名灵鹫峰。延着盘山小道往上走,只见溪盘岩石壁间雕着一尊袒腹露胸,喜笑自若的弭勒佛。旁边是一座气魄胸伟的多闻天王。北边是下山的路。小路往上延伸向东西两边。
+				</des>
+				<npcList></npcList>
+			</point>
+			<point name="清林洞" pos="21,27">
+				<des>又叫老虎洞。只见靠右雕有弭陀,观音,大势至三尊小佛。洞口东侧壁上还刻着一组"庐舍那佛会"浮雕,它上刻花头龛,中间坐着释迦牟尼,左右分列文殊,普贤,还有天王佛像。西边是下山的路。</des>
+				<npcList></npcList>
+			</point>
+			<point name="翠微亭" pos="22,27">
+				<des>翠微亭建在飞来峰的半山间,是名将韩世忠为纪念岳飞而建的。岳飞有"经年尘土满征衣,特特寻芳上翠微"的诗句,故亭名"翠微"。西边是下山的路。
+				</des>
+				<npcList></npcList>
+			</point>
+			<point name="龙泓洞" pos="19,27">
+				<des>又叫通天洞。在洞口的岩壁上刻有姿态各异,一丈多高的佛像六尊。左下方有两组浮雕。前一组记述了唐僧取经的故事；後一组为白马驮经,刻有"竺法阑","聂摩腾"字样。</des>
+				<npcList></npcList>
+				<unArrive>19,26</unArrive>
+			</point>
+			<point name="射旭洞" pos="18,27">
+				<des>洞后侧穹顶上的石缝间可仰见一束天光,故又名"一线天"。
+				</des>
+				<npcList></npcList>
+			</point>
+			<point name="龙井" pos="25,26">
+				<des>只见井(jing)水澈可见底而且清冷异常。龙井原名龙泓涧,传说此井与海相通,其中必定有龙,祈祷必雨,故名"龙井"。苏东坡曾有诗"人言山佳水亦佳,下有万古蛟龙潭"。井旁建有茶室。</des>	
+				<!-- 井 井水清澈见底,井底部有一些豆状小颗粒叠起的小堆。 -->
+				<!-- 这里是龙井茶茶室。在这里可以品到最新鲜的龙井。 -->
+				<!-- 
+					走在小路上,只见漫山遍野都是绿油油的茶蓬。农家少女们在欢
+笑声中采茶。山路延伸向东西两边,北边就是龙井,东北边有一条土
+路。
+				 -->
+				<npcList></npcList>
+			</point>
+			<point name="茅家埠" pos="25,25">
+				<des>路两旁盖着几座小土房。房门口一位老大娘正在喂鸡,几个小孩正在追逐嬉戏。</des>
+				<!-- 小男孩,老大娘 -->
+				<npcList></npcList>
+			</point>
+			<point name="杨公提" pos="26,25">
+				<des></des>
+				<npcList></npcList>
+			</point>
+			<point name="黄泥岭" pos="25,24">
+				<des>一条黄土路弯弯曲曲,四周非常的安静。偶而才看见些游人匆匆而过。
+				</des>
+				<npcList></npcList>
+			</point>
+			<point name="黄泥岭" pos="25,23">
+				<des>一条黄土路弯弯曲曲,四周非常的安静。偶而才看见些游人匆匆而过。
+				</des>
+				<npcList></npcList>
+			</point>
+			<point name="青石大道" pos="25,22">
+				<des></des>
+				<npcList></npcList>
+			</point>
+			<point name="青石大道" pos="24,22">
+				<des></des>
+				<npcList></npcList>
+			</point>
+			<point name="青石大道" pos="26,22">
+				<des></des>
+				<npcList></npcList>
+			</point>
+			<point name="青石大道" pos="27,22">
+				<des></des>
+				<npcList></npcList>
+			</point>
+			<point name="青石大道" pos="28,22">
+				<des></des>
+				<npcList></npcList>
+			</point>
+			<point name="洪春桥" pos="25,21">
+				<des>从这里可以看到西湖十景之一的双峰插云。大道通向北边。
+				</des>
+				<npcList></npcList>
+			</point>
+			<point name="青石大道" pos="25,20">
+				<des>大道两边遍植青松,满目苍翠,偃盖如雪。被称为"九里雪松"。南边是洪春桥。</des>
+				<npcList></npcList>
+			</point>
+			<point name="青石大道" pos="25,19">
+				<des></des>
+				<npcList></npcList>
+			</point>
+			<point name="玉泉" pos="24,19">
+				<des>玉泉寺建在玉泉山上,原名清涟寺。走进玉泉寺,只见这里有几个水池(pond)。朝东就是出寺下山的路。</des>
+				<!--水池 池旁的石碑刻着"古珍珠泉",池内偶有小水泡上涌,好象一串珍珠 -->
+				<npcList></npcList>
+			</point>
+			<point name="青石大道" pos="26,19">
+				<des>沿湖大道旁店铺林立,长街故朴,屋舍鳞次栉比,道上人来车往,一片太平热闹景象。街的东边是一座酒楼。</des>
+				<npcList></npcList>
+			</point>
+			<point name="沿湖大道" pos="29,27">
+				<des>一条宽敞的大道上却游人稀少。原来这里沿路住着的都是达官贵人。本来风景秀丽之处,却显的一片萧瑟。
+				</des>
+				<npcList></npcList>
+			</point>
+			<point name="刘庄" pos="29,26">
+				<des>庄园的大匾上是"刘庄"两个大字。</des>
+				<npcList></npcList>
+			</point>
+			<point name="沿湖大道" pos="29,25">
+				<des></des>
+				<npcList></npcList>
+			</point>
+			<point name="沿湖大道" pos="29,24">
+				<des></des>
+				<npcList></npcList>
+			</point>
+			<point name="郭庄" pos="29,23">
+				<des>庄园的大匾上是"郭庄"两个大字。大门(gate)紧闭,里面静悄悄的一点声音都没有。
+				</des>
+				<!-- 朱红的大门紧闭着,敲敲(knock)看吧。 -->
+				<!-- 咚,咚,咚,。。。"地敲着门,可里面却一点动静都没有。 -->
+				<npcList></npcList>
+			</point>
+			<point name="沿湖大道" pos="29,22">
+				<des></des>
+				<npcList></npcList>
+			</point>
+			<point name="沿湖大道" pos="29,21">
+				<des></des>
+				<npcList></npcList>
+			</point>
+			<point name="青石大道" pos="30,21">
+				<des></des>
+				<npcList></npcList>
+			</point>
+			<point name="青石大道" pos="29,27">
+				<des></des>
+				<npcList></npcList>
+			</point>
+			<point name="青石大道" pos="32,27">
+				<des></des>
+				<npcList></npcList>
+			</point>
+			<point name="苏堤" pos="32,26">
+				<des>苏堤是诗人苏东坡在主持浚深西湖时用湖泥和草筑成的。</des>
+				<npcList></npcList>
+				<unArrive>33,26</unArrive>
+			</point>
+			<point name="苏堤" pos="32,25">
+				<des>春晓,漫步林荫道上,烟柳笼纱,雀鸟欢鸣,一片生机。苏堤春晓被列为西湖十景之首,果然名不虚传。</des>
+				<npcList></npcList>
+				<unArrive>33,25</unArrive>
+			</point>
+			<point name="花港观鱼" pos="31,25">
+				<des>只见湖中有一小岛,一座曲桥横跨湖面。曲桥上人群熙攘,倚栏投饵。桥下红鱼,争食欢跳。谢觉哉游园时曾作诗一首"鱼国群粼乐有余,观鱼才觉我非鱼。虞诈两忘欣共处,鱼犹如此况人乎。"
+				</des>
+				<npcList></npcList>
+			</point>
+			<point name="苏堤" pos="32,24">
+				<des>每当盛夏,游客到此纷纷寻荫小息,堤上绿树交柯,鸣蝉噪鼓。北边是望山桥,南面锁澜桥。</des>
+				<npcList></npcList>
+			</point>
+			<point name="苏堤" pos="32,23">
+				<des>秋月之夜,月下观湖,满湖银波粼粼,阵阵微风,风中桂子飘香,令人为之心醉。</des>
+				<npcList></npcList>
+			</point>
+			<point name="苏堤" pos="32,22">
+				<des>寒冬,瑞雪霏霏中,不少游人踏雪观景。从堤上极目远眺,只见四周玉树琼林。北边是东浦桥,南面是压堤桥。</des>
+				<npcList></npcList>
+			</point>
+			<point name="苏堤" pos="32,21">
+				<des>苏堤上,游客们有的林荫大道上漫步吟诗,高谈阔论；有的随机就石,临水而坐；有的伶立湖边,静享湖景。西面是去曲园风荷。</des>
+				<npcList></npcList>
+				<unArrive>33,21</unArrive>
+			</point>
+			<point name="曲院风荷" pos="31,21">
+				<des>此处莲叶田田,菡萏妖娆,清波照红湛碧。跨过小拱桥,迎面有一亭院,旁边立着石碑,上题"曲院风荷。"往东是回苏堤。</des>
+				<!-- 曲苑风荷厅 走进亭院,只见临湖一座小榭。柱上有一对联(duilian)。 依榭
+观湖,只见荷花满湖,茭荷深处,香远益清。杨万里曾有题咏"毕竟
+西湖六月中,风光不与四时同。接天莲叶无穷碧,映日荷花别样红"。
+	对联
+	身		  眼
+	在		  明
+	荷		  小
+	香		  阁
+	水		  浮
+	影		  烟
+	中		  翠-->
+				<npcList></npcList>
+			</point>
+			<point name="苏堤" pos="32,20">
+				<des></des>
+				<npcList></npcList>
+				<unArrive>33,20</unArrive>
+			</point>
+			<point name="青石大道" pos="32,19">
+				<des></des>
+				<npcList></npcList>
+			</point>
+			<point name="青石大道" pos="33,19">
+				<des></des>
+				<npcList></npcList>
+			</point>
+			<point name="西冷桥" pos="33,20">
+				<des></des>
+				<npcList></npcList>
+				<unArrive>32,20</unArrive>
+			</point>
+			<point name="孤山" pos="33,21">
+				<des>通过林荫道向前,迎面石壁上刻有"孤山"两个丹红大字。朝南拾级登山便是平台。
+				</des>
+				<npcList></npcList>
+				<!-- 孤山平台 -->
+				<!-- 平台北面有"西湖天下景"亭阁,亭柱两旁有一对联(duilian)。这里还有曲桥水池,临池有叠石假山,布置得高低参差,疏密有致。 
+					北边是下山的路。 水 晴 山 雨 处 时 处 时 明 好 秀 奇 -->
+				<unArrive>32,21</unArrive>
+			</point>
+			<point name="平湖秋月" pos="34,21">
+				<des>平湖秋月三面临水,四面曲栏画廊,直挹波际。曾有"万顷湖平长似镜,四时月好最宜秋"的联句来描写这里秋夜时皓月当空的幽美景色。朝前走便是放鹤亭。
+				</des>
+				<npcList></npcList>
+				<!-- 放鹤庭 亭四周种满了梅花。一到冬末春初,梅花盛放,蔚然可观。此亭是为了纪念北宋隐逸诗人林和靖而建。他酷爱梅花。"疏影横斜水清浅,暗香浮动月黄昏"就是他的咏梅名句。他"梅妻鹤子"的故事也是广为流传。西边是孤山。 -->
+				<unArrive>34,22</unArrive>
+			</point>
+			<point name="白堤" pos="35,21">
+				<des>白堤横旦湖上,把西湖分成里湖与外湖。堤上种满了杨柳,碧桃。每逢春至,"翩翩柳丝泛绿,树树桃颜带笑"。白居易曾有"乱花渐欲迷人眼,浅草才能没马蹄。最爱湖东行不足,绿杨荫里白沙堤。"来描述这里的景色。
+				</des>
+				<npcList></npcList>
+			</point>
+			<point name="断桥" pos="36,21">
+				<des>断桥正好在外湖和里湖的分水点上。这里亭轩错落,掩映在绿树佳荫之下。"山明水秀轩扉启,落日渔歌过里湖",就是描述这里傍晚的景色。在断桥上可浏览环湖诸山和湖中诸岛的风光。每当雪後,站在桥头,只见一切都被覆上白雪,玉琢银楼的湖山风貌就是西湖十景之一的"断桥残雪"。
+				</des>
+				<npcList></npcList>
+			</point>
+			<point name="青石大道" pos="36,20">
+				<des></des>
+				<npcList></npcList>
+			</point>
+			<point name="宝石山" pos="36,19">
+				<des>宝石山不是很高,山上多奇峰怪石。山路旁有一座亭子"来凤亭",亭前有块卵形大石,临空搁置在山巅,叫落星石,又称寿星石。再往北上就到了保淑塔,往南下便回到大道了。
+				</des>
+				<npcList></npcList>
+			</point>
+			<point name="山路" pos="36,18">  
+				<des>山上林木茂密,就是炎夏这里还是清凉依旧。</des>
+			</point>
+			<point name="黄龙洞" pos="36,17">
+				<des>一进山门,松篁交翠,别有洞天。石壁陡削,苔痕常绿；回廊临之间有一小峰,上题："有龙则灵"。
+				</des>
+				<!-- 毒蛇 -->
+				<npcList></npcList>
+			</point>
+			<point name="岳廊" pos="32,18">
+				<des>岳王庙的匾上是"心昭天日"四个大字。步入大殿,正中是岳飞的塑像,身後的匾上题着"还我河山"。北边的门通向岳坟,往南是出去的路。</des>
+				<npcList></npcList>
+			</point>
+			<point name="岳坟" pos="32,17">
+				<des>墓道两旁有石虎,石羊,石马和三对翁仲。正中古柏交柯,便是岳飞的坟墓。墓碑刻着"宋岳鄂王墓"。 岳王墓的左面,便是岳飞之子岳云的墓,墓碑上刻着"宋继忠侯岳云之墓"。</des>
+				<npcList></npcList>
+			</point>
+			<point name="青石大道" pos="34,28">
+				<des></des>
+				<npcList></npcList>
+			</point>
+			<point name="青石大道" pos="35,28">
+				<des></des>
+				<npcList></npcList>
+			</point>
+			<point name="夕照山" pos="36,28">
+				<des>夕照山上遍植栖树和红枫。每逢深秋,层林尽染,分外壮观。山顶有一座塔,雷峰塔。每当夕阳西下,彩云缭绕,塔影幢幢,这就是西湖十景之一的"雷峰夕照"。</des>
+				<npcList></npcList>
+			</point>
+			<point name="青石大道" pos="35,27">
+				<des></des>
+				<npcList></npcList>
+			</point>
+			<point name="青石大道" pos="35,26">
+				<des></des>
+				<npcList></npcList>
+			</point>
+			<point name="胡庆余堂" pos="36,26">
+				<des>这是一家明净宽敞的药堂,後墙上是一个大药柜。几个伙计正忙着爬上爬下地从小抽屉里抓药。药柜前摆着一张桌子,名医胡庆余就在这里为人治疗。</des>
+				<npcList></npcList>
+				<unArrive>36,25</unArrive>
+			</point>
+			<point name="清波门" pos="34,26">
+				<des>园门口有一大门楼,大匾上刻着"清波门"。门楼下站着几个嬉嬉哈哈的少女,惹人坠步相观。在往西就进了聚景,往东便回到大路。</des>
+				<npcList></npcList>
+			</point>
+			<point name="聚景园" pos="33,26">
+				<des>漫步园中,只见湖傍遍置垂柳。柳树丛中,种了不少碧桃。东风送暖之时,这里"杨柳千条拂面丝,绿烟金穗不胜吹"。诗人刘禹锡的"桃红李白皆夸好,须得垂杨相发挥"形容的恰到好处。东面是清波门,往东北便是柳浪桥。</des>
+				<npcList></npcList>
+				<unArrive>32,26</unArrive>
+			</point>
+			<point name="柳浪桥" pos="33,25">
+				<des>每当春至,站在桥上,沿湖垂柳在风中摇曳如翠浪翻空,黄莺在枝头迎春嬉戏,鸣声婉转,故得名"浪桥闻莺"。</des>
+				<npcList></npcList>
+				<!-- 黄莺,垂柳 -->
+				<unArrive>32,25</unArrive>
+			</point>
+			<point name="青石大道" pos="35,26">
+				<des></des>
+				<npcList></npcList>
+			</point>
+			<point name="天外天" pos="36,25">
+				<des></des>
+				<npcList></npcList>
+				<!-- 客店这是杭州最有名的客店,里面雕梁画壁,装饰有如宫殿,你可以在这里
+打听到各地的风土人情。店小二里里外外忙得团团转,接待着南腔北调的客
+人。
+
+二楼
+你正走在天外天客店二楼的走廊上,可以听到从客房里不时地呼呼
+的打酣声,一阵高过一阵。不时有睡意朦胧的旅客进进出出,到楼下的
+掌柜处付了钱再上来睡觉。
+
+客房
+天外天客店果然名不虚传,好大的一间客房,一张精致的床,窗外
+是美丽的西湖,无边的宜人景致。暖暖的风吹得你昏昏欲睡,这里正是
+睡觉的好地方。 -->
+				<unArrive>36,24;36,26</unArrive>
+			</point>
+			<point name="青石大道" pos="35,25">
+				<des></des>
+				<npcList></npcList>
+			</point>
+			<point name="凤池书院" pos="36,24">
+				<des>书院正中有一匾"凤池书院"。书院里坐着两位老者,他们正在吟诗作对。他们身旁的桌上铺着宣纸和笔墨。</des>
+				<npcList></npcList>
+				<unArrive>36,25;36,23</unArrive>
+			</point>
+			<point name="青石大道" pos="35,24">
+				<des></des>
+				<npcList></npcList>
+			</point>
+			<point name="铁匠铺" pos="36,23">
+				<des>这是一家不小的打铁铺,店里摆了几座火炉,一位铁匠正在火炉旁满头大汗地打造东西。一位老者坐在边上。火炉边放着不少打好了的铁器。</des>
+				<npcList></npcList>
+				<unArrive>36,22;36,24</unArrive>
+			</point>
+			<point name="青石大道" pos="35,23">
+				<des></des>
+				<npcList></npcList>
+			</point>
+			<point name="青石大道" pos="35,22">
+				<des></des>
+				<npcList></npcList>
+			</point>
+			<point name="楼外楼" pos="36,22">
+				<des>提起"楼外楼"方圆百里无人不知。这里各式名菜是杭州一绝。来游湖的人们都一定会来这里尝尝。整个大堂闹哄哄的挤满了各式人等。店小儿跑来跑去,忙着招呼客人。
+				</des>
+				<npcList></npcList>
+				<!-- 菜单 东坡肉(Pork) ：一两白银又二十文铜板 西湖醋鱼(Fish) 
+					：一两白银又二十文铜板 百果油包(Baozi) ：七十文铜板 龙井虾仁(Shrimp) 
+					：五十文铜板 叫化童鸡(Chicken) ：一两白银又二十文铜板 桂花鲜栗羹(Guihua 
+					geng)：一两白银又二十文铜板 酒瓶(Jiuping) ：十六两白银 -->
+				<unArrive>36,21;36,23</unArrive>
+			</point>
+			<point name="红娘庄" pos="34,22">
+				<des>你现在正站在风光秀丽的西子湖畔的红娘庄里,临水凭窗,隔着碧绿的湖面,就是断桥了。红娘庄并不大,但这里却主天下之悲欢离合,成就所有天下有情人。</des>
+				<npcList></npcList>
+				<!-- 红娘 -->
+				<unArrive>34,21</unArrive>
+			</point>
+		</scene>
+		<spScene>
+			<scene id="六和塔内">
+				<!-- 鲁智深,林冲,武松 -->
+				<point name="六和塔外" pos="5,50">
+					<des></des>
+					<exit pos="29,30" />
+				</point>
+				<point name="六和塔底" pos="5,49">
+					<des>这里是六和塔的底层,名曰:初地坚固。正门楹联是:"一塔声江天,越水潮奔初月上;六和存佛地,吴山本落大桥横"。前供地藏菩萨塑像,后置明万历刻北极真武像
+					</des>
+					<!-- 从窗口望出去,钱江东去。近处农田中,有农夫正荷锄耕耘。 -->
+				</point>
+				<point name="六和塔二层" pos="5,48">
+					<des>这里是六和塔的二层,名曰:二谛俱融。供东海龙王像。
+					</des>
+				</point>
+				<point name="六和塔三层" pos="5,47">
+					<des>这里是六和塔的三层,名曰:三明净域。供弥陀、观音、势至像。须弥座上雕刻花卉飞禽、走兽、飞仙等各式图案,刻画精细。
+					</des>
+				</point>
+				<point name="六和塔四层" pos="5,46">
+					<des>这里是六和塔的四层,名曰:四天宝纲。供鲁智深像。</des>
+				</point>
+				<point name="六和塔五层" pos="5,45">
+					<des>这里是六和塔的五层,名曰:五云覆盖。供毘卢观世音像。
+					</des>
+				</point>
+				<point name="六和塔六层" pos="5,44">
+					<des>这里是六和塔的六层,名曰:六鳖负载。窗(window)外是浓妆淡抹的西子湖,塔中玲珑八角,青砖砌地,雕栏飞檐间粘连了些许蛛网。
+					</des>
+				</point>
+				<point name="六和塔七层" pos="5,43">
+					<des>这里是六和塔的七层,也是塔顶名曰:七宝庄严。此处不仅白昼宜观潮,月夜亦佳。横空月色下静观海门潮起,但见"月影银涛,光摇喷雪,云移玉岸,浪卷轰雷,白练风扬,奔飞曲折,势若山岳声腾,使人毛骨欲竖。"。
+					</des>
+				</point>
+			</scene>
+		</spScene>
+	</place>
+
+
+
+
+
+
+
+
+
+
+
+</root>

@@ -3,12 +3,16 @@ package game.control;
 import game.entity.Equip;
 import game.entity.NPC;
 import game.entity.Player;
-import game.listener.NpcListener;
+import game.listener.ObjLner;
+import game.utils.SUtils;
 import game.view.frame.SpFrame;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Random;
 
 /**
  * 战斗控制类
@@ -44,9 +48,11 @@ public class FightControl {
 	
 	private EquipControl equipControl = gameControl.equipControl;
 	
-	private NpcListener npcListener = null ;
+	private ObjLner npcListener = null ;
 	
 	private Player player = gameControl.getPlayer() ;
+	
+	private static Random rd = new Random(System.currentTimeMillis());
 	
 	/*****************************************************
 	 *  方法开始!
@@ -107,7 +113,82 @@ public class FightControl {
 		return list ;
 	}
 	
-	
+	/**
+	 * 计算 一次攻击 发生的实际情况 0 友方 1敌方 1暴击 2普通攻击 3miss
+	 * @param player
+	 * @param npc
+	 * @param type
+	 * @return
+	 */
+	public static Map<String, Object> fightHelper(Player player, NPC npc, int type) {
+		Map<String, Object> map = new HashMap<>();
+		/** 此次攻击的攻击加成 两位小数 */
+		double atkAdd = SUtils.getTwoDecimal((rd.nextInt(5) + 7) * 0.1);
+		/** value造成的伤害显示 atkType伤害的类型1：普攻 2：暴击 3:miss */
+		String value = "";
+		int atkType = 0;
+		int atk = 0, def = 0, baoji = 0, atkDemage = 0;
+		/** atkAdd 这次攻击的攻击加成 atkDemage这次攻击造成伤害数值 lv命中率 rankLv等级比 */
+		double lv = 0.0, rankLv = 0.0;
+		if (type == 0) {
+			atk = player.getAttack();
+			baoji = player.getBaoji();
+			if (player.getRank() < 6) {
+				rankLv = player.getRank() * 3.0 / (player.getRank() + npc.getRank());
+			} else {
+				rankLv = player.getRank() * 2.0 / (player.getRank() + npc.getRank());
+			}
+			def = npc.getDefense();
+		} else {
+			atk = npc.getAttack();
+			baoji = npc.getBaoji();
+			if (player.getRank() < 6) {
+				rankLv = npc.getRank() * 2.0 / (player.getRank() * 2 + npc.getRank());
+			} else {
+				rankLv = npc.getRank() * 2.0 / (player.getRank() + npc.getRank());
+			}
+			def = player.getDefense();
+		}
+		/**
+		 * 先判断是否暴击 暴击双倍伤害
+		 * 
+		 */
+		int rdValue = rd.nextInt(100) + 1;
+		if (rdValue < baoji) {
+			atkDemage = (int) ((atkAdd * 2) * atk);
+			value = SUtils.conObjToStr(atkDemage);
+			atkType = 2;
+		} else {
+			/** 判断是否普攻击 */
+			lv = SUtils.getTwoDecimal(atk * 100 / (atk + def));
+			lv = lv * rankLv;
+			rdValue = rd.nextInt(100) + 1;
+			// System.out.println("没有打出暴击,判断是否命中,随机数为:"+rdValue+",命中率为:"+lv);
+			if (rdValue < lv) {
+				atkAdd = (rd.nextInt(5) + 7) * 0.1;
+				atkDemage = (int) (atkAdd * atk);
+				value = SUtils.conObjToStr(atkDemage);
+				// System.out.println("耶,打中了,基数为"+atkAdd+",伤害值是:"+value);
+				atkType = 1;
+			} else {
+				atkType = 3;
+			}
+		}
+		/** 将战斗信息写入日志 */
+		if (type == 0) {
+			SUtils.writeFtLog(
+					"我方进行攻击,我攻击力为:" + atk + ",我的暴击率为:" + baoji + ",敌人防御力为:" + def + ",此次攻击加成为:" + atkAdd + "\n");
+		} else {
+			SUtils.writeFtLog(
+					"敌方进行攻击,敌方攻击力为:" + atk + ",敌方的暴击率为:" + baoji + ",我的防御力为:" + def + ",此次攻击加成为:" + atkAdd + "\n");
+		}
+		SUtils.writeFtLog("此次攻击命中率为:" + lv + ",此次攻击判定数数值为:" + rdValue + "\n");
+
+		map.put("atkType", atkType);
+		map.put("value", value);
+		map.put("atkDemage", atkDemage);
+		return map;
+	}
 	
 	
 	
@@ -191,7 +272,7 @@ public class FightControl {
 
 
 
-	public NpcListener getNpcListener() {
+	public ObjLner getNpcListener() {
 		return npcListener;
 	}
 
@@ -203,7 +284,7 @@ public class FightControl {
 
 
 
-	public void setNpcListener(NpcListener npcListener) {
+	public void setNpcListener(ObjLner npcListener) {
 		this.npcListener = npcListener;
 	}
 	

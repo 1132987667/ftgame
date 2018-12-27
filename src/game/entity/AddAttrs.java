@@ -64,9 +64,13 @@ import java.io.Serializable;
 		public int bufRe = 0 ;/** 移除所有增益状态 */
 		public int debufRe = 0 ;/** 移除所有减益状态 */
 		public int daze = 0 ;/** 眩晕 */
+		/** 免伤值 */
+		public int ms = 0 ;
+		/** 免伤比率 当前值/100 */
+		public int msr = 0 ;
 		
-		@Override
-		public String toString() {
+		
+		public String info() {
 			return "AddAttrs [li=" + li + ", min=" + min + ", tili=" + tili
 					+ ", jingli=" + jingli + ", lucky=" + lucky + ", hp=" + hp
 					+ ", mp=" + mp + ", attack=" + attack + ", defense="
@@ -75,7 +79,7 @@ import java.io.Serializable;
 					+ defEd + ", expEd=" + expEd + ", moneyEd=" + moneyEd
 					+ ", baolvEd=" + baolvEd + ", suck=" + suck + ", petHp="
 					+ petHp + ", petAtk=" + petAtk + ", petDef=" + petDef
-					+ ", petAll=" + petAll + "]";
+					+ ", petAll=" + petAll + "]"; 
 		}
 
 	}

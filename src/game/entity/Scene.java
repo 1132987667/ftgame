@@ -1,5 +1,6 @@
 package game.entity;
 
+import java.awt.Point;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,7 +28,22 @@ public class Scene {
 		this.y = y;
 		npcList = new ArrayList<>();
 	}
+	
+	/** 是否为特殊按钮 */
+	public boolean isSpScene = false ;
 
+	
+	/** 当前按钮是否代表出口,场景按钮中使用 */
+	public boolean isExit = false ;
+	/** 如果是出口，那么出口场景的地点是哪里 */
+	public Point exitPoint ;
+	
+	public boolean isEntry = false ;
+	public Point entryPoint ;
+	
+	/** 不能到达的地点 */
+	public List<Point> points = new ArrayList<>() ;
+	
 	public String name ;
 	
 	public String des ;
@@ -38,8 +54,24 @@ public class Scene {
 
 	public int y ;
 
-	public List<NPC> npcList ;
-
+	public List<NPC> npcList = new ArrayList<>() ;
+	
+	public List<Item> itemList = new ArrayList<>() ;
+	
+	public List<String> enters = new ArrayList<>() ;
+	
+	/** 场地特殊的功能 */
+	public boolean canFishing = false ;//钓鱼
+	public boolean canWushu  = false ;//练武
+	public boolean canXiu = false ;//修炼
+	public boolean canDig = false ;//挖矿
+	public boolean canCutdown = false ;//挖矿
+	public boolean canHunting = false ;//狩猎
+	public boolean canRest = false ;//休息
+	
+	
+	
+	
 	@Override
 	public String toString() {
 		return "Scene [name=" + name + ", des=" + des + ", npcStr=" + npcStr
@@ -80,6 +112,12 @@ public class Scene {
 	}
 	public void setNpcList(List<NPC> npcList) {
 		this.npcList = npcList;
+	}
+	public List<Item> getItemList() {
+		return itemList;
+	}
+	public void setItemList(List<Item> itemList) {
+		this.itemList = itemList;
 	}
 	
 }

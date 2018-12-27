@@ -5,7 +5,7 @@ import game.control.GameControl;
 import game.control.SoundControl;
 import game.entity.NPC;
 import game.entity.Player;
-import game.utils.Constant;
+import game.utils.C;
 import game.utils.SUtils;
 import game.view.TLabel;
 import game.view.TTextPane;
@@ -73,7 +73,7 @@ public class AwakenThread extends Thread{
 	@Override
 	public void run() {
 		showInfo.append(" 战斗开始!\n你和", 20);
-		showInfo.append("【"+Constant.npcTypeDes[npc.getType()]+"】"+npc.getName(), 21);
+		showInfo.append("【"+C.npcTypeDes[npc.getType()]+"】"+npc.getName(), 21);
 		showInfo.append("只能活下一人!\n", 20);
 		SoundControl.ftMuc(0);//拔刀动作 
 		SUtils.writeFtLog(npc.npcInfo());
@@ -118,8 +118,8 @@ public class AwakenThread extends Thread{
 			gameControl.append("你取得了战斗的胜利!\n", 3);
 			fightControl.setVictorySign(true);
 		}else{
-			showInfo.append("你惨败在【"+Constant.npcTypeDes[npc.getType()]+"】"+npc.getName()+"手上!\n", 25);
-			gameControl.append("你惨败在【"+Constant.npcTypeDes[npc.getType()]+"】"+npc.getName()+"手上!\n", 2);
+			showInfo.append("你惨败在【"+C.npcTypeDes[npc.getType()]+"】"+npc.getName()+"手上!\n", 25);
+			gameControl.append("你惨败在【"+C.npcTypeDes[npc.getType()]+"】"+npc.getName()+"手上!\n", 2);
 			fightControl.setVictorySign(false);
 		}
 		fightControl.battleOver();

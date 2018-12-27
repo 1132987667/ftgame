@@ -6,7 +6,7 @@ import game.entity.Gong;
 import game.entity.Player;
 import game.listener.BagActionListener;
 import game.listener.BagMouseListener;
-import game.utils.Constant;
+import game.utils.C;
 import game.utils.SUtils;
 import game.view.button.TButton;
 import game.view.ui.DemoScrollBarUI;
@@ -75,7 +75,7 @@ public class BagClassifyPanel extends JPanel {
 		/** 设置排序按钮 */
 		for (int i = 0; i < jbAry.length; i++) {
 			if(index!=2){
-				jbAry[i] = new JButton(Constant.equipAttrAry[i]);
+				jbAry[i] = new JButton(C.equipAttrAry[i]);
 			}else if(index==2){
 				jbAry[i] = new JButton(gongSortCase[i]);
 			}
@@ -178,7 +178,7 @@ public class BagClassifyPanel extends JPanel {
 			tempBu.setOpaque(true);
 			tempBu.setBackground(new Color(57, 47, 65));
 			/** 设置字体颜色 */
-			tempBu.setForeground(Constant.equipColor[gong.getType()]);
+			tempBu.setForeground(C.equipColor[gong.getType()]);
 			//tempBu.addActionListener(bgac);
 			tempBu.addMouseListener(bagml);
 			tempBu.setFocusable(false);
@@ -248,7 +248,7 @@ public class BagClassifyPanel extends JPanel {
 			tempBu.setOpaque(true);
 			tempBu.setBackground(new Color(57, 47, 65));
 			/** 设置字体颜色 */
-			tempBu.setForeground(Constant.equipColor[equip.getType()]);
+			tempBu.setForeground(C.equipColor[equip.getType()]);
 			tempBu.addActionListener(bgac);
 			tempBu.addMouseListener(equipMl);
 			tempBu.setFocusable(false);

@@ -1,7 +1,7 @@
 package game.view.panel;
 
 import game.entity.Equip;
-import game.utils.Constant;
+import game.utils.C;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -131,12 +131,12 @@ public class EquipInfoPanel extends JPanel {
 			last = "已选择" ;
 		}
 		name.setText(equip.getName());
-		name.setForeground(Constant.equipColor[equip.getType()]);
+		name.setForeground(C.equipColor[equip.getType()]);
 		//name.setText(equip.getName());
-		part.setText(Constant.partDes[equip.getPart()]+"|"+last);
+		part.setText(C.partDes[equip.getPart()]+"|"+last);
 		price.setText("售价:"+equip.getPrice());
 		type.setText(Equip.typeDesAry[equip.getType()]);
-		type.setForeground(Constant.equipColor[equip.getType()]);
+		type.setForeground(C.equipColor[equip.getType()]);
 		rank.setText("等级:"+equip.getRank()+"");
 		int column = equip.getDes().length()%13>0?equip.getDes().length()/13+1:equip.getDes().length()/13;
 		jta.setText(equip.getDes());

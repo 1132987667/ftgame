@@ -7,57 +7,100 @@
 	3 已完成
 	4 任务结束|已放弃 
 	-->
-	<task id="101">
-		<taskName>苏醒</taskName>
-		<curState>1</curState>
-		<npcId></npcId>小花
-		<taskDes></taskDes>
-		<task1>
-			爹，爹，你快来看，他醒啦！|
-			爹爹好像很忙，大哥哥你出去找他吧，等你伤好了，就可以陪我玩了
-		</task1>
-		<task2></task2>
-		<task3></task3>
-		<task4>0,1,5</task4>
-		<startCond>true</startCond>
-		<endCond>true</endCond>
-	</task>
+
 	<task id="102">
 		<taskName>易大叔的女儿</taskName>
 		<curState>0</curState>
 		<npcId>1004</npcId>
-		<taskDes>现在世道很乱，易大叔想让女儿女婿到家里来避避风头。你要去xxx村找到易大叔的女儿</taskDes>
-		<task1>
-			现在你的身体壮实了不少，那帮我个忙，去xx村找我女儿把我的想法告诉他们。
-		</task1>
-		<task2>
-			答应了那么你去把，早去早回！
-		</task2>
-		<task3>
-			什么，你说小雅她..，大叔仿佛一下了老了很多，他只低着头怒吼，你默默的走开了
-		</task3>
+		<taskDes>现在世道很乱,易大叔想让女儿女婿到家里来避避风头。你要去xxx村找到易大叔的女儿</taskDes>
+		<startMsg>
+			npc:现在世道混乱,而大女儿又住在三不管地段附近的小村庄里,我感觉他们很危险;
+			npc:你已经锻炼了一段时间了,身子也壮实不少,那帮叔一个忙,去xx村和我女儿女婿说下,让他们过来家里住。
+		</startMsg>
+		<undoMsg>
+			npc:有时间就帮叔去一趟,家里还是安全的多。
+		</undoMsg>
+		<acceptMsg>
+			npc:哦,对了,我的女儿叫大雅,他们就住在xx村村口第二家。答应了那么你去把,早去早回！
+		</acceptMsg>
+		<endMsg>
+			什么,你说大雅她..,在听到这个噩耗后,大叔被石化了,仿佛一下了老了很多,他悲不自胜,只低着头怒吼;
+			你也有些不知所措,安慰的话语是改变不了什么的,你所能做的,只是静静的感受他那撕心裂肺的痛苦...
+		</endMsg>
 		<startCond>true</startCond>
 		<acceptCond></acceptCond>
 		<endCond>true</endCond>
 	</task>
 	
 	
+	<task id="103">
+		<taskName>小雅的风筝</taskName>
+		<curState>0</curState>
+		<npcId>1004</npcId>
+		<taskDes>小雅想要一个风筝,你可以去县城的杂货铺买一个</taskDes>
+		<startMsg>
+			npc:大哥哥,小兔子说它好想要一个风筝啊;
+			me:是嘛,怎么我觉得是你这个小机灵鬼想要呢？;
+			npc:作为小兔子的主人,它的当然是我的罗,大哥哥,你一定会答应我的对不对
+		</startMsg>
+		<undoMsg>
+			npc:大哥哥,我的风筝呢,藏哪了？
+		</undoMsg>
+		<acceptMsg>
+			me:好吧,我有时间就帮你去弄一个。;
+			npc:好棒,大哥哥最好了
+		</acceptMsg>
+		<endMsg>
+			aside:你半蹲在她面前,从背包中把风筝拿给她,她高兴极了,道谢后,在你脸上狠狠的亲了一口,便蹦蹦跳跳的离开了 
+		</endMsg>
+		<startCond>task:104:over</startCond>
+		<acceptCond></acceptCond>
+		<endCond>true</endCond>
+	</task>
 	
+	<task id="104">
+		<taskName>小兔子</taskName>
+		<curState>0</curState>
+		<npcId>1004</npcId>
+		<taskDes>小雅想要一个风筝,你可以去县城的杂货铺买一个</taskDes>
+		<startMsg>
+			aside:你发现小雅很难过，过去安慰她;
+			me:小雅,发生什么了,怎么一天都闷闷不乐;
+			npc:今天早上起来,我就发现小呆死了;
+			me:啊,小呆是谁;
+			npc:我养的一只小白兔,它那么可爱...;
+			me:小雅,别难过了,我们帮小兔兔编个花圈,然后把它和胡萝卜埋在一起,小兔子知道了,一定会开心的;
+			npc:大哥哥,我还是想要小呆
+		</startMsg>
+		<undoMsg>
+			npc:大哥哥,小呆,小呆
+		</undoMsg>
+		<acceptMsg>
+			me:大哥哥马上去帮你抓一个小白兔来,不过你要为它起一个新名字哦!;
+			npc:嗯,我会的
+		</acceptMsg>
+		<endMsg>
+			aside:大哥哥,我想好了,这只小白兔就叫丢丢
+		</endMsg>
+		<startCond></startCond>
+		<acceptCond></acceptCond>
+		<endCond>true</endCond>
+	</task>
 	
 	<ask id="101">
 		<title>这是哪</title>
-		<askMsg>大叔，请问这里是什么敌方?</askMsg>
-		<answerMsg>这里是xxx国的xxx的xxx山下，我姓易，你就叫我易大叔把</answerMsg>
+		<askMsg>大叔,请问这里是什么敌方?</askMsg>
+		<answerMsg>这里是xxx国的xxx的xxx山下,我姓易,你就叫我易大叔把</answerMsg>
 	</ask>
 	<ask id="102">
 		<title>这是什么</title>
-		<askMsg>刚才在屋子里躺在一张虎皮上，虎皮长达3米，你内心震惊不已，迫不及待的问起大叔。</askMsg>
-		<answerMsg>看你的瘦弱的样子，没有听过也正常，既然你问了，我就告诉你，在我们这些凡人上面，其实还有更强大的
-		人，也就是传说中的仙人，既然有仙人，那么也会存在一些强大的灵兽，那只是有粗浅法力的老虎。</answerMsg>
+		<askMsg>刚才在屋子里躺在一张虎皮上,虎皮长达3米,你内心震惊不已,迫不及待的问起大叔。</askMsg>
+		<answerMsg>看你的瘦弱的样子,没有听过也正常,既然你问了,我就告诉你,在我们这些凡人上面,其实还有更强大的
+		人,也就是传说中的仙人,既然有仙人,那么也会存在一些强大的灵兽,那只是有粗浅法力的老虎。</answerMsg>
 	</ask>
 	<ask id="103">
 		<title>先生教我</title>
-		<askMsg>先生，请教我</askMsg>
-		<answerMsg>先你妹啊，小说看多了把，我只是个普通的猎户，虽然长的帅点，不过，教你一点粗浅的功夫还是可以的，呐，这是一本最基本的吐纳法，你练着...</answerMsg>
+		<askMsg>先生,请教我</askMsg>
+		<answerMsg>先你妹啊,小说看多了把,我只是个普通的猎户,虽然长的帅点,不过,教你一点粗浅的功夫还是可以的,呐,这是一本最基本的吐纳法,你练着...</answerMsg>
 	</ask>
 </root>

@@ -1,15 +1,17 @@
 package game.listener;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import game.control.GameControl;
 import game.control.SoundControl;
 import game.entity.Archive;
 import game.entity.Player;
-import game.utils.Constant;
+import game.utils.ArchiveUtils;
+import game.utils.C;
+import game.utils.SUtils;
 import game.view.frame.MainFrame;
 import game.view.frame.SpFrame;
-
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 /**
  * 对各个功能按钮进行监听
@@ -17,9 +19,9 @@ import java.awt.event.ActionListener;
  *
  */
 public class FunListener implements ActionListener{
-	private MainFrame f  ;
+	private MainFrame mainFrme  ;
 	private GameControl gameControl = GameControl.getInstance();
-	private SpFrame fubenFrame, stateFrame, fightFrame, jiangHuFrame, bagFrame, mapFrame ;
+	private SpFrame fubenFrame, stateFrame, fightFrame, jiangHuFrame, bagFrame, mapFrame, taskFrame ;
 	private SpFrame curFrame ;
 	private Archive archive = null ;
 	private Player player ;
@@ -28,7 +30,7 @@ public class FunListener implements ActionListener{
 	//private Clip bu = SoundControl.jiemianMuc("bu");
 	
 	public FunListener(MainFrame mainFrame,Archive archive,Player player) {
-		this.f = mainFrame ;
+		this.mainFrme = mainFrame ;
 		this.player = player ;
 		this.archive = archive ;
 	}
@@ -45,13 +47,14 @@ public class FunListener implements ActionListener{
 	 */
 	public void initFunFrame(SpFrame fubenFrame, SpFrame stateFrame,
 			SpFrame fightFrame, SpFrame jiangHuFrame, SpFrame bagFrame,
-			SpFrame mapFrame) {
+			SpFrame mapFrame, SpFrame taskFrame) {
 		this.fubenFrame = fubenFrame;
 		this.stateFrame = stateFrame;
 		this.fightFrame = fightFrame;
 		this.jiangHuFrame = jiangHuFrame;
 		this.bagFrame = bagFrame;
 		this.mapFrame = mapFrame;
+		this.taskFrame = taskFrame;
 	}
 
 
@@ -67,45 +70,84 @@ public class FunListener implements ActionListener{
 	 */
 	public void close(int type){
 		switch (type) {
-		case Constant.State:
+		case C.State:
 			stateFrame.setVisible(false);
 			break;
-		case Constant.Skill:
+		case C.Skill:
 			break;
-		case Constant.Bag:
+		case C.Bag:
 			bagFrame.setVisible(false);
 			break;
-		case Constant.Task:
-			//Tasks.setVisible(false);
+		case C.Task:
+			taskFrame.setVisible(false);
 			break;
-		case Constant.JiangHu:
+		case C.JiangHu:
 			jiangHuFrame.setVisible(false);
-		case Constant.Fuben:
+		case C.Fuben:
 			fubenFrame.setVisible(false);
-		case Constant.Archive:
+		case C.Archive:
 			//.setVisible(false);
-		case Constant.Map:
-			mapFrame.setVisible(false);
-		case Constant.Fight:
-			fightFrame.setVisible(false);
+		case C.Map:
+			//mapFrame.setVisible(false);
+		case C.Fight:
+			//fightFrame.setVisible(false);
 		default:
 			break;
 		}
 	}
 	
 	/**
-	 * 逻辑
-	 * 如果命令对应界面当前是打开的，而且打开标志也是当前窗口，那么关闭当前窗口
-	 * 如果命令对应界面是关闭的
-	 * 		如果打开标志为无，那么打开这个对应界面
-	 * 		如果打开标志不为无，说明已经有窗口打开，不做操作
+	 * 判断是否应该打开窗口
+	 * 如果当前已进入场景中
+	 * 那么判断当前是否有窗口打开
+	 * 窗口打开?
+	 * true 
+	 * 		打开的窗口和调用的窗口为同一窗口？
+	 * 		true
+	 * 			关闭当前打开的窗口
+	 * 		false
+	 * 			不理会
+	 * false
+	 * 		打开调用的窗口
+	 * 
+	 * 
 	 * @param command
 	 */
 	public void call(String command){
+		//if(gameControl.isInScene()) {
 		SoundControl.jiemianMuc("openMap"); 
-		getCurFrame(command);
-		System.out.println(gameControl.windowFlag+"和"+command);
-		if(curFrame.isVisible()&&gameControl.windowFlag.equals(command)){
+		if(command.equals(C.SArchive)||command.equals(C.SConsole)) {
+			if(command.equals(C.SArchive)) {
+				archive = SUtils.conPlayerToArc(player);
+				ArchiveUtils.saveArchiving(archive, gameControl.getArchiveName());
+			}else if(command.equals("控制台")){
+				System.out.println("打开控制台");
+				gameControl.getTan().setVisible(true);
+			}
+		}else {
+			SpFrame openFrame = getCurOpenFrame();
+			if(openFrame!=null) {
+				if(openFrame==getCurFrame(command)) {
+					openFrame.setVisible(false);
+					gameControl.funCloseInfo(openFrame.type);
+					gameControl.restore();
+				}
+			}else {
+				curFrame = getCurFrame(command) ;
+				gameControl.funOpenInfo(curFrame.type);
+				curFrame.reload(curFrame.type);
+				curFrame.setVisible(true);
+				curFrame.removeKeyListener(gameControl.getKeyMana());
+				curFrame.addKeyListener(gameControl.getKeyMana());
+				curFrame.setFocusable(true);
+				curFrame.requestFocus();
+				curFrame.reload(curFrame.type);
+			}
+		}
+		
+		
+		
+		/*if(curFrame.isVisible()&&gameControl.windowFlag.equals(command)){
 			curFrame.setVisible(false);
 			gameControl.funCloseInfo(curFrame.type);
 			gameControl.restore();
@@ -119,7 +161,7 @@ public class FunListener implements ActionListener{
 			curFrame.requestFocus();
 			curFrame.reload(curFrame.type);
 			gameControl.windowFlag=command;
-		}
+		}*/
 		/*switch (command) {
 		case Constant.SFuben:
 			SoundControl.jiemianMuc("openMap"); 
@@ -238,29 +280,49 @@ public class FunListener implements ActionListener{
 	 * @param command
 	 * @return
 	 */
-	private void getCurFrame(String command) {
+	private SpFrame getCurFrame(String command) {
+		SpFrame sp = null ;
 		switch (command) {
-		case Constant.SState:
-			curFrame = stateFrame ;
+		case C.SState:
+			sp = stateFrame ;
 			break;
-		case Constant.SBag:
-			curFrame = bagFrame ;
+		case C.SBag:
+			sp = bagFrame ;
 			break;
-		case Constant.STask:
+		case C.STask:
 			//curFrame = taskFrame ;
 			break;
-		case Constant.SJiangHu:
-			curFrame = jiangHuFrame ;
+		case C.SJiangHu:
+			sp = jiangHuFrame ;
 			break;
-		case Constant.SFuben:
-			curFrame = fubenFrame ;
+		case C.SFuben:
+			sp = fubenFrame ;
 			break;
-		case Constant.SMap:
-			curFrame = mapFrame ;
+		case C.SMap:
+			sp = mapFrame ;
 			break;
 		default:
 			break;
 		}
+		return sp ;
+	}
+	
+	public SpFrame getCurOpenFrame() {
+		if(fubenFrame.isVisible())
+			return fubenFrame ;
+		if(stateFrame.isVisible())
+			return stateFrame ;
+		/*if(fightFrame.isVisible())
+			return fightFrame ;*/
+		if(jiangHuFrame.isVisible())
+			return jiangHuFrame ;
+		if(bagFrame.isVisible())
+			return bagFrame ;
+		if(mapFrame.isVisible())
+			return mapFrame ;
+		if(taskFrame.isVisible())
+			return taskFrame ;
+		return null;
 	}
 
 }

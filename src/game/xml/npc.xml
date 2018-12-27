@@ -1,15 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <root>
-	<npc attrType="rd" >
+	<npc attrType="rd">
 		<id>101</id>
-		<name>白兔</name>
-		<des>白色的兔子</des>
+		<name>白兔王中王啊</name>
+		<race>野兽</race>
+		<attitude>和平</attitude>
+		<des>一只雪白的小白兔，可爱之致。</des>
 		<msg>咕咕</msg>
 		<rank>1</rank>
 		<!-- 此npc的最低品质 -->
 		<type></type>
+		<ac>
+			<e type="task" name="任务" value="$task:102" />
+		</ac>
 	</npc>
-	<npc attrType="rd" >
+	<npc attrType="rd">
 		<id>102</id>
 		<name>狍子</name>
 		<des></des>
@@ -17,8 +22,11 @@
 		<rank>2</rank>
 		<!-- 此npc的最低品质 -->
 		<type></type>
+		<ac>
+			<e type="task" name="任务" value="$task:104" />
+		</ac>
 	</npc>
-	<npc attrType="rd" >
+	<npc attrType="rd">
 		<id>103</id>
 		<name>狈</name>
 		<des>一只狈，身体瘦小，但是头脑发达，异常狡猾</des>
@@ -27,25 +35,30 @@
 		<!-- 此npc的最低品质 -->
 		<type></type>
 	</npc>
-	<npc attrType="rd" >
+	<npc attrType="rd">
 		<id>104</id>
 		<name>竹叶青</name>
-		<des></des>
-		<msg></msg>
+		<des>一条竹叶青</des>
+		<msg>嘶嘶</msg>
 		<rank>4</rank>
 		<!-- 此npc的最低品质 -->
 		<type></type>
 	</npc>
-	<npc attrType="rd" >
+	<npc attrType="rd">
 		<id>105</id>
 		<name>野狼</name>
-		<des></des>
-		<msg></msg>
+		<race>野兽</race>
+		<attitude>和平</attitude>
+		<des>一只独行的野狼，半张着的大嘴里露着几颗獠牙。</des>
+		<msg>
+			野狼耷拉着尾巴，突然抬头，冲你发出一声凄厉的长嚎。;
+			野狼闪着绿幽幽的眼光冲你瞄了瞄，血盆巨口里答答滴着哈喇子。
+		</msg>
 		<rank>5</rank>
 		<!-- 此npc的最低品质 -->
 		<type></type>
 	</npc>
-	<npc attrType="rd" >
+	<npc attrType="rd">
 		<id>106</id>
 		<name>白猫</name>
 		<des></des>
@@ -54,7 +67,7 @@
 		<!-- 此npc的最低品质 -->
 		<type></type>
 	</npc>
-	<npc attrType="rd" >
+	<npc attrType="rd">
 		<id>107</id>
 		<name>马鹿</name>
 		<des></des>
@@ -62,35 +75,40 @@
 		<rank>6</rank>
 		<!-- 此npc的最低品质 -->
 		<type></type>
+		<action>
+			<ac type="task">
+				104
+			</ac>
+		</action>
 	</npc>
-	<npc attrType="rd" >
+	<npc attrType="rd">
 		<id>108</id>
 		<name>红貂</name>
-		<des></des>
+		<des>哇，好一只红貂</des>
 		<msg></msg>
 		<rank>6</rank>
 		<!-- 此npc的最低品质 -->
 		<type></type>
 	</npc>
-	<npc attrType="rd" >
+	<npc attrType="rd">
 		<id>109</id>
 		<name>黑熊</name>
-		<des></des>
-		<msg></msg>
+		<des>一只大黑熊，你最好离它远点</des>
+		<msg>吼吼吼吼吼吼吼吼吼</msg>
 		<rank>7</rank>
 		<!-- 此npc的最低品质 -->
 		<type></type>
 	</npc>
-	<npc attrType="rd" >	
+	<npc attrType="rd">
 		<id>110</id>
 		<name>赤熊</name>
-		<des></des>
-		<msg></msg>
+		<des>一只大赤熊，当心它把你当成了食物</des>
+		<msg>嗷唔嗷唔</msg>
 		<rank>8</rank>
 		<!-- 此npc的最低品质 -->
 		<type></type>
 	</npc>
-	<npc attrType="rd" >
+	<npc attrType="rd">
 		<id>111</id>
 		<name>蛮猪</name>
 		<des></des>
@@ -99,16 +117,21 @@
 		<!-- 此npc的最低品质 -->
 		<type></type>
 	</npc>
-	<npc attrType="rd" >
+	<npc attrType="rd">
 		<id>112</id>
 		<name>斑斓虎</name>
-		<des></des>
-		<msg></msg>
+		<race>野兽</race>
+		<attitude>和平</attitude>
+		<des>一只斑斓猛虎，雄伟极了。</des>
+		<msg>
+			老虎在浚巡，吓得你大气都不敢出。;
+			老虎仰天长啸，声震山谷，黄叶纷坠。
+		</msg>
 		<rank>9</rank>
 		<!-- 此npc的最低品质 -->
 		<type></type>
 	</npc>
-	<npc attrType="rd" >
+	<npc attrType="rd">
 		<id>113</id>
 		<name>地鬼哨兵</name>
 		<des></des>
@@ -116,7 +139,7 @@
 		<rank>9</rank>
 		<type></type>
 	</npc>
-	<npc attrType="rd" >
+	<npc attrType="rd">
 		<id>114</id>
 		<name>洞冥仙长</name>
 		<des></des>
@@ -124,8 +147,8 @@
 		<rank>9</rank>
 		<type></type>
 	</npc>
-	
-	<npc attrType="rd" >
+
+	<npc attrType="rd">
 		<id>115</id>
 		<name>冥牛之王</name>
 		<des></des>
@@ -133,15 +156,100 @@
 		<rank>9</rank>
 		<type></type>
 	</npc>
-	<npc attrType="rd" >
-		<id>112</id>
+	<npc attrType="rd">
+		<id>116</id>
 		<name>观想兽</name>
 		<des>由人的杂念绮思所形成的观想兽，会缠住人的魂魄。</des>
 		<msg></msg>
 		<rank>9</rank>
 		<type></type>
 	</npc>
-	<npc attrType="rd" >
+	<npc attrType="rd">
+		<id>117</id>
+		<name>菜花蛇</name>
+		<race>野兽</race>
+		<attitude>和平</attitude>
+		<des>一只青幽幽的菜花蛇，头部呈椭圆形。</des>
+		<msg></msg>
+		<rank>9</rank>
+		<type></type>
+		<action>
+			<ac type="died" msg="$N抽搐两下，$N死了。" />
+		</action>
+	</npc>
+	<npc attrType="rd">
+		<id>118</id>
+		<name>狐狸</name>
+		<race>野兽</race>
+		<attitude>和平</attitude>
+		<des>一只多疑成性的狐狸。</des>
+		<msg>
+			狐狸向后挪了挪，很是戒备的神情。;
+			狐狸瞪着多疑的眼光冲你看，全身一副很紧张的模样。
+		</msg>
+		<rank>9</rank>
+		<type></type>
+	</npc>
+	<npc attrType="rd">
+		<id>119</id>
+		<name>金环蛇</name>
+		<race>野兽</race>
+		<attitude>和平</attitude>
+		<des>一只让人看了起毛骨悚然的金环蛇。</des>
+		<msg>嘶嘶</msg>
+		<rank>9</rank>
+		<type></type>
+		<action>
+			<ac type="died" msg="$N倒在地上，死了!" />
+		</action>
+	</npc>
+	<npc attrType="rd">
+		<id>120</id>
+		<name>雄狮</name>
+		<race>野兽</race>
+		<attitude>和平</attitude>
+		<des>一只矫健的雄狮，十分威风。</des>
+		<msg>
+			雄狮一声长吼，四下传来阵阵回响。;
+			雄狮后足一蹬，猛地一跃到你的面前。
+		</msg>
+		<rank>9</rank>
+		<type></type>
+	</npc>
+	<npc attrType="rd">
+		<id>121</id>
+		<name>蟒蛇</name>
+		<race>野兽</race>
+		<attitude>和平</attitude>
+		<des>一只昂首直立，吐着长舌芯的大蟒蛇。</des>
+		<msg>
+			大蟒蛇虎视眈眈地注视着你，想把你一口吞下！;
+			大蟒蛇张了一下血盆大口，好象饿了。
+		</msg>
+		<rank>9</rank>
+		<type></type>
+	</npc>
+	<npc attrType="rd">
+		<id>122</id>
+		<name>竹叶青蛇</name>
+		<race>野兽</race>
+		<attitude>和平</attitude>
+		<des>一只让人看了起鸡皮疙瘩的竹叶青蛇。</des>
+		<msg></msg>
+		<rank>9</rank>
+		<type></type>
+	</npc>
+	<npc attrType="rd">
+		<id>123</id>
+		<name>黑冠巨蟒</name>
+		<race>野兽</race>
+		<attitude>敌对</attitude>
+		<des>一只庞然大物，它眼中喷火,好象要一口把你吞下。</des>
+		<msg></msg>
+		<rank>9</rank>
+		<type></type>
+	</npc>
+	<npc attrType="rd">
 		<id>112</id>
 		<name></name>
 		<des></des>
@@ -149,7 +257,7 @@
 		<rank>9</rank>
 		<type></type>
 	</npc>
-	<npc attrType="rd" >
+	<npc attrType="rd">
 		<id>112</id>
 		<name></name>
 		<des></des>
@@ -157,364 +265,7 @@
 		<rank>9</rank>
 		<type></type>
 	</npc>
-	<npc attrType="rd" >
-		<id>112</id>
-		<name></name>
-		<des></des>
-		<msg></msg>
-		<rank>9</rank>
-		<type></type>
-	</npc><npc attrType="rd" >
-		<id>112</id>
-		<name></name>
-		<des></des>
-		<msg></msg>
-		<rank>9</rank>
-		<type></type>
-	</npc><npc attrType="rd" >
-		<id>112</id>
-		<name></name>
-		<des></des>
-		<msg></msg>
-		<rank>9</rank>
-		<type></type>
-	</npc><npc attrType="rd" >
-		<id>112</id>
-		<name></name>
-		<des></des>
-		<msg></msg>
-		<rank>9</rank>
-		<type></type>
-	</npc><npc attrType="rd" >
-		<id>112</id>
-		<name></name>
-		<des></des>
-		<msg></msg>
-		<rank>9</rank>
-		<type></type>
-	</npc><npc attrType="rd" >
-		<id>112</id>
-		<name></name>
-		<des></des>
-		<msg></msg>
-		<rank>9</rank>
-		<type></type>
-	</npc><npc attrType="rd" >
-		<id>112</id>
-		<name></name>
-		<des></des>
-		<msg></msg>
-		<rank>9</rank>
-		<type></type>
-	</npc><npc attrType="rd" >
-		<id>112</id>
-		<name></name>
-		<des></des>
-		<msg></msg>
-		<rank>9</rank>
-		<type></type>
-	</npc><npc attrType="rd" >
-		<id>112</id>
-		<name></name>
-		<des></des>
-		<msg></msg>
-		<rank>9</rank>
-		<type></type>
-	</npc><npc attrType="rd" >
-		<id>112</id>
-		<name></name>
-		<des></des>
-		<msg></msg>
-		<rank>9</rank>
-		<type></type>
-	</npc><npc attrType="rd" >
-		<id>112</id>
-		<name></name>
-		<des></des>
-		<msg></msg>
-		<rank>9</rank>
-		<type></type>
-	</npc><npc attrType="rd" >
-		<id>112</id>
-		<name></name>
-		<des></des>
-		<msg></msg>
-		<rank>9</rank>
-		<type></type>
-	</npc><npc attrType="rd" >
-		<id>112</id>
-		<name></name>
-		<des></des>
-		<msg></msg>
-		<rank>9</rank>
-		<type></type>
-	</npc><npc attrType="rd" >
-		<id>112</id>
-		<name></name>
-		<des></des>
-		<msg></msg>
-		<rank>9</rank>
-		<type></type>
-	</npc><npc attrType="rd" >
-		<id>112</id>
-		<name></name>
-		<des></des>
-		<msg></msg>
-		<rank>9</rank>
-		<type></type>
-	</npc><npc attrType="rd" >
-		<id>112</id>
-		<name></name>
-		<des></des>
-		<msg></msg>
-		<rank>9</rank>
-		<type></type>
-	</npc><npc attrType="rd" >
-		<id>112</id>
-		<name></name>
-		<des></des>
-		<msg></msg>
-		<rank>9</rank>
-		<type></type>
-	</npc><npc attrType="rd" >
-		<id>112</id>
-		<name></name>
-		<des></des>
-		<msg></msg>
-		<rank>9</rank>
-		<type></type>
-	</npc><npc attrType="rd" >
-		<id>112</id>
-		<name></name>
-		<des></des>
-		<msg></msg>
-		<rank>9</rank>
-		<type></type>
-	</npc><npc attrType="rd" >
-		<id>112</id>
-		<name></name>
-		<des></des>
-		<msg></msg>
-		<rank>9</rank>
-		<type></type>
-	</npc><npc attrType="rd" >
-		<id>112</id>
-		<name></name>
-		<des></des>
-		<msg></msg>
-		<rank>9</rank>
-		<type></type>
-	</npc><npc attrType="rd" >
-		<id>112</id>
-		<name></name>
-		<des></des>
-		<msg></msg>
-		<rank>9</rank>
-		<type></type>
-	</npc><npc attrType="rd" >
-		<id>112</id>
-		<name></name>
-		<des></des>
-		<msg></msg>
-		<rank>9</rank>
-		<type></type>
-	</npc><npc attrType="rd" >
-		<id>112</id>
-		<name></name>
-		<des></des>
-		<msg></msg>
-		<rank>9</rank>
-		<type></type>
-	</npc><npc attrType="rd" >
-		<id>112</id>
-		<name></name>
-		<des></des>
-		<msg></msg>
-		<rank>9</rank>
-		<type></type>
-	</npc><npc attrType="rd" >
-		<id>112</id>
-		<name></name>
-		<des></des>
-		<msg></msg>
-		<rank>9</rank>
-		<type></type>
-	</npc><npc attrType="rd" >
-		<id>112</id>
-		<name></name>
-		<des></des>
-		<msg></msg>
-		<rank>9</rank>
-		<type></type>
-	</npc><npc attrType="rd" >
-		<id>112</id>
-		<name></name>
-		<des></des>
-		<msg></msg>
-		<rank>9</rank>
-		<type></type>
-	</npc><npc attrType="rd" >
-		<id>112</id>
-		<name></name>
-		<des></des>
-		<msg></msg>
-		<rank>9</rank>
-		<type></type>
-	</npc><npc attrType="rd" >
-		<id>112</id>
-		<name></name>
-		<des></des>
-		<msg></msg>
-		<rank>9</rank>
-		<type></type>
-	</npc><npc attrType="rd" >
-		<id>112</id>
-		<name></name>
-		<des></des>
-		<msg></msg>
-		<rank>9</rank>
-		<type></type>
-	</npc><npc attrType="rd" >
-		<id>112</id>
-		<name></name>
-		<des></des>
-		<msg></msg>
-		<rank>9</rank>
-		<type></type>
-	</npc><npc attrType="rd" >
-		<id>112</id>
-		<name></name>
-		<des></des>
-		<msg></msg>
-		<rank>9</rank>
-		<type></type>
-	</npc><npc attrType="rd" >
-		<id>112</id>
-		<name></name>
-		<des></des>
-		<msg></msg>
-		<rank>9</rank>
-		<type></type>
-	</npc><npc attrType="rd" >
-		<id>112</id>
-		<name></name>
-		<des></des>
-		<msg></msg>
-		<rank>9</rank>
-		<type></type>
-	</npc><npc attrType="rd" >
-		<id>112</id>
-		<name></name>
-		<des></des>
-		<msg></msg>
-		<rank>9</rank>
-		<type></type>
-	</npc><npc attrType="rd" >
-		<id>112</id>
-		<name></name>
-		<des></des>
-		<msg></msg>
-		<rank>9</rank>
-		<type></type>
-	</npc><npc attrType="rd" >
-		<id>112</id>
-		<name></name>
-		<des></des>
-		<msg></msg>
-		<rank>9</rank>
-		<type></type>
-	</npc><npc attrType="rd" >
-		<id>112</id>
-		<name></name>
-		<des></des>
-		<msg></msg>
-		<rank>9</rank>
-		<type></type>
-	</npc><npc attrType="rd" >
-		<id>112</id>
-		<name></name>
-		<des></des>
-		<msg></msg>
-		<rank>9</rank>
-		<type></type>
-	</npc><npc attrType="rd" >
-		<id>112</id>
-		<name></name>
-		<des></des>
-		<msg></msg>
-		<rank>9</rank>
-		<type></type>
-	</npc><npc attrType="rd" >
-		<id>112</id>
-		<name></name>
-		<des></des>
-		<msg></msg>
-		<rank>9</rank>
-		<type></type>
-	</npc><npc attrType="rd" >
-		<id>112</id>
-		<name></name>
-		<des></des>
-		<msg></msg>
-		<rank>9</rank>
-		<type></type>
-	</npc><npc attrType="rd" >
-		<id>112</id>
-		<name></name>
-		<des></des>
-		<msg></msg>
-		<rank>9</rank>
-		<type></type>
-	</npc><npc attrType="rd" >
-		<id>112</id>
-		<name></name>
-		<des></des>
-		<msg></msg>
-		<rank>9</rank>
-		<type></type>
-	</npc><npc attrType="rd" >
-		<id>112</id>
-		<name></name>
-		<des></des>
-		<msg></msg>
-		<rank>9</rank>
-		<type></type>
-	</npc><npc attrType="rd" >
-		<id>112</id>
-		<name></name>
-		<des></des>
-		<msg></msg>
-		<rank>9</rank>
-		<type></type>
-	</npc><npc attrType="rd" >
-		<id>112</id>
-		<name></name>
-		<des></des>
-		<msg></msg>
-		<rank>9</rank>
-		<type></type>
-	</npc><npc attrType="rd" >
-		<id>112</id>
-		<name></name>
-		<des></des>
-		<msg></msg>
-		<rank>9</rank>
-		<type></type>
-	</npc><npc attrType="rd" >
-		<id>112</id>
-		<name></name>
-		<des></des>
-		<msg></msg>
-		<rank>9</rank>
-		<type></type>
-	</npc><npc attrType="rd" >
-		<id>112</id>
-		<name></name>
-		<des></des>
-		<msg></msg>
-		<rank>9</rank>
-		<type></type>
-	</npc><npc attrType="rd" >
+	<npc attrType="rd">
 		<id>112</id>
 		<name></name>
 		<des></des>
@@ -522,7 +273,359 @@
 		<rank>9</rank>
 		<type></type>
 	</npc>
-	 <npc attrType="rd" >
+	<npc attrType="rd">
+		<id>112</id>
+		<name></name>
+		<des></des>
+		<msg></msg>
+		<rank>9</rank>
+		<type></type>
+	</npc>
+	<npc attrType="rd">
+		<id>112</id>
+		<name></name>
+		<des></des>
+		<msg></msg>
+		<rank>9</rank>
+		<type></type>
+	</npc>
+	<npc attrType="rd">
+		<id>112</id>
+		<name></name>
+		<des></des>
+		<msg></msg>
+		<rank>9</rank>
+		<type></type>
+	</npc>
+	<npc attrType="rd">
+		<id>112</id>
+		<name></name>
+		<des></des>
+		<msg></msg>
+		<rank>9</rank>
+		<type></type>
+	</npc>
+	<npc attrType="rd">
+		<id>112</id>
+		<name></name>
+		<des></des>
+		<msg></msg>
+		<rank>9</rank>
+		<type></type>
+	</npc>
+	<npc attrType="rd">
+		<id>112</id>
+		<name></name>
+		<des></des>
+		<msg></msg>
+		<rank>9</rank>
+		<type></type>
+	</npc>
+	<npc attrType="rd">
+		<id>112</id>
+		<name></name>
+		<des></des>
+		<msg></msg>
+		<rank>9</rank>
+		<type></type>
+	</npc>
+	<npc attrType="rd">
+		<id>112</id>
+		<name></name>
+		<des></des>
+		<msg></msg>
+		<rank>9</rank>
+		<type></type>
+	</npc>
+	<npc attrType="rd">
+		<id>112</id>
+		<name></name>
+		<des></des>
+		<msg></msg>
+		<rank>9</rank>
+		<type></type>
+	</npc>
+	<npc attrType="rd">
+		<id>112</id>
+		<name></name>
+		<des></des>
+		<msg></msg>
+		<rank>9</rank>
+		<type></type>
+	</npc>
+	<npc attrType="rd">
+		<id>112</id>
+		<name></name>
+		<des></des>
+		<msg></msg>
+		<rank>9</rank>
+		<type></type>
+	</npc>
+	<npc attrType="rd">
+		<id>112</id>
+		<name></name>
+		<des></des>
+		<msg></msg>
+		<rank>9</rank>
+		<type></type>
+	</npc>
+	<npc attrType="rd">
+		<id>112</id>
+		<name></name>
+		<des></des>
+		<msg></msg>
+		<rank>9</rank>
+		<type></type>
+	</npc>
+	<npc attrType="rd">
+		<id>112</id>
+		<name></name>
+		<des></des>
+		<msg></msg>
+		<rank>9</rank>
+		<type></type>
+	</npc>
+	<npc attrType="rd">
+		<id>112</id>
+		<name></name>
+		<des></des>
+		<msg></msg>
+		<rank>9</rank>
+		<type></type>
+	</npc>
+	<npc attrType="rd">
+		<id>112</id>
+		<name></name>
+		<des></des>
+		<msg></msg>
+		<rank>9</rank>
+		<type></type>
+	</npc>
+	<npc attrType="rd">
+		<id>112</id>
+		<name></name>
+		<des></des>
+		<msg></msg>
+		<rank>9</rank>
+		<type></type>
+	</npc>
+	<npc attrType="rd">
+		<id>112</id>
+		<name></name>
+		<des></des>
+		<msg></msg>
+		<rank>9</rank>
+		<type></type>
+	</npc>
+	<npc attrType="rd">
+		<id>112</id>
+		<name></name>
+		<des></des>
+		<msg></msg>
+		<rank>9</rank>
+		<type></type>
+	</npc>
+	<npc attrType="rd">
+		<id>112</id>
+		<name></name>
+		<des></des>
+		<msg></msg>
+		<rank>9</rank>
+		<type></type>
+	</npc>
+	<npc attrType="rd">
+		<id>112</id>
+		<name></name>
+		<des></des>
+		<msg></msg>
+		<rank>9</rank>
+		<type></type>
+	</npc>
+	<npc attrType="rd">
+		<id>112</id>
+		<name></name>
+		<des></des>
+		<msg></msg>
+		<rank>9</rank>
+		<type></type>
+	</npc>
+	<npc attrType="rd">
+		<id>112</id>
+		<name></name>
+		<des></des>
+		<msg></msg>
+		<rank>9</rank>
+		<type></type>
+	</npc>
+	<npc attrType="rd">
+		<id>112</id>
+		<name></name>
+		<des></des>
+		<msg></msg>
+		<rank>9</rank>
+		<type></type>
+	</npc>
+	<npc attrType="rd">
+		<id>112</id>
+		<name></name>
+		<des></des>
+		<msg></msg>
+		<rank>9</rank>
+		<type></type>
+	</npc>
+	<npc attrType="rd">
+		<id>112</id>
+		<name></name>
+		<des></des>
+		<msg></msg>
+		<rank>9</rank>
+		<type></type>
+	</npc>
+	<npc attrType="rd">
+		<id>112</id>
+		<name></name>
+		<des></des>
+		<msg></msg>
+		<rank>9</rank>
+		<type></type>
+	</npc>
+	<npc attrType="rd">
+		<id>112</id>
+		<name></name>
+		<des></des>
+		<msg></msg>
+		<rank>9</rank>
+		<type></type>
+	</npc>
+	<npc attrType="rd">
+		<id>112</id>
+		<name></name>
+		<des></des>
+		<msg></msg>
+		<rank>9</rank>
+		<type></type>
+	</npc>
+	<npc attrType="rd">
+		<id>112</id>
+		<name></name>
+		<des></des>
+		<msg></msg>
+		<rank>9</rank>
+		<type></type>
+	</npc>
+	<npc attrType="rd">
+		<id>112</id>
+		<name></name>
+		<des></des>
+		<msg></msg>
+		<rank>9</rank>
+		<type></type>
+	</npc>
+	<npc attrType="rd">
+		<id>112</id>
+		<name></name>
+		<des></des>
+		<msg></msg>
+		<rank>9</rank>
+		<type></type>
+	</npc>
+	<npc attrType="rd">
+		<id>112</id>
+		<name></name>
+		<des></des>
+		<msg></msg>
+		<rank>9</rank>
+		<type></type>
+	</npc>
+	<npc attrType="rd">
+		<id>112</id>
+		<name></name>
+		<des></des>
+		<msg></msg>
+		<rank>9</rank>
+		<type></type>
+	</npc>
+	<npc attrType="rd">
+		<id>112</id>
+		<name></name>
+		<des></des>
+		<msg></msg>
+		<rank>9</rank>
+		<type></type>
+	</npc>
+	<npc attrType="rd">
+		<id>112</id>
+		<name></name>
+		<des></des>
+		<msg></msg>
+		<rank>9</rank>
+		<type></type>
+	</npc>
+	<npc attrType="rd">
+		<id>112</id>
+		<name></name>
+		<des></des>
+		<msg></msg>
+		<rank>9</rank>
+		<type></type>
+	</npc>
+	<npc attrType="rd">
+		<id>112</id>
+		<name></name>
+		<des></des>
+		<msg></msg>
+		<rank>9</rank>
+		<type></type>
+	</npc>
+	<npc attrType="rd">
+		<id>112</id>
+		<name></name>
+		<des></des>
+		<msg></msg>
+		<rank>9</rank>
+		<type></type>
+	</npc>
+	<npc attrType="rd">
+		<id>112</id>
+		<name></name>
+		<des></des>
+		<msg></msg>
+		<rank>9</rank>
+		<type></type>
+	</npc>
+	<npc attrType="rd">
+		<id>112</id>
+		<name></name>
+		<des></des>
+		<msg></msg>
+		<rank>9</rank>
+		<type></type>
+	</npc>
+	<npc attrType="rd">
+		<id>112</id>
+		<name></name>
+		<des></des>
+		<msg></msg>
+		<rank>9</rank>
+		<type></type>
+	</npc>
+	<npc attrType="rd">
+		<id>112</id>
+		<name></name>
+		<des></des>
+		<msg></msg>
+		<rank>9</rank>
+		<type></type>
+	</npc>
+	<npc attrType="rd">
+		<id>112</id>
+		<name></name>
+		<des></des>
+		<msg></msg>
+		<rank>9</rank>
+		<type></type>
+	</npc>
+	<npc attrType="rd">
 		<name>113</name>
 		<des></des>
 		<msg></msg>
@@ -530,7 +633,7 @@
 		此npc的最低品质
 		<type></type>
 	</npc>
-	<npc attrType="rd" >
+	<npc attrType="rd">
 		<name></name>
 		<des></des>
 		<msg></msg>
@@ -538,7 +641,7 @@
 		此npc的最低品质
 		<type></type>
 	</npc>
-	<npc attrType="rd" >
+	<npc attrType="rd">
 		<name></name>
 		<des></des>
 		<msg></msg>
@@ -546,7 +649,7 @@
 		此npc的最低品质
 		<type></type>
 	</npc>
-	<npc attrType="rd" >
+	<npc attrType="rd">
 		<name></name>
 		<des></des>
 		<msg></msg>
@@ -554,7 +657,7 @@
 		此npc的最低品质
 		<type></type>
 	</npc>
-	<npc attrType="rd" >
+	<npc attrType="rd">
 		<name></name>
 		<des></des>
 		<msg></msg>
@@ -562,7 +665,7 @@
 		此npc的最低品质
 		<type></type>
 	</npc>
-	<npc attrType="rd" >
+	<npc attrType="rd">
 		<name></name>
 		<des></des>
 		<msg></msg>
@@ -570,31 +673,7 @@
 		此npc的最低品质
 		<type></type>
 	</npc>
-	<npc attrType="rd" >
-		<name></name>
-		<des></des>
-		<msg></msg>
-		<rank></rank>
-		此npc的最低品质
-		<type></type>
-	</npc>
-	<npc>
-		<name></name>
-		<des></des>
-		<msg></msg>
-		<rank></rank>
-		此npc的最低品质
-		<type></type>
-	</npc>
-	<npc>
-		<name></name>
-		<des></des>
-		<msg></msg>
-		<rank></rank>
-		此npc的最低品质
-		<type></type>
-	</npc>
-	<!--<npc>
+	<npc attrType="rd">
 		<name></name>
 		<des></des>
 		<msg></msg>
@@ -618,112 +697,27 @@
 		此npc的最低品质
 		<type></type>
 	</npc>
-	<npc>
-		<name></name>
-		<des></des>
-		<msg></msg>
-		<rank></rank>
-		此npc的最低品质
-		<type></type>
-	</npc>
-	<npc>
-		<name></name>
-		<des></des>
-		<msg></msg>
-		<rank></rank>
-		此npc的最低品质
-		<type></type>
-	</npc>
-	<npc>
-		<name></name>
-		<des></des>
-		<msg></msg>
-		<rank></rank>
-		此npc的最低品质
-		<type></type>
-	</npc>
-	<npc>
-		<name></name>
-		<des></des>
-		<msg></msg>
-		<rank></rank>
-		此npc的最低品质
-		<type></type>
-	</npc>
-	<npc>
-		<name></name>
-		<des></des>
-		<msg></msg>
-		<rank></rank>
-		此npc的最低品质
-		<type></type>
-	</npc>
-	<npc>
-		<name></name>
-		<des></des>
-		<msg></msg>
-		<rank></rank>
-		此npc的最低品质
-		<type></type>
-	</npc>
-	<npc>
-		<name></name>
-		<des></des>
-		<msg></msg>
-		<rank></rank>
-		此npc的最低品质
-		<type></type>
-	</npc>
-	<npc>
-		<name></name>
-		<des></des>
-		<msg></msg>
-		<rank></rank>
-		此npc的最低品质
-		<type></type>
-	</npc>
-	<npc>
-		<name></name>
-		<des></des>
-		<msg></msg>
-		<rank></rank>
-		此npc的最低品质
-		<type></type>
-	</npc>
-	<npc>
-		<name></name>
-		<des></des>
-		<msg></msg>
-		<rank></rank>
-		此npc的最低品质
-		<type></type>
-	</npc>
-	<npc>
-		<name></name>
-		<des></des>
-		<msg></msg>
-		<rank></rank>
-		此npc的最低品质
-		<type></type>
-	</npc>
-	<npc>
-		<name></name>
-		<des></des>
-		<msg></msg>
-		<rank></rank>
-		此npc的最低品质
-		<type></type>
-	</npc>
-	<npc>
-		<name></name>
-		<des></des>
-		<msg></msg>
-		<rank></rank>
-		此npc的最低品质
-		<type></type>
-	</npc> -->
-	
-	
+	<!--<npc> <name></name> <des></des> <msg></msg> <rank></rank> 此npc的最低品质 
+		<type></type> </npc> <npc> <name></name> <des></des> <msg></msg> <rank></rank> 
+		此npc的最低品质 <type></type> </npc> <npc> <name></name> <des></des> <msg></msg> 
+		<rank></rank> 此npc的最低品质 <type></type> </npc> <npc> <name></name> <des></des> 
+		<msg></msg> <rank></rank> 此npc的最低品质 <type></type> </npc> <npc> <name></name> 
+		<des></des> <msg></msg> <rank></rank> 此npc的最低品质 <type></type> </npc> <npc> 
+		<name></name> <des></des> <msg></msg> <rank></rank> 此npc的最低品质 <type></type> 
+		</npc> <npc> <name></name> <des></des> <msg></msg> <rank></rank> 此npc的最低品质 
+		<type></type> </npc> <npc> <name></name> <des></des> <msg></msg> <rank></rank> 
+		此npc的最低品质 <type></type> </npc> <npc> <name></name> <des></des> <msg></msg> 
+		<rank></rank> 此npc的最低品质 <type></type> </npc> <npc> <name></name> <des></des> 
+		<msg></msg> <rank></rank> 此npc的最低品质 <type></type> </npc> <npc> <name></name> 
+		<des></des> <msg></msg> <rank></rank> 此npc的最低品质 <type></type> </npc> <npc> 
+		<name></name> <des></des> <msg></msg> <rank></rank> 此npc的最低品质 <type></type> 
+		</npc> <npc> <name></name> <des></des> <msg></msg> <rank></rank> 此npc的最低品质 
+		<type></type> </npc> <npc> <name></name> <des></des> <msg></msg> <rank></rank> 
+		此npc的最低品质 <type></type> </npc> <npc> <name></name> <des></des> <msg></msg> 
+		<rank></rank> 此npc的最低品质 <type></type> </npc> <npc> <name></name> <des></des> 
+		<msg></msg> <rank></rank> 此npc的最低品质 <type></type> </npc> -->
+
+
 	<!-- 剧情人物 -->
 	<npc tyep="npc">
 		<id>1001</id>
@@ -738,16 +732,11 @@
 		</msg>
 		<rank>3</rank>
 		<type></type>
-		<action>
-			<ac	type="sell">
-				<item id="" name="" num="" />
-				<item></item>
-				<item></item>
-				<item></item>
-			</ac>
-		</action>
+		<ac>
+			<e type="buy" name="任务" value="$buy" />
+		</ac>
 	</npc>
-	<npc type="npc" attrType="fixed" >
+	<npc type="npc" attrType="fixed">
 		<id>1002</id>
 		<name>二流子</name>
 		<type></type>
@@ -760,7 +749,7 @@
 		</msg>
 		<rank>3</rank>
 	</npc>
-	<npc type="npc" attrType="fixed" >
+	<npc type="npc" attrType="fixed">
 		<id>1003</id>
 		<name>老农</name>
 		<type>1</type>
@@ -776,32 +765,12 @@
 			2029:耕余剩技:B
 		</WaiGong>
 		<rank>3</rank>
-		<action>
-			<ac	type="sell">
-				<item id="" name="" num="" ></item>
-				<item></item>
-				<item></item>
-				<item></item>
-			</ac>
-			<ac type="take">
-				<take>
-					need:[1001,,1];
-					need:[];
-					give:[];
-				</take>
-				<take>
-					need:[1001,,1];
-					need:[];
-					give:[];
-				</take>
-			</ac>
-		</action>
 	</npc>
-	<npc tyep="npc" attrType="fixed" >
+	<npc tyep="npc" attrType="fixed">
 		<id>1004</id>
-		<name>小花</name>
+		<name>小雅</name>
 		<des>
-			猎户大叔的小女儿，一个天真浪漫的小女孩。		
+			猎户大叔的小女儿，一个天真浪漫的小女孩。
 		</des>
 		<msg>
 			大哥哥，来陪我玩吧！|
@@ -810,21 +779,14 @@
 		</msg>
 		<rank>1</rank>
 		<type>3</type>
-		<action>
-			<ac type="kill">
-				false
-			</ac>
-			<ac type="talk">
-				<!-- 交谈触发任务，苏醒  -->
-				task:101
-			</ac>
-		</action>
+		<kill>false</kill>
+		<ac></ac>
 	</npc>
-	<npc tyep="npc" attrType="fixed" >
+	<npc tyep="npc" attrType="fixed">
 		<id>1005</id>
 		<name>猎户大叔</name>
 		<des>
-			一位本领高强的猎户，生的英俊潇洒，貌似潘安，和女儿在这山脚下生活，是附近大家都知道的好人。		
+			一位本领高强的猎户，生的英俊潇洒，貌似潘安，和女儿在这山脚下生活，是附近大家都知道的好人。
 		</des>
 		<msg>
 			后生，你醒啦，身体好些了么？|
@@ -833,242 +795,88 @@
 		</msg>
 		<rank>1</rank>
 		<type>3</type>
-		<action>
-			<ac type="打听">
-				<event>101</event>
-				<event>102</event>
-				<event>103</event>			
-			</ac>
-			<ac type="交谈">
-				交谈触发任务，苏醒
-				task:101
-			</ac>
-		</action>
 	</npc>
-	<!-- <npc>
-		<id></id>
-		<name>六扇门内巡捕</name>
-		<des>这是一个巡捕，身体强壮，看上去武功不错。</des>
+	<npc tyep="npc" attrType="fixed">
+		<id>1100</id>
+		<name>老材</name>
+		<des>一个有名的吝啬鬼，好象他整日看守着柴房也能发财似的。</des>
 		<msg>
-			东看看，西瞅瞅，似乎在找什么人。|
-			无聊得打了个哈欠，一副没精打采的样子。|
-			"嗯"了一声，也不知道究竟听到了什么。|
-			"啊秋"一声打了个喷嚏，好像是着凉了。|
-			看了看四周，道："有没有看到什么可疑人物？"|
-			嘿嘿干笑了几声，道："犯了案马上自首，否则罪加一等。"|
-			哼了一声道："知情不报，罪与犯同。"
+			老材瞪着眼说：你身上带着一把，还想要！|
+			老材递给你一把柴刀，嘱咐道说：小心保管！
 		</msg>
-		<rank></rank>
-		此npc的最低品质
-		<type></type>
-		<action>
-			<ac	type="kill">
-				对你怒喝道："大胆！居然敢攻击官差？找死么？"
-			</ac>
-		</action>
+		<rank>1</rank>
+		<type>3</type>
 	</npc>
-	<npc>
-		<id></id>
-		<name>铁骨蝎</name>
-		<des>这是一条全身闪着磷光的毒蝎子。</des>
+	
+	<npc tyep="npc" attrType="fixed">
+		<id>1101</id>
+		<name>小道士</name>
+		<des>一个唇红齿白，眉清目秀，一身灵动的小道士。</des>
 		<msg>
 		</msg>
-		<rank></rank>
-		此npc的最低品质
-		<type></type>
-		<action>
-			<ac	type="kill">
+		<acs>
+			<ac type="show">
+				<e type="ask" name="询问法号" value="say:小僧法号:玄清"  />
+				<e type="ask" name="打听龙井" value="" />
+				<e type="ask" name="讨些食物" value="say:小僧这里只有几个早上的馒头，施主要是不介意就拿走把。;give:40000:2" />
 			</ac>
-			<ac type="dead">
-				铁骨蝎倒在地上，死了。
-			</ac>
-		</action>
+		</acs>
+		<rank>1</rank>
+		<type>3</type>
 	</npc>
-	<npc>
-		<id></id>
-		<name>吸血蛛</name>
-		<des>一只拳头大小，全身红毛的毒蜘蛛。</des>
-		<msg>
-		</msg>
-		<rank></rank>
-		此npc的最低品质
-		<type></type>
-		<action>
-			<ac	type="kill">
-			</ac>
-			<ac type="dead">
-				吸血蛛倒在地上，死了。
-			</ac>
-		</action>
-	</npc>
-	<npc>
-		<id></id>
-		<name>阴山天蜈</name>
-		<des>这是一条三寸多长，长有一双翅膀剧毒蜈蚣。</des>
-		<msg>
-		</msg>
-		<rank></rank>
-		此npc的最低品质
-		<type></type>
-		<action>
-			<ac	type="kill">
-			</ac>
-			<ac type="dead">
-				阴山天蜈倒在地上，死了。
-			</ac>
-		</action>
-	</npc>
-	<npc>
-		<id></id>
-		<name>吸血蛛</name>
-		<des>一只拳头大小，全身红毛的毒蜘蛛。</des>
-		<msg>
-		</msg>
-		<rank></rank>
-		此npc的最低品质
-		<type></type>
-		<action>
-			<ac	type="kill">
-			</ac>
-			<ac type="dead">
-				吸血蛛倒在地上，死了。
-			</ac>
-		</action>
-	</npc>
-	<npc>
-		<id></id>
-		<name>吸血蛛</name>
-		<des>一只拳头大小，全身红毛的毒蜘蛛。</des>
-		<msg>
-		</msg>
-		<rank></rank>
-		此npc的最低品质
-		<type></type>
-		<action>
-			<ac	type="kill">
-			</ac>
-			<ac type="dead">
-				吸血蛛倒在地上，死了。
-			</ac>
-		</action>
-	</npc>
-	<npc>
-		<id></id>
-		<name>吸血蛛</name>
-		<des>一只拳头大小，全身红毛的毒蜘蛛。</des>
-		<msg>
-		</msg>
-		<rank></rank>
-		此npc的最低品质
-		<type></type>
-		<action>
-			<ac	type="kill">
-			</ac>
-			<ac type="dead">
-				吸血蛛倒在地上，死了。
-			</ac>
-		</action>
-	</npc>
-	<npc>
-		<id></id>
-		<name>吸血蛛</name>
-		<des>一只拳头大小，全身红毛的毒蜘蛛。</des>
-		<msg>
-		</msg>
-		<rank></rank>
-		此npc的最低品质
-		<type></type>
-		<action>
-			<ac	type="kill">
-			</ac>
-			<ac type="dead">
-				吸血蛛倒在地上，死了。
-			</ac>
-		</action>
-	</npc>
-	<npc>
-		<id></id>
-		<name>吸血蛛</name>
-		<des>一只拳头大小，全身红毛的毒蜘蛛。</des>
-		<msg>
-		</msg>
-		<rank></rank>
-		此npc的最低品质
-		<type></type>
-		<action>
-			<ac	type="kill">
-			</ac>
-			<ac type="dead">
-				吸血蛛倒在地上，死了。
-			</ac>
-		</action>
-	</npc>
-	<npc>
-		<id></id>
-		<name>吸血蛛</name>
-		<des>一只拳头大小，全身红毛的毒蜘蛛。</des>
-		<msg>
-		</msg>
-		<rank></rank>
-		此npc的最低品质
-		<type></type>
-		<action>
-			<ac	type="kill">
-			</ac>
-			<ac type="dead">
-				吸血蛛倒在地上，死了。
-			</ac>
-		</action>
-	</npc>
-	<npc>
-		<id></id>
-		<name>吸血蛛</name>
-		<des>一只拳头大小，全身红毛的毒蜘蛛。</des>
-		<msg>
-		</msg>
-		<rank></rank>
-		此npc的最低品质
-		<type></type>
-		<action>
-			<ac	type="kill">
-			</ac>
-			<ac type="dead">
-				吸血蛛倒在地上，死了。
-			</ac>
-		</action>
-	</npc>
-	<npc>
-		<id></id>
-		<name>吸血蛛</name>
-		<des>一只拳头大小，全身红毛的毒蜘蛛。</des>
-		<msg>
-		</msg>
-		<rank></rank>
-		此npc的最低品质
-		<type></type>
-		<action>
-			<ac	type="kill">
-			</ac>
-			<ac type="dead">
-				吸血蛛倒在地上，死了。
-			</ac>
-		</action>
-	</npc> -->
 	
 	
 	
 	
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	<!-- <npc> <id></id> <name>六扇门内巡捕</name> <des>这是一个巡捕，身体强壮，看上去武功不错。</des> 
+		<msg> 东看看，西瞅瞅，似乎在找什么人。| 无聊得打了个哈欠，一副没精打采的样子。| "嗯"了一声，也不知道究竟听到了什么。| "啊秋"一声打了个喷嚏，好像是着凉了。| 
+		看了看四周，道："有没有看到什么可疑人物？"| 嘿嘿干笑了几声，道："犯了案马上自首，否则罪加一等。"| 哼了一声道："知情不报，罪与犯同。" </msg> 
+		<rank></rank> 此npc的最低品质 <type></type> <action> <ac type="kill"> 对你怒喝道："大胆！居然敢攻击官差？找死么？" 
+		</ac> </action> </npc> <npc> <id></id> <name>铁骨蝎</name> <des>这是一条全身闪着磷光的毒蝎子。</des> 
+		<msg> </msg> <rank></rank> 此npc的最低品质 <type></type> <action> <ac type="kill"> 
+		</ac> <ac type="dead"> 铁骨蝎倒在地上，死了。 </ac> </action> </npc> <npc> <id></id> 
+		<name>吸血蛛</name> <des>一只拳头大小，全身红毛的毒蜘蛛。</des> <msg> </msg> <rank></rank> 此npc的最低品质 
+		<type></type> <action> <ac type="kill"> </ac> <ac type="dead"> 吸血蛛倒在地上，死了。 
+		</ac> </action> </npc> <npc> <id></id> <name>阴山天蜈</name> <des>这是一条三寸多长，长有一双翅膀剧毒蜈蚣。</des> 
+		<msg> </msg> <rank></rank> 此npc的最低品质 <type></type> <action> <ac type="kill"> 
+		</ac> <ac type="dead"> 阴山天蜈倒在地上，死了。 </ac> </action> </npc> <npc> <id></id> 
+		<name>吸血蛛</name> <des>一只拳头大小，全身红毛的毒蜘蛛。</des> <msg> </msg> <rank></rank> 此npc的最低品质 
+		<type></type> <action> <ac type="kill"> </ac> <ac type="dead"> 吸血蛛倒在地上，死了。 
+		</ac> </action> </npc> <npc> <id></id> <name>吸血蛛</name> <des>一只拳头大小，全身红毛的毒蜘蛛。</des> 
+		<msg> </msg> <rank></rank> 此npc的最低品质 <type></type> <action> <ac type="kill"> 
+		</ac> <ac type="dead"> 吸血蛛倒在地上，死了。 </ac> </action> </npc> <npc> <id></id> 
+		<name>吸血蛛</name> <des>一只拳头大小，全身红毛的毒蜘蛛。</des> <msg> </msg> <rank></rank> 此npc的最低品质 
+		<type></type> <action> <ac type="kill"> </ac> <ac type="dead"> 吸血蛛倒在地上，死了。 
+		</ac> </action> </npc> <npc> <id></id> <name>吸血蛛</name> <des>一只拳头大小，全身红毛的毒蜘蛛。</des> 
+		<msg> </msg> <rank></rank> 此npc的最低品质 <type></type> <action> <ac type="kill"> 
+		</ac> <ac type="dead"> 吸血蛛倒在地上，死了。 </ac> </action> </npc> <npc> <id></id> 
+		<name>吸血蛛</name> <des>一只拳头大小，全身红毛的毒蜘蛛。</des> <msg> </msg> <rank></rank> 此npc的最低品质 
+		<type></type> <action> <ac type="kill"> </ac> <ac type="dead"> 吸血蛛倒在地上，死了。 
+		</ac> </action> </npc> <npc> <id></id> <name>吸血蛛</name> <des>一只拳头大小，全身红毛的毒蜘蛛。</des> 
+		<msg> </msg> <rank></rank> 此npc的最低品质 <type></type> <action> <ac type="kill"> 
+		</ac> <ac type="dead"> 吸血蛛倒在地上，死了。 </ac> </action> </npc> <npc> <id></id> 
+		<name>吸血蛛</name> <des>一只拳头大小，全身红毛的毒蜘蛛。</des> <msg> </msg> <rank></rank> 此npc的最低品质 
+		<type></type> <action> <ac type="kill"> </ac> <ac type="dead"> 吸血蛛倒在地上，死了。 
+		</ac> </action> </npc> <npc> <id></id> <name>吸血蛛</name> <des>一只拳头大小，全身红毛的毒蜘蛛。</des> 
+		<msg> </msg> <rank></rank> 此npc的最低品质 <type></type> <action> <ac type="kill"> 
+		</ac> <ac type="dead"> 吸血蛛倒在地上，死了。 </ac> </action> </npc> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 </root>

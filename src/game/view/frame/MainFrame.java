@@ -5,17 +5,20 @@ import game.entity.Archive;
 import game.entity.Player;
 import game.listener.FunListener;
 import game.listener.KeyMana;
-import game.utils.Constant;
+import game.utils.C;
 import game.utils.SUtils;
 import game.view.TTextPane;
 import game.view.button.MButton;
 import game.view.button.TButton;
 import game.view.panel.BagPanel;
 import game.view.panel.EquipInfoPanel;
+import game.view.panel.GameView;
 import game.view.panel.TestPanel;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -25,6 +28,7 @@ import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.UIManager;
+import javax.swing.plaf.ScrollPaneUI;
 /**
  * 进行游戏的主界面
  * @author yilong22315
@@ -41,11 +45,10 @@ public class MainFrame extends JFrame {
 	 *  6.npc与物品
 	 *  7.与npc或物品交互
 	 */
-	private JPanel playerP ,functionP ,mapP ,npcP ,controlP;
+	private JPanel playerP ,functionP ;
 	private TTextPane sceneP,infoP ;
 	/** 移动时可能会用到的全部按钮 */
-	private MButton t1,t2,t3,t4,t5,t6,t7,t8,t9 ;
-	private MButton[] mapButton = {t1,t2,t3,t4,t5,t6,t7,t8,t9} ;
+	private MButton[] mapButton = null ;
 	
 	/** 角色面板字段的JLabel */
 	private JLabel tempL = null ;
@@ -55,8 +58,9 @@ public class MainFrame extends JFrame {
 	/** 地方面板 */
 	JPanel foeAttr   ;
 	/** 功能按钮 */
-	TButton status, skillsBu, bagBu, task, map, fuben, save, juqing;
-	TButton[] funAry = { status, skillsBu, bagBu, task, juqing, fuben, save, map };
+	TButton status, skillsBu, bagBu, task, map, fuben, save, juqing, console;
+	/** 状态,技能,背包,任务,剧情,副本,保存,大地图,宠物,境界 */
+	TButton[] funAry = { status, skillsBu, bagBu, task, juqing, fuben, save, map, console };
 
 	/** 战斗面板 */
 	JPanel fightJpanel  ;
@@ -71,6 +75,7 @@ public class MainFrame extends JFrame {
 	/** 背包面板 */
 	BagPanel bag ;
 	
+	private GameView gameView ;
 	
 	TestPanel testPanel ;
 	
@@ -106,8 +111,9 @@ public class MainFrame extends JFrame {
 	
 	/** 初始化主界面 */
 	public void init(){
+		setUndecorated(true);
 		setLayout(null);
-		this.getContentPane().setBackground(Color.white);
+		this.getContentPane().setBackground(Color.black);
 		
 		/** 初始化游戏控制器 */
 		gameControl = GameControl.getInstance();
@@ -145,7 +151,7 @@ public class MainFrame extends JFrame {
 		/** 设置属性的标签和值 */
 		for (int i = 0; i < attrAry.length; i++) {
 			x = inset ;
-			tempL = new JLabel(Constant.attrAry[i]+":");
+			tempL = new JLabel(C.attrAry[i]+":");
 			attrAry[i] = new JLabel("");
 			tempL.setFont(font2);
 			attrAry[i].setFont(font2);
@@ -195,48 +201,22 @@ public class MainFrame extends JFrame {
 		infoP = new TTextPane( rightWidth, 180);
 		JScrollPane jsc = infoP.getInstance();
 		fightJpanel.add(jsc);
+		//取消文本域的边框
+		//jsc.setUI(new ScrollPaneUI() {});
 		jsc.setLocation(0, 0);
 		
-		/** 初始化交互面板，为了放置交互背景图片 */
-		tianPanel = new JPanel() ;
-		tianPanel.setLayout(null);
-		fightJpanel.add(tianPanel);
-		tianPanel.setBounds(0, jsc.getHeight(), 600, 198);
+		gameView = new GameView();
+		gameView.setLocation(0, jsc.getHeight());
+		mapButton = gameView.mapButton ;
 		
-		/** 小地图 */
-		mapP = new JPanel() ;
-		mapP.setOpaque(false);
-		mapP.setBounds(0, 0, 302, 198);
-		mapP.setLayout(null);
-		tianPanel.add(mapP);
-		for (int j = 0; j < mapButton.length; j++) {
-			 int x = j%3 ; 
-			 int y = j/3 ;
-			 mapButton[j] = new MButton("1", 15);
-			 mapButton[j].setVisible(false);
-			 mapButton[j].addMouseListener(mapButton[j]);
-			 mapP.add(mapButton[j]);
-			 mapButton[j].setBounds(19+(12+80)*x, 19+(12+45)*y, 80, 45);
-		}
+		fightJpanel.add(gameView);
 		
-		/** 显示场景存在人物 */
-		npcP = new JPanel() ;
-		npcP.setOpaque(false);
-		npcP.setLayout(null);
-		npcP.setBounds(302 ,0, rightWidth-302, 99);
-		tianPanel.add(npcP);
-		/** 显示可以对人物进行的操作 */
-		controlP = new JPanel() ;
-		controlP.setOpaque(false);
-		controlP.setLayout(null);
-		controlP.setBounds(302, npcP.getY()+npcP.getHeight(), rightWidth-302, 99);
-		tianPanel.add(controlP);
-		//panelG.setBackground(Color.RED);
+		TButton close = new TButton("",11);
+		add(close);
+		close.addActionListener(exit);
+		close.setLocation(1000, 2);
+		close.setSize(23, 23);
 		
-		JLabel tianBack = new JLabel();
-		tianBack.setIcon(SUtils.loadImageIcon("/game/img/back/select2.png"));
-		tianBack.setBounds(0, 0, tianPanel.getWidth(), tianPanel.getHeight());
-		tianPanel.add(tianBack);
 		
 		/** 初始化弹窗监听器 */
 		funListener = new FunListener(this,archive,player);
@@ -251,11 +231,10 @@ public class MainFrame extends JFrame {
 		functionP = new JPanel() ;
 		add(functionP);
 		functionP.setLayout(null);
-		functionP.setBounds(0, attrHeight, attrWidth-8, 200);
-		functionP.setBackground(Constant.colorAry[4]);
-		//panelC.setBorder(BorderFactory.createEtchedBorder(1));
+		functionP.setBounds(0, attrHeight, attrWidth, 200);
+		functionP.setBackground(C.colorAry[4]);
 		for (int i = 0; i < funAry.length; i++) {
-			funAry[i] = new TButton(Constant.funAry[i],1);
+			funAry[i] = new TButton(C.funAry[i],1);
 			funAry[i].addActionListener(funListener);
 			functionP.add(funAry[i]);
 			if(i%2==0){
@@ -266,12 +245,14 @@ public class MainFrame extends JFrame {
 			funAry[i].setSize(72, 24);
 			funAry[i].addMouseListener(funAry[i]);
 		}
-		
+		MyDialog tan = new MyDialog(this, 2);
+		tan.setVisible(false);
+		gameControl.setTan(tan);
 
 		/** 功能 --结束  */
 		
 		/** 传入重要组件 */
-		gameControl.sendPanel(playerP, sceneP, functionP, infoP, mapP, npcP, controlP);
+		gameControl.sendPanel(playerP, sceneP, functionP, infoP, gameView);
 		
 		/** 测试面板 testPanel */
 		testPanel = new TestPanel();
@@ -317,37 +298,25 @@ public class MainFrame extends JFrame {
 		return mapButton ;
 	}
 
-
-	public void setMapBuHide() {
-		for (int i = 0; i < mapButton.length; i++) {
-			mapButton[i].setVisible(false);
-			//mapButton[i].setFlag();
-			mapButton[i].mouseExited();
-		}
-	}
 	
-	public void removeNpc(){
-		npcP.removeAll();
-	}
-	
-	public void showNpc(MButton bu){
-		npcP.add(bu);
+	/***
+	 * 隐藏显示地图地点的每个按钮
+	 */
+	public void hideMapBu() {
+		gameView.hideMapBu();
 	}
 	
 	public Player getPlayer() {
 		return player;
 	}
 
-
 	public void setPlayer(Player player) {
 		this.player = player;
 	}
 
-
 	public Archive getArchive() {
 		return archive;
 	}
-
 
 	public void setArchive(Archive archive) {
 		this.archive = archive;
@@ -378,6 +347,13 @@ public class MainFrame extends JFrame {
 		attrAry[6].setText(player.getAttack()+"");
 		attrAry[7].setText(player.getDefense()+"");
 	}
+	
+	ActionListener exit = new  ActionListener() {
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			gameControl.exitGame();
+		}
+	};
 
 	
 }

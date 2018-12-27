@@ -1,8 +1,10 @@
 package game.utils.xmltool;
 
 import game.utils.SUtils;
+import game.view.button.TButton;
 
 import java.awt.Component;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -15,8 +17,11 @@ import javax.swing.table.TableCellRenderer;
 public class MyRender extends AbstractCellEditor implements TableCellRenderer, TableCellEditor,ActionListener {
 
 	private static final long serialVersionUID = 1L;
-	private JButton button = null;
+	private TButton button = null;
+	/** 1-功法效果  2-技能 */
 	public int type = 1 ;
+	public final int EFFECT = 1 ;
+	public final int SKILL = 2 ;
 	
 	/**
 	 * 决定生成的类型
@@ -26,10 +31,10 @@ public class MyRender extends AbstractCellEditor implements TableCellRenderer, T
 	public MyRender(int type) {
 		this.type  = type ;
 		if(type==1){
-			button = new JButton("效果");
+			button = new TButton("效果",-1);
 			button.addActionListener(this);
 		}else if(type==2){
-			button = new JButton("效果");
+			button = new TButton("技能效果",-1);
 			button.addActionListener(this);
 		}
 	}
@@ -56,10 +61,11 @@ public class MyRender extends AbstractCellEditor implements TableCellRenderer, T
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		int row = SUtils.conStrtoInt(e.getActionCommand());
-		if(type==1){
+		if(type==EFFECT){
 			XMLTool.setGongEffectInfo(row);
-		}else if(type==2){
-			XMLTool.setGongEffectInfo(row);
+		}else if(type==SKILL){
+			//XMLTool.setGongEffectInfo(row);
+			XMLTool.setSkillEffectInfo(row);
 		}
 	}
 

@@ -1,29 +1,24 @@
 package game.view.panel;
 
-import game.control.GameControl;
-import game.entity.Equip;
-import game.entity.Gong;
-import game.entity.Player;
-import game.utils.Constant;
-import game.utils.SUtils;
-import game.view.button.TButton;
-import game.view.ui.TextField;
-
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JButton;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
-import javax.swing.SwingUtilities;
-import javax.swing.UIDefaults;
-import javax.swing.UIManager;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+
+import game.control.GameControl;
+import game.control.UICtrl;
+import game.entity.Equip;
+import game.entity.Gong;
+import game.entity.Player;
+import game.utils.C;
+import game.utils.DataCal;
+import game.view.button.TButton;
+import game.view.ui.TextField;
 
 /**
  * 背包显示面板
@@ -45,11 +40,11 @@ public class BagPanel extends JPanel {
 	/** 操作功法的按钮 */
 	private TButton use ;
 	/** 公用按钮 */
-	private TButton sell ;
+	private TButton sell, drop  ;
 	
 	private TextField capacity, money, lingshi ;
 	public TButton capacityAdd ;
-	
+	private DataCal dataCal = new DataCal() ;
 	/** 当前点击和穿戴的装备 */
 	private Equip clickEq, enterEq, wearEq ;
 	/** 当前点击的功法 */
@@ -82,7 +77,7 @@ public class BagPanel extends JPanel {
 		/** 增加标签面板 */
 		bagPanel = new JTabbedPane();
 		/** 设置tab的样式 */
-		SUtils.setUi(bagPanel);
+		UICtrl.setUi(bagPanel);
 		bagPanel.setOpaque(false);
 		bagPanel.setFont(new Font("隶书",Font.PLAIN,14));
 		add(bagPanel);
@@ -91,7 +86,7 @@ public class BagPanel extends JPanel {
 		for (int i = 0; i < bagJPanelAry.length; i++) {
 			/** 为背包分类制定具体面板 */
 			bagJPanelAry[i] = new BagClassifyPanel(this,i);
-			bagPanel.addTab(Constant.bagClassifyAry[i], bagJPanelAry[i]);
+			bagPanel.addTab(C.bagClassifyAry[i], bagJPanelAry[i]);
 			bagPanel.setForegroundAt(i, Color.white); 
 		}
 		bagPanel.addChangeListener(tabLin);
@@ -177,7 +172,7 @@ public class BagPanel extends JPanel {
 						bagJPanelAry[1].bagConShow();
 					}
 					/** 刷新人物属性面板 */
-					gameControl.reloadAttr();
+					dataCal.reloadAttr();
 					gameControl.reloadPlayerAttr();
 				}else if(e.getActionCommand().equals("分解")){
 					
@@ -219,6 +214,7 @@ public class BagPanel extends JPanel {
 	public void openBag(){
 		bagJPanelAry[0].bagConShow();
 		bagJPanelAry[1].bagConShow();
+		bagJPanelAry[2].bagConShow();
 	}
 
 

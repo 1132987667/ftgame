@@ -4,6 +4,7 @@ import game.control.GameControl;
 import game.entity.Archive;
 import game.entity.Player;
 import game.utils.ArchiveUtils;
+import game.utils.C;
 import game.utils.SUtils;
 import game.view.TLabel;
 import game.view.button.TButton;
@@ -53,11 +54,11 @@ public class EnterFrame extends JFrame{
 	public EnterFrame(){
 		setUndecorated(true);
 		setLayout(null);
-		setSize(new Dimension(1024,576));
+		setSize(new Dimension(C.Width,C.height));
 		SUtils.setFrameCenter(this);
 		
 		backPanel = new BackPanel();
-		backPanel.setBounds(0, 0, 1024, 576);
+		backPanel.setBounds(0, 0, C.Width, C.height);
 		this.getContentPane().add(backPanel);
 		
 		/** 创建游戏控制器 */
@@ -210,7 +211,7 @@ public class EnterFrame extends JFrame{
 				setVisible(false);
 				MainFrame frame = new MainFrame() ;
 				frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-				frame.setBounds(200, 100, 1028, 600);
+				frame.setBounds(200, 100, C.Width, C.height);
 				frame.setResizable(false);
 				frame.setVisible(true);
 			}

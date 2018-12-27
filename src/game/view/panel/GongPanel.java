@@ -1,11 +1,5 @@
 package game.view.panel;
 
-import game.control.GameControl;
-import game.entity.Gong;
-import game.entity.Player;
-import game.utils.SUtils;
-import game.view.frame.SpFrame;
-
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.MouseEvent;
@@ -17,6 +11,12 @@ import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.plaf.basic.BasicTabbedPaneUI;
+
+import game.control.GameControl;
+import game.control.UICtrl;
+import game.entity.Gong;
+import game.entity.Player;
+import game.view.frame.SpFrame;
 /**
  * 用来显示人物功法信息的面板
  * 当前装备功法，技能
@@ -130,7 +130,7 @@ public class GongPanel extends JPanel {
 		skill4 = new TempLabel("铜皮铁骨", 2, Skill);
 		skill4.setBounds(temp.getX() + temp.getWidth(), skill3.getY(), FieldWidth, FieldHeight);
 		curWear.add(skill4);
-		SUtils.setBorder(curWear, "当前功法", Color.blue, new Font("隶书",
+		UICtrl.setBorder(curWear, "当前功法", Color.blue, new Font("隶书",
 				Font.PLAIN, 16));
 		curWear.setBounds(inset, curExp.getHeight() + curExp.getY() + inset,
 				294, 120);

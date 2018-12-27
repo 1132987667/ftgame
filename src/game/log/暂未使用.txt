@@ -1,0 +1,138 @@
+/**
+	 * 把xml中的npc解析成npc实体
+	 * 
+	 * @param action
+	 * @param npc
+	 */
+	private static void npcActionAnalyze(Element action, NPC npc) {
+		if (action == null) {
+			return;
+		}
+		List<Object> goods = null;
+		List<Element> list = action.elements();
+		Element tempE = null;
+		String type = "";
+		String id, name, appear, itemType;
+		int appearLv = 0, num = 0;
+		/** 遍历人物所有可能动作 */
+		for (int i = 0; i < list.size(); i++) {
+			tempE = list.get(i);
+			/** 动作的种类 */
+			type = tempE.attribute("type").getText();
+			List<Element> acList = tempE.elements();
+			switch (type) {
+			case "sell":/** 交易动作 */
+				/**
+				 * <ac>tempE <item></item>acList <item></item>acList </ac>
+				 */
+				for (int j = 0; j < acList.size(); j++) {
+					id = acList.get(i).attributeValue("id");
+					name = acList.get(i).attributeValue("name");
+					num = SUtils.conStrtoInt(acList.get(i).attributeValue("num"));
+					if (id.equals("bestTrader") || id.equals("bestTrader") || id.equals("bestTrader")) {
+						/*
+						 * if(id.equals("bestTrader")){//极品商人|卖装备和图纸和材料 goods = getBestTraderGoods(num);
+						 * }else if(id.equals("petTrader")){//售卖宠物蛋 goods = getPetTraderGoods(num);
+						 * }else if(id.equals("skillTrader")){//售卖技能书 goods = getSkillTraderGoods(num);
+						 * }
+						 */
+						appear = acList.get(i).attributeValue("appear");
+						npc.setAppearMode(appear);
+						if (appear.equals("lvAppear")) {// 当商人为随机出现时才会有随即出现率
+							appearLv = SUtils.conStrtoInt(acList.get(i).attributeValue("appearLv"));
+							npc.setAppearLv(appearLv);
+						}
+					} else {
+						// 普通商人，储存货物信息 <item id="101" itemType="equip" name="长剑" num="1" type="2,3"
+						// ></item>
+						itemType = acList.get(i).attributeValue("itemType");
+						if (itemType.equals("equip")) {// 装备
+							Equip equip = gameControl.getEquipMap().get(id);
+							equip.setType(2);
+							npc.getSellList().add(equip);
+						} else if (itemType.equals("cailiao")) {// 材料
+							Material mat = null;
+						} else if (itemType.equals("pet")) {// 宠物蛋
+
+						} else if (itemType.equals("drawings")) {// 图纸
+
+						} else if (itemType.equals("skillBook")) {// 技能书
+
+						}
+					}
+				}
+				break;
+			case "detect":/** 监测动作 */
+				break;
+			case "study":/** 学习动作 */
+				break;
+			case "give":/** 玩家收取npc物品 */
+				for (int j = 0; j < acList.size(); j++) {
+					id = acList.get(i).attributeValue("id");
+					itemType = acList.get(i).attributeValue("itemType");
+					if (itemType.equals("equip")) {
+						/** 得到给与玩家的物品 */
+						Equip equip = gameControl.getEquipMap().get(id);
+					} else if (itemType.equals("cailiao")) {
+
+					}
+				}
+				break;
+			case "take":/** npc收取玩家物品 */
+
+				break;
+			case "forge":/** 锻造动作 */
+				break;
+			default:
+				break;
+			}
+		}
+
+	}
+	
+	/**
+	 * 把背包内装备物品显示在面板上，并增加监听
+	 * 
+	 * @param bag
+	 * @param equipList
+	 * @param bals
+	 */
+	public static void equipBagShow(JPanel bag, List<Equip> equipList, BagActionListener bals) {
+		Font f = new Font("隶书", Font.PLAIN, 16);
+		Equip equip = null;
+		JButton tempBu;
+		JLabel tempField;
+		if (equipList == null) {
+			return;
+		}
+		/** 先设置第一个，再设置其他 */
+		for (int i = 0; i < equipList.size(); i++) {
+			equip = equipList.get(i);
+			tempBu = new JButton(equip.getName());
+			/** ActionCommand为在当前list中的序号 */
+			tempBu.setActionCommand(i + "");
+			/** 设置组件边距 */
+			tempBu.setBorder(new EmptyBorder(0, 4, 0, 0));
+			// tempBu.setMargin(new Insets(0, 2, 0, 0));
+			tempBu.setHorizontalAlignment(SwingConstants.LEFT);
+			/** 设置按钮透明 */
+			tempBu.setFont(f);
+			tempBu.setContentAreaFilled(false);
+			/** 设置字体颜色 */
+			tempBu.setForeground(C.equipColor[equip.getType()]);
+			tempBu.addActionListener(bals);
+			tempBu.setFocusable(false);
+			tempBu.setBounds(0, i * 20 + 1, 98, 20);
+			bag.add(tempBu);
+			for (int j = 1; j < 4; j++) {
+				String tempStr = getEquipField(j, equip);
+				tempField = new JLabel(tempStr);
+				tempField.setFont(f);
+				tempField.setBorder(new EmptyBorder(0, 4, 0, 0));
+				tempField.setForeground(new Color(250, 255, 240));
+				tempField.setHorizontalTextPosition(SwingConstants.CENTER);
+				tempField.setBounds(2 + j * 60 + 38, i * 20 + 1, 60, 20);
+				bag.add(tempField);
+			}
+		}
+	}

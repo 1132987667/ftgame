@@ -1,4 +1,4 @@
-package game.entity;
+ package game.entity;
 
 import game.control.GameControl;
 import game.utils.ArchiveUtils;
@@ -18,7 +18,6 @@ import org.dom4j.Node;
  */
 public class NPC implements Serializable {
 	private static final long serialVersionUID = 1L;
-
 	private GameControl gameControl = GameControl.getInstance();
 	public NPC() {
 	}
@@ -34,7 +33,8 @@ public class NPC implements Serializable {
 	private String msg = null;
 	
 	private String[] msgs = null ;
-	
+	/** 种类 */
+	private String race = null ;
 
 	/** 等级(通过等级来确认经济) */
 	private int rank = -1;
@@ -109,8 +109,7 @@ public class NPC implements Serializable {
 	/** 商人货物列表|[装备][材料][技能书][图纸][宠物蛋] */
 	private List<Object> sellList = null;
 	
-	
-	private List<Tasks> tasks ;
+ 	private List<Tasks> tasks = new ArrayList<>();
 	
 	
 	/*** ===掉落设置==== */
@@ -139,7 +138,6 @@ public class NPC implements Serializable {
 	 * 满足则查看是否存在对应give事件 存在则执行give事件
 	 */
 	public void task() {
-		SUtils SUtils = new SUtils();
 		Document document = SUtils.load("src/game/xml/npc.xml");
 		String xPath = "/root/npc[id='" + id + "']/action/ac[@type='take']/take";
 		// Node node = document.selectSingleNode(xPath);
@@ -178,7 +176,7 @@ public class NPC implements Serializable {
 						/** 还未进行处理 */
 					}
 					/** 设置数量 */
-					item.setNum(SUtils.conStrtoInt(info[2]));
+					item.num = SUtils.conStrtoInt(info[2]) ;
 					item = (Item) ArchiveUtils.depthClone(item);
 					if (tempStr.startsWith("need")) {// 玩家需要给npc的
 						singleTakeList.add(item);
@@ -222,7 +220,7 @@ public class NPC implements Serializable {
 					if (tempItem instanceof Equip) {
 						/** 移除 */
 						player.removeEquip((Equip) tempItem);
-						gameControl.append("你失去了" + tempItem.getName() + "!\n", 2);
+						gameControl.append("你失去了" + tempItem.name + "!\n", 2);
 					} else {
 						/** 还未进行处理 */
 					}
@@ -233,7 +231,7 @@ public class NPC implements Serializable {
 					if (tempItem instanceof Equip) {
 						/** 加入背包,得到了装备 */
 						player.obtainEquip((Equip) tempItem);
-						gameControl.append("你得到了" + tempItem.getName() + ",数量为:" + tempItem.getNum() + "!\n", 3);
+						gameControl.append("你得到了" + tempItem.name + ",数量为:" + tempItem.num + "!\n", 3);
 					} else {
 						/** 还未进行处理 */
 					}
@@ -574,7 +572,7 @@ public class NPC implements Serializable {
 	}
 
 	// public Equip weapon,helmet,necklace,coat,ring,waistband,trousers,shoes;
-	@Override
+	/*@Override
 	public String toString() {
 		return "NPC [name=" + name + ", rank=" + rank + ", type=" + type + ", li=" + li + ", min=" + min + ", tili="
 				+ tili + ", jingli=" + jingli + ", lucky=" + lucky + ", hp=" + hp + ", mp=" + mp + ", attack=" + attack
@@ -582,7 +580,7 @@ public class NPC implements Serializable {
 				+ ", helmet=" + equipAry[1] + ", necklace=" + equipAry[2] + ", coat=" + equipAry[3] + ", ring="
 				+ equipAry[4] + ", waistband=" + equipAry[5] + ", trousers=" + equipAry[6] + ", shoes=" + equipAry[7]
 				+ "]";
-	}
+	}*/
 
 	@Override
 	public boolean equals(Object obj) {
@@ -739,4 +737,13 @@ public class NPC implements Serializable {
 	public void setCanSell(boolean canSell) {
 		this.canSell = canSell;
 	}
+
+	public String getRace() {
+		return race;
+	}
+
+	public void setRace(String race) {
+		this.race = race;
+	}
+
 }

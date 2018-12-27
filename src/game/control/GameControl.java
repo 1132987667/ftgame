@@ -1,31 +1,8 @@
 package game.control;
 
-import game.entity.AddAttrs;
-import game.entity.Archive;
-import game.entity.Ditu;
-import game.entity.Equip;
-import game.entity.Gong;
-import game.entity.Material;
-import game.entity.NPC;
-import game.entity.Player;
-import game.entity.Scene;
-import game.entity.Tasks;
-import game.listener.FunListener;
-import game.listener.KeyMana;
-import game.listener.NpcListener;
-import game.utils.ArchiveUtils;
-import game.utils.Constant;
-import game.utils.DataCal;
-import game.utils.SUtils;
-import game.view.TLabel;
-import game.view.TTextPane;
-import game.view.button.MButton;
-import game.view.frame.EnterFrame;
-import game.view.frame.MainFrame;
-import game.view.frame.SpFrame;
-
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -35,34 +12,77 @@ import java.util.Map;
 import java.util.Random;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 
-import javax.swing.DefaultButtonModel;
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-import org.dom4j.Document;
 import org.dom4j.Element;
-import org.dom4j.Node;
+
+import game.entity.AddAttrs;
+import game.entity.Archive;
+import game.entity.Ditu;
+import game.entity.Equip;
+import game.entity.Gong;
+import game.entity.Item;
+import game.entity.Material;
+import game.entity.NPC;
+import game.entity.Player;
+import game.entity.Scene;
+import game.entity.Skill;
+import game.entity.Tasks;
+import game.listener.FunListener;
+import game.listener.KeyMana;
+import game.listener.actionLner.AcLner;
+import game.listener.actionLner.SpSceneLner;
+import game.utils.ArchiveUtils;
+import game.utils.C;
+import game.utils.DataCal;
+import game.utils.SUtils;
+import game.utils.XmlUtils;
+import game.view.TLabel;
+import game.view.TTextPane;
+import game.view.button.MButton;
+import game.view.button.TButton;
+import game.view.frame.EnterFrame;
+import game.view.frame.MainFrame;
+import game.view.frame.MyDialog;
+import game.view.frame.SpFrame;
+import game.view.panel.GameView;
 
 /** 控制各个组件 */
 public class GameControl {
+	
 	private EnterFrame enterFrame;
 	private MainFrame mainFrame;
 	private JLayeredPane layeredPanel ;
 	/**
 	 * 人物面板 房间描述 功能 游戏信息 小地图 npc与物品 与npc或物品交互
 	 */
+	/** 玩家信息面板 */
 	private JPanel playerP = null;
+	/** 
+	 * 玩家所处场景信息 
+	 * 文本框
+	 */
 	private TTextPane sceneP = null;
+	/***交互按钮组*/
 	private JPanel functionP = null;
+	/** 游戏过程信息 */
 	private TTextPane infoP = null;
-
+	/** 游戏小地图面板 */
 	private JPanel mapP = null;
+	/** 场景中显示人物面板 */
 	private JPanel npcP = null;
+	/** 交互面板 */
 	private JPanel controlP = null;
-
+	
+	private GameView gameView ;
+	
+	
 	private static GameControl gameControl = new GameControl();
 	/** 没有选择 空存档 存在存档 */
 	public static final int NotSelect = -1;
@@ -70,28 +90,36 @@ public class GameControl {
 	public static final int OldArchive = 1;
 
 	public Map equipBag = new HashMap<>();
-	
 	private Random rd = new Random(System.currentTimeMillis());
-
 	private String archiveName;
 	
-	private SUtils SUtils = new SUtils();
 	
-	/** 游戏信息 */
+	
+	/** 游戏过程信息实体类 */
+	/** 当前选择地图 */
 	private Ditu curDitu = null;
-	/** 当前场景 */
+	/** 当前选择场景 */
 	private Scene scene;
 	
+	/** 加载的xml文件信息  功，技能，装备，人物，人物，副本，装备设定，场景 */
+	private Map<String, Gong>   gongMap = null ;
+	private Map<String, Skill>  skillMap = null ;
+	private Map<String, Equip>  equipMap = null ;
+	private Map<String, NPC>    npcMap = null ;
+	private List<Ditu>   fbMap = null ;
+	private Map<String, Tasks>  taskMap =null ;
+	private Map<String, Ditu>   scMap = null ;
 	
-	private Map<String, Equip> equipMap = null ;
-	private  Map<String,NPC> npcMap = null ;
-	private Map<String,Tasks> taskMap =null ;
-	private Map<String,Gong> gongMap =null ;
+	private SpFrame fubenFrame, stateFrame, fightFrame, jiangHuFrame, bagFrame, mapFrame,  taskFrame;
 	
+	/** 判断是否进入了场景的标志 */
+	private boolean isInScene = false;
 	
+	/** 其他控制器 **/
+	private NpcCtrl npcCtrl = NpcCtrl.getInstance() ;
 	
-	private SpFrame fubenFrame, stateFrame, fightFrame, jiangHuFrame, bagFrame, mapFrame ;
-	
+	private MyDialog tan = null ;
+	private XmlUtils xmlUtils = null ;
 	
 	/**
 	 * 加载游戏控制器
@@ -104,10 +132,23 @@ public class GameControl {
 	 * 
 	 */
 	private GameControl() {
-		equipMap = SUtils.loadEquip();
-		npcMap = SUtils.loadNpc();
-		taskMap = SUtils.loadTask();
-		gongMap = SUtils.loadGong();
+		loadXml();
+	}
+	
+	
+	
+	/** 重新加载xml文件 */
+	public void loadXml() {
+		/** 功，技能，装备，人物，人物，副本，装备设定，场景 */
+		if(xmlUtils==null) 
+			xmlUtils = new XmlUtils();
+		gongMap  = xmlUtils.loadGong();
+		skillMap = xmlUtils.loadSkill();
+		equipMap = xmlUtils.loadEquip();
+		npcMap   = xmlUtils.loadNpc();
+		fbMap    = xmlUtils.loadFuben();
+		taskMap  = xmlUtils.loadTask();
+		//scMap    = xmlUtils.loadScene(ID);
 	}
 	
 	/** 当前存档 */
@@ -118,7 +159,6 @@ public class GameControl {
 	private NPC fightNpc = null ;
 	
 	
-	public String windowFlag = "无" ;
 	
 	public static GameControl getInstance() {
 		return gameControl;
@@ -137,9 +177,14 @@ public class GameControl {
 	
 	private KeyMana keyMana ;
 	
-	/** 在信息面板上显显示字符串 */
+	/** 在信息面板上显示字符串 */
 	public void append(String str, int type) {
 		infoP.append(str, type);
+	}
+	
+	/** 在信息面板上增加选择按钮 */
+	public void addSelectBu(TButton bu) {
+		infoP.insertComponent(bu);
 	}
 	
 	/** 退出游戏 */
@@ -154,11 +199,11 @@ public class GameControl {
 
 	/** 关闭弹窗窗口 */
 	public void close(int type) {
-		if (type == 1) {
+		/*if (type == Constant.Fuben) {
 			infoP.append("你犹豫了会，还是决定先不去【副本】了！\n", 0);
-		}else if(type == 2){
+		}else if(type == Constant.State){
 			infoP.append("你不再查看自己的【状态】!\n", 0);
-		}
+		}*/
 		mainFrame.close(type);
 	}
 
@@ -205,6 +250,31 @@ public class GameControl {
 		return  (NPC) ArchiveUtils.depthClone(npc);
 	}
 	
+	/** 
+	 * 通过物品的ID得到资料库中物品实体类的克隆体 
+	 * 装备
+	 * 材料
+	 * 功法
+	 * 宠物
+	 * 设计图
+	 * ...
+	 * @param id 要查询的物品的id
+	 * @return 返回资料库中物品实体类的克隆体
+	 */
+	public Item getItemById(String id){
+		Item item = null ;
+		item = equipMap.get(id);
+		if(item!=null)
+			return (Item) ArchiveUtils.depthClone(item);
+		item = gongMap.get(id);
+		if(item!=null)
+			return (Item) ArchiveUtils.depthClone(item);
+		item = equipMap.get(id);
+		if(item!=null)
+			return (Item) ArchiveUtils.depthClone(item);
+		return null ;
+	}
+	
 	/**
 	 * 通过id得到装备对象
 	 * @param id
@@ -215,135 +285,122 @@ public class GameControl {
 		return (Equip) ArchiveUtils.depthClone(equip);
 	}
 	
-	/**
-	 * 加载剧情xml
+	
+	/**  
+	 * 对地图的解析
+	 * 1:解析每个场景中的人物，物品，场景的特殊功能
+	 * 2:解析地图中的特殊地图，场景
+	 * @param dituEle
+	 * @param ditu
 	 * @return
 	 */
-	public List<Ditu> loadJuqing() {
-		Ditu ditu = null ;
-		Document document = SUtils.load("game/xml/juqing.xml");
-		Element root = document.getRootElement();
-		List<Element> temp  = root.elements();
-		List<Ditu> list = new ArrayList<>();
-		String jqId, jqName, jqDes = null ;
-		for (int i = 0; i < temp.size(); i++) {
-			jqId = temp.get(i).attribute("id").getText() ;
-			jqName = temp.get(i).elementText("name");
-			jqDes = temp.get(i).elementText("des");
-			ditu = new Ditu(jqId, jqName, jqDes, 0, 0);
-			list.add(ditu);
-		}
-		return list;
-	}
-	
-	
-	/**
-	 * 加载当前选择的剧情
-	 * @param jqID
-	 * @return 返回地图实体类
-	 */
-	public Ditu loadJuqing(String jqID){
-		Ditu ditu = null ;
-		Document document = SUtils.load("game/xml/juqing.xml");
-		Element root = document.getRootElement();
-		Element curJuqing = null ;
-		List<Element> temp  = root.elements();
-		for (int i = 0; i < temp.size(); i++) {
-			if(temp.get(i).attribute("id").getText().equals(jqID)){
-				curJuqing = temp.get(i);
-				break;
-			}
-		}
-		String jqId,jqName,jqDes = null ;
-		if(curJuqing==null){
-			return null ;
-		}
-		jqId = jqID ;
-		jqName = curJuqing.elementText("name");
-		jqDes = curJuqing.elementText("des");
-		ditu = new Ditu(jqId, jqName, jqDes, 0, 0);
-		
-		String name,des,pos  = null;
+	public Ditu psDitu(Element dituEle, Ditu ditu) {
+		String id, name, des, pos ;
 		Scene scene = null ;
-		List<Element> mapTemp = curJuqing.element("map").elements();
-		System.out.println("剧情"+jqId+"共有"+mapTemp.size()+"个场景");
-		
-		/** 场景集合 */
+		if(dituEle.element("scene")==null) return ditu ;
+		/** 1-解析普通场景 */
+		List<Element> scenes = dituEle.element("scene").elements();
 		List<Scene> sceneList = new ArrayList<>();
-		for (int j = 0; j < mapTemp.size(); j++) {
-			name = mapTemp.get(j).element("name").getText();
-			des = mapTemp.get(j).element("des").getText();
-			pos = mapTemp.get(j).element("pos").getText();
-			String[] tempAry = pos.split(",");
-			/** x,y坐标 */
-			int x = SUtils.conStrtoInt(tempAry[0]);
-			int y = SUtils.conStrtoInt(tempAry[1]);
-			scene = new Scene(name, des, x, y);
-			String npcStr = mapTemp.get(j).element("npcList").getText();
-			// 得到副本中对应的怪物
-			if(npcStr.trim().length()>0){
-				scene.setNpcList(getNPCList(npcStr));
+		for (int j = 0; j < scenes.size(); j++) {
+			Element ele = scenes.get(j) ;
+			name = ele.attributeValue("name").trim();
+			des  = ele.element("des").getText().trim();
+			pos  = ele.attributeValue("pos").trim();
+			Point p = SUtils.psCoord(pos);
+			scene = new Scene(name, des, p.x, p.y);
+			
+			/** 解析场景中的人物 */
+			if(SUtils.isExistEle(ele, "npcList")) {
+				String npcStr = ele.elementText("npcList").trim();
+				if(npcStr.length()>0) 
+					scene.setNpcList(getNPCList(npcStr));
+					scene.setNpcStr(npcStr);
 			}
-			scene.setNpcStr(npcStr);
-			System.out.println(x + ":" + y + ", 该场景怪物数量:" + scene.getNpcList().size());
+			scene = psSceneEffect(scene, ele);
+			
+			/** 解析场景内的物品 */
+			if(SUtils.isExistEle(ele, "items")) {
+				String itemStr = ele.elementText("items");
+				scene.itemList = getItemList(itemStr);
+			};
+			
+			/** 解析该场景不能直接到达的位置 */
+			if(SUtils.isExistEle(ele, "unArrive")) {
+				String unArrive = ele.elementText("unArrive");
+				if(!SUtils.isNullStr(unArrive)) {
+					System.err.println("err:"+unArrive);
+					String[] ps = unArrive.split(";");
+					List<Point> points = new ArrayList<>();
+					for (int i = 0; i < ps.length; i++) {
+						Point point = SUtils.psCoord(ps[i]);
+						points.add(point);
+					}
+					scene.points = points ;
+				}
+			}
+			
+			/** 解析特殊入口 */
+			if(SUtils.isExistEle(ele, "enters")) {
+				List<Element> enters = ele.element("enters").elements();
+				for (int i = 0; i < enters.size(); i++) {
+					Element entrance = enters.get(i);
+					scene.enters.add(entrance.attributeValue("name").trim());
+				}
+			}
+			
 			sceneList.add(scene);
 		}
+		
+		/** 2-该地点的特殊场景 */
+		List<Ditu> spDituList = new ArrayList<>();
+		if(SUtils.isExistEle(dituEle, "spScene")) {
+			List<Element> spPlace = dituEle.element("spScene").elements();
+			for (int i = 0; i < spPlace.size(); i++) {
+				Element spDituEle = spPlace.get(i) ;
+				id   =  spDituEle.attributeValue("id") ;
+				Ditu spDitu = new Ditu(id, "", "", 0, 0);
+				List<Element> spScene = spDituEle.elements();
+				for (int j = 0; j < spScene.size(); j++) {
+					Element ele = spScene.get(j);
+					name = ele.attributeValue("name");
+					des  = ele.elementText("des").trim();
+					Point p = SUtils.psCoord(ele.attributeValue("pos"));
+					scene = new Scene(name, des, p.x, p.y);
+					scene.isSpScene = true ;
+					if(SUtils.isExistEle(ele, "exit")) {//如果是离开点
+						String exitPos = ele.element("exit").attributeValue("pos");
+						scene.isExit = true ;
+						scene.exitPoint = SUtils.psCoord(exitPos);
+					}
+					spDitu.getScene().add(scene);
+				}
+				spDituList.add(spDitu);
+			}
+		}
 		ditu.setScene(sceneList);
+		ditu.setSpList(spDituList);
 		curDitu = ditu ;
 		return ditu ;
 	}
 	
-	
-	/**
-	 * 加载副本信息,并得到和设置npc信息
-	 * @return 返回资料库中所有的npc的信息
-	 */
-	public List<Ditu> loadFuben(){
-		List<Ditu> list = new ArrayList<>();
-		Document document = SUtils.load("game/xml/fuben.xml");
-		/** 获取根目录 */
-		Element root = document.getRootElement();
-		List<Element> temp  = root.elements();
-		for (int i = 0; i < temp.size(); i++) {
-			if(temp.get(i).attribute("name").getText().equals("副本")){
-				temp = temp.get(i).elements() ;
-				break;
-			}
-		}
-		Element map = null ;
-		String id,name,des,rankL,rankR  = null;
-		Scene scene = null ;
-		List<Element> mapTemp = null ;
-		for (int i = 0; i < temp.size(); i++) {
-			id = temp.get(i).attribute("id").getText();
-			name = temp.get(i).element("name").getText();
-			des = temp.get(i).element("des").getText();
-			rankL = temp.get(i).element("rankL").getText();
-			rankR = temp.get(i).element("rankR").getText();
-			Ditu fuben = new Ditu(id, name, des, SUtils.conStrtoInt(rankL), SUtils.conStrtoInt(rankR));
-			/** 不是每个副本都加了地图信息 */
-			map = temp.get(i).element("map") ;
-			if(map!=null){
-				mapTemp = map.elements() ;
-				System.out.println("加载得到"+mapTemp.size()+"个场景");
-				for (int j=0;j < mapTemp.size(); j++) {
-					name =  mapTemp.get(j).element("name").getText();
-					des = mapTemp.get(j).element("des").getText();
-					int x =  SUtils.conStrtoInt(mapTemp.get(j).element("x").getText());
-					int y = SUtils.conStrtoInt(mapTemp.get(j).element("y").getText());
-					scene = new Scene(name,des,x,y) ;
-					String str = mapTemp.get(j).element("npcList").getText();
-					//得到副本中对应的怪物
-					scene.npcList = getNPCList(str);
-					scene.npcStr = str ;
-					System.out.println(x+":"+y +", 该场景怪物数量:"+fuben.getList().size());
-					fuben.getScene().add(scene);
-				}
-			}
-			list.add(fuben);
-		}
-		return list ;
+	public Scene psSceneEffect(Scene sc, Element ele) {
+		if(SUtils.isExistEle(ele, "canFishing"))
+			sc.canFishing = SUtils.conStrToBol(ele.elementText("npcList").trim());
+		if(SUtils.isExistEle(ele, "canWushu"))
+			sc.canWushu   = SUtils.conStrToBol(ele.elementText("npcList").trim());
+		if(SUtils.isExistEle(ele, "canXiu"))
+			sc.canXiu     = SUtils.conStrToBol(ele.elementText("npcList").trim());
+		if(SUtils.isExistEle(ele, "canDig"))
+			sc.canDig     = SUtils.conStrToBol(ele.elementText("npcList").trim());
+		if(SUtils.isExistEle(ele, "canCutdown"))
+			sc.canCutdown = SUtils.conStrToBol(ele.elementText("npcList").trim());
+		if(SUtils.isExistEle(ele, "canHunting"))
+			sc.canHunting = SUtils.conStrToBol(ele.elementText("npcList").trim());
+		if(SUtils.isExistEle(ele, "canRest"))
+			sc.canRest    = SUtils.conStrToBol(ele.elementText("npcList").trim());
+		return sc ;
 	}
+	
 	
 	/**
 	 * 传入存有npc名字和数量的特殊格式字符串
@@ -354,6 +411,8 @@ public class GameControl {
 	 */
 	private List<NPC> getNPCList(String str){
 		List<NPC> list = new ArrayList<>();
+		if(str.length()<1)
+			return list ;
 		String[] temp = null ;
 		String id = "" ;
 		String[] ary = str.split(",");
@@ -375,13 +434,46 @@ public class GameControl {
 	}
 	
 	/**
+	 * 传入存有物品名字和数量的特殊格式字符串
+	 * 创建对应对象添加到list中
+	 * 例如  2001:牡丹:1,2002:风筝:1
+	 * @param str
+	 * @return 返回包含场景内所悟npc信息的集合
+	 */
+	public List<Item> getItemList(String str){
+		List<Item> list = new ArrayList<>();
+		if(str.length()<0)  return list ;
+		String[] temp = null ;
+		String id = "" ;
+		String[] ary = str.split(",");
+		int num = 0 ;
+		for (int i = 0; i < ary.length; i++) {
+			/**  2001:牡丹:1 */
+			temp = ary[i].split(":");
+			id = temp[0];
+			num = SUtils.conStrtoInt(temp[2]);
+			Item item = getItemById(id);
+			if(item!=null){
+				for (int j = 0; j < num; j++) {
+					/** 和当前玩家的幸运值相关 */
+					list.add(item);
+				}
+			}
+		}
+		return list ;
+	}
+	
+	/******************************************************
+	 *			                                  初始化地图 
+	 *******************************************************/
+	
+	/**
 	 * 设置当前副本所有npc的具体信息
 	 * 此时npc已有信息 name rank 
 	 * 每次进入都会重新设置
 	 * @param fuben 副本
 	 */
 	public void setNpcSpecInfo(Ditu fuben){
-		System.out.println("设置副本npc信息!"+fuben);
 		List<Scene> sceneList = fuben.getScene() ;
 		List<NPC> npcList = null ;
 		NPC tempNpc = null ;
@@ -397,6 +489,55 @@ public class GameControl {
 			}
 		}
 	}
+	
+	/***
+	 * 布置地图
+	 * 根据所选择的地点布置地图
+	 * 0,1 为中心，也就是起点
+	 */
+	public void decorateMap() {
+		MButton buTemp = null;
+		/** 重置场景 */
+		mainFrame.hideMapBu();
+		/** 整套移出并重绘的流程 */
+		npcP.removeAll();
+		npcP.repaint();
+		npcP.revalidate();
+		controlP.removeAll();
+		npcP.repaint();
+		npcP.revalidate();
+		Scene temp = null;
+		Point initPoint = curDitu.initPoint;
+		int x = initPoint.x, y = initPoint.y;
+		temp = getScene(x, y);
+		System.out.println("当前所在:"+temp.getName());
+		infoP.apendFubenInfo(temp.name, 0);
+		
+		scene = temp;
+		/** 得到当前副本所有场景 */
+		List<Scene> list = getRoundScene(x, y);
+		MButton[] ary = mainFrame.getMapBuAry();
+		/** 按照副本的地图进行布置 */
+		for (int i = 0; i < ary.length; i++) {
+			if (list.get(i) != null) {
+				buTemp = ary[i];
+				/** 设置每个自定义按钮类中所在地点信息对象 */
+				buTemp.setScene(list.get(i));
+				buTemp.setText(list.get(i).name);
+				buTemp.setNum(i + 1);
+				buTemp.setVisible(true);
+			}
+			
+		}
+		gameView.setCablesLoc();
+		/** 0,1坐标的位置设置为起点 */
+		ary[4].setCurBu();
+		scene = ary[4].getScene();		
+		mapP.repaint();
+		List<MButton> buList = new ArrayList<>();
+		setSceneNpc(buList);
+	}
+
 	
 	/**
 	 * 战略五步走
@@ -458,7 +599,7 @@ public class GameControl {
 		}
 		int num = 3 ;
 		num += foeRank*2;
-		int exp = SUtils.reDouPoint((expValue/num)*Constant.npcExpLv[type]) ;
+		int exp = SUtils.reDouPoint((expValue/num)*C.npcExpLv[type]) ;
 		
 		/** 根据双方等级差距来调整经验值 越级有经验加成*/
 		if(myRank-foeRank>10){
@@ -476,14 +617,15 @@ public class GameControl {
 
 	/** 将主界面的界面传输过来 */
 	public void sendPanel(JPanel panelA, TTextPane panelB, JPanel panelC,
-			TTextPane panelD, JPanel panelE, JPanel panelF, JPanel panelG) {
+			TTextPane panelD, GameView gameView) {
 		this.playerP = panelA;
 		this.sceneP = panelB;
 		this.functionP = panelC;
 		this.infoP = panelD;
-		this.mapP = panelE;
-		this.npcP = panelF;
-		this.controlP = panelG;
+		this.gameView = gameView ;
+		this.mapP = gameView.mapView;
+		this.npcP = gameView.npcView;
+		this.controlP = gameView.ctrlView;
 	}
 
 	/** 恢复对mainFrame窗口的限制 */
@@ -514,188 +656,199 @@ public class GameControl {
 	 * @param y
 	 * @return 返回目标场景，不存在返回null
 	 */
-	private Scene getScene(int x, int y) {
+	public Scene getScene(int x, int y) {
 		List<Scene> list = curDitu.getScene();
 		for (int i = 0; i < list.size(); i++) {
 			if (list.get(i).x == x && list.get(i).y == y) {
 				return list.get(i);
 			}
 		}
+		List<Ditu> dituList = curDitu.getSpList();
+		for (int i = 0; i < dituList.size(); i++) {
+			list = dituList.get(i).getScene();
+			for (int j = 0; j < list.size(); j++) {
+				System.out.println("特殊场景:"+list.get(j).getName()+","+x+","+y);
+				if (list.get(j).x == x && list.get(j).y == y) {
+					return list.get(j);
+				}
+			}
+		}
 		return null;
 	}
 
-	/**
-	 * 作用:生成副本的地图 
-	 * 0,1 为中心
-	 */
-	public void createMap() {
-		MButton buTemp = null;
-		/** 得到当前副本所有场景 */
-		List<Scene> list = new ArrayList<>();
-		/** 重置场景 */
-		mainFrame.setMapBuHide();
-		/** 整套移出并重绘的流程 */
-		npcP.removeAll();
-		npcP.repaint();
-		npcP.revalidate();
-		Scene temp = null;
-		temp = getScene(0, 1);
-		infoP.apendFubenInfo(temp.name, 0);
-		int x = 0, y = 1;
-		scene = temp;
-		list.add(getScene(x + 1, y - 1));
-		list.add(getScene(x + 1, y));
-		list.add(getScene(x + 1, y + 1));
-		list.add(getScene(x, y - 1));
-		list.add(getScene(x, y));
-		list.add(getScene(x, y + 1));
-		list.add(getScene(x - 1, y - 1));
-		list.add(getScene(x - 1, y));
-		list.add(getScene(x - 1, y + 1));
-		MButton[] ary = mainFrame.getMapBuAry();
-		/** 按照副本的地图进行布置 */
-		for (int i = 0; i < ary.length; i++) {
-			ary[i].removeActionListener(maoBuAc);
-			if (list.get(i) != null) {
-				buTemp = ary[i];
-				/** 设置每个自定义按钮类中所在地点信息对象 */
-				buTemp.setCurScene(list.get(i));
-				buTemp.setText(list.get(i).name);
-				buTemp.setNum(i + 1);
-				sceneP.setText(list.get(i).des);
-				buTemp.setVisible(true);
-			}
-			ary[i].addActionListener(maoBuAc);
-		}
-		/** 0,1坐标的位置设置为起点 */
-		ary[4].mouseClicked();
-		scene = ary[4].getCurScene();		
-		mapP.repaint();
-		setFubenNpc();
-		
-	}
 
 	/**
-	 * 玩家选择场景的监听
-	 * 	1:控制玩家能选择的场景路径
-	 * 	2:被点击时按钮切换形态，其他按钮回复形态
-	 *  3:被点击时进入新场景
+	 *  玩家点击每个场景时触发
+	 *  0:播放声音
+	 *  1:判断这个场景能否到达
+	 *  2:如果可以，被点击按钮被按下，其他按钮恢复
+	 *  3:人物的交互动作隐藏,如果该场景存在特殊功能
+	 *  4:进入新场景，并刷新其他场景按钮
+	 *  	是否进入特殊场景
+	 *  5:刷新场景人物
+	 *  	如果场景存在物品和特殊场景，一起显示
+	 *  6:显示当前场景信息
 	 */
-	ActionListener maoBuAc = new ActionListener() {
+	public ActionListener mapBuAc = new ActionListener() {
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			SoundControl.ftMuc(26);
+			/*for (int i = 0; i < curDitu.getSpList().size(); i++) {
+				for (int j = 0; j < curDitu.getSpList().get(i).getScene().size(); j++) {
+					Scene sce = curDitu.getSpList().get(i).getScene().get(j) ;
+				}
+			}*/
 			MButton curBu = (MButton) e.getSource();
-			/** 得到当前点击按钮的场景 */
-			Scene sc = curBu.getCurScene();
-			System.out.println("怪物数量:" + sc.npcList.size());
-			System.out.println("场景信息:" + sc.toString());
-			System.out.println("要去的地点:" + sc.x + ":" + sc.y + " , 当前地点:"
-					+ scene.x + " , " + scene.y);
-			/** 过远的地点不可前往 */
-			boolean b = (sc.x == scene.x - 1 && sc.y == scene.y)
-					|| (sc.x == scene.x + 1 && sc.y == scene.y)
-					|| (sc.x == scene.x && sc.y == scene.y - 1)
-					|| (sc.x == scene.x && sc.y == scene.y + 1);
+			Scene sc = curBu.getScene();
+			playerMoved(sc, curBu, false);
+		}
+	};
+	
+	/**
+	 * *  玩家点击每个场景时触发
+	 *  0:判断这个场景能否到达
+	 *  1:如果可以，被点击按钮被按下，其他按钮恢复
+	 *  2:播放声音
+	 *  3:人物的交互动作隐藏,如果该场景存在特殊功能
+	 *  4:进入新场景，并刷新其他场景按钮
+	 *  	是否进入特殊场景
+	 *  5:刷新场景人物
+	 *  	如果场景存在物品和特殊场景，一起显示
+	 *  6:显示当前场景信息
+	 * @param sc
+	 * @param curBu
+	 * @param flag
+	 */
+	public void playerMoved(Scene sc, MButton curBu,boolean flag) {
+		/** 0-判断该场景是否能到达,特殊场景不用检查  */
+		if(!flag) {
+			boolean b = (sc.x == scene.x - 1 && sc.y == scene.y) || (sc.x == scene.x + 1 && sc.y == scene.y)
+					||  (sc.x == scene.x && sc.y == scene.y - 1) || (sc.x == scene.x && sc.y == scene.y + 1);
+			List<Point> points = scene.points ;
+			for (int i = 0; i < points.size(); i++) {
+				if(sc.x == points.get(i).x && sc.y == points.get(i).y) {
+					b = false ;
+				}
+			}
 			if (!b) {
-				// type15 true
-				//curBu.setFlag();
 				curBu.mouseExited();
 				return;
 			}
-			System.out.println("按钮生效！");
-			/** 更新当前场景 */
-			scene = sc;
-			/** 点击了正确的按钮时 */
-			mainFrame.setMapBuHide();
-			List<Scene> list = new ArrayList<>();
-			int x = sc.x;
-			int y = sc.y;
-			// 得到x,y坐标
-			MButton[] ary = mainFrame.getMapBuAry();
-			list.add(getScene(x + 1, y - 1));
-			list.add(getScene(x + 1, y));
-			list.add(getScene(x + 1, y + 1));
-			list.add(getScene(x, y - 1));
-			list.add(getScene(x, y));
-			list.add(getScene(x, y + 1));
-			list.add(getScene(x - 1, y - 1));
-			list.add(getScene(x - 1, y));
-			list.add(getScene(x - 1, y + 1));
-			MButton temp = null;
-			for (int i = 0; i < ary.length; i++) {
-				if (list.get(i) != null) {
-					temp = ary[i];
-					temp.setCurScene(list.get(i));
-					temp.setText(list.get(i).name);
-					temp.setNum(i + 1);
-					sceneP.setText(list.get(i).des);
-					temp.setVisible(true);
-				}
-			}
-			for (int j = 0; j < ary.length; j++) {
-				if (ary[j].getNum() == 5) {
-					ary[j].mouseClicked();
-				}
-			}
-			setFubenNpc();
 		}
-	};
+		/** 1-可以到达的场景,更新当前场景,设置每个按钮点击状态 */
+		scene = sc;
+		/** 如果是特殊出口，那么实际出去位置为出口制定位置 */
+		if(scene.isExit) {
+			scene = getScene(sc.exitPoint.x, sc.exitPoint.y) ;
+		}
+		mainFrame.hideMapBu();
+		/** 2-说明可以到达，那么播放声音 */
+		SoundControl.ftMuc(26);
+		/** 3-隐藏交互按钮 */
+		gameView.hideAcBu();
+		/** 4-重新布置场景 **/
+		// 得到x,y坐标
+		int x = scene.x;
+		int y = scene.y;
+		System.out.println("当前点击的场景坐标:"+x+","+y);
+		List<Scene> list = getRoundScene(x, y);
+		MButton temp = null;
+		/** 得到场景移动用到的按钮,显示在面板上 */
+		MButton[] ary = mainFrame.getMapBuAry();
+		for (int i = 0; i < ary.length; i++) {
+			if (list.get(i) != null) {
+				temp = ary[i];
+				temp.setScene(list.get(i));
+				temp.setText(list.get(i).name);
+				temp.setNum(i + 1);
+				temp.setVisible(true);
+			}
+		}
+		gameView.setCablesLoc();
+		/** 设置当前所在场景按钮状态 */
+		for (int j = 0; j < ary.length; j++) {
+			if (ary[j].getNum() == 5) {
+				ary[j].setCurBu();
+			}
+		}
+		/** 5-显示副本存在人物，物品，特殊入口 */
+		List<MButton> buList = new ArrayList<>() ;
+		buList = setSceneSpDestn(buList);//场景内特殊入口
+		buList = setSceneItem(buList);
+		buList = setSceneNpc(buList);//场景内存在的人物
+		/** 设置按钮位置 */
+		setSceneCellPos(buList);
+		/** 6-显示场景信息 */
+		setSceneTitle(sc.getName());
+		sceneP.setText(sc.des);
+	}
+	
+	private List<MButton> setSceneItem(List<MButton> buList) {
+		
+		
+		
+		
+		return null;
+	}
+
+	/** 通过当前位置得到周围场景 */
+	public List<Scene> getRoundScene(int x, int y){
+		List<Scene> list = new ArrayList<>();
+		System.out.println("当前点击的场景坐标:"+x+","+y);
+		list.add(getScene(x - 1, y - 1));
+		list.add(getScene(x, y - 1));
+		list.add(getScene(x + 1, y - 1));
+		list.add(getScene(x - 1, y));
+		list.add(getScene(x, y));
+		list.add(getScene(x + 1, y));
+		list.add(getScene(x - 1, y + 1));
+		list.add(getScene(x, y + 1));
+		list.add(getScene(x + 1, y + 1));
+		return list ;
+	}
+	
+	/**
+	 * 显示当前场景内存在的特殊入口
+	 */
+	public List<MButton> setSceneSpDestn(List<MButton> buList) {
+		List<String> entrances = scene.enters ;
+		if(entrances.size()<1)  return buList;
+		MButton bu ;
+		SpSceneLner spSceneLner ;
+		for (int i = 0; i < entrances.size(); i++) {
+			bu = new MButton(entrances.get(i).split(";")[0], 3);
+			spSceneLner = new SpSceneLner(entrances.get(i));
+			bu.addActionListener(spSceneLner);
+			buList.add(bu);
+		}
+		return buList;
+	}
 
 	/***
 	 * 显示当前副本中当前场景存在的npc
 	 * 并为每一个npc设置一个按钮 
 	 * 大小243, 99
 	 */
-	public void setFubenNpc() {
-		/** 移除人物 */
-		npcP.removeAll();
-		npcP.repaint();
-		npcP.revalidate();
-		/** 得到当前场景内的人物 */
-		List<NPC> npcList = scene.npcList;
-		System.out.println("npcList的大小:" + npcList.size());
-		if (npcList.size() < 1) {
-			return;
-		}
-		List<MButton> buList = new ArrayList<>();
-		NpcListener npcListener = new NpcListener(npcP,scene);
-		MButton temp = null;
-		/**
-		 * 为场景内的每一个人物创建一个按钮
-		 * 
-		 */
-		for (int i = 0; i < npcList.size(); i++) {
-			NPC tempNpc = npcList.get(i);
-			temp = new MButton(tempNpc.getName(), 3);
-			temp.setForeground(Constant.equipColor[tempNpc.getType()]);
-			temp.setNpc(tempNpc);
-			temp.addActionListener(npcListener);
-			/** 显示npc信息 */
-			//panelD.append(tempNpc.getName(), tempNpc.getType());
-			//panelD.append(tempNpc.getDes(), 0);
-			buList.add(temp);
-		}
-		npcListener.setBuList(buList);
-		setFubenNpcPos(buList);
+	public List<MButton> setSceneNpc(List<MButton> buList) {
+		gameView.removeNpc();
+		buList = npcCtrl.setFubenNpc(scene, buList);
+		return buList ;
 	}
 
 	/**
 	 * 传入 一个储存了人物信息的按钮集合
 	 * 设置它们的位置
+	 * 为面板画线
 	 * @param buList
 	 *  大小243, 99 间隔为9
+	 *  6,12  
 	 */
-	public void setFubenNpcPos(List<MButton> buList) {
-		System.out.println("正在重新设置场景内人物的位置!");
+	public void setSceneCellPos(List<MButton> buList) {
 		npcP.removeAll();
-		//ActionListener ac
-		int inset = 9;
+		int inset = 6;
 		for (int i = 0; i < buList.size(); i++) {
-			int x = i % 3;
-			int y = i / 3;
-			buList.get(i).setBounds(inset + x * (72 + inset),
-					inset + y * (24 + inset), 72, 24);
+			int x = i % 4;
+			int y = i / 4;
+			buList.get(i).setBounds(inset+x*(72+inset), inset*2+y*(24+inset), 72, 24);
 			npcP.add(buList.get(i));
 		}
 		npcP.repaint();
@@ -703,7 +856,7 @@ public class GameControl {
 	}
 	
 	/**
-	 * 设置副本人物互动按钮位置
+	 * 设置副本人物互动按钮位置|交互
 	 * @param buList
 	 */
 	public void setFbNpcActionPos(List<MButton> buList) {
@@ -712,8 +865,9 @@ public class GameControl {
 		for (int i = 0; i < buList.size(); i++) {
 			int x = i % 3;
 			int y = i / 3;
-			buList.get(i).setLocation(inset + x * (56 + inset),inset + y * (22 + inset));
-			buList.get(i).setSize(56, 22);
+			buList.get(i).setVisible(true);
+			buList.get(i).setLocation(inset+x*(buList.get(i).getWidth()+inset/2),inset+y*(buList.get(i).getHeight()+inset/2));
+			buList.get(i).setSize();
 			controlP.add(buList.get(i));
 		}
 		controlP.repaint();
@@ -929,33 +1083,6 @@ public class GameControl {
 		mainFrame.reloadPlayerAttr();
 	}
 	
-	/***/
-	public AddAttrs reloadAttr(){
-		/** 根据当前人物装备重新计算  */
-		Equip[] ary = player.getEquipAry();
-		
-		player.reloadBaseAttr();
-		EquipControl equipControl = gameControl.equipControl;
-		
-		AddAttrs addAttrs = null ;
-		/** 累加玩家装备带来的属性加成 */
-		if(ary[0].getName().trim().length()>0){
-			addAttrs = equipControl.countAttr(ary[0].getAttrList());
-		}else{
-			addAttrs = equipControl.newADdAttrs();
-		}
-		
-		for (int i = 1; i < ary.length; i++) {
-			if(ary[i].getName().trim().length()>0){
-				addAttrs = equipControl.countAttr(addAttrs, ary[i].getAttrList());
-			}
-		}
-		
-		
-		/** 玩家属性和装备加成属性相加 */
-		equipControl.calReallyAttr(player, addAttrs);
-		return addAttrs ;
-	}
 
 	public void reloadPlayerAttr(){
 		mainFrame.reloadPlayerAttr();
@@ -965,53 +1092,6 @@ public class GameControl {
 		
 	}
 	
-	
-	/**
-	 * 解析人物的所有交互动作
-	 * 查看         交谈         击杀         给予         交易                  任务
-	 * view, talk, kill, give, trading, tasks
-	 * @param npc
-	 */
-	public void npcActionAnalyze(final NPC npc){
-		String id = npc.getId();
-		Document document = SUtils.load("game/xml/npc.xml");
-		Node node = document.selectSingleNode("/root/npc[id='"+id+"']/action");
-		Element action ;
-		if(node!=null){
-			action = node.getParent().element("action");
-		}
-		actionBu[0] = new MButton("查看", 2) ;
-		/**** 交谈设置 ***/
-		actionBu[1] = new MButton("交谈", 2);
-		actionBu[1].addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				String[] msg = npc.getMsg().split("\\|");
-				int num = rd.nextInt(msg.length) ;
-				append(msg[num], 1);
-			}
-		});
-		
-		
-	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
 	public SpFrame getFtFrame() {
 		return ftFrame;
 	}
@@ -1037,19 +1117,19 @@ public class GameControl {
 	}
 
 	public MButton getTask() {
-		return tasks;
+		return gameView.actionBu[1];
 	}
 
 	public void setTask(MButton tasks) {
-		this.tasks = tasks;
+		gameView.actionBu[1] = tasks;
 	}
 
 	public MButton[] getAction() {
-		return actionBu;
+		return gameView.actionBu ;
 	}
 
 	public void setAction(MButton[] action) {
-		this.actionBu = action;
+		gameView.actionBu = action;
 	}
 	
 	/**
@@ -1107,7 +1187,7 @@ public class GameControl {
 	}
 	
 	/**
-	 * 判断是否满足人物开启的条件
+	 * 判断是否满足任务开启的条件
 	 * 如果开启人物需要道具，那么就去掉
 	 * 1:满足属性
 	 * 2:满足物品
@@ -1305,20 +1385,126 @@ public class GameControl {
 		return (Gong)ArchiveUtils.depthClone(gongMap.get(id));
 	}
 	
+	/*******************************
+	 * 	动作解析
+	 ******************************/
+	public void setSceneAc(Scene scene) {
+		
+	}
+	
+	
+	
+	
+	
+	public MButton psCmdToBu(String type, String name, String value){
+		switch (type) {
+		case "eat":
+
+			break;
+		case "ask":
+
+			break;
+		case "c":
+
+			break;
+		case "get":
+
+			break;
+		case "stduy":
+
+			break;
+		case "buy":
+
+			break;
+		case "move":
+
+			break;
+		case "say":
+			
+			break;
+
+		default:
+			break;
+		}
+		
+		
+		return null ;
+	}
+	
+	/**
+	 * 把 [说]指令变为按钮
+	 * @param name
+	 * @param value
+	 * @return
+	 */
+	public MButton psSayCmd(String name, String value) {
+		MButton bu = new MButton(name, 33);
+		String[] theMsgs = value.split(";");
+		bu.addActionListener(new AcLner(theMsgs) {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(index == msgs.length) {
+					index = 0 ;
+				}
+				append(forMatMsg(msgs[index]), 0);
+				index++;
+			}
+		});
+		return null ;
+	}
+	
+	/**
+	 * 把 [说]指令变为按钮
+	 * @param name
+	 * @param value
+	 * @return
+	 * <e type="eat" name="食用" value="$say:xxx;$eff:" />
+	 */
+	public MButton psEatCmd(String name, String value) {
+		MButton bu = new MButton(name, 33);
+		String[] ary = value.split(";");
+		bu.addActionListener(new AcLner(ary) {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				for (int i = 0; i < msgs.length; i++) {
+					if(msgs[i].startsWith("$say:")) {
+						String msg = msgs[i].substring(6);
+						msg = forMatMsg(msg);
+						append(msg, 0);
+					}
+					if(msgs[i].startsWith("$eff:")) {
+						String msg = msgs[i].substring(5);
+					}
+				}
+			}
+		});
+		return bu ;
+	}
+	
+	public String forMatMsg(String str) {
+		str = str.replaceAll("$N", player.getName());
+		str = str.replaceAll("$n", npcCtrl.npc.getName());
+		return str ;
+	}
+	
+	
+	/****************************************************************
+	 *                     输出游戏中信息                                                                                      *
+	 ****************************************************************/
 	/**
 	 * 当功能关闭时，输出对应信息
 	 * @param type
 	 */
 	public void funCloseInfo(int type){
-		if(type == Constant.State){
+		if(type == C.State){
 			append("你不再查看自己的【",0);
-		}else if(type == Constant.Bag){
+		}else if(type == C.Bag){
 			append("你关上了【",0);
 		}else{
 			SoundControl.jiemianMuc("closeMap"); 
 			append("你犹豫了会，还是决定先不去【",0);
 		}
-		append(Constant.funAry[type], 1);
+		append(C.funAry[type], 1);
 		append("】！\n", 0);
 	}
 	
@@ -1327,20 +1513,22 @@ public class GameControl {
 	 * @param type
 	 */
 	public void funOpenInfo(int type){
-		if(type==Constant.State){
+		if(type==C.State){
 			append("你闭上双目，精心查看自己的【",0);
-		}else if(type==Constant.Map){
+		}else if(type==C.Map){
 			append("你稍作停顿，准备好好的看看【",0);
-		}else if(type==Constant.Bag){
+		}else if(type==C.Bag){
 			append("你心神一动，便打开了【",0);
-		}else if(type==Constant.Task){
+		}else if(type==C.Task){
 			append("你正准备查看【",0);
 		}else{
 			append("你正准备进入【",0);
 		}
-		append(Constant.funAry[type], 1);
+		append(C.funAry[type], 1);
 		append("】！\n", 0);
 	}
+	
+	
 	
 	
 	/**
@@ -1348,13 +1536,14 @@ public class GameControl {
 	 * @param funListener
 	 */
 	public void initFunFrame(FunListener funListener){
-		fubenFrame = new SpFrame(mainFrame, Constant.Fuben);
-		stateFrame = new SpFrame(mainFrame, Constant.State);
+		fubenFrame = new SpFrame(mainFrame, C.Fuben);
+		stateFrame = new SpFrame(mainFrame, C.State);
 		//fightFrame = new SpFrame(mainFrame, Constant.Fight);
-		jiangHuFrame = new SpFrame(mainFrame, Constant.JiangHu);
-		//mapFrame = new SpFrame(mainFrame, Constant.Map);
-		bagFrame = new SpFrame(mainFrame, Constant.Bag);
-		funListener.initFunFrame(fubenFrame, stateFrame, fightFrame, jiangHuFrame, bagFrame, mapFrame);
+		jiangHuFrame = new SpFrame(mainFrame, C.JiangHu);
+		mapFrame = new SpFrame(mainFrame, C.Map);
+		bagFrame = new SpFrame(mainFrame, C.Bag);
+		taskFrame = new SpFrame(mainFrame, C.Task);
+		funListener.initFunFrame(fubenFrame, stateFrame, fightFrame, jiangHuFrame, bagFrame, mapFrame, taskFrame);
 	}
 
 	public KeyMana getKeyMana() {
@@ -1373,23 +1562,79 @@ public class GameControl {
 	
 	
 	
-	private MButton view = new MButton("查看", 2);
-	private MButton talk = new MButton("交谈", 2);  
-	private MButton kill = new MButton("战斗", 2);
-	private MButton give = new MButton("给与", 2);
-	private MButton trading = new MButton("交易", 2);
-	private MButton tasks = new MButton("任务", 2);
-	private MButton[] actionBu = {view, talk, kill, give, trading, tasks} ;
+	
+	/*****************************************************************
+	 ********************       玩家与npc的交互               ****************
+	 ****************************************************************/
 	/**
 	 * 把所有交互按钮设置为不启用
 	 */
 	public void initAcBustatus() {
-		for (int i = 0; i < actionBu.length; i++) {
-			actionBu[i].used = false ;
-		}
+		gameView.initAcBustatus();
+	}
+	
+
+	public SpFrame getTaskFrame() {
+		return taskFrame;
 	}
 	
 	
+	/*******************************************************************
+	 * 							检查人物信息
+	 *******************************************************************/
+	 public boolean isHave(String[] ary) {
+		 String id = ary[0] ;
+		 int num = SUtils.conStrtoInt(ary[1]);
+		 int bagNum = player.getItemNum(id);
+		 if(num>bagNum) {
+			 return false ;
+		 }
+		 return true ;
+	 }
+	
+	
+	
+	
+	
+	/***********************************************************************************************
+	 **********************************  控制主界面视图 
+	 ***********************************************************************************************/
+	public void setSceneTitle(String title) {
+		sceneP.setBorder(BorderFactory.createTitledBorder(title));
+	}
+	
+	public void removeNPC(JButton npc) {
+		gameView.removeNpc(npc);
+	}
+
+	public Scene getScene() {
+		return scene;
+	}
+
+	public void setScene(Scene scene) {
+		this.scene = scene;
+	}
+
+	public boolean isInScene() {
+		return isInScene;
+	}
+
+	public void setInScene(boolean isInScene) {
+		this.isInScene = isInScene;
+	}
+	
+	
+	public String getCurDituID() {
+		return curDitu.getId();
+	}
+
+	public MyDialog getTan() {
+		return tan;
+	}
+
+	public void setTan(MyDialog tan) {
+		this.tan = tan;
+	}
 	
 	
 	

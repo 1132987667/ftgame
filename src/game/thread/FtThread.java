@@ -1,5 +1,6 @@
 package game.thread;
 
+import game.control.FightControl;
 import game.entity.NPC;
 import game.entity.Player;
 import game.utils.SUtils;
@@ -60,7 +61,7 @@ public class FtThread implements Runnable {
 		if (myHp > 0 && foeHp > 0) {
 			System.out.println("我方血量:" + myHp + ",敌方血量:" + foeHp);
 			info.repaint();
-			map = SUtils.fightHelper(player, npc, type);
+			map = FightControl.fightHelper(player, npc, type);
 			String value = map.get("value").toString();
 			System.out.println(map.get("atkType")+":"+SUtils.conObjtoInt(map.get("atkType")));
 			int atkType = SUtils.conObjtoInt(map.get("atkType"));

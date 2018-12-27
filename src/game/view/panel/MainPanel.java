@@ -1,6 +1,6 @@
 package game.view.panel;
 
-import game.utils.Constant;
+import game.utils.C;
 
 import java.awt.Font;
 
@@ -49,13 +49,13 @@ public class MainPanel extends JPanel{
 		myAttr = new JPanel();
 		add(myAttr);
 		myAttr.setBounds(0, 0, attrWidth, attrHeight);
-		myAttr.setBackground(Constant.colorAry[4]);
+		myAttr.setBackground(C.colorAry[4]);
 		Font font1 = new Font("楷体", Font.PLAIN, 16);
 		Font font2 = new Font("楷体", Font.BOLD, 20);
 		myAttr.setLayout(null);
 		myAttr.setBorder(BorderFactory.createTitledBorder("当前玩家"));
 		for (int i = 0; i < attrAryLabel.length; i++) {
-			attrAryLabel[i] = new JLabel(Constant.attrAry[i]+":");
+			attrAryLabel[i] = new JLabel(C.attrAry[i]+":");
 			if(i==0){
 				attrAryLabel[i] = new JLabel("	");
 			}
@@ -68,11 +68,11 @@ public class MainPanel extends JPanel{
 		foeAttr = new JPanel();
 		add(foeAttr);
 		foeAttr.setBounds(632, 0, 136, 216);
-		foeAttr.setBackground(Constant.colorAry[4]);
+		foeAttr.setBackground(C.colorAry[4]);
 		foeAttr.setLayout(null);
 		foeAttr.setBorder(BorderFactory.createTitledBorder("敌方信息"));
 		for (int i = 0; i < attrAryLabel.length; i++) {
-			attrAryLabel[i] = new JLabel(Constant.attrAry[i]+":");
+			attrAryLabel[i] = new JLabel(C.attrAry[i]+":");
 			if(i==0){
 				attrAryLabel[i] = new JLabel("	");
 			}
@@ -88,7 +88,7 @@ public class MainPanel extends JPanel{
 		add(roomInfo);
 		roomInfo.setBounds(attrWidth, 0, 512, 120);
 		roomInfo.setFont(font2);
-		roomInfo.setBackground(Constant.colorAry[1]);
+		roomInfo.setBackground(C.colorAry[1]);
 		roomInfo.setBorder(BorderFactory.createTitledBorder("场景"));
 		
 		/** 战斗场景初始化 */
@@ -97,17 +97,17 @@ public class MainPanel extends JPanel{
 		add(fightJpanel);
 		fightJpanel.setBounds(attrWidth, 120, 512, 298);
 		fightJpanel.setFont(font2);
-		fightJpanel.setBackground(Constant.colorAry[2]);
+		fightJpanel.setBackground(C.colorAry[2]);
 		fightJpanel.setBorder(BorderFactory.createEtchedBorder());
 		
 		/** 功能 --开始  */
 		function = new JPanel() ;
 		add(function);
 		function.setBounds(0, attrHeight, 120, 200);
-		function.setBackground(Constant.colorAry[3]);
+		function.setBackground(C.colorAry[3]);
 		function.setBorder(BorderFactory.createEtchedBorder());
 		for (int i = 0; i < funAry.length; i++) {
-			funAry[i] = new JButton("【"+Constant.funAry[i]+"】");
+			funAry[i] = new JButton("【"+C.funAry[i]+"】");
 			funAry[i].setFont(font1);
 			funAry[i].setFocusable(false);
 			function.add(funAry[i]);
@@ -118,15 +118,15 @@ public class MainPanel extends JPanel{
 		/** 背包 --开始  */
 		bagPanel = new JTabbedPane();
 		fightJpanel.add(bagPanel);
-		bagPanel.setBackground(Constant.colorAry[2]);
+		bagPanel.setBackground(C.colorAry[2]);
 		bagPanel.setBounds(6, 6, 278, 280);
 		
 		setLayout(null);
 		for (int i = 0; i < bagJPanelAry.length; i++) {
 			bagJPanelAry[i] = new JPanel();
-			bagJPanelAry[i].setBackground(Constant.colorAry[2]);
+			bagJPanelAry[i].setBackground(C.colorAry[2]);
 			bagJPanelAry[i].setLayout(null);
-			bagPanel.addTab(Constant.bagClassifyAry[i], bagJPanelAry[i]);
+			bagPanel.addTab(C.bagClassifyAry[i], bagJPanelAry[i]);
 			//bagJPanelAry[i].add(new BagClassifyPanel(fightJpanel,i));
 		}
 		/** 背包 --结束  */

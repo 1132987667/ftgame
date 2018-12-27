@@ -68,7 +68,8 @@ public class Archive implements Serializable{
 
 	/** 当前人物有关任务情况 */
 	private Map<String,Tasks> taskMap = null ;
-	private Map<String,Tasks> curTaskList = new HashMap<>() ;
+	/** 只储存一次的任务 */
+	private Map<String,Tasks> curTasks = new HashMap<>() ;
 	
 	public Archive() {
 		/**
@@ -406,14 +407,16 @@ public class Archive implements Serializable{
 	}
 
 
-	public Map<String, Tasks> getCurTaskList() {
-		return curTaskList;
+	public Map<String, Tasks> getCurTasks() {
+		return curTasks;
 	}
 
 
-	public void setCurTaskList(Map<String, Tasks> curTaskList) {
-		this.curTaskList = curTaskList;
+	public void setCurTasks(Map<String, Tasks> curTasks) {
+		this.curTasks = curTasks;
 	}
+
+	
 	
 	
 }

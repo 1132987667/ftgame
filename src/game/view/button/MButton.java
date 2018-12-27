@@ -2,6 +2,7 @@ package game.view.button;
 
 import java.awt.event.MouseEvent;
 
+import game.entity.Item;
 import game.entity.NPC;
 import game.entity.Scene;
 
@@ -13,17 +14,6 @@ import game.entity.Scene;
  */
 public class MButton extends TButton {
 	private static final long serialVersionUID = 1L;
-	/**
-	 * flag的作用 当flag为false时，在鼠标移入移出才能有特效 当flag为true时，按钮保持被点击的状态
-	 */
-	/**
-	 * 需要控制场景
-	 * 在点击不能到达的地点时  移入移出没有效果 被点击时也没有效果
-	 * 
-	 * 移入移出有效果，但是点击无效果
-	 * 
-	 */
-	
 	
 	/** 移入移出点击都有效果 */
 	public static final int Well    = 1  ;
@@ -31,14 +21,18 @@ public class MButton extends TButton {
 	public static final int Base    = 2 ;
 	/** 移入移出都无效果 */
 	public static final int Enabled = 3  ;
-
+	/** 鼠标效果启用标志 */
+	private int flag = Well ;
 	
+	/** 判断当前按钮是否被启用，在动作交互按钮中使用 */
 	public boolean used = false ;
 	
-	private int flag = 1 ;;
-	private Scene curScene = null;
+	/** 场景编号 */
 	private int num = -1 ;
+	/******** 储存的实体类 **********/
 	private NPC npc = null;
+	private Item item = null;
+	private Scene scene = null;
 	
 	public NPC getNpc() {
 		return npc;
@@ -50,6 +44,7 @@ public class MButton extends TButton {
 
 	public MButton(String str, int type) {
 		super(str, type);
+		setSize();
 	}
 
 
@@ -89,13 +84,6 @@ public class MButton extends TButton {
 		this.flag = flag;
 	}
 
-	public Scene getCurScene() {
-		return curScene;
-	}
-
-	public void setCurScene(Scene curScene) {
-		this.curScene = curScene;
-	}
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
@@ -137,15 +125,37 @@ public class MButton extends TButton {
 	}
 
 	public void setNum(int num) {
-		System.out.println(curScene.name+"的num设置为:"+num);
 		this.num = num;
 	}
 
 	@Override
 	public String toString() {
-		return "MButton [flag=" + flag + ", curScene=" + curScene + ", num="
+		return "MButton [flag=" + flag + ", curScene=" + scene + ", num="
 				+ num + ", npc=" + npc + "]";
 	}
 
+	/**
+	 * 为当前所在位置按钮设置特殊效果
+	 */
+	public void setCurBu() {
+		this.setIcon(image2);
+		flag = 3 ; 
+	}
+
+	public Item getItem() {
+		return item;
+	}
+
+	public void setItem(Item item) {
+		this.item = item;
+	}
+
+	public Scene getScene() {
+		return scene;
+	}
+
+	public void setScene(Scene scene) {
+		this.scene = scene;
+	}
 	
 }

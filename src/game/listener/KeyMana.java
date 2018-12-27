@@ -1,6 +1,6 @@
 package game.listener;
 
-import game.utils.Constant;
+import game.utils.C;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -41,22 +41,22 @@ public class KeyMana implements KeyListener{
 		System.out.println("按键了"+a+"键");
 		switch (keyChar) {
 		case Map:
-			funListener.call(Constant.SMap);
+			funListener.call(C.SMap);
 			break;
 		case Bag:
-			funListener.call(Constant.SBag);
+			funListener.call(C.SBag);
 			break;
 		case Task:
-			funListener.call(Constant.STask);
+			funListener.call(C.STask);
 			break;
 		case State:
-			funListener.call(Constant.SState);
+			funListener.call(C.SState);
 			break;
 		case Juqing:
-			funListener.call(Constant.SJiangHu);
+			funListener.call(C.SJiangHu);
 			break;
 		case Fuben:
-			funListener.call(Constant.SFuben);
+			funListener.call(C.SFuben);
 			break;
 		default:
 			break;

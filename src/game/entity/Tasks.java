@@ -8,38 +8,41 @@ import java.io.Serializable;
  *
  */
 public class Tasks implements Serializable {
-
 	private static final long serialVersionUID = 1L;
-	
-	private String id = "" ;
+
+	/** 基本信息 */
 	private String taskName = "" ;
-	private int curState = 0 ;
+	private String id = "" ;
 	private String npcId = "" ;
+	private String npcName = "" ;
 	private String taskDes = "" ;
-	private String task1 = "" ;
-	private String task2 = "" ;
-	private String task3 = "" ;
+	private String type = "" ;
+	
+	/** 任务状态 */
+	private int curState = 0 ;
+	
+	/** 谈话内容 */
+	private String startMsg = "" ;
+	private String undoMsg = "" ;
+	private String acceptMsg = "" ;
+	private String endMsg = "" ;
+	
+	/** 条件 */
 	private String startCond = "" ;
 	private String acceptCond = "" ;
 	private String endCond = "" ;
 	
-	public String getId() {
-		return id;
-	}
-	public void setId(String id) {
-		this.id = id;
-	}
 	public String getTaskName() {
 		return taskName;
 	}
 	public void setTaskName(String taskName) {
 		this.taskName = taskName;
 	}
-	public int getCurState() {
-		return curState;
+	public String getId() {
+		return id;
 	}
-	public void setCurState(int curState) {
-		this.curState = curState;
+	public void setId(String id) {
+		this.id = id;
 	}
 	public String getNpcId() {
 		return npcId;
@@ -47,29 +50,41 @@ public class Tasks implements Serializable {
 	public void setNpcId(String npcId) {
 		this.npcId = npcId;
 	}
-	public String getTaskDes() {
-		return taskDes;
+	public String getNpcName() {
+		return npcName;
 	}
-	public void setTaskDes(String taskDes) {
-		this.taskDes = taskDes;
+	public void setNpcName(String npcName) {
+		this.npcName = npcName;
 	}
-	public String getTask1() {
-		return task1;
+	public int getCurState() {
+		return curState;
 	}
-	public void setTask1(String task1) {
-		this.task1 = task1;
+	public void setCurState(int curState) {
+		this.curState = curState;
 	}
-	public String getTask2() {
-		return task2;
+	public String getStartMsg() {
+		return startMsg;
 	}
-	public void setTask2(String task2) {
-		this.task2 = task2;
+	public void setStartMsg(String startMsg) {
+		this.startMsg = startMsg;
 	}
-	public String getTask3() {
-		return task3;
+	public String getUndoMsg() {
+		return undoMsg;
 	}
-	public void setTask3(String task3) {
-		this.task3 = task3;
+	public void setUndoMsg(String undoMsg) {
+		this.undoMsg = undoMsg;
+	}
+	public String getAcceptMsg() {
+		return acceptMsg;
+	}
+	public void setAcceptMsg(String acceptMsg) {
+		this.acceptMsg = acceptMsg;
+	}
+	public String getEndMsg() {
+		return endMsg;
+	}
+	public void setEndMsg(String endMsg) {
+		this.endMsg = endMsg;
 	}
 	public String getStartCond() {
 		return startCond;
@@ -89,7 +104,18 @@ public class Tasks implements Serializable {
 	public void setEndCond(String endCond) {
 		this.endCond = endCond;
 	}
-	
+	public String getTaskDes() {
+		return taskDes;
+	}
+	public void setTaskDes(String taskDes) {
+		this.taskDes = taskDes;
+	}
+	public String getType() {
+		return type;
+	}
+	public void setType(String type) {
+		this.type = type;
+	}
 	
 	
 }

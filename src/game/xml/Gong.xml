@@ -1,450 +1,285 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<root> 
-  <!-- 内功的开始 -->  
-  <gong id="2001"> 
-    <name>基本吐纳法</name>  
-    <quality>0</quality>  
-    <des>吹呴呼吸，吐故纳新，熊经鸟伸，为寿而已矣</des>  
-    <maxTier>9</maxTier>  
-    <curTier>1</curTier>  
-    <!-- 1:外 ， 2:内 -->  
-    <type>1</type>
-    <req>人族</req>  
-    <needRank>10</needRank>  
-    <effect> 
-      <tier value="1"> 
-        <needRank>1</needRank>  
-        <needExp/>  
-        <AddAttrs>hp:30%; mp:30%</AddAttrs> 
-      </tier>  
-      <tier value="2"> 
-        <needRank>3</needRank>  
-        <needExp/>  
-        <AddAttrs>hp:40%; mp:40%</AddAttrs> 
-      </tier>  
-      <tier value="3"> 
-        <needRank>5</needRank>  
-        <needExp/>  
-        <AddAttrs>hp:50%; mp:50%</AddAttrs> 
-      </tier>  
-      <tier value="4"> 
-        <needRank>7</needRank>  
-        <needExp/>  
-        <AddAttrs>hp:60%; mp:60%</AddAttrs> 
-      </tier>  
-      <tier value="5"> 
-        <needRank>9</needRank>  
-        <needExp/>  
-        <AddAttrs>hp:70%; mp:70%</AddAttrs> 
-      </tier> 
-    </effect>  
-    <skills> 
-      <skill id="0"> 
-        <name/> 
-      </skill> 
-    </skills> 
-  </gong>  
-  <gong id="2002"> 
-    <name>基本吐纳法</name>  
-    <quality>0</quality>  
-    <des>吹呴呼吸，吐故纳新，熊经鸟伸，为寿而已矣</des>  
-    <maxTier>9</maxTier>  
-    <curTier>1</curTier>  
-    <!-- 1:外 ， 2:内 -->  
-    <type>1</type>
-    <req>人族</req>  
-    <needRank>0</needRank>  
-    <effect> 
-      <tier value="1"> 
-        <needRank>1</needRank>  
-        <needExp>100</needExp>  
-        <AddAttrs>hp:30%;mp:30%;</AddAttrs> 
-      </tier>  
-      <tier value="2"> 
-        <needRank>3</needRank>  
-        <needExp>50</needExp>  
-        <AddAttrs>hp:40%;mp:40%;</AddAttrs> 
-      </tier>  
-      <tier value="3"> 
-        <needRank>5</needRank>  
-        <needExp>0</needExp>  
-        <AddAttrs>hp:50%;mp:50%;</AddAttrs> 
-      </tier>  
-      <tier value="4"> 
-        <needRank>7</needRank>  
-        <needExp>0</needExp>  
-        <AddAttrs>hp:60%;mp:60%;</AddAttrs> 
-      </tier>  
-      <tier value="5"> 
-        <needRank>9</needRank>  
-        <needExp>0</needExp>  
-        <AddAttrs>hp:70%;mp:70%;</AddAttrs> 
-      </tier> 
-    </effect>  
-    <skills> 
-      <skill id="0"> 
-        <name/>  
-        <des/>  
-        <type>wu</type>
-        <req>人族</req>  
-        <needRank>0</needRank>  
-        <target type="foe">1</target>  
-        <!-- 技能消耗 -->  
-        <consume>mpSub:50</consume>  
-        <result>hpSub:120%</result>  
-        <studyCase>needTier:1</studyCase>  
-        <cd>1</cd> 
-      </skill> 
-    </skills> 
-  </gong>  
-  <gong id="2003"> 
-    <name>月华决</name>  
-    <quality>0</quality>  
-    <des>月之精华，加之我身</des>  
-    <maxTier>9</maxTier>  
-    <curTier>1</curTier>  
-    <type>1</type>
-    <req>人族</req>  
-    <needRank>0</needRank>  
-    <effect/> 
-  </gong>  
-  <gong id="2004"> 
-    <name>坐忘功</name>  
-    <quality>0</quality>  
-    <des>坐忘收心，主静去欲，静则生慧，动则成昏，与道冥一，万虑皆遗，离形去智，同于大通，是谓坐忘。</des>  
-    <maxTier>9</maxTier>  
-    <curTier>1</curTier>  
-    <type>1</type>
-    <req>人族</req>  
-    <needRank>0</needRank>  
-    <effect/> 
-  </gong>  
-  <gong id="2005"> 
-    <name>滴水经</name>  
-    <quality>0</quality>  
-    <des>连绵不绝</des>  
-    <maxTier>9</maxTier>  
-    <curTier>1</curTier>  
-    <type>1</type>
-    <req>人族</req>  
-    <needRank>0</needRank>  
-    <effect/> 
-  </gong>  
-  <gong id="2006"> 
-    <name>滴水剑法</name>  
-    <quality>0</quality>  
-    <des>一瞬之间，千剑袭来</des>  
-    <maxTier>9</maxTier>  
-    <curTier>1</curTier>  
-    <type>2</type>
-    <req>人族</req>  
-    <needRank>0</needRank>  
-    <effect/> 
-  </gong>  
-  <gong id="2007"> 
-    <name>万剑曲</name>  
-    <quality>0</quality>  
-    <des>万家剑诀，一歌以盖之</des>  
-    <maxTier>9</maxTier>  
-    <curTier>1</curTier>  
-    <type>1</type>
-    <req>人族</req>  
-    <needRank>10</needRank>  
-    <effect/> 
-  </gong>  
-  <gong id="2008"> 
-    <name>乾坤剑典</name>  
-    <quality>0</quality>  
-    <des>剑典精品，可撼乾坤</des>  
-    <maxTier>9</maxTier>  
-    <curTier>1</curTier>  
-    <type>1</type>
-    <req>人</req>  
-    <needRank>10</needRank>  
-    <effect/> 
-  </gong>  
-  <gong id="2009"> 
-    <name>水元功</name>  
-    <quality>0</quality>  
-    <des>上善若水</des>  
-    <maxTier>9</maxTier>  
-    <curTier>1</curTier>  
-    <type>1</type>
-    <req>人族</req>  
-    <needRank>10</needRank>  
-    <effect/> 
-  </gong>  
-  <gong id="2010"> 
-    <name>水源注</name>  
-    <quality>0</quality>  
-    <des>水之深解</des>  
-    <maxTier>9</maxTier>  
-    <curTier>1</curTier>  
-    <type>1</type>
-    <req>人族</req>  
-    <needRank>0</needRank>  
-    <effect/> 
-  </gong>  
-  <gong id="2011"> 
-    <name>九天图</name>  
-    <quality>0</quality>  
-    <des>九天美景</des>  
-    <maxTier>9</maxTier>  
-    <curTier>1</curTier>  
-    <type>1</type>
-    <req>人族</req>  
-    <needRank>0</needRank>  
-    <effect/> 
-  </gong>  
-  <gong id="2022"> 
-    <name>如意清灵体</name>  
-    <quality>0</quality>  
-    <des>玄妙体术</des>  
-    <maxTier>9</maxTier>  
-    <curTier>1</curTier>  
-    <type>1</type>
-    <req>人族</req>  
-    <needRank>0</needRank>  
-    <effect/> 
-  </gong>  
-  <gong id="2023"> 
-    <name>凌云心经</name>  
-    <quality>0</quality>  
-    <des>防守时若清风拂山岗，进攻时若惊雷落凡尘</des>  
-    <maxTier>9</maxTier>  
-    <curTier>1</curTier>  
-    <type>1</type>
-    <req>人族</req>  
-    <needRank>0</needRank>  
-    <effect/> 
-  </gong>  
-  <gong id="2024"> 
-    <name>猛虎心法</name>  
-    <quality>0</quality>  
-    <des>龙虎伏，鬼神钦</des>  
-    <maxTier>9</maxTier>  
-    <curTier>1</curTier>  
-    <type>1</type>
-    <req>人族</req>  
-    <needRank>0</needRank>  
-    <effect/> 
-  </gong>  
-  <gong id="2020"> 
-    <name>北斗秘本</name>  
-    <quality>0</quality>  
-    <des>星力加身</des>  
-    <maxTier>9</maxTier>  
-    <curTier>1</curTier>  
-    <type>1</type>
-    <req>人族</req>  
-    <needRank>0</needRank>  
-    <effect/> 
-  </gong>  
-  <gong id="2019"> 
-    <name>法天象地</name>  
-    <quality>0</quality>  
-    <des>沟通天地，赐我神力</des>  
-    <maxTier>9</maxTier>  
-    <curTier>1</curTier>  
-    <type>1</type>
-    <req>人族</req>  
-    <needRank>0</needRank>  
-    <effect/> 
-  </gong>  
-  <gong id="2018"> 
-    <name>三头六臂</name>  
-    <quality>0</quality>  
-    <des>体修神技，攻守兼备，以一当百</des>  
-    <maxTier>9</maxTier>  
-    <curTier>1</curTier>  
-    <type>1</type>
-    <req>人族</req>  
-    <needRank>0</needRank>  
-    <effect/> 
-  </gong>  
-  <gong id="2017"> 
-    <name>风遁法</name>  
-    <quality>0</quality>  
-    <des>风，让我飞的更快些</des>  
-    <maxTier>9</maxTier>  
-    <curTier>1</curTier>  
-    <type>1</type>
-    <req>人族</req>  
-    <needRank>0</needRank>  
-    <effect/> 
-  </gong>  
-  <gong id="2016"> 
-    <name>剑阵初解</name>  
-    <quality>0</quality>  
-    <des>剑阵奥义</des>  
-    <maxTier>9</maxTier>  
-    <curTier>1</curTier>  
-    <type>1</type>
-    <req>人族</req>  
-    <needRank>0</needRank>  
-    <effect/> 
-  </gong>  
-  <gong id="2015"> 
-    <name>犁天剑阵</name>  
-    <quality>0</quality>  
-    <des>号称犁田</des>  
-    <maxTier>9</maxTier>  
-    <curTier>1</curTier>  
-    <type>2</type>
-    <req>人族</req>  
-    <needRank>0</needRank>  
-    <effect/> 
-  </gong>  
-  <gong id="2014"> 
-    <name>阴阳二气阵</name>  
-    <quality>0</quality>  
-    <des>阴阳，攻守，生死</des>  
-    <maxTier>5</maxTier>  
-    <curTier>1</curTier>  
-    <type>1</type>
-    <req>人族</req>  
-    <needRank>0</needRank>  
-    <effect/> 
-  </gong>  
-  <gong id="2013"> 
-    <name>阵法九卷</name>  
-    <quality>0</quality>  
-    <des>阵法入门书</des>  
-    <maxTier>9</maxTier>  
-    <curTier>1</curTier>  
-    <type>1</type>
-    <req>人族</req>  
-    <needRank>0</needRank>  
-    <effect/> 
-  </gong>  
-  <gong id="2012"> 
-    <name>小千剑阵</name>  
-    <quality>0</quality>  
-    <des>千剑组成剑阵，威力巨大</des>  
-    <maxTier>9</maxTier>  
-    <curTier>1</curTier>  
-    <type>1</type>
-    <req>人族</req>  
-    <needRank>0</needRank>  
-    <effect/> 
-  </gong>  
-  <gong id="2021"> 
-    <name>雷火剑</name>  
-    <quality>0</quality>  
-    <des>剑出，天雷加地火</des>  
-    <maxTier>9</maxTier>  
-    <curTier>1</curTier>  
-    <type>2</type>
-    <req>人族</req>  
-    <needRank>0</needRank>  
-    <effect/> 
-  </gong>  
-  <gong id="2025"> 
-    <name>猛虎心法</name>  
-    <quality>0</quality>  
-    <des>龙虎伏，鬼神钦</des>  
-    <maxTier>9</maxTier>  
-    <curTier>1</curTier>  
-    <type>1</type>
-    <req>人族</req>  
-    <needRank>0</needRank>  
-    <effect/> 
-  </gong>  
-  <gong id="2024"> 
-    <name>猛虎心法</name>  
-    <quality>0</quality>  
-    <des>龙虎伏，鬼神钦</des>  
-    <maxTier>9</maxTier>  
-    <curTier>1</curTier>  
-    <type>1</type>
-    <req>人族</req>  
-    <needRank>0</needRank>  
-    <effect/> 
-  </gong>  
-  <gong id="2026"> 
-    <name>伏龙功</name>  
-    <quality>0</quality>  
-    <des>以深厚功力驾驭真气，擒龙控鹤，霸气无方</des>  
-    <maxTier>9</maxTier>  
-    <curTier>1</curTier>  
-    <type>1</type>
-    <req>人族</req>  
-    <needRank>0</needRank>  
-    <effect/> 
-  </gong>  
-  <gong id="2027"> 
-    <name>醉梦神功</name>  
-    <quality>0</quality>  
-    <des>心法讲求“形醉意不醉，意醉神不醉”。功法不拘一格，御敌时天地皆醉，醉梦醉醒，往往可出奇制胜。</des>  
-    <maxTier>9</maxTier>  
-    <curTier>1</curTier>  
-    <type>1</type>
-    <req>人族</req>  
-    <needRank>0</needRank>  
-    <effect/> 
-  </gong>  
-  <gong id="2028"> 
-    <name>蛊神诀</name>  
-    <quality>0</quality>  
-    <des>乃苗族一位控蛊大师所创，该内功以内力豢养“蛊虫”，反之以“蛊毒”润养内力，对敌时内力中暗藏万千“蛊毒”，令敌人防不胜防。</des>  
-    <maxTier>9</maxTier>  
-    <curTier>1</curTier>  
-    <type>1</type>
-    <req>人族</req>  
-    <needRank>0</needRank>  
-    <effect/> 
-  </gong>  
-  <gong id="2029"> 
-    <name>耕余剩技</name>  
-    <quality>0</quality>  
-    <des>心法讲求“形醉意不醉，意醉神不醉”。功法不拘一格，御敌时天地皆醉，醉梦醉醒，往往可出奇制胜。</des>  
-    <maxTier>9</maxTier>  
-    <curTier>1</curTier>  
-    <type>1</type>
-    <req>人族</req>  
-    <needRank>0</needRank>  
-    <effect/> 
-  </gong>  
-  <gong id="2041"> 
-    <name>伏牛功</name>  
-    <quality>0</quality>  
-    <des>流传甚广的一部初级炼体功法</des>  
-    <maxTier>5</maxTier>  
-    <curTier>1</curTier>  
-    <type>1</type>
-    <req>人族</req>  
-    <needRank>0</needRank>  
-    <effect> 
-      <tier value="1"> 
-        <needRank>1</needRank>  
-        <needExp>0.5</needExp>  
-        <AddAttrs>hp:96;atk:6;def:5</AddAttrs> 
-      </tier>  
-      <tier value="2"> 
-        <needRank>3</needRank>  
-        <needExp>0.5</needExp>  
-        <AddAttrs>hp:158;atk:10;def:9</AddAttrs> 
-      </tier>  
-      <tier value="3"> 
-        <needRank>5</needRank>  
-        <needExp>0.5</needExp>  
-        <AddAttrs>hp:230;atk:14;def:15</AddAttrs> 
-      </tier>  
-      <tier value="4"> 
-        <needRank>7</needRank>  
-        <needExp>0.5</needExp>  
-        <AddAttrs>hp:312;atk:20;def:21</AddAttrs> 
-      </tier>  
-      <tier value="5"> 
-        <needRank>9</needRank>  
-        <needExp>0.5</needExp>  
-        <AddAttrs>hp:403;atk:25;atk:29</AddAttrs> 
-      </tier> 
-    </effect>  
-    <skills> 
-      <skill id=""> 
-        <name/> 
-      </skill> 
-    </skills> 
-  </gong> 
+<root>
+	<!-- 内功的开始 -->
+	<!-- <gong id="2001"> <name>基本吐纳法</name> 
+		<des>吹呴呼吸，吐故纳新，熊经鸟伸，为寿而已矣</des> <qua>3</qua> 
+		<maxTier>9</maxTier> <type>1</type> <needRank>1</needRank> 
+		<effectStr></effectStr> <req>人族</req> <price>10000</price> 
+		<curTier>1</curTier> <effect/> </gong> <gong 
+		id="2002"> <name>基本吐纳法</name> <des>吹呴呼吸，吐故纳新，熊经鸟伸，为寿而已矣</des> 
+		<qua>3</qua> <maxTier>9</maxTier> <type>1</type> 
+		<needRank>0</needRank> <effectStr></effectStr> 
+		<req>人族</req> <price>10000</price> <curTier>1</curTier> 
+		<effect/> </gong> <gong id="2003"> <name>月华决</name> 
+		<des>月之精华，加之我身</des> <qua>3</qua> <maxTier>9</maxTier> 
+		<type>1</type> <needRank>0</needRank> <effectStr></effectStr> 
+		<req>人族</req> <price>10000</price> <curTier>1</curTier> 
+		<effect/> </gong> <gong id="2004"> <name>坐忘功</name> 
+		<des>坐忘收心，主静去欲，静则生慧，动则成昏，与道冥一，万虑皆遗，离形去智，同于大通，是谓坐忘。</des> 
+		<qua>3</qua> <maxTier>9</maxTier> <type>1</type> 
+		<needRank>0</needRank> <effectStr></effectStr> 
+		<req>人族</req> <price>10000</price> <curTier>1</curTier> 
+		<effect/> </gong> <gong id="2005"> <name>滴水经</name> 
+		<des>连绵不绝</des> <qua>3</qua> <maxTier>9</maxTier> 
+		<type>1</type> <needRank>0</needRank> <effectStr></effectStr> 
+		<req>人族</req> <price>10000</price> <curTier>1</curTier> 
+		<effect/> </gong> <gong id="2006"> <name>滴水剑法</name> 
+		<des>一瞬之间，千剑袭来</des> <qua>3</qua> <maxTier>9</maxTier> 
+		<type>2</type> <needRank>0</needRank> <effectStr></effectStr> 
+		<req>人族</req> <price>10000</price> <curTier>1</curTier> 
+		<effect/> </gong> <gong id="2007"> <name>万剑曲</name> 
+		<des>万家剑诀，一歌以盖之</des> <qua>3</qua> <maxTier>9</maxTier> 
+		<type>1</type> <needRank>10</needRank> <effectStr></effectStr> 
+		<req>人族</req> <price>10000</price> <curTier>1</curTier> 
+		<effect/> </gong> <gong id="2008"> <name>乾坤剑典</name> 
+		<des>剑典精品，可撼乾坤</des> <qua>3</qua> <maxTier>9</maxTier> 
+		<type>1</type> <needRank>10</needRank> <effectStr></effectStr> 
+		<req>人</req> <price>10000</price> <curTier>1</curTier> 
+		<effect/> </gong> <gong id="2009"> <name>水元功</name> 
+		<des>上善若水</des> <qua>3</qua> <maxTier>9</maxTier> 
+		<type>1</type> <needRank>10</needRank> <effectStr></effectStr> 
+		<req>人族</req> <price>10000</price> <curTier>1</curTier> 
+		<effect/> </gong> <gong id="2010"> <name>水源注</name> 
+		<des>水之深解</des> <qua>3</qua> <maxTier>9</maxTier> 
+		<type>1</type> <needRank>0</needRank> <effectStr></effectStr> 
+		<req>人族</req> <price>10000</price> <curTier>1</curTier> 
+		<effect/> </gong> <gong id="2011"> <name>九天图</name> 
+		<des>九天美景</des> <qua>3</qua> <maxTier>9</maxTier> 
+		<type>1</type> <needRank>0</needRank> <effectStr></effectStr> 
+		<req>人族</req> <price>10000</price> <curTier>1</curTier> 
+		<effect/> </gong> <gong id="2012"> <name>小千剑阵</name> 
+		<des>千剑组成剑阵，威力巨大</des> <qua>3</qua> <maxTier>9</maxTier> 
+		<type>1</type> <needRank>0</needRank> <effectStr></effectStr> 
+		<req>人族</req> <price>10000</price> <curTier>1</curTier> 
+		<effect/> </gong> <gong id="2013"> <name>阵法九卷</name> 
+		<des>阵法入门书</des> <qua>3</qua> <maxTier>9</maxTier> 
+		<type>1</type> <needRank>0</needRank> <effectStr></effectStr> 
+		<req>人族</req> <price>10000</price> <curTier>1</curTier> 
+		<effect/> </gong> <gong id="2014"> <name>阴阳二气阵</name> 
+		<des>阴阳，攻守，生死</des> <qua>3</qua> <maxTier>5</maxTier> 
+		<type>1</type> <needRank>0</needRank> <effectStr></effectStr> 
+		<req>人族</req> <price>10000</price> <curTier>1</curTier> 
+		<effect/> </gong> <gong id="2015"> <name>犁天剑阵</name> 
+		<des>号称犁田</des> <qua>3</qua> <maxTier>9</maxTier> 
+		<type>2</type> <needRank>0</needRank> <effectStr></effectStr> 
+		<req>人族</req> <price>10000</price> <curTier>1</curTier> 
+		<effect/> </gong> <gong id="2016"> <name>剑阵初解</name> 
+		<des>剑阵奥义</des> <qua>3</qua> <maxTier>9</maxTier> 
+		<type>1</type> <needRank>0</needRank> <effectStr></effectStr> 
+		<req>人族</req> <price>10000</price> <curTier>1</curTier> 
+		<effect/> </gong> <gong id="2017"> <name>风遁法</name> 
+		<des>风，让我飞的更快些</des> <qua>3</qua> <maxTier>9</maxTier> 
+		<type>1</type> <needRank>0</needRank> <effectStr></effectStr> 
+		<req>人族</req> <price>10000</price> <curTier>1</curTier> 
+		<effect/> </gong> <gong id="2018"> <name>三头六臂</name> 
+		<des>体修神技，攻守兼备，以一当百</des> <qua>3</qua> <maxTier>9</maxTier> 
+		<type>1</type> <needRank>0</needRank> <effectStr></effectStr> 
+		<req>人族</req> <price>10000</price> <curTier>1</curTier> 
+		<effect/> </gong> <gong id="2019"> <name>法天象地</name> 
+		<des>沟通天地，赐我神力</des> <qua>3</qua> <maxTier>9</maxTier> 
+		<type>1</type> <needRank>0</needRank> <effectStr></effectStr> 
+		<req>人族</req> <price>10000</price> <curTier>1</curTier> 
+		<effect/> </gong> <gong id="2020"> <name>北斗秘本</name> 
+		<des>星力加身</des> <qua>3</qua> <maxTier>9</maxTier> 
+		<type>1</type> <needRank>0</needRank> <effectStr></effectStr> 
+		<req>人族</req> <price>10000</price> <curTier>1</curTier> 
+		<effect/> </gong> <gong id="2021"> <name>雷火剑</name> 
+		<des>剑出，天雷加地火</des> <qua>3</qua> <maxTier>9</maxTier> 
+		<type>2</type> <needRank>0</needRank> <effectStr></effectStr> 
+		<req>人族</req> <price>10000</price> <curTier>1</curTier> 
+		<effect/> </gong> <gong id="2022"> <name>如意清灵体</name> 
+		<des>玄妙体术</des> <qua>3</qua> <maxTier>9</maxTier> 
+		<type>1</type> <needRank>0</needRank> <effectStr></effectStr> 
+		<req>人族</req> <price>10000</price> <curTier>1</curTier> 
+		<effect/> </gong> <gong id="2023"> <name>凌云心经</name> 
+		<des>防守时若清风拂山岗，进攻时若惊雷落凡尘</des> <qua>3</qua> 
+		<maxTier>9</maxTier> <type>1</type> <needRank>0</needRank> 
+		<effectStr></effectStr> <req>人族</req> <price>10000</price> 
+		<curTier>1</curTier> <effect/> </gong> <gong 
+		id="2024"> <name>猛虎心法</name> <des>龙虎伏，鬼神钦</des> 
+		<qua>3</qua> <maxTier>9</maxTier> <type>1</type> 
+		<needRank>0</needRank> <effectStr></effectStr> 
+		<req>人族</req> <price>10000</price> <curTier>1</curTier> 
+		<effect/> </gong> <gong id="2025"> <name>猛虎心法</name> 
+		<des>龙虎伏，鬼神钦</des> <qua>3</qua> <maxTier>9</maxTier> 
+		<type>1</type> <needRank>0</needRank> <effectStr></effectStr> 
+		<req>人族</req> <price>10000</price> <curTier>1</curTier> 
+		<effect/> </gong> <gong id="2026"> <name>伏龙功</name> 
+		<des>以深厚功力驾驭真气，擒龙控鹤，霸气无方</des> <qua>3</qua> 
+		<maxTier>9</maxTier> <type>1</type> <needRank>0</needRank> 
+		<effectStr></effectStr> <req>人族</req> <price>10000</price> 
+		<curTier>1</curTier> <effect/> </gong> <gong 
+		id="2027"> <name>醉梦神功</name> <des>心法讲求“形醉意不醉，意醉神不醉”。功法不拘一格，御敌时天地皆醉，醉梦醉醒，往往可出奇制胜。</des> 
+		<qua>3</qua> <maxTier>9</maxTier> <type>1</type> 
+		<needRank>0</needRank> <effectStr></effectStr> 
+		<req>人族</req> <price>10000</price> <curTier>1</curTier> 
+		<effect/> </gong> <gong id="2028"> <name>蛊神诀</name> 
+		<des>乃苗族一位控蛊大师所创，该内功以内力豢养“蛊虫”，反之以“蛊毒”润养内力，对敌时内力中暗藏万千“蛊毒”，令敌人防不胜防。</des> 
+		<qua>3</qua> <maxTier>9</maxTier> <type>1</type> 
+		<needRank>0</needRank> <effectStr></effectStr> 
+		<req>人族</req> <price>10000</price> <curTier>1</curTier> 
+		<effect/> </gong> <gong id="2029"> <name>耕余剩技</name> 
+		<des>农民伯伯在劳动之余掌握对力量的技巧</des> <qua>3</qua> 
+		<maxTier>5</maxTier> <type>1</type> <needRank>0</needRank> 
+		<effectStr></effectStr> <req>人族</req> <price>10000</price> 
+		<curTier>1</curTier> <effect/> </gong> <gong 
+		id="2030"> <name>野兽本能</name> <des>野兽与身俱来的攻击本能</des> 
+		<qua>3</qua> <maxTier>10</maxTier> <type>1</type> 
+		<needRank>0</needRank> <effectStr>atk:2;def:2;reHp:1</effectStr> 
+		<req>兽族</req> <price>10000</price> <curTier>1</curTier> 
+		<effect/> </gong> <gong id="2031"> <name>伏牛功</name> 
+		<des>流传甚广的一部初级炼体功法</des> <qua>3</qua> <maxTier>5</maxTier> 
+		<type>1</type> <needRank>0</needRank> <effectStr>atk:2;def:2;reHp:1</effectStr> 
+		<req>人族</req> <price>10000</price> <curTier>1</curTier> 
+		<effect/> </gong> <gong id="2032"> <name>伏牛功</name> 
+		<des>流传甚广的一部初级炼体功法</des> <qua>3</qua> <maxTier>5</maxTier> 
+		<type>1</type> <needRank>0</needRank> <effectStr>atk:2;def:2;reHp:1</effectStr> 
+		<req>人族</req> <price>10000</price> <curTier>1</curTier> 
+		<effect/> </gong> <gong id="20001"> <name>基本内功</name> 
+		<des>一切内功心法的起源，也是一切内功心法的根本</des> <qua>0</qua> 
+		<maxTier>0</maxTier> <type>1</type> <needRank>0</needRank> 
+		<effectStr></effectStr> <baseEff>ti:2;jing:2;li:1;mim:1</baseEff> 
+		<req>人族</req> <price>10000</price> <curTier>1</curTier> 
+		<effect/> </gong> <gong id="25001"> <name>基本剑法</name> 
+		<des>一切剑法的起源，也是一切剑法的根本</des> <qua>0</qua> 
+		<maxTier>0</maxTier> <type>1</type> <needRank>0</needRank> 
+		<effectStr></effectStr> <baseEff>li:3;min3:</baseEff> 
+		<req>人族</req> <price>10000</price> <curTier>1</curTier> 
+		<effect/> </gong> <gong id="25002"> <name>基本拳法</name> 
+		<des>一切拳法的起源，也是一切拳法的根本</des> <qua>0</qua> 
+		<maxTier>0</maxTier> <type>1</type> <needRank>0</needRank> 
+		<effectStr></effectStr> <baseEff>li:3;min3:</baseEff> 
+		<req>人族</req> <price>10000</price> <curTier>1</curTier> 
+		<effect/> </gong> <gong id="25003"> <name>基本刀法</name> 
+		<des>一切刀法的起源，也是一切刀法的根本</des> <qua>0</qua> 
+		<maxTier>0</maxTier> <type>1</type> <needRank>0</needRank> 
+		<effectStr></effectStr> <baseEff>li:3;min:3;</baseEff> 
+		<req>人族</req> <price>10000</price> <curTier>1</curTier> 
+		<effect/> </gong> <gong id="25004"> <name>基本身法</name> 
+		<des>一切身法的起源，也是一切身法的根本</des> <qua>0</qua> 
+		<maxTier>0</maxTier> <type>1</type> <needRank>0</needRank> 
+		<effectStr></effectStr> <baseEff></baseEff> 
+		<req>人族</req> <price>10000</price> <curTier>1</curTier> 
+		<effect/> </gong> <gong id="25005"> <name>基础阵法</name> 
+		<des>一切身法的起源，也是一切身法的根本</des> <qua>0</qua> 
+		<maxTier>0</maxTier> <type>1</type> <needRank>0</needRank> 
+		<effectStr></effectStr> <baseEff></baseEff> 
+		<req>人族</req> <price>10000</price> <curTier>1</curTier> 
+		<effect/> </gong> <gong id="25006"> <name>炼丹基础</name> 
+		<des>一切身法的起源，也是一切身法的根本</des> <qua>0</qua> 
+		<maxTier>0</maxTier> <type>1</type> <needRank>0</needRank> 
+		<effectStr></effectStr> <baseEff></baseEff> 
+		<req>人族</req> <price>10000</price> <curTier>1</curTier> 
+		<effect/> </gong> <gong id="25007"> <name>阵法基础</name> 
+		<des>一切阵法的起源，也是一切阵法的根本</des> <qua>0</qua> 
+		<maxTier>0</maxTier> <type>1</type> <needRank>0</needRank> 
+		<effectStr></effectStr> <baseEff></baseEff> 
+		<req>人族</req> <price>10000</price> <curTier>1</curTier> 
+		<effect/> </gong> -->
+	<gong id="20000">
+		<name>基本内功</name>
+		<des>一切内功心法的起源，也是一切内功心法的根本</des>
+		<qua>0</qua>
+		<weight>6</weight>
+		<maxTier></maxTier>
+		<type></type>
+		<needRank></needRank>
+		<effectStr></effectStr>
+		<baseEff>tiLi:2;jingLi:2;wuAvoid:2</baseEff>
+		<req></req>
+		<price></price>
+		<curTier>1</curTier>
+		<effect />
+	</gong>
+
+	<gong id="25001">
+		<name>基本剑法</name>
+		<des>一切剑法的起源，也是一切剑法的根本</des>
+		<qua>0</qua>
+		<weight>6</weight>
+		<maxTier></maxTier>
+		<type></type>
+		<needRank></needRank>
+		<effectStr></effectStr>
+		<baseEff>liLi:3;min:3</baseEff>
+		<req></req>
+		<price></price>
+		<curTier>1</curTier>
+		<effect />
+	</gong>
+	<gong id="25002">
+		<name>基本拳法</name>
+		<des>一切拳法的起源，也是一切拳法的根本</des>
+		<qua>0</qua>
+		<weight>6</weight>
+		<maxTier></maxTier>
+		<type></type>
+		<needRank></needRank>
+		<effectStr></effectStr>
+		<baseEff>li:3;min:3</baseEff>
+		<req></req>
+		<price></price>
+		<curTier></curTier>
+		<effect />
+	</gong>
+	<gong id="25003">
+		<name>基本刀法</name>
+		<des>一切刀法的起源，也是一切刀法的根本</des>
+		<qua>0</qua>
+		<weight>6</weight>
+		<maxTier></maxTier>
+		<type></type>
+		<needRank></needRank>
+		<effectStr></effectStr>
+		<baseEff>li:3;min:3</baseEff>
+		<req></req>
+		<price></price>
+		<curTier></curTier>
+		<effect />
+	</gong>
+	<gong id="25004">
+		<name>基本身法</name>
+		<des>一切身法的起源，也是一切身法的根本</des>
+		<qua>0</qua>
+		<weight>6</weight>
+		<maxTier></maxTier>
+		<type></type>
+		<needRank></needRank>
+		<effectStr></effectStr>
+		<baseEff>min:6</baseEff>
+		<req></req>
+		<price></price>
+		<curTier>1</curTier>
+		<effect />
+	</gong>
+	<gong id="25005">
+		<name>基础阵法</name>
+		<des>一切身法的起源，也是一切身法的根本</des>
+		<qua>0</qua>
+		<weight>6</weight>
+		<maxTier></maxTier>
+		<type></type>
+		<needRank></needRank>
+		<effectStr></effectStr>
+		<baseEff>jing:3</baseEff>
+		<req></req>
+		<price></price>
+		<curTier>1</curTier>
+		<effect />
+	</gong>
+	<gong id="25006">
+		<name>炼丹基础</name>
+		<des>一切炼丹术的起源，也是一切炼丹术的根本</des>
+		<qua>0</qua>
+		<weight>6</weight>
+		<maxTier></maxTier>
+		<type></type>
+		<needRank></needRank>
+		<effectStr></effectStr>
+		<baseEff>jing:3</baseEff>
+		<req></req>
+		<price></price>
+		<curTier>1</curTier>
+		<effect />
+	</gong>
 </root>

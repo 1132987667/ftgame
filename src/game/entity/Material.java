@@ -7,7 +7,7 @@ import java.io.Serializable;
  * @author yilong22315
  *
  */
-public class Material implements Serializable{
+public class Material extends Item implements Serializable{
 	private static final long serialVersionUID = 1L;
 	private String id = "" ;
 	private String name = "" ;

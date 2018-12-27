@@ -85,7 +85,7 @@ public class FightThread implements Runnable {
 	@Override
 	public void run() {
 		isFightOver();
-		map = SUtils.fightHelper(player, npc, type);
+		map = FightControl.fightHelper(player, npc, type);
 		String value = map.get("value").toString();
 		// 伤害类型
 		int atkType = SUtils.conObjtoInt(map.get("atkType"));

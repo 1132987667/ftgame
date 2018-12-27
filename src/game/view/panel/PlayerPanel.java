@@ -1,13 +1,5 @@
 package game.view.panel;
 
-import game.control.GameControl;
-import game.entity.AddAttrs;
-import game.entity.Equip;
-import game.entity.Player;
-import game.utils.Constant;
-import game.utils.SUtils;
-import game.view.button.TButton;
-
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -20,6 +12,16 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
+
+import game.control.GameControl;
+import game.control.UICtrl;
+import game.entity.AddAttrs;
+import game.entity.Equip;
+import game.entity.Player;
+import game.utils.C;
+import game.utils.DataCal;
+import game.utils.SUtils;
+import game.view.button.TButton;
 
 /**
  * 用来显示玩家信息的面板
@@ -61,7 +63,7 @@ public class PlayerPanel extends JPanel {
 								  add11V,add12V,add13V,add14V,add15V,add16V,add17V,add18V,add19V} ; 
 	
 	private Equip[] equipAry = new Equip[8] ;
-	
+	private DataCal dataCal = new DataCal();
 	/** 装备面板 */
 	public JPanel equipPanel = null;
 	/** 属性面板 */
@@ -182,22 +184,20 @@ public class PlayerPanel extends JPanel {
 		oneP.setLayout(null);
 		attrPanel.add(oneP);
 		oneP.setBounds(x, y,294,inset*4+(fontSize+inset)*3);
-		SUtils.setBorder(oneP, "一级属性", Color.blue, new Font("隶书",Font.PLAIN,16));
-		int length = Constant.oneAttr.length;
+		UICtrl.setBorder(oneP, "一级属性", Color.blue, new Font("隶书",Font.PLAIN,16));
+		int length = C.oneAttr.length;
 		x = inset*2 ;
-		y = fontSize+inset+4 ;
+		y = fontSize+inset*3 ;
 		for (int i = 0; i < length; i++) {
 			if(i==3){
 				x = inset*2 ;
+				y = y + fontSize+inset;
 			}
-			attrLabel = new AttrLabel(Constant.oneAttr[i]+":",Color.black);
+			attrLabel = new AttrLabel(C.oneAttr[i]+":",Color.black);
 			oneAttrV[i] = new AttrLabel("100000");
 			oneP.add(attrLabel);
 			oneP.add(oneAttrV[i]);
-			attrName = Constant.oneAttr[i].length()*fontSize+fontSize/2;
-			if(3==i){
-				y = y + fontSize+inset;
-			}
+			attrName = C.oneAttr[i].length()*fontSize+fontSize/2;
 			attrLabel.setBounds(x, y, attrName, fontSize);
 			oneAttrV[i].setBounds(attrLabel.getX()+attrName+inset,y,4*fontSize,fontSize);
 			x = oneAttrV[i].getX()+oneAttrV[i].getWidth()+inset;
@@ -211,19 +211,19 @@ public class PlayerPanel extends JPanel {
 		twoP.setLayout(null);
 		attrPanel.add(twoP);
 		twoP.setBounds(x, y,294,inset*4+(fontSize+inset)*3);
-		SUtils.setBorder(twoP, "二级属性", Color.blue, new Font("隶书",Font.PLAIN,16));
-		length = Constant.twoAttr.length;
+		UICtrl.setBorder(twoP, "二级属性", Color.blue, new Font("隶书",Font.PLAIN,16));
+		length = C.twoAttr.length;
 		x = inset*2 ;
-		y = fontSize+inset+4 ;
+		y = fontSize+inset*3 ;
 		for (int i = 0; i < length; i++) {
 			if(i==3){
 				x = inset*2 ;
 			}
-			attrLabel = new AttrLabel(Constant.twoAttr[i]+":",Color.black);
+			attrLabel = new AttrLabel(C.twoAttr[i]+":",Color.black);
 			twoAttrV[i] = new AttrLabel("100000");
 			twoP.add(attrLabel);
 			twoP.add(twoAttrV[i]);
-			attrName = Constant.twoAttr[i].length()*fontSize+fontSize/2;
+			attrName = C.twoAttr[i].length()*fontSize+fontSize/2;
 			if(3==i){
 				y = y + fontSize+inset;
 			}
@@ -240,16 +240,16 @@ public class PlayerPanel extends JPanel {
 		SPP.setLayout(null);
 		attrPanel.add(SPP);
 		SPP.setBounds(x, y,294,inset*4+(fontSize+inset)*4);
-		SUtils.setBorder(SPP, "特殊属性", Color.blue, new Font("隶书",Font.PLAIN,16));
-		length = Constant.spAttr.length;
+		UICtrl.setBorder(SPP, "特殊属性", Color.blue, new Font("隶书",Font.PLAIN,16));
+		length = C.spAttr.length;
 		x = inset*2 ;
-		y = fontSize+inset+4 ;
+		y = fontSize+inset*3 ;
 		for (int i = 0; i < length; i++) {
-			attrLabel = new AttrLabel(Constant.spAttr[i]+":",Color.black);
+			attrLabel = new AttrLabel(C.spAttr[i]+":",Color.black);
 			spAttrV[i] = new AttrLabel("100000");
 			SPP.add(attrLabel);
 			SPP.add(spAttrV[i]);
-			attrName = Constant.spAttr[i].length()*fontSize+fontSize/2;
+			attrName = C.spAttr[i].length()*fontSize+fontSize/2;
 			if(i==2){
 				x = inset*2 ;
 				y = y + fontSize+inset;
@@ -278,14 +278,14 @@ public class PlayerPanel extends JPanel {
 		attrName = 2*fontSize+fontSize/2 ;
 		equipP.setBounds(x, y, inset*2+(attrName+fontSize*8), inset*2+(fontSize+2*inset)*8);// 10 + (30+58)*3 + 10 = 284 
 		/** 设置边框 */
-		SUtils.setBorder(equipP, "",Color.blue, font);
+		UICtrl.setBorder(equipP, "",Color.blue, font);
 		int length = equipAryV.length ;
 		x = inset*2 ;
 		y = inset*2;
 		attrName = fontSize*5/2;
 		/** 逐个的设置 每件装备的显示位置 */
 		for (int i = 0; i < length; i++) {
-			tempLabel = new JLabel(Constant.partDes[i]+":");
+			tempLabel = new JLabel(C.partDes[i]+":");
 			equipAryV[i] = new EqLabel("万丈祥云高布衣");//equipAryV
 			tempLabel.setFont(font);
 			equipP.add(tempLabel);
@@ -300,18 +300,18 @@ public class PlayerPanel extends JPanel {
 		equipAdd = new JPanel() ;
 		equipAdd.setOpaque(false);
 		equipAdd.setLayout(null);
-		SUtils.setBorder(equipAdd,"装备加成",Color.black, new Font("隶书",Font.PLAIN,16));
+		UICtrl.setBorder(equipAdd,"装备加成",Color.black, new Font("隶书",Font.PLAIN,16));
 		attrPanel.add(equipAdd);
 		x = inset ;
 		y = inset+equipP.getHeight() ;
 		equipAdd.setBounds(x, y, 294, 190);// 10 + (30+58)*3 + 10 = 284 
-		length = Constant.equipAdd.length ;
+		length = C.equipAdd.length ;
 		x = inset*2 ;
 		y = fontSize+inset*3;
 		attrName = 4*fontSize+fontSize/2 ;
 		/** 逐步设置装备属性的位置 */
 		for (int i = 0; i < length; i++) {
-			tempLabel = new JLabel(Constant.equipAdd[i]+":");
+			tempLabel = new JLabel(C.equipAdd[i]+":");
 			equipAddV[i] = new JLabel("10000");//equipAryV
 			equipAddV[i].setForeground(Color.blue);
 			tempLabel.setFont(font);
@@ -319,7 +319,7 @@ public class PlayerPanel extends JPanel {
 			/** 加入面板 */
 			equipAdd.add(tempLabel);
 			equipAdd.add(equipAddV[i]);
-			attrName = Constant.equipAdd[i].length()*fontSize+fontSize/2 ;
+			attrName = C.equipAdd[i].length()*fontSize+fontSize/2 ;
 			if(i<3){
 				tempLabel.setBounds(x, y, attrName, fontSize);
 				equipAddV[i].setBounds(x+attrName, y, fontSize*7/2, fontSize);
@@ -387,7 +387,7 @@ public class PlayerPanel extends JPanel {
 	 */
 	public void initData() {
 		/** 重新加载人物属性 */
-		AddAttrs addAttrs = gameControl.reloadAttr();
+		AddAttrs addAttrs = dataCal.reloadAttr();
 		
 		/** 1 */
 		Equip[] equipAry = player.getEquipAry() ;
@@ -397,7 +397,7 @@ public class PlayerPanel extends JPanel {
 			//System.out.println("玩家装备:"+equipAry[i]);
 			if(equipAry[i]!=null){
 				equipAryV[i].setText(equipAry[i].getName());
-				equipAryV[i].setForeground(Constant.equipColor[equipAry[i].getType()]);
+				equipAryV[i].setForeground(C.equipColor[equipAry[i].getType()]);
 				if(equipAry[i].getType()==0){
 					equipAryV[i].setForeground(Color.black);
 				}
