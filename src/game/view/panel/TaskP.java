@@ -16,9 +16,9 @@ import game.entity.Player;
 import game.entity.Tasks;
 import game.utils.C;
 import game.utils.SUtils;
-import game.view.button.TButton;
+import game.view.button.PicBu;
 import game.view.ui.DemoScrollBarUI;
-import game.view.ui.TextField;
+import game.view.ui.Field;
 
 public class TaskP extends JPanel{
 	private static final long serialVersionUID = 1L;
@@ -33,9 +33,9 @@ public class TaskP extends JPanel{
 	
 	private final int msgWidth = 270 ;
 	
-	private TButton nextBu = new TButton("", 27);
+	private PicBu nextBu = new PicBu("", 27);
 	
-	private TextField title = new TextField("什么情况", 1, Color.blue) ;
+	private Field title = new Field("什么情况", 1, Color.blue) ;
 	
 	private JPanel listP = new JPanel() ;
 	private JPanel courseP = new JPanel() ;

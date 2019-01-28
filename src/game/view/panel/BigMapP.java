@@ -10,7 +10,7 @@ import game.utils.SUtils;
 import game.utils.XmlUtils;
 import game.view.button.MButton;
 import game.view.ui.TTextArea;
-import game.view.ui.TextField;
+import game.view.ui.Field;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -34,7 +34,7 @@ public class BigMapP extends JPanel{
 	public JScrollPane jsc ;
 	private JPanel mapP ;
 	private TTextArea txt = new TTextArea(1);
-	private TextField title = new TextField("大地图", 1);
+	private Field title = new Field("大地图", 1);
 	
 	/** 大小 */
 	private static int w = 800 ;
@@ -42,8 +42,8 @@ public class BigMapP extends JPanel{
 	
 	/** 横竖连接线 */
 	Point p = new Point(6, 4) ;
-	private TextField heng = new TextField(4, p.x, p.y);
-	private TextField shu = new TextField(4, p.y, p.x);
+	private Field heng = new Field(4, p.x, p.y);
+	private Field shu = new Field(4, p.y, p.x);
 	
 	/** 当前位置 */
 	private Point curPoint ;
@@ -127,7 +127,7 @@ public class BigMapP extends JPanel{
 		
 		
 		
-		TextField cable = null ;
+		Field cable = null ;
 		boolean[] flags = new boolean[2] ;
 		/** 连接线的设置 */
 		for (Scene scene: list) {
@@ -135,10 +135,10 @@ public class BigMapP extends JPanel{
 			for (int i = 0; i < flags.length; i++) {
 				if(flags[i]) {
 					if(i==0) {
-						cable = (TextField)ArchiveUtils.depthClone(shu);
+						cable = (Field)ArchiveUtils.depthClone(shu);
 						cable.setLocation((scene.x-minX)*(80+INSET)+INSET+(80-p.x)/2, scene.y*(45+INSET)+INSET-(p.y+2)+yPos);
 					}else {
-						cable = (TextField)ArchiveUtils.depthClone(heng);
+						cable = (Field)ArchiveUtils.depthClone(heng);
 						cable.setLocation((scene.x-minX)*(80+INSET)+INSET+80+1, (scene.y)*(45+INSET)+INSET+(45-p.y)/2+yPos);
 					}
 					cable.setOpaque(true);

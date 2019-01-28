@@ -2,7 +2,7 @@ package game.view;
 
 import game.utils.C;
 import game.utils.SUtils;
-import game.view.button.TButton;
+import game.view.button.PicBu;
 
 import java.awt.Button;
 import java.awt.Color;
@@ -37,7 +37,7 @@ public class TTextPane extends JTextPane{
 	
 	/** 35 */
 	public TTextPane(int width,int height) {
-		setOpaque(false);
+		setOpaque(true);
 		setEditable(false);
 		setFont(new Font("华文中宋", Font.PLAIN, 14));
 		setSize(width,height);
@@ -56,6 +56,7 @@ public class TTextPane extends JTextPane{
 			setSize(width,height);
 			doc = getStyledDocument() ;
 			scrollPane = new JScrollPane(this);
+			scrollPane.getViewport().setBackground(Color.WHITE);
 			scrollPane.setPreferredSize(new Dimension(512, 600));
 			scrollPane.setSize(width,height);
 			scrollPane.setAutoscrolls(true);

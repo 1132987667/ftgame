@@ -2,7 +2,7 @@ package game.listener;
 
 import game.control.GameControl;
 import game.entity.Player;
-import game.view.button.TButton;
+import game.view.button.PicBu;
 import game.view.panel.BagGongPanel;
 
 import java.awt.Point;
@@ -44,7 +44,7 @@ public class BagMouseListener implements MouseListener{
 
 	@Override
 	public void mouseEntered(MouseEvent e) {
-		TButton bu = (TButton) e.getSource() ;
+		PicBu bu = (PicBu) e.getSource() ;
 		String id  = bu.getActionCommand();
 		Point p = gameControl.getMainFrame().getLocation();
 		Point p1 = e.getLocationOnScreen();

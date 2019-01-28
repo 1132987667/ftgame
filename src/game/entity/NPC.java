@@ -133,9 +133,9 @@ public class NPC implements Serializable {
 	}
 
 	/**
-	 * 逻辑: 得到npc take动作的内容 得到npc take动作具体事件的数量 逐个分析take具体事件 得到take具体事件需要给与npc的物品
-	 * 加入到单次事件npc收取集合 得到take具体事件npc需要给玩家的物品 加入具体事件npc赠送集合 迭代npc收取集合，查看玩家是否满足条件
-	 * 满足则查看是否存在对应give事件 存在则执行give事件
+	 **  逻辑: 得到npc take动作的内容 得到npc take动作具体事件的数量 逐个分析take具体事件 得到take具体事件需要给与npc的物品
+	 **  加入到单次事件npc收取集合 得到take具体事件npc需要给玩家的物品 加入具体事件npc赠送集合 迭代npc收取集合，查看玩家是否满足条件
+	 **  满足则查看是否存在对应give事件 存在则执行give事件
 	 */
 	public void task() {
 		Document document = SUtils.load("src/game/xml/npc.xml");

@@ -5,7 +5,7 @@ import game.control.GameControl;
 import game.control.SoundControl;
 import game.entity.Archive;
 import game.utils.ThreadUtils;
-import game.view.button.TButton;
+import game.view.button.PicBu;
 import game.view.frame.MainFrame;
 
 import java.awt.Color;
@@ -37,7 +37,7 @@ public class GuidePanel extends JPanel{
 	
 	JTextArea text = null ;
 	public boolean flag = false ;
-	TButton sure , no ;
+	PicBu sure , no ;
 	JLabel name = null ;
 	JTextField input = null ;
 	
@@ -70,7 +70,7 @@ public class GuidePanel extends JPanel{
 		createNext();
 		
 		/** 关闭游戏的按钮 */
-		TButton close = new TButton("",11);
+		PicBu close = new PicBu("",11);
 		add(close);
 		close.addMouseListener(close);
 		close.addActionListener(exit);
@@ -157,10 +157,10 @@ public class GuidePanel extends JPanel{
 			if(curMsgNum==6){
 				//先移出监听
 				text.removeMouseListener(next);
-				sure = new TButton("接受", 7);
+				sure = new PicBu("接受", 7);
 				sure.addMouseListener(sure);
 				sure.setSize(100, 33);
-				no = new TButton("不接受", 7);
+				no = new PicBu("不接受", 7);
 				no.addMouseListener(no);
 				no.setSize(100, 33);
 				sure.setLocation(100,120);

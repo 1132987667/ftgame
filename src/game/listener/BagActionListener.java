@@ -3,7 +3,7 @@ package game.listener;
 import game.entity.Equip;
 import game.entity.Player;
 import game.utils.SUtils;
-import game.view.button.TButton;
+import game.view.button.PicBu;
 import game.view.panel.BagPanel;
 import game.view.panel.EquipInfoPanel;
 
@@ -27,7 +27,7 @@ public class BagActionListener implements ActionListener {
 	private List<Equip> list ;
 	/** 当前点击的物品的下标 */
 	private int index ;
-	private TButton putOn , resolve ;
+	private PicBu putOn , resolve ;
 	private BagPanel bagPanel ;
 	private Player player ;
 	

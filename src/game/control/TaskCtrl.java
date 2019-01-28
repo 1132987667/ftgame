@@ -13,10 +13,10 @@ import game.entity.NPC;
 import game.entity.Player;
 import game.entity.Tasks;
 import game.utils.SUtils;
-import game.view.button.TButton;
+import game.view.button.PicBu;
 import game.view.frame.SpFrame;
 import game.view.ui.TTextArea;
-import game.view.ui.TextField;
+import game.view.ui.Field;
 
 public class TaskCtrl {
 	/** 任务还未开启 */
@@ -70,11 +70,11 @@ public class TaskCtrl {
 	/** UI组件 */
 	JPanel listP ; 
 	JPanel courseP ;
-	TextField title ;
+	Field title ;
 	JPanel jscPanel ;
 	
-	private TButton accept = new TButton("接受", 4) ;
-	private TButton refused = new TButton("拒绝", 4) ;
+	private PicBu accept = new PicBu("接受", 4) ;
+	private PicBu refused = new PicBu("拒绝", 4) ;
 	
 	/** 设置对话内容 */
 	int curMsgNum = 0 ;

@@ -24,12 +24,12 @@ import javax.swing.border.EmptyBorder;
 
 import game.control.FightControl;
 import game.control.GameControl;
+import game.control.IoCtrl;
 import game.entity.NPC;
 import game.entity.Tasks;
 import game.utils.C;
-import game.utils.SUtils;
 import game.view.TLabel;
-import game.view.button.TButton;
+import game.view.button.PicBu;
 import game.view.panel.BagPanel;
 import game.view.panel.BigMapP;
 import game.view.panel.FtPanel;
@@ -37,6 +37,7 @@ import game.view.panel.FubenPanel;
 import game.view.panel.GongPanel;
 import game.view.panel.PlayerPanel;
 import game.view.panel.TaskP;
+import game.view.ui.Field;
 
 /**
  * 特殊的弹窗，半透明
@@ -59,7 +60,7 @@ public class SpFrame extends JFrame{
 	/** 主容器 */
 	private JPanel contentPane;
 	/** 拖动按钮和关闭按钮 */
-	private TButton drugBu,closeBu ;
+	private PicBu drugBu,closeBu ;
 	
 	private BagPanel bagPanel ;
 	
@@ -86,10 +87,9 @@ public class SpFrame extends JFrame{
 		super();
 		this.type = type ;
 		this.parent = parent ;
-		/** 取消容器装饰 */
-		setUndecorated(true);
+		
 		setBackground(new Color(0, 0, 0, 0));
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
 		
 		contentPane = new JPanel();
 		contentPane.setOpaque(false);// 可视化编辑下会自动创建一个JPanel,也要将这个JPanel设为透明，
@@ -98,12 +98,12 @@ public class SpFrame extends JFrame{
 		setContentPane(contentPane);
 		contentPane.addKeyListener(gameControl.getKeyMana());
 		
-		closeBu = new TButton("", 11);
+		closeBu = new PicBu("", 11);
 		closeBu.setToolTipText("关闭");
 		contentPane.add(closeBu);
 		closeBu.setBounds(270, 13, 26, 26);
 		closeBu.addActionListener(closeListener);
-		drugBu = new TButton("", 1);
+		drugBu = new PicBu("", 1);
 		drugBu.setToolTipText("拖动");
 		contentPane.add(drugBu);
 		
@@ -143,7 +143,7 @@ public class SpFrame extends JFrame{
 		/** 设置显示图片 */
 		if(imgPath!=null) {
 			back = new JLabel("");
-			image1 = SUtils.loadImageIcon("/game/img/back/"+imgPath);
+			image1 = IoCtrl.loadImageIcon("/game/img/back/"+imgPath);
 			back.setIcon(image1);
 			contentPane.add(back, BorderLayout.CENTER);
 			back.setBounds(0, 0, image1.getIconWidth(), image1.getIconHeight());
@@ -185,7 +185,7 @@ public class SpFrame extends JFrame{
 		title.setBounds(170, 12, 80, 20);
 		title.setForeground(Color.white);
 		title.setFont(new Font("隶书",0,18));
-		drugBu.reload(24);
+		drugBu.load(24);
 		drugBu.setBounds(357, 32, 40, 64);
 		contentPane.add(title);
 		if(bagPanel==null){
@@ -203,7 +203,7 @@ public class SpFrame extends JFrame{
 		title.setBounds(170, 12, 80, 20);
 		title.setForeground(Color.white);
 		title.setFont(new Font("隶书",0,18));
-		drugBu.reload(26);
+		drugBu.load(26);
 		drugBu.setBounds(242, 0, 26, 26);
 		contentPane.add(title);
 		
@@ -217,7 +217,7 @@ public class SpFrame extends JFrame{
 	
 	private void initMap() {
 		closeBu.setBounds(574, 0, 26, 26);
-		drugBu.reload(26);
+		drugBu.load(26);
 		drugBu.setBounds(548, 0, 26, 26);
 		if(bigMap==null){
 			bigMap = new BigMapP();
@@ -227,7 +227,7 @@ public class SpFrame extends JFrame{
 	}
 	
 	private void JiangHu(JPanel contentPane2) {
-		drugBu.reload(13);
+		drugBu.load(13);
 		drugBu.setFont(new Font("幼圆",1,14));
 		//t.setLocation(80, 50);
 		//t.setFocusable(false);
@@ -251,13 +251,15 @@ public class SpFrame extends JFrame{
 	 * @param contentPane
 	 */
 	private void initFuben(JPanel contentPane) {
-		drugBu.reload(13);
-		drugBu.setFont(new Font("幼圆",1,14));
+		drugBu.load(13);
 		drugBu.setBounds(750, 40, 60, 42);
 		closeBu.setBounds(726, 40, 26, 26);
-		TLabel title = new TLabel("副  本", 2);
+		
+		Field title = Field.defField("副  本");
+		/** new TField("", 2) */
 		contentPane.add(title);
 		title.setBounds(140, 48, 128, 30);//360
+
 		if(fubenPanel==null){
 			fubenPanel =new FubenPanel(C.Fuben);
 			contentPane.add(fubenPanel);
@@ -275,7 +277,7 @@ public class SpFrame extends JFrame{
 	 */
 	private void initPlayer(JPanel contentPane) {
 		/** 添加特殊的拖动按钮 */
-		drugBu.reload(19);
+		drugBu.load(19);
 		drugBu.setBounds(8, 378, 64, 40);
 		
 		closeBu.setBounds(276, 1, 26, 26);
@@ -303,7 +305,7 @@ public class SpFrame extends JFrame{
 	private void init3(JPanel contentPane) {
 		npc = fightControl.getNpc();
 		/** 添加特殊的拖动按钮 */
-		drugBu.reload(23);
+		drugBu.load(23);
 		drugBu.setBounds(580, 456, 104, 46);
 		
 		closeBu.setBounds(242, 84, 26, 26);

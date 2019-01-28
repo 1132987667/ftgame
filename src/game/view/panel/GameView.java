@@ -12,7 +12,7 @@ import game.listener.actionLner.FixBuLner;
 import game.utils.C;
 import game.utils.SUtils;
 import game.view.button.MButton;
-import game.view.ui.TextField;
+import game.view.ui.Field;
 /**
  * 进行游戏的主要界面
  * @author yilong22315
@@ -35,7 +35,7 @@ public class GameView extends JPanel{
 	
 	
 	/** 连接线 */
-	private TextField[] cables ;
+	private Field[] cables ;
 	
 	
 	/** 挖矿 钓鱼  */
@@ -114,14 +114,14 @@ public class GameView extends JPanel{
 		Point p1 = new Point(7, 4);
 		Point p2 = new Point(4, 10);
 		
-		cables = new TextField[12];
-		TextField tf = null ;
+		cables = new Field[12];
+		Field tf = null ;
 		for (int i = 0; i < cables.length; i++) {
 			if(i>5) {
-				tf = new TextField(4, p2.x, p2.y);
+				tf = new Field(4, p2.x, p2.y);
 				tf.setSize(p2.x, p2.y);
 			}else {
-				tf = new TextField(4, p1.x, p1.y);
+				tf = new Field(4, p1.x, p1.y);
 				tf.setSize(p1.x, p1.y);
 			}
 			tf.setOpaque(true);

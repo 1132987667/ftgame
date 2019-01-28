@@ -1,14 +1,14 @@
 package game.view.panel;
 
 import game.control.GameControl;
+import game.control.IoCtrl;
 import game.entity.NPC;
 import game.entity.Player;
 import game.thread.AwakenThread;
 import game.utils.C;
-import game.utils.SUtils;
 import game.view.TLabel;
 import game.view.TTextPane;
-import game.view.button.TButton;
+import game.view.button.PicBu;
 import game.view.ui.DemoScrollBarUI;
 
 import java.awt.Color;
@@ -73,7 +73,7 @@ public class FtPanel extends JPanel{
 	/** 显示战斗信息文字的面板 */
 	private TTextPane showInfo ;
 	
-	public FtPanel(TButton drugBu, JPanel contentPane,NPC npc) {
+	public FtPanel(PicBu drugBu, JPanel contentPane,NPC npc) {
 		this.setBounds(0,0,680, 517);
 		this.setLayout(null);
 		this.setOpaque(false);
@@ -140,8 +140,8 @@ public class FtPanel extends JPanel{
 		add(foeSu);
 		
 		/** 显示战斗动作的两把剑 */
-		ImageIcon image1 = SUtils.loadImageIcon("/game/img/one/黑剑反.png");
-		ImageIcon image2 = SUtils.loadImageIcon("/game/img/one/黑剑.png");
+		ImageIcon image1 = IoCtrl.loadImageIcon("/game/img/one/黑剑反.png");
+		ImageIcon image2 = IoCtrl.loadImageIcon("/game/img/one/黑剑.png");
 		myJian = new JLabel(image1) ;
 		myJian.setSize(image1.getIconWidth(), image1.getIconHeight());
 		foeJian = new JLabel(image2) ;
@@ -229,7 +229,7 @@ public class FtPanel extends JPanel{
 		});*/
 		
 		JLabel back = new JLabel();
-		image1 = SUtils.loadImageIcon("/game/img/back/FtBackA.png");
+		image1 = IoCtrl.loadImageIcon("/game/img/back/FtBackA.png");
 		back.setIcon(image1);
 		add(back);
 		back.setBounds(0, 0, image1.getIconWidth(), image1.getIconHeight());

@@ -46,11 +46,12 @@ import game.utils.XmlUtils;
 import game.view.TLabel;
 import game.view.TTextPane;
 import game.view.button.MButton;
-import game.view.button.TButton;
+import game.view.button.PicBu;
 import game.view.frame.EnterFrame;
 import game.view.frame.MainFrame;
 import game.view.frame.MyDialog;
 import game.view.frame.SpFrame;
+import game.view.mainFrame.LocalAttrPanel;
 import game.view.panel.GameView;
 
 /** 控制各个组件 */
@@ -63,7 +64,7 @@ public class GameControl {
 	 * 人物面板 房间描述 功能 游戏信息 小地图 npc与物品 与npc或物品交互
 	 */
 	/** 玩家信息面板 */
-	private JPanel playerP = null;
+	private LocalAttrPanel localAttrP = null;
 	/** 
 	 * 玩家所处场景信息 
 	 * 文本框
@@ -83,7 +84,6 @@ public class GameControl {
 	private GameView gameView ;
 	
 	
-	private static GameControl gameControl = new GameControl();
 	/** 没有选择 空存档 存在存档 */
 	public static final int NotSelect = -1;
 	public static final int NewArchive = 0;
@@ -132,10 +132,12 @@ public class GameControl {
 	 * 
 	 */
 	private GameControl() {
-		loadXml();
 	}
 	
-	
+	/** 内部类单例模式 */
+	private static class InstanceHolder{
+		private static GameControl gameControl = new GameControl();
+	}
 	
 	/** 重新加载xml文件 */
 	public void loadXml() {
@@ -161,7 +163,7 @@ public class GameControl {
 	
 	
 	public static GameControl getInstance() {
-		return gameControl;
+		return InstanceHolder.gameControl;
 	}
 
 	public void setPlayerInfo() {
@@ -183,7 +185,7 @@ public class GameControl {
 	}
 	
 	/** 在信息面板上增加选择按钮 */
-	public void addSelectBu(TButton bu) {
+	public void addSelectBu(PicBu bu) {
 		infoP.insertComponent(bu);
 	}
 	
@@ -616,9 +618,9 @@ public class GameControl {
 	//private TimeController t = TimeController.getInstance();
 
 	/** 将主界面的界面传输过来 */
-	public void sendPanel(JPanel panelA, TTextPane panelB, JPanel panelC,
+	public void sendPanel(LocalAttrPanel localAttrP, TTextPane panelB, JPanel panelC,
 			TTextPane panelD, GameView gameView) {
-		this.playerP = panelA;
+		this.localAttrP = localAttrP;
 		this.sceneP = panelB;
 		this.functionP = panelC;
 		this.infoP = panelD;
@@ -967,7 +969,7 @@ public class GameControl {
 		
 		/** 设置背景图片 */
 		JLabel back = new JLabel();
-		ImageIcon image1 = SUtils.loadImageIcon("/game/img/back/1.png");
+		ImageIcon image1 = IoCtrl.loadImageIcon("/game/img/back/1.png");
 		back.setIcon(image1);
 		ft.add(back);
 		back.setBounds(0, 0, image1.getIconWidth(), image1.getIconHeight());
@@ -991,40 +993,7 @@ public class GameControl {
 	 * @param player
 	 */
 	public void setAttrValue(Player player){
-		JLabel[] attrAry = mainFrame.getAttrAry();
-		for (int i = 0; i < attrAry.length; i++) {
-			switch (i) {
-			case 0:
-				attrAry[0].setText(player.getName());
-				break;
-			case 1:
-				attrAry[1].setText(player.getRank()+"");		
-				break;
-			case 2:
-				attrAry[2].setText("凡人");
-				break;
-			case 3:
-				attrAry[3].setText(player.getExp()+"");
-				break;
-			case 4:
-				attrAry[4].setText(player.getHp()+"");
-				break;
-			case 5:
-				attrAry[5].setText(player.getMp()+"");
-				break;
-			case 6:
-				attrAry[6].setText(player.getAttack()+"");
-				break;
-			case 7:
-				attrAry[7].setText(player.getDefense()+"");
-				break;
-			case 8:
-				attrAry[8].setText(player.getName());
-				break;
-			default:
-				break;
-			}
-		}
+		localAttrP.reloadData();
 	}
 
 	public String getArchiveName() {
@@ -1306,11 +1275,11 @@ public class GameControl {
 	}
 
 	public JPanel getPanelA() {
-		return playerP;
+		return localAttrP;
 	}
 
-	public void setPanelA(JPanel panelA) {
-		this.playerP = panelA;
+	public void setPanelA(LocalAttrPanel localAttrP) {
+		this.localAttrP = localAttrP;
 	}
 
 	public JPanel getPanelC() {

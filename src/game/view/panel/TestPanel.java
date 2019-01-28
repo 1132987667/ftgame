@@ -1,13 +1,13 @@
 package game.view.panel;
 
+import game.control.IoCtrl;
 import game.control.UICtrl;
 import game.listener.KeyMana;
 import game.utils.C;
 import game.utils.DataCal;
-import game.utils.SUtils;
 import game.view.TLabel;
 import game.view.TTextPane;
-import game.view.button.TButton;
+import game.view.button.PicBu;
 
 import java.awt.Color;
 import java.awt.Component;
@@ -48,11 +48,11 @@ public class TestPanel extends JPanel {
 
 	JTextField typeOField;
 
-	TButton jb;
+	PicBu jb;
 
 	JLabel j;
 
-	TButton jb2;
+	PicBu jb2;
 
 	Component panel = null;
 
@@ -162,7 +162,7 @@ public class TestPanel extends JPanel {
 		add(typeOField);
 		typeOField.setBounds(99, 24, 40, 20);
 
-		jb = new TButton("create", -1);
+		jb = new PicBu("create", -1);
 		add(jb);
 		jb.addMouseListener(jb);
 		jb.addActionListener(ac);
@@ -177,7 +177,7 @@ public class TestPanel extends JPanel {
 		 * JLabel(img) ; add(j); j.setBounds( 0,84,120,30 );
 		 */
 		for (int i = 1; i < 15; i++) {
-			TButton t = new TButton("背包", i );
+			PicBu t = new PicBu("背包", i );
 			t.addMouseListener(t);
 			add(t);
 			t.setBounds(20, 36 + i * 24, 72, 24);
@@ -298,7 +298,7 @@ public class TestPanel extends JPanel {
 	ActionListener ac = new ActionListener() {
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			ImageIcon image = SUtils.loadImageIcon("/game/img/button/type1.png");
+			ImageIcon image = IoCtrl.loadImageIcon("/game/img/button/type1.png");
 			JOptionPane.showMessageDialog(panel, "", "测试", 0, image);
 		}
 	};

@@ -4,7 +4,7 @@ import game.control.GameControl;
 import game.entity.Gong;
 import game.utils.C;
 import game.view.ui.TTextArea;
-import game.view.ui.TextField;
+import game.view.ui.Field;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -23,7 +23,7 @@ public class BagGongPanel extends JPanel{
 	private String[] GongField = {} ;
 	private String[] ClField = {} ;
 	private int type ;
-	private TextField name, kind, tier, qua, state, learn, price, require ;
+	private Field name, kind, tier, qua, state, learn, price, require ;
 	private TTextArea tta ;
 	private final int INSET = 6 ;
 	private final int TxtH = 20 ;
@@ -55,19 +55,19 @@ public class BagGongPanel extends JPanel{
 
 	/** 初始化功法信息面板 */
 	private void initGongPanel(int type) {
-		name = new TextField("name", 1);
+		name = new Field("name", 1);
 		name.setBounds(INSET, INSET, 120, TxtH);
 		
-		kind = new TextField("kind", 0);
+		kind = new Field("kind", 0);
 		kind.setBounds(name.getX(), name.getY()+TxtH, 60, TxtH);
 		
-		tier = new TextField("tier", 0);
+		tier = new Field("tier", 0);
 		tier.setBounds(kind.getX()+kind.getWidth()+INSET, kind.getY(), 60, TxtH);
 		
-		qua = new TextField("品阶", 0);
+		qua = new Field("品阶", 0);
 		qua.setBounds(INSET, tier.getY()+TxtH, 60, TxtH);
 		
-		state = new TextField("tier", 0);
+		state = new Field("tier", 0);
 		state.setBounds(qua.getX()+qua.getWidth()+INSET, qua.getY(), 60, TxtH);
 		
 		tta = new TTextArea(0);
@@ -76,13 +76,13 @@ public class BagGongPanel extends JPanel{
 		tta.setText("七十二变七十二变七十二变七十二变七十二变七十二变七十二变七十二变七十二变七十二变七十二变七十二变七十二变七十二变七十二变"
 				+ "七十二变七十二变七十二变七十二变七十二变七十二变七十二变七十二变七十二变七十二变七十二变七十二变");
 		
-		require = new TextField("学习条件:", 0);
+		require = new Field("学习条件:", 0);
 		require.setBounds(INSET, tta.getY()+tta.getHeight(), 140, TxtH);
 		
-		price = new TextField("售价", 0);
+		price = new Field("售价", 0);
 		price.setBounds(INSET, require.getY()+TxtH, 60, TxtH);
 
-		learn = new TextField("已学习", 0);
+		learn = new Field("已学习", 0);
 		learn.setForeground(new Color(0x2196F3));
 		learn.setBounds(INSET, price.getY()+TxtH, 60, TxtH);
 		

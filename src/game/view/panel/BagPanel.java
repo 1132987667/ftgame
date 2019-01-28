@@ -17,8 +17,8 @@ import game.entity.Gong;
 import game.entity.Player;
 import game.utils.C;
 import game.utils.DataCal;
-import game.view.button.TButton;
-import game.view.ui.TextField;
+import game.view.button.PicBu;
+import game.view.ui.Field;
 
 /**
  * 背包显示面板
@@ -36,14 +36,14 @@ public class BagPanel extends JPanel {
 	private EquipInfoPanel selectEp , wearEp;
 	/** 操作装备的按钮 */
 	/** 装备 分解  出售  强化 锻造    */
-	private TButton wear , resolve , crafting, salv ; 
+	private PicBu wear , resolve , crafting, salv ; 
 	/** 操作功法的按钮 */
-	private TButton use ;
+	private PicBu use ;
 	/** 公用按钮 */
-	private TButton sell, drop  ;
+	private PicBu sell, drop  ;
 	
-	private TextField capacity, money, lingshi ;
-	public TButton capacityAdd ;
+	private Field capacity, money, lingshi ;
+	public PicBu capacityAdd ;
 	private DataCal dataCal = new DataCal() ;
 	/** 当前点击和穿戴的装备 */
 	private Equip clickEq, enterEq, wearEq ;
@@ -92,23 +92,23 @@ public class BagPanel extends JPanel {
 		bagPanel.addChangeListener(tabLin);
 		
 		/** 对装备进行操作的按钮 */
-		wear = new TButton("装备", 2);
-		resolve = new TButton("分解", 2);
+		wear = new PicBu("装备", 2);
+		resolve = new PicBu("分解", 2);
 		wear.addActionListener(eqAc);
 		resolve.addActionListener(eqAc);
 		wear.setBounds(54, 338, 56, 22);
 		resolve.setBounds(114, 338, 56, 22);
 		
-		use = new TButton("使用", 2);
+		use = new PicBu("使用", 2);
 		
-		capacity = new TextField("容量:10/40", 1);
+		capacity = new Field("容量:10/40", 1);
 		capacity.setBounds(234, 362, 80, 20);
-		capacityAdd = new TButton("", 25);
+		capacityAdd = new PicBu("", 25);
 		capacityAdd.setLocation(324, 360);
 		
-		money = new TextField("1000", 3);
+		money = new Field("1000", 3);
 		money.setBounds(80, 364, 60, 20);
-		lingshi = new TextField("1000", 3);
+		lingshi = new Field("1000", 3);
 		lingshi.setBounds(172, 364, 60, 20);
 		
 		superPanel.add(wear);
@@ -133,16 +133,16 @@ public class BagPanel extends JPanel {
 	public EquipInfoPanel getSelectEp() {
 		return selectEp;
 	}
-	public TButton getWear() {
+	public PicBu getWear() {
 		return wear;
 	}
-	public void setWear(TButton wear) {
+	public void setWear(PicBu wear) {
 		this.wear = wear;
 	}
-	public TButton getResolve() {
+	public PicBu getResolve() {
 		return resolve;
 	}
-	public void setResolve(TButton resolve) {
+	public void setResolve(PicBu resolve) {
 		this.resolve = resolve;
 	}
 	

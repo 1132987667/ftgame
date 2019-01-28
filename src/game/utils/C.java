@@ -7,6 +7,8 @@ public class C {
 	public static int Width  = 1024 ;
 	public static int height  = 600 ;
 	
+	public static final int INSET = 4 ;
+	
 	//Field字段
 	public static String[] attrAry = {"名号","等级","境界","经验","血量","法力","攻击","防御"} ;
 	
@@ -15,6 +17,25 @@ public class C {
 	public static final Font Kai_L = new Font("楷体", Font.PLAIN, 16);
 	public static final Font Kai_XL = new Font("楷体", Font.PLAIN, 18);
 	
+	public static final Font Y_S = new Font("幼圆", Font.PLAIN, 12);
+	public static final Font Y_M = new Font("幼圆", Font.PLAIN, 14);
+	public static final Font Y_L = new Font("幼圆", Font.PLAIN, 16);
+	public static final Font Y_XL = new Font("幼圆", Font.PLAIN, 18);
+	
+	public static final Font LS_S = new Font("隶书", Font.PLAIN, 12);
+	public static final Font LS_M = new Font("隶书", Font.PLAIN, 14);
+	public static final Font LS_L = new Font("隶书", Font.PLAIN, 16);
+	public static final Font LS_XL = new Font("隶书", Font.PLAIN, 18);
+	
+	public static final Font YH_S = new Font("微软雅黑", Font.PLAIN, 12);
+	public static final Font YH_M = new Font("微软雅黑", Font.PLAIN, 14);
+	public static final Font YH_L = new Font("微软雅黑", Font.PLAIN, 16);
+	public static final Font YH_XL = new Font("微软雅黑", Font.PLAIN, 18);
+	
+	public static final Font Courier_New_S = new Font("隶书", Font.PLAIN, 12);
+	public static final Font Courier_New_M = new Font("隶书", Font.PLAIN, 14);
+	public static final Font Courier_New_L = new Font("隶书", Font.PLAIN, 16);
+	public static final Font Courier_New_XL = new Font("隶书", Font.PLAIN, 18);
 	
 	public static final String SState = "状态[V]" ;
 	public static final String SSkill = "技能" ;
@@ -74,6 +95,8 @@ public class C {
 	
 	public static Color[] colorAry = {new Color(233, 221, 183),new Color(255, 251, 240),new Color(240, 252, 255),new Color(238, 222, 176),new Color(243, 249, 241),new Color(255, 198, 75)} ;
 	
+	
+	public static final Color defBacColor = new Color(249, 249, 249);
 	
 	/** 用来控制装备的生成  */
 	/** 一级属性向二级属性转换的比率  hp mp atk def baoji  */

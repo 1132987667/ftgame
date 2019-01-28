@@ -9,12 +9,20 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.UIManager;
 
+import game.view.button.Bu;
+
 public class QuickFrame extends JFrame{
+	private boolean usePf = true ;
 	private static final long serialVersionUID = 1L;
 	int w = 0 ;
 	int h = 0 ;
 	
 	public JPanel main = new JPanel() ;
+	
+	public JPanel getMainPanel() {
+		return main ;
+	}
+	
 	private JButton close = new JButton("");
 	
 	public QuickFrame(int w, int h){
@@ -26,6 +34,12 @@ public class QuickFrame extends JFrame{
 	}
 	
 	public QuickFrame() {
+		try {
+			if(usePf)
+			UIManager.setLookAndFeel("com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel");
+		} catch (Exception e) {
+					
+		}
 		setSize(400, 400);
 		setUndecorated(true);
 		setLocation(200, 200);
@@ -43,11 +57,6 @@ public class QuickFrame extends JFrame{
 				dispose();
 			}
 		});
-		try {
-			UIManager.setLookAndFeel("com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel");
-		} catch (Exception e) {
-					
-		}
 	}
 	
 	public void setClosePos() {
@@ -59,7 +68,12 @@ public class QuickFrame extends JFrame{
 	}
 	
 	public static void main(String[] args) {
-		new QuickFrame().start();
+		QuickFrame qf = new QuickFrame() ;
+		JPanel panel = qf.getMainPanel();
+		Bu b = new Bu("你好", 1);
+		panel.add(b);
+		b.setLocation(20, 20);
+		qf.start();
 	}
 	
 	

@@ -6,13 +6,13 @@ import java.awt.RenderingHints;
 
 import javax.swing.ImageIcon;
 
-import game.utils.SUtils;
+import game.control.IoCtrl;
 
 public class DrawThread implements Runnable {
 	private Graphics g = null;
 	private String str = null;
 	private int type;
-	ImageIcon image1 = SUtils.loadImageIcon("/game/img/one/minSwordH.png");
+	ImageIcon image1 = IoCtrl.loadImageIcon("/game/img/one/minSwordH.png");
 
 	public DrawThread(Graphics g,  String str, int type) {
 		super();

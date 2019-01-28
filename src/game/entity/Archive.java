@@ -2,13 +2,29 @@ package game.entity;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import game.entity.compontent.Point;
+
 /** 存档类 */
 public class Archive implements Serializable{
 	private static final long serialVersionUID = 1L;
+	
+	private int arId = 0 ;
+	/** 离开时在游戏中的时间 */
+	private Date exitGameDate = null ;
+	/** 离开时的时间 */
+	private Date exitDate = null ;
+	/** 地点名 */
+	private String locationName ;
+	/**位置 */
+	private Point locationPoint ;
+	private Player player ;
+	
+	
 	
 	private long time ;
 	/** 角色属性 

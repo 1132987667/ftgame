@@ -21,7 +21,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
-import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComponent;
@@ -42,6 +41,7 @@ import org.dom4j.io.XMLWriter;
 import game.control.EquipControl;
 import game.control.GameControl;
 import game.control.GongCtrl;
+import game.control.IoCtrl;
 import game.control.TaskCtrl;
 import game.entity.AddAttrs;
 import game.entity.Archive;
@@ -1369,16 +1369,6 @@ public class SUtils {
 		c.setBorder(new EmptyBorder(0, 0, 0, 0));
 	}
 
-	public static ImageIcon loadImageIcon(String fileName) {
-		ImageIcon imageIcon = null;
-		try {
-			imageIcon = new ImageIcon(ImageIO.read(SUtils.class.getResourceAsStream(fileName)));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return imageIcon;
-	}
-
 	public static int rd(int num) {
 		return rd.nextInt(num);
 	}
@@ -1393,7 +1383,7 @@ public class SUtils {
 		if (isNullStr(bacPath))
 			return;
 		JLabel back = new JLabel();
-		ImageIcon img = SUtils.loadImageIcon("/game/img/back/GameBack.png");
+		ImageIcon img = IoCtrl.loadImageIcon("/game/img/back/GameBack.png");
 		back.setIcon(img);
 		back.setBounds(0, 0, img.getIconWidth(), img.getIconHeight());
 		c.add(back);

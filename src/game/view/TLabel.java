@@ -7,7 +7,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
-import game.utils.SUtils;
+import game.control.IoCtrl;
 
 public class TLabel extends JLabel {
 	private static final long serialVersionUID = 1L;
@@ -97,7 +97,7 @@ public class TLabel extends JLabel {
 			break;
 		}
 		if(type!=0) {
-			image1 = SUtils.loadImageIcon("/game/img/one/" + imageName+ ".png");
+			image1 = IoCtrl.loadImageIcon("/game/img/one/" + imageName+ ".png");
 		}
 		
 	}

@@ -1,13 +1,14 @@
 package game.view.frame;
 
 import game.control.GameControl;
+import game.control.IoCtrl;
 import game.entity.Archive;
 import game.entity.Player;
 import game.utils.ArchiveUtils;
 import game.utils.C;
 import game.utils.SUtils;
 import game.view.TLabel;
-import game.view.button.TButton;
+import game.view.button.PicBu;
 import game.view.panel.GuidePanel;
 import game.view.ui.ImageIconCopy;
 
@@ -31,8 +32,8 @@ import javax.swing.JPanel;
 public class EnterFrame extends JFrame{
 	private static final long serialVersionUID = 1L;
 	/** 四个存档按钮 */
-	private TButton cd1,cd2,cd3,cd4 ;
-	private TButton[] buAry = {cd1,cd2,cd3,cd4} ;
+	private PicBu cd1,cd2,cd3,cd4 ;
+	private PicBu[] buAry = {cd1,cd2,cd3,cd4} ;
 	/** 存档按钮的大小 */
 	private int width = 200 , height = 140 ;
 	
@@ -42,7 +43,7 @@ public class EnterFrame extends JFrame{
 	private String archiveName ;
 	
 	public GuidePanel guidePanel ;
-	private TButton bu3 ;
+	private PicBu bu3 ;
 	
 	private ImageIcon img = null ;
 	/** 背景面板 */
@@ -51,72 +52,68 @@ public class EnterFrame extends JFrame{
 	
 	public JPanel showInfo ;
 	private TLabel name,rank,money,time;
+	
+	
+	
 	public EnterFrame(){
 		setUndecorated(true);
 		setLayout(null);
 		setSize(new Dimension(C.Width,C.height));
 		SUtils.setFrameCenter(this);
-		
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		backPanel = new BackPanel();
 		backPanel.setBounds(0, 0, C.Width, C.height);
 		this.getContentPane().add(backPanel);
+		setResizable(false);
 		
 		/** 创建游戏控制器 */
 		gameControl = GameControl.getInstance();
 		gameControl.setEnterFrame(this);
 		
 		/** 设置图标 */
-		img = SUtils.loadImageIcon("/game/img/button/laugh.png");
-		
+		img = IoCtrl.loadImageIcon("/game/img/button/laugh.png");
 		this.setIconImage(img.getImage());
 		/** 设置背景 */
 		//this.getContentPane().setVisible(true);
 		//this.getContentPane().setBackground(Color.red);
-		img = SUtils.loadImageIcon("/game/img/button/back.png");
+		img = IoCtrl.loadImageIcon("/game/img/button/back.png");
 		
 		/** 新增关闭按钮 */
-		TButton close = new TButton("",11);
+		PicBu close = new PicBu("",11);
 		backPanel.add(close);
-		close.addMouseListener(close);
 		close.addActionListener(exit);
 		close.setLocation(1000, 2);
 		close.setSize(23, 23);
 		
 		/** 存档按钮 */
 		for (int i = 0; i < buAry.length; i++) {
-			buAry[i] = new TButton("存档"+(i+1),5);
+			buAry[i] = new PicBu("存档"+(i+1),5);
 			buAry[i].setActionCommand("archive"+i);
 			if(i==0){
 				buAry[i].setText("自动存档");
 				buAry[i].setActionCommand("autoArchive");
 			}
 			buAry[i].addActionListener(selectArchive);
-			buAry[i].addMouseListener(buAry[i]);
 			buAry[i].setFocusable(false);
 			buAry[i].setLocation(12, 100+i*80);
 			buAry[i].setOpaque(false);
-			//buAry[i].setContentAreaFilled(false);
 			backPanel.add(buAry[i]);
 		}
-		TButton out = new TButton("退出",7);
+		
+		PicBu out = new PicBu("退出",7);
 		out.setSize(100, 33);
 		out.setLocation(12,430);
 		out.addActionListener(exit);
-		out.addMouseListener(out);
 		backPanel.add(out);
-		TButton in = new TButton("确认",7);
+		PicBu in = new PicBu("确认",7);
 		in.setSize(100, 33);
 		in.setLocation(12,473);
-		//in.setFocusable(false);
 		in.addActionListener(sureArchive);
-		in.addMouseListener(in);
 		backPanel.add(in);
-		bu3 = new TButton("进入主页面",7);
+		bu3 = new PicBu("进入主页面",7);
 		bu3.setSize(100, 33);
 		bu3.setLocation(12,516);
-		//in.setFocusable(false);
 		bu3.addActionListener(sureArchive);
-		bu3.addMouseListener(bu3);
 		backPanel.add(bu3);
 		
 		showInfo =new JPanel() ;
@@ -258,7 +255,7 @@ public class EnterFrame extends JFrame{
 		private static final long serialVersionUID = 1L;
 		public ImageIcon img = null ;
 		public BackPanel() {
-			img = SUtils.loadImageIcon("/game/img/button/back.png");
+			img = IoCtrl.loadImageIcon("/game/img/button/back.png");
 			this.setOpaque(true);
 			setLayout(null);
 		}

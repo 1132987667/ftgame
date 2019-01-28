@@ -8,7 +8,7 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.border.BevelBorder;
 
-import game.view.button.TButton;
+import game.view.button.PicBu;
 import game.view.frame.QuickFrame;
 
 
@@ -17,7 +17,7 @@ public class T {
 		
 		QuickFrame f = new QuickFrame();
 		JPanel p = f.main;
-		TButton mb = new TButton("????", 33);
+		PicBu mb = new PicBu("????", 33);
 		mb.setSize();
 		System.out.println(mb.getX());
 		mb.setSize(mb.getWidth()+20, mb.getHeight()+20);

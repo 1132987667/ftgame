@@ -14,14 +14,14 @@ import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
 import game.control.GameControl;
+import game.control.IoCtrl;
 import game.control.UICtrl;
 import game.entity.AddAttrs;
 import game.entity.Equip;
 import game.entity.Player;
 import game.utils.C;
 import game.utils.DataCal;
-import game.utils.SUtils;
-import game.view.button.TButton;
+import game.view.button.PicBu;
 
 /**
  * 用来显示玩家信息的面板
@@ -71,14 +71,14 @@ public class PlayerPanel extends JPanel {
 	
 	/** 装备面板去往属性面板 */
 	/** 属性面板去往装备面板 */
-	private TButton jumpBu = null ;
+	private PicBu jumpBu = null ;
 	
 	/** 当前所有装备加成 */
 	private AddAttrs curAddAttrs ;
 	
 	private JLabel back ;
 	/** 拖拽Bu */
-	private TButton drugBu = null ;
+	private PicBu drugBu = null ;
 	private JPanel parent ;
 	
 	/** 组件的x,y坐标 */
@@ -101,7 +101,7 @@ public class PlayerPanel extends JPanel {
 		this.back = back ;
 	}
 	
-	public PlayerPanel(TButton drugB,JPanel parent) {
+	public PlayerPanel(PicBu drugB,JPanel parent) {
 		this.parent = parent ;
 		this.drugBu = drugB ;
 		this.setBounds(0, 24, 300, 410);
@@ -130,7 +130,7 @@ public class PlayerPanel extends JPanel {
 		initEquipPanel(equipPanel);
 		
 		/** jump完成全部跳转任务 */
-		jumpBu = new TButton("",20) ;
+		jumpBu = new PicBu("",20) ;
 		jumpBu.setActionCommand("attr");
 		jumpBu.addActionListener(jump);
 		add(jumpBu);
@@ -490,32 +490,32 @@ public class PlayerPanel extends JPanel {
 				public void run() {
 					if(e.getActionCommand().equals("attr")){
 						jumpBu.setActionCommand("equip");
-						jumpBu.reload(17);
+						jumpBu.load(17);
 						jumpBu.setBounds(222, 372, 64, 40);
 						
 						attrPanel.setVisible(false);
 						equipPanel.setVisible(true);
 						equipPanel.setBounds(0, 0, 303, 410);
 						/** 重置拖动按钮  */
-						drugBu.reload(22);
+						drugBu.load(22);
 						drugBu.setBounds(0, 394, 40, 26);
 						/** 重新设置背景图 */
-						ImageIcon img = SUtils.loadImageIcon("/game/img/back/equipAndGong.png");
+						ImageIcon img = IoCtrl.loadImageIcon("/game/img/back/equipAndGong.png");
 						back.setIcon(img);
 						parent.repaint();
 					}else{
 						jumpBu.setActionCommand("attr");
-						jumpBu.reload(20);
+						jumpBu.load(20);
 						jumpBu.setBounds(176, 322, 76, 30);
 
 						attrPanel.setVisible(true);
 						equipPanel.setVisible(false);
 						attrPanel.setBounds(0, 0, 303, 410);
 						/** 重置拖动按钮  */
-						drugBu.reload(19);
+						drugBu.load(19);
 						drugBu.setBounds(8, 378, 64, 40);
 						/** 重新设置背景图 */
-						ImageIcon img = SUtils.loadImageIcon("/game/img/back/attrAndGong.png");
+						ImageIcon img = IoCtrl.loadImageIcon("/game/img/back/attrAndGong.png");
 						back.setIcon(img);
 						parent.repaint();
 					}

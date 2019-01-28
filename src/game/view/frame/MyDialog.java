@@ -4,7 +4,7 @@ package game.view.frame;
 import java.awt.Color;
 import java.awt.Dimension;
 
-import game.view.ui.TextField;
+import game.view.ui.Field;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -15,17 +15,17 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import game.utils.SUtils;
-import game.view.button.TButton;
+import game.view.button.PicBu;
 
 public class MyDialog extends JDialog{
 
 	private static final long serialVersionUID = 1L;
 	
-	TButton close = new TButton("关闭", 32);
-	TButton sure = new TButton("确定", 32);
-	TButton hide = new TButton("", 11);	
+	PicBu close = new PicBu("关闭", 32);
+	PicBu sure = new PicBu("确定", 32);
+	PicBu hide = new PicBu("", 11);	
 	
-	TButton perf = new TButton("执行", 31);
+	PicBu perf = new PicBu("执行", 31);
 	JTextField input ;
 	
 	JPanel type1 = new JPanel();

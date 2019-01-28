@@ -1,7 +1,7 @@
 package game.utils.xmltool;
 
 import game.utils.SUtils;
-import game.view.button.TButton;
+import game.view.button.PicBu;
 
 import java.awt.Component;
 import java.awt.Insets;
@@ -17,7 +17,7 @@ import javax.swing.table.TableCellRenderer;
 public class MyRender extends AbstractCellEditor implements TableCellRenderer, TableCellEditor,ActionListener {
 
 	private static final long serialVersionUID = 1L;
-	private TButton button = null;
+	private PicBu button = null;
 	/** 1-功法效果  2-技能 */
 	public int type = 1 ;
 	public final int EFFECT = 1 ;
@@ -31,10 +31,10 @@ public class MyRender extends AbstractCellEditor implements TableCellRenderer, T
 	public MyRender(int type) {
 		this.type  = type ;
 		if(type==1){
-			button = new TButton("效果",-1);
+			button = new PicBu("效果",-1);
 			button.addActionListener(this);
 		}else if(type==2){
-			button = new TButton("技能效果",-1);
+			button = new PicBu("技能效果",-1);
 			button.addActionListener(this);
 		}
 	}

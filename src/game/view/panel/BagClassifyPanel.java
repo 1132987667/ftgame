@@ -8,7 +8,7 @@ import game.listener.BagActionListener;
 import game.listener.BagMouseListener;
 import game.utils.C;
 import game.utils.SUtils;
-import game.view.button.TButton;
+import game.view.button.PicBu;
 import game.view.ui.DemoScrollBarUI;
 
 import java.awt.Color;
@@ -161,12 +161,12 @@ public class BagClassifyPanel extends JPanel {
 			return ;
 		}
 		Gong gong = null ;
-		TButton tempBu;
+		PicBu tempBu;
 		JLabel tempField;
 		/** 先设置第一个，再设置其他 */
 		for (int i = 0; i < curBag.size(); i++) {
 			gong = curBag.get(i);
-			tempBu = new TButton(gong.getName(),16);
+			tempBu = new PicBu(gong.getName(),16);
 			/** ActionCommand为在当前功法的ID */
 			tempBu.setActionCommand(gong.getId());
 			/** 设置组件边距 */
@@ -230,13 +230,13 @@ public class BagClassifyPanel extends JPanel {
 			return ;
 		}
 		Equip equip = null ;
-		TButton tempBu;
+		PicBu tempBu;
 		JLabel tempField;
 		System.out.println("背包里物品的数量:"+equipList.size());
 		/** 先设置第一个，再设置其他 */
 		for (int i = 0; i < equipList.size(); i++) {
 			equip = equipList.get(i);
-			tempBu = new TButton(equip.getName(),16);
+			tempBu = new PicBu(equip.getName(),16);
 			/** ActionCommand为在当前list中的序号 */
 			tempBu.setActionCommand(i+"");
 			/** 设置组件边距 */
@@ -269,7 +269,7 @@ public class BagClassifyPanel extends JPanel {
 	
 	MouseAdapter equipMl = new MouseAdapter() {
 		public void mouseEntered(MouseEvent e) { 
-			TButton bu = (TButton) e.getSource() ;
+			PicBu bu = (PicBu) e.getSource() ;
 			String curIndex  = bu.getActionCommand();
 			
 			List<Equip> eqList = player.getEquipBag(index);

@@ -20,29 +20,31 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.plaf.multi.MultiScrollBarUI;
 
 import game.control.GameControl;
+import game.control.IoCtrl;
+import game.control.UICtrl;
 import game.entity.Ditu;
 import game.utils.C;
 import game.utils.SUtils;
 import game.utils.XmlUtils;
-import game.view.button.TButton;
+import game.view.button.PicBu;
 import game.view.ui.TTextArea;
-import game.view.ui.TextField;
+import game.view.ui.Field;
 /**
  * 进行副本和章节选择的面板
  * @author yilong22315
  */
-public class FubenPanel extends JPanel {
+public class FubenPanel extends BasePanel {
 	private static final long serialVersionUID = 1L;
 	/** 组件 */
 	private JScrollPane jsc = null;
 	private JPanel contentPane = null;
 	/** 显示当前点击地图信息 */
 	private JPanel selectInfo = new JPanel();
-	private TButton dituBu = null;
-	private List<TButton> buList = null;
+	private PicBu dituBu = null;
+	private List<PicBu> buList = null;
 	private GameControl gameControl = GameControl.getInstance() ;
-	public  TextField name, rank, msg;
-	private TextField[] info = { name, rank, msg };
+	public  Field name, rank, msg;
+	private Field[] info = { name, rank, msg };
 	private String[] dituInfo = { "副本名:", "适合等级:", "简介:" };
 	private TTextArea text = null;
 	private int fontSize = 14;
@@ -50,62 +52,49 @@ public class FubenPanel extends JPanel {
 	private List<Ditu> list  ;
 	private JButton jb ;
 	private int type = 0 ;
-	private int inset = 8;
 	/** type1 副本 type2 剧情 */
 	public FubenPanel(final int type) {
 		this.type = type ;
 		this.setBounds(139, 76, 612, 370);
-		setLayout(null);
-		setOpaque(false);
+		initSet();
 		
 		/** 显示副本信息 */
 		add(selectInfo);
-		selectInfo.setLayout(null);
+		UICtrl.panelBaseSet(selectInfo);
 		selectInfo.setBounds(-2, 160, 296, 210);
-		selectInfo.setOpaque(false);
-		int textType = 1 ;
-		TextField temp = null;
+		selectInfo.setOpaque(true);
+		Field temp = null;
 		for (int i = 0; i < dituInfo.length; i++) {
-			temp = new TextField(dituInfo[i], textType);
-			temp.setBounds(inset, inset+i*(fontSize+inset),
-					dituInfo[i].length()*fontSize+fontSize/2,fontSize+inset);
-			info[i] = new TextField("",textType);
+			temp = customField(dituInfo[i]);
+			temp.setBounds(C.INSET, C.INSET+i*(fontSize+C.INSET),
+					dituInfo[i].length()*fontSize+fontSize/2,fontSize+C.INSET);
+			info[i] = customField("");
 			info[i].setForeground(new Color(195,39,43));
-			info[i].setBounds(inset+temp.getWidth(),inset+i*(fontSize+inset),fontSize*16,
-						fontSize + inset);
+			info[i].setBounds(C.INSET+temp.getWidth(),C.INSET+i*(fontSize+C.INSET),fontSize*16,
+						fontSize + C.INSET);
 			selectInfo.add(temp);
 			selectInfo.add(info[i]);
 		}
+		
+		
 		text = new TTextArea(0);
 		text.setBorder(new EmptyBorder(6, 6, 6, 6));
-		text.setOpaque(true);
-		text.setFont(new Font("幼圆", 0, 14));
+		text.setFont(C.Y_M);
 		text.setBackground(new Color(66, 76, 80));
 		text.setPreferredSize(new Dimension(276, 120));
-		text.setBounds(inset, temp.getY() + temp.getHeight() + inset, 276, 120);
+		text.setBounds(C.INSET, temp.getY() + temp.getHeight() + C.INSET, 276, 120);
 		selectInfo.add(text);
-		/** 设置显示地图信息面板背景图 */
 		JLabel label = new JLabel("");
-		ImageIcon img = SUtils.loadImageIcon("/game/img/back/backB.png");
+		ImageIcon img = IoCtrl.loadImageIcon("/game/img/back/backB.png");
 		label.setIcon(img);
 		selectInfo.add(label, BorderLayout.CENTER);
 		label.setBounds(0, 0, img.getIconWidth(), img.getIconHeight());
-		
-		initData();
-		
 		/** 确认按钮 */
-		jb = new JButton("<html>确<br>认</html>");
-		jb.setIcon(SUtils.loadImageIcon("/game/img/button/buD.png"));
+		PicBu jb = new PicBu("确认", 10);
 		jb.setForeground(Color.white);
-		jb.setFont(new Font("隶书", Font.PLAIN, 20));
-		jb.setContentAreaFilled(false);// 设置图片填充所在区域
-		jb.setMargin(new Insets(0, 0, 0, 0));
-		jb.setBorderPainted(false);
-		jb.setBorder(null);
-		jb.setHorizontalTextPosition(SwingConstants.CENTER);
-		jb.setVerticalTextPosition(SwingConstants.CENTER);
+		jb.setFont(C.LS_XL);
 		add(jb);
-		jb.setBounds(300, 160, 560, 210);
+		jb.setLocation(400, 260);
 		jb.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -129,14 +118,10 @@ public class FubenPanel extends JPanel {
 				}
 			}
 		});
-		
-		JLabel jl = new JLabel();
-		//612,370
-		jl.setIcon(SUtils.loadImageIcon("/game/img/back/pingtai.png"));
-		add(jl);
-		jl.setBounds(0, 0, 612, 370);
 		System.out.println("over.............................");
 	}
+	
+	
 
 	/** 重新布置 */
 	public void initData() {
@@ -163,7 +148,7 @@ public class FubenPanel extends JPanel {
 		buList = new ArrayList<>();
 		/** 显示副本 */
 		for (int i = 0; i < length; i++) {
-			dituBu = new TButton(list.get(i).getName(),29);
+			dituBu = new PicBu(list.get(i).getName(),29);
 			dituBu.setSize();
 			dituBu.setLocation(6+i*dituBu.getWidth(), 6);
 			dituBu.addMouseListener(dituBu);
@@ -181,13 +166,18 @@ public class FubenPanel extends JPanel {
 
 	}
 	
+	public Field customField(String text) {
+		Field field = new Field(text,1);
+		return field ;
+	}
+	
 	ActionListener click = new ActionListener() {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			for (int i = 0; i < buList.size(); i++) {
 				buList.get(i).exit();
 			}
-			((TButton)e.getSource()).click();
+			((PicBu)e.getSource()).click();
 			int index = SUtils.conStrtoInt(e.getActionCommand());
 			ditu = list.get(index);
 			/** 更改显示信息 */
@@ -197,6 +187,28 @@ public class FubenPanel extends JPanel {
 			text.setText(ditu.getDes());
 		}
 	};
+	@Override
+	public void reloadUI() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void reloadData() {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+	@Override
+	public void setBacImg() {
+		JLabel jl = new JLabel();
+		//612,370
+		jl.setIcon(IoCtrl.loadImageIcon("/game/img/back/pingtai.png"));
+		add(jl);
+		jl.setBounds(0, 0, 612, 370);
+	}
 	
 	/*class Listenr extends MouseAdapter {
 		private Ditu fuben = null;
@@ -229,7 +241,7 @@ public class FubenPanel extends JPanel {
 			// 图片填充所在区域
 			jb.setContentAreaFilled(false);// 设置图片填充所在区域
 			// 设置与四周的间距
-			jb.setMargin(new Insets(0, 0, 0, 0));
+			jb.setMargin(new C.INSETs(0, 0, 0, 0));
 			// 设置是否绘制边框
 			jb.setBorderPainted(false);
 			// 设置边框

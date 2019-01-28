@@ -12,7 +12,7 @@ import game.entity.Scene;
  * @author yilong22315
  * 
  */
-public class MButton extends TButton {
+public class MButton extends PicBu {
 	private static final long serialVersionUID = 1L;
 	
 	/** 移入移出点击都有效果 */
@@ -50,13 +50,13 @@ public class MButton extends TButton {
 
 	public void mouseClicked() {
 		/*if(flag==false){
-			this.setIcon(image2);
+			this.setIcon(clickImg);
 			flag = true;
 		}else{
-			this.setIcon(image2);
+			this.setIcon(clickImg);
 		}*/
 		if(flag==Well){
-			this.setIcon(image2);
+			this.setIcon(clickImg);
 		}
 		
 	}
@@ -68,10 +68,10 @@ public class MButton extends TButton {
 
 		} else {
 			/*if (!flag) {
-				this.setIcon(image1);
+				this.setIcon(initImg);
 			}*/
 			if(flag!=Enabled){
-				this.setIcon(image1);
+				this.setIcon(initImg);
 			}
 		}
 	}
@@ -94,10 +94,10 @@ public class MButton extends TButton {
 	public void mousePressed(MouseEvent e) {
 		/*if (!flag) {
 			flag = true;
-			this.setIcon(image2);
+			this.setIcon(clickImg);
 		}*/
 		if(flag==Well){
-			this.setIcon(image2);
+			this.setIcon(clickImg);
 		}
 		repaint();
 	}
@@ -109,14 +109,14 @@ public class MButton extends TButton {
 	@Override
 	public void mouseEntered(MouseEvent e) {
 		if(flag!=Enabled){
-			this.setIcon(image3);
+			this.setIcon(inImg);
 		}
 	}
 
 	@Override
 	public void mouseExited(MouseEvent e) {
 		if(flag!=Enabled){
-			this.setIcon(image1);
+			this.setIcon(initImg);
 		}
 	}
 
@@ -138,7 +138,7 @@ public class MButton extends TButton {
 	 * 为当前所在位置按钮设置特殊效果
 	 */
 	public void setCurBu() {
-		this.setIcon(image2);
+		this.setIcon(clickImg);
 		flag = 3 ; 
 	}
 
