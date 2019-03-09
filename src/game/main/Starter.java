@@ -19,10 +19,9 @@ public class Starter {
 		UIManager.put("Label.font",C.Y_S); 
 	//	System.setProperty("awt.useSystemAAFontSettings", "on"); 
 	//	System.setProperty("swing.aatext", "true");
-		
 		EnterFrame frame = new EnterFrame();
 		//frame.setBounds(200, 100, 1028, 512);
 		
-		frame.setVisible(true);
+		frame.start();
 	}
 }

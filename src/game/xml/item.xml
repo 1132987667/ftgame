@@ -171,6 +171,18 @@
 	</item>	
 	
 	
+	<item type="" id="60003"  name="金丝环佩">
+		<des>此物用金丝线结成花珠,间以珠玉,宝石,钟玲,贯串成列,小巧而精致,上面还有奇异文字,弯曲若羊角,了不可识! </des>
+		<ac>
+			<e type="get" name="拾起" value="$get:id:60002:1" />
+		</ac>
+	</item>	
+	<item type="" id="60004"  name="一枚令牌">
+		<des>一枚令牌,上绘蟠龙森然,下描云水激荡,有莫名光凝成银眸,微微睁开一线,俯视天穹.</des>
+		<ac>
+			<e type="get" name="探查" value="$get:id:60002:1" />
+		</ac>
+	</item>	
 	
 	
 	

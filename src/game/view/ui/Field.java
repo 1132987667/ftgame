@@ -6,13 +6,22 @@ import java.awt.Font;
 import java.awt.Insets;
 
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
+import game.control.IoCtrl;
 import game.utils.C;
 import game.utils.SUtils;
 
+/**
+ * 基础标签类
+ * 
+ * 
+ * @author admin
+ *
+ */
 public class Field extends JLabel{
 	private static final long serialVersionUID = 1L;
 	private int type ; 
@@ -79,5 +88,31 @@ public class Field extends JLabel{
 		setHorizontalAlignment(SwingConstants.CENTER);
 		setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.black));
 	}
+	
+	/** 用来设定窗体背景图片 */
+	private ImageIcon image1;
+	
+	/**
+	 * 作为背景图片出现
+	 * @param imgPath
+	 */
+	public Dimension asImgLabel(String imgPath){
+		/** 不透明 */
+		setOpaque(false);
+		setText("");
+		
+		image1 = IoCtrl.loadImageIcon("/game/img/back/"+imgPath);
+		System.out.println(image1);
+		setIcon(image1);
+		Dimension d = new Dimension(image1.getIconWidth(), image1.getIconHeight());
+		setBounds(0, 0, d.width, d.height);
+		return d ;
+	}
+	
+	public Field color(Color c) {
+		this.setForeground(c);
+		return this ;
+	}
+	
 	
 }

@@ -14,7 +14,10 @@ public class TLabel extends JLabel {
 	private String imageName = null;
 	private ImageIcon image1 = null;
 	public int type;
-
+	
+	public TLabel() {
+	}
+	
 	public TLabel(String str, int type) {
 		super(str);
 		this.type = type;

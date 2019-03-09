@@ -126,7 +126,14 @@ public class UICtrl {
 		}
 	}
 	
-	
+	/**
+	 * 自动设置布局, 或模块
+	 * @param parentModule
+	 * @param initPoint
+	 * @param list
+	 * @param model
+	 * @return
+	 */
 	public static Point autoLayout(JPanel parentModule, Point initPoint, List<UniteModule> list, int model) {
 		Point p = null ;
 		if(initPoint==null) {

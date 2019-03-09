@@ -2,6 +2,7 @@ package game.view.panel;
 
 import game.entity.Equip;
 import game.utils.C;
+import game.view.frame.QuickFrame;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -19,7 +20,7 @@ import javax.swing.SwingConstants;
  * @author yilong22315
  *
  */
-public class EquipInfoPanel extends JPanel {
+public class EquipInfoPanel extends BasePanel {
 	private static final long serialVersionUID = 1L;
 	Font font = new Font("宋体", Font.PLAIN, 12);
 	public static String[] ary = { "品质", "lv", "位置", "售价", "数量", "血", "攻", "防", "敏", "描述", "特效" };// ,
@@ -169,5 +170,14 @@ public class EquipInfoPanel extends JPanel {
 			attrAry[i].setText("");
 	}
 	
+	public static void main(String[] args) {
+		QuickFrame qf = new QuickFrame();
+		JPanel panel = qf.getMainPanel();
+		EquipInfoPanel eqinfo = new EquipInfoPanel();
+		panel.add(eqinfo);
+		eqinfo.setLocation(0, 0);
+		qf.start();
+		
+	}
 	
 }

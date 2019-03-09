@@ -3,7 +3,6 @@ package game.utils;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
-import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.Toolkit;
 import java.awt.event.ActionListener;
@@ -28,7 +27,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JTabbedPane;
 import javax.swing.border.EmptyBorder;
 
 import org.dom4j.Document;
@@ -889,7 +887,7 @@ public class SUtils {
 		case C.xml_EquipSet:
 			path += "equipSetting.xml";
 			break;
-		case C.xml_Scene:
+		case C.xml_World:
 			path += "scene.xml" ;
 			break;
 		default:

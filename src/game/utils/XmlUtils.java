@@ -73,8 +73,8 @@ public class XmlUtils {
 		case C.xml_EquipSet:
 			path += "equipSetting";
 			break;
-		case C.xml_Scene:
-			path += "scene" ;
+		case C.xml_World:
+			path += "world" ;
 			break;
 		default:
 			break;
@@ -477,7 +477,7 @@ public class XmlUtils {
 	 */
 	public List<Ditu> loadJuqing() {
 		Ditu ditu = null ;
-		Document document = getXmlDoc(C.xml_Scene);
+		Document document = getXmlDoc(C.xml_World);
 		Element root = document.getRootElement();
 		List<Element> temp  = root.elements();
 		List<Ditu> list = new ArrayList<>();
@@ -499,7 +499,7 @@ public class XmlUtils {
 	 */
 	public Ditu loadScene(String ID){
 		Ditu ditu = null ;
-		Document doc = getXmlDoc(C.xml_Scene);
+		Document doc = getXmlDoc(C.xml_World);
 		Node gongNode = doc.selectSingleNode("/root/place[@id='"+ID.trim()+"']/name");
 		Element cur = gongNode.getParent() ;
 		String id,name,des = null ;

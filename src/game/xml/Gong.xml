@@ -176,7 +176,7 @@
 		<effectStr></effectStr> <baseEff></baseEff> 
 		<req>人族</req> <price>10000</price> <curTier>1</curTier> 
 		<effect/> </gong> -->
-	<gong id="20000">
+	<!-- <gong id="20000">
 		<name>基本内功</name>
 		<des>一切内功心法的起源，也是一切内功心法的根本</des>
 		<qua>0</qua>
@@ -281,5 +281,59 @@
 		<price></price>
 		<curTier>1</curTier>
 		<effect />
+	</gong> -->
+	
+	<gong id="25106">
+		<name>xx步</name>
+		<des>此法源于古山国西疆,闪躲腾跃,不可捉摸</des>
+		<qua>0</qua>
+		<weight>6</weight>
+		<maxTier></maxTier>
+		<type></type>
+		<needRank></needRank>
+		<effectStr></effectStr>
+		<baseEff>jing:3</baseEff>
+		<req></req>
+		<price></price>
+		<curTier>1</curTier>
+		<effect />
+	</gong> 
+	
+	<gong id="25107">
+		<name>幽若剑</name>
+		<des>暗杀剑,以寂静无声为主,配合神兵利器,偷袭极强.</des>
+		<qua>0</qua>
+		<weight>6</weight>
+		<maxTier></maxTier>
+		<type></type>
+		<needRank></needRank>
+		<effectStr></effectStr>
+		<baseEff>jing:3</baseEff>
+		<req></req>
+		<price></price>
+		<curTier>1</curTier>
+		<effect />
 	</gong>
+	
+	
+	<gong id="25107">
+		<name>无炎剑法</name>
+		<des>无炎而有烟,舍弃一切度,力量,锋利,换来高温杀伤力,修炼难度高,威力大</des>
+		<qua>0</qua>
+		<weight>6</weight>
+		<maxTier></maxTier>
+		<type></type>
+		<needRank></needRank>
+		<effectStr></effectStr>
+		<baseEff>jing:3</baseEff>
+		<req></req>
+		<price></price>
+		<curTier>1</curTier>
+		<effect />
+	</gong>
+	
+	<!-- 
+		欢欣阵:改善心情,疏肝理肺
+	  -->
+	
 </root>

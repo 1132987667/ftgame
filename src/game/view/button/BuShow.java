@@ -42,9 +42,9 @@ public class BuShow extends JPanel {
 			height += bu.getHeight() + 6;
 			System.out.println(height);
 			bu.setLocation(width + 50, text.getY());
-			if(i<24) {
-				bu.setFont(fonts.get(i));
-			}
+			/*
+			 * if(i<24) { bu.setFont(fonts.get(i)); }
+			 */
 			add(text);
 			add(bu);
 		}

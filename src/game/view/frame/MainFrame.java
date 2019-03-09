@@ -202,7 +202,7 @@ public class MainFrame extends JFrame {
 		add(testPanel);*/
 		
 		/** 主界面一些面板值的初始化 */
-		//gameControl.mainFrameInit();
+		gameControl.mainFrameInit();
 		//SoundControl.ftMuc(21);
 	}
 	

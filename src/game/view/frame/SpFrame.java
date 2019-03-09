@@ -31,6 +31,7 @@ import game.utils.C;
 import game.view.TLabel;
 import game.view.button.PicBu;
 import game.view.panel.BagPanel;
+import game.view.panel.BasePanel;
 import game.view.panel.BigMapP;
 import game.view.panel.FtPanel;
 import game.view.panel.FubenPanel;
@@ -46,21 +47,15 @@ import game.view.ui.Field;
  * @author yilong22315
  * 
  */
-public class SpFrame extends JFrame{
+public class SpFrame extends BaseFrame{
 	private static final long serialVersionUID = 1L;
-	/** 父窗口 */
-	private MainFrame parent;
 
-	/** 用来设定窗体不规则样式的图片 */
-	private ImageIcon image1;
-	/** 获得游戏控制器 */
-	private GameControl gameControl = GameControl.getInstance();
 	/** 战斗控制器 */
 	private FightControl fightControl = FightControl.getInstance();
 	/** 主容器 */
-	private JPanel contentPane;
+	private BasePanel contentPane;
 	/** 拖动按钮和关闭按钮 */
-	private PicBu drugBu,closeBu ;
+	private PicBu closeBu ;
 	
 	private BagPanel bagPanel ;
 	
@@ -70,7 +65,7 @@ public class SpFrame extends JFrame{
 	private PlayerPanel playerPanel ;
 	private FubenPanel fubenPanel ;
 	private FubenPanel juqingPanel ;
-	private JLabel back ;
+	
 	private FtPanel ftPanel ;
 	/** 任务窗口 */
 	private TaskP taskP ;
@@ -79,6 +74,8 @@ public class SpFrame extends JFrame{
 	/** 判断窗口类型的参数 */
 	public int type ;
 	
+	private String imgPath = null  ;
+	
 	/**
 	 * @param parent
 	 * @param type 决定这个窗口作用的不同
@@ -86,68 +83,33 @@ public class SpFrame extends JFrame{
 	public SpFrame(MainFrame parent, int type) {
 		super();
 		this.type = type ;
-		this.parent = parent ;
 		
-		setBackground(new Color(0, 0, 0, 0));
-		
-		
-		contentPane = new JPanel();
-		contentPane.setOpaque(false);// 可视化编辑下会自动创建一个JPanel,也要将这个JPanel设为透明，
+		//setBackground(new Color(0, 0, 0, 0));
+		contentPane = new BasePanel();
+		contentPane.initSet();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setLayout(null);
+		
 		setContentPane(contentPane);
-		contentPane.addKeyListener(gameControl.getKeyMana());
+		contentPane.addKeyListener(ctrl.getKeyMana());
 		
 		closeBu = new PicBu("", 11);
 		closeBu.setToolTipText("关闭");
 		contentPane.add(closeBu);
 		closeBu.setBounds(270, 13, 26, 26);
 		closeBu.addActionListener(closeListener);
-		drugBu = new PicBu("", 1);
-		drugBu.setToolTipText("拖动");
+		
+		/** 打开拖动功能 */
+		openDrug();
 		contentPane.add(drugBu);
 		
-		/** 得到不同背景图片和设置 */
-		String imgPath = null;
-		switch (type) {
-		case C.Fuben://副本
-			imgPath = "fubenBorder.png";
-			initFuben(contentPane);
-			break ;
-		case C.State:// 人物属性和装备图
-			imgPath = "attrAndGong.png";
-			initPlayer(contentPane);
-			break;
-		case C.Task:
-			imgPath = "taskbac.png";
-			initTask();
-			break;
-		case C.JiangHu:
-			imgPath = "fubenBorder.png";
-			JiangHu(contentPane);
-			break ;
-		case C.Bag:
-			imgPath = "bagBac.png";
-			initBag();
-		case C.Fight:
-			imgPath = "bagBac.png";
-			//init3(contentPane);
-			break;
-		case C.Map:
-			initMap();
-			break;
-		default:
-			break;
-		}
+		PersonInit();
 		
 		/** 设置显示图片 */
 		if(imgPath!=null) {
-			back = new JLabel("");
-			image1 = IoCtrl.loadImageIcon("/game/img/back/"+imgPath);
-			back.setIcon(image1);
-			contentPane.add(back, BorderLayout.CENTER);
-			back.setBounds(0, 0, image1.getIconWidth(), image1.getIconHeight());
-			setBounds(200, 100, image1.getIconWidth(), image1.getIconHeight());
+			backImg = new Field("");
+			backImg.asImgLabel(imgPath);
+			contentPane.add(backImg, BorderLayout.CENTER);
+			setBounds(200, 100, backImg.getWidth(), backImg.getHeight());
 		}else {
 			if(type==C.Map) {
 				setBounds(200, 100, bigMap.getWidth(), bigMap.getHeight());
@@ -155,15 +117,13 @@ public class SpFrame extends JFrame{
 		}
 		/** 背景图片标签发给人物属性面板 可以在人物面板中设置 */
 		if(playerPanel!=null){
-			playerPanel.setBack(back);
+			playerPanel.setBack(null);
 		}
 		
 		/** 添加父窗口控制监听器 */
 		
 		//setBounds(200, 100, 680, 517);
 		
-		/** 添加拖动功能 */
-		setDragable();
 		this.setVisible(false);
 	}
 	
@@ -171,15 +131,15 @@ public class SpFrame extends JFrame{
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			setVisible(false);
-			gameControl.funCloseInfo(type);
-			gameControl.restore();
+			ctrl.funCloseInfo(type);
+			ctrl.restore();
 		}
 	};
 	
 	private void initBag() {
 		JLayeredPane layeredPanel = getLayeredPane() ;
 		layeredPanel.setLayout(null);
-		gameControl.setLayeredPanel(layeredPanel);
+		ctrl.setLayeredPanel(layeredPanel);
 		closeBu.setBounds(300, 11, 26, 26);
 		JLabel title = new JLabel("背包");
 		title.setBounds(170, 12, 80, 20);
@@ -190,7 +150,7 @@ public class SpFrame extends JFrame{
 		contentPane.add(title);
 		if(bagPanel==null){
 			System.out.println("初始化背包面板");
-			bagPanel = new BagPanel(contentPane, gameControl.getPlayer());
+			bagPanel = new BagPanel(contentPane, ctrl.getPlayer());
 			bagPanel.setLocation(52, 42);
 			bagPanel.setSize(800, 300);
 			contentPane.add(bagPanel);
@@ -208,7 +168,7 @@ public class SpFrame extends JFrame{
 		contentPane.add(title);
 		
 		if(taskP==null){
-			taskP = new TaskP(contentPane, gameControl.getPlayer());
+			taskP = new TaskP(contentPane, ctrl.getPlayer());
 			taskP.setLocation(0, 0);
 			taskP.setSize(294, 440);
 			contentPane.add(taskP);
@@ -343,48 +303,11 @@ public class SpFrame extends JFrame{
 		});
 	}
 	
-	Point loc = null;
-	Point tmp = null;
-	boolean isDragged = false;
-	/** 用来移动窗体的方法 */
-	private void setDragable() {
-		drugBu.addMouseListener(new MouseAdapter() {
-			public void mouseReleased(java.awt.event.MouseEvent e) {
-				isDragged = false;
-				setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
-			}
-
-			public void mousePressed(java.awt.event.MouseEvent e) {
-				tmp = new Point(e.getX(), e.getY());
-				isDragged = true;
-				setCursor(new Cursor(Cursor.HAND_CURSOR));
-			}
-			@Override
-			public void mouseEntered(MouseEvent e) {
-			}
-			@Override
-			public void mouseExited(MouseEvent e) {
-			}
-		});
-		drugBu.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-			public void mouseDragged(java.awt.event.MouseEvent e) {
-				if (isDragged) {
-					loc = new Point(getLocation().x + e.getX() - tmp.x,
-							getLocation().y + e.getY() - tmp.y);
-					setLocation(loc);
-				}
-			}
-		});
-	}
-	
 	/**
 	 * 出现加载窗口
 	 * @param type
 	 */
 	public void reload(int type) {
-		if(parent!=null){
-			parent.setEnabled(false);
-		}
 		if(type==C.Fuben){
 			fubenPanel.initData();
 		}else if(type==C.Task){
@@ -393,13 +316,13 @@ public class SpFrame extends JFrame{
 			playerPanel.initData();
 		}else if(type==C.Fight){
 			npc = fightControl.getNpc();
-			ftPanel.reload(gameControl.getPlayer(), npc);
+			ftPanel.reload(ctrl.getPlayer(), npc);
 		}else if(type==C.Bag){
 			bagPanel.openBag();
 		}else if(type==C.Map) {
-			Point curPoint = new Point(gameControl.getScene().x, gameControl.getScene().y);
-			bigMap.setTitle("大地图: "+gameControl.getScene().x+","+gameControl.getScene().y);
-			bigMap.initMap(curPoint ,gameControl.getCurDituID());
+			Point curPoint = new Point(ctrl.getScene().x, ctrl.getScene().y);
+			bigMap.setTitle("大地图: "+ctrl.getScene().x+","+ctrl.getScene().y);
+			bigMap.initMap(curPoint ,ctrl.getCurDituID());
 		}
 	}
 	
@@ -413,6 +336,42 @@ public class SpFrame extends JFrame{
 
 	public void setNpc(NPC npc) {
 		this.npc = npc;
+	}
+	
+	public void PersonInit(){
+		/** 得到不同背景图片和设置 */
+		switch (type) {
+		case C.Fuben://副本
+			imgPath = "fubenBorder.png";
+			initFuben(contentPane);
+			break ;
+		case C.State:// 人物属性和装备图
+			imgPath = "attrAndGong.png";
+			initPlayer(contentPane);
+			break;
+		case C.Task:
+			imgPath = "taskbac.png";
+			initTask();
+			break;
+		case C.JiangHu:
+			imgPath = "fubenBorder.png";
+			JiangHu(contentPane);
+			break ;
+		case C.Bag:
+			imgPath = "bagBac.png";
+			initBag();
+		case C.Fight:
+			imgPath = "bagBac.png";
+			//init3(contentPane);
+			break;
+		case C.Map:
+			initMap();
+			break;
+		default:
+			break;
+		}
+		
+		
 	}
 	
 }

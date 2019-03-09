@@ -9,9 +9,10 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.UIManager;
 
+import game.utils.C;
 import game.view.button.Bu;
 
-public class QuickFrame extends JFrame{
+public class QuickFrame extends BaseFrame{
 	private boolean usePf = true ;
 	private static final long serialVersionUID = 1L;
 	int w = 0 ;
@@ -46,8 +47,10 @@ public class QuickFrame extends JFrame{
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setContentPane(main);
 		main.setLayout(null);
-		main.setBackground(new Color(220, 220, 220));
+		//new Color(220, 220, 220)
+		main.setBackground(C.defBacColor);
 		main.add(close);
+		
 		close.setSize(26,26);
 		close.setBackground(Color.red);
 		close.setLocation(getWidth()-close.getWidth(), 0);
@@ -57,6 +60,12 @@ public class QuickFrame extends JFrame{
 				dispose();
 			}
 		});
+		
+		openDrug();
+		add(drugBu);
+		drugBu.load(26);
+		drugBu.setLocation(close.getX() - drugBu.getWidth(), 0);
+		System.out.println(drugBu.getWidth());
 	}
 	
 	public void setClosePos() {

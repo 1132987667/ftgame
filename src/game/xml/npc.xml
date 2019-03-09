@@ -2,12 +2,13 @@
 <root>
 	<npc attrType="rd">
 		<id>101</id>
-		<name>白兔王中王啊</name>
+		<name>白兔</name>
 		<race>野兽</race>
 		<attitude>和平</attitude>
 		<des>一只雪白的小白兔，可爱之致。</des>
 		<msg>咕咕</msg>
 		<rank>1</rank>
+		<dropList>兔毛|兔肉</dropList>
 		<!-- 此npc的最低品质 -->
 		<type></type>
 		<ac>
@@ -15,12 +16,32 @@
 		</ac>
 	</npc>
 	<npc attrType="rd">
+		<id>1001</id>
+		<name>驼兽</name>
+		<race>野兽</race>
+		<attitude>和平</attitude>
+		<des>一种性格温和的大型动物,杂食类,有一个驼峰,四肢粗大,耐苦耐劳,人们常用它来运输货物.</des>
+		<msg> 俺感觉到我驼峰里的食物只能再吃10天了,心里慌得很.|
+			  生气到底是种什么感觉,我真想知道!
+		 </msg>
+		<rank>4</rank>
+		<!-- 此npc的最低品质 -->
+		<type></type>
+		<ac>			
+		</ac>
+	</npc>
+	
+	
+	
+	
+	
+	<!-- <npc attrType="rd">
 		<id>102</id>
 		<name>狍子</name>
 		<des></des>
 		<msg>狍子吃着嫩枝，并没有理你</msg>
 		<rank>2</rank>
-		<!-- 此npc的最低品质 -->
+		此npc的最低品质
 		<type></type>
 		<ac>
 			<e type="task" name="任务" value="$task:104" />
@@ -32,7 +53,7 @@
 		<des>一只狈，身体瘦小，但是头脑发达，异常狡猾</des>
 		<msg>狈转动着它的小眼睛看着你，你无由的感到一阵寒气</msg>
 		<rank>3</rank>
-		<!-- 此npc的最低品质 -->
+		此npc的最低品质
 		<type></type>
 	</npc>
 	<npc attrType="rd">
@@ -41,7 +62,7 @@
 		<des>一条竹叶青</des>
 		<msg>嘶嘶</msg>
 		<rank>4</rank>
-		<!-- 此npc的最低品质 -->
+		此npc的最低品质
 		<type></type>
 	</npc>
 	<npc attrType="rd">
@@ -55,7 +76,7 @@
 			野狼闪着绿幽幽的眼光冲你瞄了瞄，血盆巨口里答答滴着哈喇子。
 		</msg>
 		<rank>5</rank>
-		<!-- 此npc的最低品质 -->
+		此npc的最低品质
 		<type></type>
 	</npc>
 	<npc attrType="rd">
@@ -64,7 +85,7 @@
 		<des></des>
 		<msg></msg>
 		<rank>5</rank>
-		<!-- 此npc的最低品质 -->
+		此npc的最低品质
 		<type></type>
 	</npc>
 	<npc attrType="rd">
@@ -73,7 +94,7 @@
 		<des></des>
 		<msg></msg>
 		<rank>6</rank>
-		<!-- 此npc的最低品质 -->
+		此npc的最低品质
 		<type></type>
 		<action>
 			<ac type="task">
@@ -87,7 +108,7 @@
 		<des>哇，好一只红貂</des>
 		<msg></msg>
 		<rank>6</rank>
-		<!-- 此npc的最低品质 -->
+		此npc的最低品质
 		<type></type>
 	</npc>
 	<npc attrType="rd">
@@ -96,7 +117,7 @@
 		<des>一只大黑熊，你最好离它远点</des>
 		<msg>吼吼吼吼吼吼吼吼吼</msg>
 		<rank>7</rank>
-		<!-- 此npc的最低品质 -->
+		此npc的最低品质
 		<type></type>
 	</npc>
 	<npc attrType="rd">
@@ -105,7 +126,7 @@
 		<des>一只大赤熊，当心它把你当成了食物</des>
 		<msg>嗷唔嗷唔</msg>
 		<rank>8</rank>
-		<!-- 此npc的最低品质 -->
+		此npc的最低品质
 		<type></type>
 	</npc>
 	<npc attrType="rd">
@@ -114,7 +135,7 @@
 		<des></des>
 		<msg></msg>
 		<rank>8</rank>
-		<!-- 此npc的最低品质 -->
+		此npc的最低品质
 		<type></type>
 	</npc>
 	<npc attrType="rd">
@@ -128,7 +149,7 @@
 			老虎仰天长啸，声震山谷，黄叶纷坠。
 		</msg>
 		<rank>9</rank>
-		<!-- 此npc的最低品质 -->
+		此npc的最低品质
 		<type></type>
 	</npc>
 	<npc attrType="rd">
@@ -697,7 +718,7 @@
 		此npc的最低品质
 		<type></type>
 	</npc>
-	<!--<npc> <name></name> <des></des> <msg></msg> <rank></rank> 此npc的最低品质 
+	<npc> <name></name> <des></des> <msg></msg> <rank></rank> 此npc的最低品质 
 		<type></type> </npc> <npc> <name></name> <des></des> <msg></msg> <rank></rank> 
 		此npc的最低品质 <type></type> </npc> <npc> <name></name> <des></des> <msg></msg> 
 		<rank></rank> 此npc的最低品质 <type></type> </npc> <npc> <name></name> <des></des> 
@@ -715,10 +736,10 @@
 		<type></type> </npc> <npc> <name></name> <des></des> <msg></msg> <rank></rank> 
 		此npc的最低品质 <type></type> </npc> <npc> <name></name> <des></des> <msg></msg> 
 		<rank></rank> 此npc的最低品质 <type></type> </npc> <npc> <name></name> <des></des> 
-		<msg></msg> <rank></rank> 此npc的最低品质 <type></type> </npc> -->
+		<msg></msg> <rank></rank> 此npc的最低品质 <type></type> </npc>
 
 
-	<!-- 剧情人物 -->
+	剧情人物
 	<npc tyep="npc">
 		<id>1001</id>
 		<name>马三炮</name>
@@ -823,7 +844,7 @@
 		</acs>
 		<rank>1</rank>
 		<type>3</type>
-	</npc>
+	</npc> -->
 	
 	
 	

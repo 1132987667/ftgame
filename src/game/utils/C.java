@@ -242,7 +242,7 @@ public class C {
 	public static final int xml_Task     = 5 ;
 	public static final int xml_Fuben    = 6 ;
 	public static final int xml_EquipSet = 7 ;
-	public static final int xml_Scene    = 8 ;
+	public static final int xml_World    = 8 ;
 	
 	
 	

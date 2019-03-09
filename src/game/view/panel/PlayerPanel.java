@@ -6,6 +6,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -21,20 +23,28 @@ import game.entity.Equip;
 import game.entity.Player;
 import game.utils.C;
 import game.utils.DataCal;
+import game.utils.PosUtil;
 import game.view.button.PicBu;
+import game.view.frame.QuickFrame;
+import game.view.ui.ItemMd;
 
 /**
  * 用来显示玩家信息的面板
  * @author yilong22315
  *
  */
-public class PlayerPanel extends JPanel {
+public class PlayerPanel extends BasePanel {
 	private static final long serialVersionUID = 1L;
 	
-	public JPanel oneP, twoP, SPP, equipP, equipAdd;
+	public JPanel atr1, atr2, atrsp, equipP, equipAdd;
+	
+	
+	private ItemMd[] atrs1 ;
+	private ItemMd[] atrs2 ;
+	private ItemMd[] atrssp ;
 	
 	private JLabel tempLabel ;
-	private AttrLabel attrLabel ;
+	private Fid attrLabel ;
 	/** 人物的一级属性 */
 	private JLabel tiliV, jingliV, liV, minV, luckyV;
 	private JLabel[] oneAttrV = { tiliV, jingliV, liV, minV, luckyV };
@@ -49,8 +59,9 @@ public class PlayerPanel extends JPanel {
 
 	/** 名字，等级，境界 ， 经验 */
 	private String[] myName = { "名号", "等级", "境界", "经验", };
-	private AttrLabel nameV, rankV, stateV, theExpV;
-	private AttrLabel[] myV = { nameV, rankV, stateV, theExpV };
+	private Fid nameV, rankV, stateV, theExpV;
+	private Fid[] myV = { nameV, rankV, stateV, theExpV };
+	
 	
 	/** 装备部位 */
 	private EqLabel weaponV, helmetV, necklaceV, coatV, ringV, waistbandV, trousersV, shoesV;
@@ -67,7 +78,7 @@ public class PlayerPanel extends JPanel {
 	/** 装备面板 */
 	public JPanel equipPanel = null;
 	/** 属性面板 */
-	public JPanel attrPanel = null;
+	public BasePanel attrPanel = null;
 	
 	/** 装备面板去往属性面板 */
 	/** 属性面板去往装备面板 */
@@ -76,7 +87,6 @@ public class PlayerPanel extends JPanel {
 	/** 当前所有装备加成 */
 	private AddAttrs curAddAttrs ;
 	
-	private JLabel back ;
 	/** 拖拽Bu */
 	private PicBu drugBu = null ;
 	private JPanel parent ;
@@ -94,30 +104,21 @@ public class PlayerPanel extends JPanel {
 	private int attrValue = fontSize * 6;// 86 121
 	public Font font = new Font("幼圆", Font.PLAIN, fontSize);
 
-	private GameControl gameControl = null ;
 	private Player player = null ;
 	
-	public void setBack(JLabel back){
-		this.back = back ;
-	}
 	
 	public PlayerPanel(PicBu drugB,JPanel parent) {
 		this.parent = parent ;
 		this.drugBu = drugB ;
 		this.setBounds(0, 24, 300, 410);
-		setLayout(null);
-		setOpaque(false);
 		//setBackground(Color.white);
-		gameControl = GameControl.getInstance();
-		player = gameControl.getPlayer();
-		
+		player = ctrl.getPlayer();
+		player = new Player();
 		/** 初始化人物属性面板 */
-		attrPanel = new JPanel() ;
-		attrPanel.setVisible(true);
+		attrPanel = new BasePanel() ;
+		
 		add(attrPanel);
 		attrPanel.setBounds(0,0,611,310);
-		attrPanel.setLayout(null);
-		attrPanel.setOpaque(false);
 		initAttrPanel(attrPanel);
 		
 		/** 初始化人物装备面板 不同品质颜色不同 */
@@ -152,17 +153,22 @@ public class PlayerPanel extends JPanel {
 	
 	/** 初始化人物面板 */
 	public void initAttrPanel(JPanel attrPanel) {
-		x = inset * 2;
-		y = inset * 2;
-		attrLabel = new AttrLabel(myName[0]+":",Color.black);
-		myV[0] = new AttrLabel("老白");
+		x = C.INSET * 2;
+		y = C.INSET * 2;
+		attrLabel = new Fid(myName[0]+":",Color.black);
+		attrLabel.setSize(200, 24);
+		
+		myV[0] = new Fid("老白");
 		attrLabel.setBounds(x, y, myName[0].length()*fontSize+fontSize/2,fontSize);
 		myV[0].setBounds(x+attrLabel.getWidth()+inset, y,(fontSize+inset)*8, fontSize);
 		attrPanel.add(attrLabel);
 		attrPanel.add(myV[0]);
+		
+		
+		
 		for (int i = 1; i < myV.length; i++) {
-			attrLabel = new AttrLabel(myName[i]+":",Color.black);
-			myV[i] = new AttrLabel("");
+			attrLabel = new Fid(myName[i]+":",Color.black);
+			myV[i] = new Fid("");
 			attrPanel.add(attrLabel);
 			attrPanel.add(myV[i]);
 			/** 属性名字占的大小 */
@@ -179,12 +185,12 @@ public class PlayerPanel extends JPanel {
 		x = inset;
 		y = myV[3].getY()+myV[3].getHeight()+inset;
 		/** 一级属性 */
-		oneP = new JPanel();
-		oneP.setOpaque(false);
-		oneP.setLayout(null);
-		attrPanel.add(oneP);
-		oneP.setBounds(x, y,294,inset*4+(fontSize+inset)*3);
-		UICtrl.setBorder(oneP, "一级属性", Color.blue, new Font("隶书",Font.PLAIN,16));
+		atr1 = new JPanel();
+		atr1.setOpaque(false);
+		atr1.setLayout(null);
+		attrPanel.add(atr1);
+		atr1.setBounds(x, y,294,inset*4+(fontSize+inset)*3);
+		UICtrl.setBorder(atr1, "一级属性", Color.blue, new Font("隶书",Font.PLAIN,16));
 		int length = C.oneAttr.length;
 		x = inset*2 ;
 		y = fontSize+inset*3 ;
@@ -193,10 +199,10 @@ public class PlayerPanel extends JPanel {
 				x = inset*2 ;
 				y = y + fontSize+inset;
 			}
-			attrLabel = new AttrLabel(C.oneAttr[i]+":",Color.black);
-			oneAttrV[i] = new AttrLabel("100000");
-			oneP.add(attrLabel);
-			oneP.add(oneAttrV[i]);
+			attrLabel = new Fid(C.oneAttr[i]+":",Color.black);
+			oneAttrV[i] = new Fid("100000");
+			atr1.add(attrLabel);
+			atr1.add(oneAttrV[i]);
 			attrName = C.oneAttr[i].length()*fontSize+fontSize/2;
 			attrLabel.setBounds(x, y, attrName, fontSize);
 			oneAttrV[i].setBounds(attrLabel.getX()+attrName+inset,y,4*fontSize,fontSize);
@@ -205,13 +211,13 @@ public class PlayerPanel extends JPanel {
 		
 		/** 二级属性 */
 		x = inset ;
-		y = oneP.getY()+oneP.getHeight()+inset;
-		twoP = new JPanel();
-		twoP.setOpaque(false);
-		twoP.setLayout(null);
-		attrPanel.add(twoP);
-		twoP.setBounds(x, y,294,inset*4+(fontSize+inset)*3);
-		UICtrl.setBorder(twoP, "二级属性", Color.blue, new Font("隶书",Font.PLAIN,16));
+		y = atr1.getY()+atr1.getHeight()+inset;
+		atr2 = new JPanel();
+		atr2.setOpaque(false);
+		atr2.setLayout(null);
+		attrPanel.add(atr2);
+		atr2.setBounds(x, y,294,inset*4+(fontSize+inset)*3);
+		UICtrl.setBorder(atr2, "二级属性", Color.blue, new Font("隶书",Font.PLAIN,16));
 		length = C.twoAttr.length;
 		x = inset*2 ;
 		y = fontSize+inset*3 ;
@@ -219,10 +225,10 @@ public class PlayerPanel extends JPanel {
 			if(i==3){
 				x = inset*2 ;
 			}
-			attrLabel = new AttrLabel(C.twoAttr[i]+":",Color.black);
-			twoAttrV[i] = new AttrLabel("100000");
-			twoP.add(attrLabel);
-			twoP.add(twoAttrV[i]);
+			attrLabel = new Fid(C.twoAttr[i]+":",Color.black);
+			twoAttrV[i] = new Fid("100000");
+			atr2.add(attrLabel);
+			atr2.add(twoAttrV[i]);
 			attrName = C.twoAttr[i].length()*fontSize+fontSize/2;
 			if(3==i){
 				y = y + fontSize+inset;
@@ -234,21 +240,21 @@ public class PlayerPanel extends JPanel {
 		
 		/** 特殊属性 */
 		x = inset ;
-		y = twoP.getY()+twoP.getHeight()+inset;
-		SPP = new JPanel();
-		SPP.setOpaque(false);
-		SPP.setLayout(null);
-		attrPanel.add(SPP);
-		SPP.setBounds(x, y,294,inset*4+(fontSize+inset)*4);
-		UICtrl.setBorder(SPP, "特殊属性", Color.blue, new Font("隶书",Font.PLAIN,16));
+		y = atr2.getY()+atr2.getHeight()+inset;
+		atrsp = new JPanel();
+		atrsp.setOpaque(false);
+		atrsp.setLayout(null);
+		attrPanel.add(atrsp);
+		atrsp.setBounds(x, y,294,inset*4+(fontSize+inset)*4);
+		UICtrl.setBorder(atrsp, "特殊属性", Color.blue, new Font("隶书",Font.PLAIN,16));
 		length = C.spAttr.length;
 		x = inset*2 ;
 		y = fontSize+inset*3 ;
 		for (int i = 0; i < length; i++) {
-			attrLabel = new AttrLabel(C.spAttr[i]+":",Color.black);
-			spAttrV[i] = new AttrLabel("100000");
-			SPP.add(attrLabel);
-			SPP.add(spAttrV[i]);
+			attrLabel = new Fid(C.spAttr[i]+":",Color.black);
+			spAttrV[i] = new Fid("100000");
+			atrsp.add(attrLabel);
+			atrsp.add(spAttrV[i]);
 			attrName = C.spAttr[i].length()*fontSize+fontSize/2;
 			if(i==2){
 				x = inset*2 ;
@@ -467,19 +473,32 @@ public class PlayerPanel extends JPanel {
 		}
 	}
 	
+	
+	public void posInit() {
+		Map<String,ItemMd> maps = initItemMds();
+		PosUtil.add(atr1, maps.get("tipo"));
+	}
 	/** 为属性字段而创建的 */
-	class AttrLabel extends JLabel{
+	class Fid extends JLabel{
 		private static final long serialVersionUID = 1L;
-		public AttrLabel(String text) {
+		public Fid(String text) {
 			super(text);
 			setForeground(Color.blue);
-			setFont(font);
+			setFont(C.Y_M);
 		}
-		public AttrLabel(String text,Color color) {
+		public Fid(String text,Color color) {
 			super(text);
 			setForeground(color);
-			setFont(font);
+			setFont(C.Y_M);
 		}
+		
+		public Fid AsAttrFid(String text) {
+			Fid fid = new Fid(text);
+			attrPanel.add(fid);
+			return fid ;
+		}
+		
+		
 	}
 	
 	ActionListener jump = new ActionListener() {
@@ -497,11 +516,10 @@ public class PlayerPanel extends JPanel {
 						equipPanel.setVisible(true);
 						equipPanel.setBounds(0, 0, 303, 410);
 						/** 重置拖动按钮  */
-						drugBu.load(22);
 						drugBu.setBounds(0, 394, 40, 26);
 						/** 重新设置背景图 */
-						ImageIcon img = IoCtrl.loadImageIcon("/game/img/back/equipAndGong.png");
-						back.setIcon(img);
+						backImg.asImgLabel("equipAndGong.png");
+						//ImageIcon img = IoCtrl.loadImageIcon("/game/img/back/equipAndGong.png");
 						parent.repaint();
 					}else{
 						jumpBu.setActionCommand("attr");
@@ -516,7 +534,7 @@ public class PlayerPanel extends JPanel {
 						drugBu.setBounds(8, 378, 64, 40);
 						/** 重新设置背景图 */
 						ImageIcon img = IoCtrl.loadImageIcon("/game/img/back/attrAndGong.png");
-						back.setIcon(img);
+						backImg.setIcon(img);
 						parent.repaint();
 					}
 				}
@@ -546,6 +564,56 @@ public class PlayerPanel extends JPanel {
 		equipAddV[16].setText(addAttrs.mpEd+"");
 		equipAddV[17].setText(addAttrs.atkEd+"");
 		equipAddV[18].setText(addAttrs.defEd+"");
+	}
+	
+	public static void main(String[] args) {
+		QuickFrame qf = new QuickFrame();
+		PlayerPanel pp = new PlayerPanel(new PicBu("", 0), null);
+		qf.getMainPanel().add(pp);
+		pp.setLocation(0, 0);
+		qf.start();
+	}
+	
+	public Map<String,ItemMd> initItemMds(){
+		Map<String,ItemMd> itemMds = new HashMap<>();
+		ItemMd name = ItemMd.asSingleItem("暂无尊号", Color.ORANGE);
+		
+		/*
+		 * ItemMd tipo = new ItemMd("体魄", ""); ItemMd jingshen = new ItemMd("精神", "");
+		 * ItemMd bili = new ItemMd("臂力", ""); ItemMd gengu = new ItemMd("根骨", "");
+		 * ItemMd minjie = new ItemMd("敏捷", ""); ItemMd wuxing = new ItemMd("悟性", "");
+		 * ItemMd meili = new ItemMd("魅力", ""); ItemMd xingyun = new ItemMd("幸运", "");
+		 */
+		/** 一级属性 */
+		itemMds.put("tipo", new ItemMd("体魄", "").size(45, 90));
+		itemMds.put("jingshen", new ItemMd("精神", "").size(45, 90));
+		itemMds.put("bili", new ItemMd("臂力", "").size(45, 90));
+		itemMds.put("gengu", new ItemMd("根骨", "").size(45, 90));
+		itemMds.put("minjie", new ItemMd("敏捷", "").size(45, 90));
+		itemMds.put("wuxing", new ItemMd("悟性", "").size(45, 90));
+		itemMds.put("meili", new ItemMd("魅力", "").size(45, 90));
+		itemMds.put("xingyun", new ItemMd("幸运", "").size(45, 90));
+		
+		/** 二级属性 */
+		itemMds.put("hp", new ItemMd("生命值", "").size(45, 90));
+		itemMds.put("mp", new ItemMd("法力值", "").size(45, 90));
+		itemMds.put("atk", new ItemMd("攻击力", "").size(45, 90));
+		itemMds.put("def", new ItemMd("防御力", "").size(45, 90));
+		itemMds.put("baoji", new ItemMd("暴击率", "").size(45, 90));
+		itemMds.put("hit", new ItemMd("命中率", "").size(45, 90));
+		itemMds.put("dodge", new ItemMd("闪避率", "").size(45, 90));
+		
+		/** 特殊属性 */
+		itemMds.put("suck", new ItemMd("吸血率", "").size(45, 90));
+		itemMds.put("expAdd", new ItemMd("经验加成", "").size(45, 90));
+		itemMds.put("atkAdd", new ItemMd("攻击加成", "").size(45, 90));
+		itemMds.put("defAdd", new ItemMd("防御加成", "").size(45, 90));
+		itemMds.put("hpAdd", new ItemMd("经验加成", "").size(45, 90));
+		itemMds.put("mpAdd", new ItemMd("防御加成", "").size(45, 90));
+		itemMds.put("baodmgAdd", new ItemMd("爆伤加成", "").size(45, 90));
+		
+		
+		return itemMds ;
 	}
 	
 }

@@ -263,9 +263,11 @@ public class EnterFrame extends JFrame{
 		{
 			super.paintComponents(g);
 			g.drawImage(img.getImage(),0,0,this.getWidth(),this.getHeight(),this);
-			
 		}
 	}
 	
+	public void start() {
+		setVisible(true);
+	}
 	
 }
