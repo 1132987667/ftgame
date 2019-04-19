@@ -1,51 +1,138 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <root>
-	<!-- <item type=""> <id></id> <name>蓝色锦囊</name> 
-		<des>一个用金丝编成的锦囊，似乎可以打开。</des> <type></type> 
-		<action> <ac type="use"> msg:你擦了擦额头的汗水，迫不及待地用颤抖的双手打开了锦囊。哇！！你被奖励了exp点经验,money金钱。| 
-		exp = 2500 + random(2500); pot = 350 + random(350); 
-		score = 35 + random(25); </ac> </action> 
-		</item> <item type=""> <id></id> <name>红色锦囊</name> 
-		<des></des> <type></type> <action> </action> 
-		</item> <item type=""> <id></id> <name>金色锦囊</name> 
-		<des></des> <type></type> <action> </action> 
-		</item> <item type=""> <id></id> <name>白色锦囊</name> 
-		<des></des> <type></type> <action> </action> 
-		</item> <item type=""> <id></id> <name>紫色锦囊</name> 
-		<des></des> <type></type> <action> </action> 
-		</item> <item type=""> <id></id> <name>青色锦囊</name> 
-		<des></des> <type></type> <action> </action> 
-		</item> <item type=""> <id></id> <name>不老丹</name> 
-		<des>一丸传说中的不老神丹</des> <type></type> <action> 
-		</action> </item> <item type=""> <id></id> 
-		<name>醉仙楼菜谱</name> <des>一本醉仙楼菜谱</des> <type></type> 
-		<action> </action> </item> <item type=""> 
-		<id></id> <name>刺杀令</name> <des>一块血迹斑斑的令牌。</des> 
-		<type></type> <action> </action> </item> 
+	<item type="" id="6001" name="锦囊"> 
+		<des>一个用金丝编成的锦囊，似乎可以打开。</des>
+		<acs>
+			<ac type="use" name="使用" value="$say:你擦了擦额头的汗水，迫不及待地用颤抖的双手打开了锦囊。哇！！你被奖励了$exp;点经验,$money;金钱。$value:"> 
+			</ac> 
+		</acs>
+		<!-- exp = 2500 + random(2500); pot = 350 + random(350); 
+			 score = 35 + random(25);  --> 
+	</item> 
+	<item type="" id="6002" name="红色锦囊"> <!-- 金色,白色,紫色,青色 -->
+		<des></des> 
+		<acs></acs> 
+	</item>
+	<item type="" id="6003"  name="不老丹">
+		<des>一丸传说中的不老神丹</des>
+		<acs>
+			<ac type="" name=""  value="" />
+		</acs>
+	</item> 
+	<item type="" id="6004"  name="醉仙楼菜谱">
+		<des>一本醉仙楼菜谱</des>
+		<acs>
+			<ac type="" name="领悟"  value="" />
+		</acs>
+	</item> 
+	<item type="" id="6005"  name="刺杀">
+		<des>一块血迹斑斑的令牌。</des>
+		<acs>
+			<ac type="" name="领悟"  value="" />
+		</acs> 
+	</item>	
+	<item type="" id="6006"  name="猴儿酒"> 
+		<des>一个翠绿色的酒葫芦，隐隐之中泛出柔和的光晕，里面盛满了猴儿酒。</des> 
+		<acs>
+			<ac type="use" name="饮用"  value="$use" />
+		</acs>
+	</item>
+	<item type="" id="6007"  name="太平灯笼"> 
+		<des>这是郝生意请巧匠专做的太平灯笼，狼山虽说地远风急，但这灯笼却从不熄灭，端是精巧。</des>
+		<acs>
+			<ac type="open" name="点亮"  value="$你掏出一个太平灯笼,点亮了灯芯。" />
+			<ac type="search" name="搜索"  value="" />
+		</acs> 
+	</item>
+	<item type="" id="6008"  name="夜明珠"> 
+		<des>一颗淡青色的小珠子，在黑暗静静的散发着柔和的光芒，就象是情人的眼睛。那么的美丽，那么的动人。</des> 
+		<acs>
+			<ac type="resolve" name="碾碎"  value="$get;明月粉" />
+		</acs> 
+	</item>
+	<item type="" id="6009"  name="悬赏">
+		<des>近日乡镇$name内时常有猛兽出没，滋挠百姓。兹派遣民间义士协助官府捉拿，以保百姓平安,另有赏金若干。 </des>
+		<acs>
+			<ac type="accept" name="揭下"  value="$say;你揭下了悬赏。" />
+		</acs>  
+	</item>
+	
+	<item type="" id="6010"  name="粗糙的瓦罐">
+		<des>一个粗糙的陶制瓦罐，里面种着一朵小花。底下压着一本旧书。</des>
+		<ac>
+			<e type="open" name="搬起" value="$show:id:60002:1" />
+		</ac>
+	</item>	
+	<item type="" id="6011"  name="基本吐纳">
+		<des>这是一本发黄的旧书，书被压出了褶皱，上面还有干了的泥土。</des>
+		<ac>
+			<e type="use" name="参悟" value="$learn" />
+		</ac>
+	</item>	
+	
+	<item type="" id="6012"  name="云水令牌">
+		<des>一枚令牌,上绘蟠龙森然,下描云水激荡,有莫名光凝成银眸,微微睁开一线,俯视天穹.</des>
+		<ac>
+			<e type="search" name="探查" value="$get:id:60002:1" />
+		</ac>
+	</item>	
+
+	
+	<item type="" id="6013" name="草莓">
+		<des>一颗鲜红硕大的草莓。</des>
+		<ac>
+			<e type="use" name="食用" value="$get:id:60002:1" />
+		</ac>
+	</item>
+	<item type="" id="6014" name="木柴">
+		<des>这是一捆木柴。</des>
+	</item>
+	<item type="" id="6015" name="蛇胆粉">
+		<des>这是疗伤的『蛇胆粉』。</des>
+		<!-- $N吃下一包蛇胆粉，顿觉真气上涌，精神好了些。 -->
+		<ac>
+			<e type="use" name="食用" value="" />
+		</ac>
+	</item>
+	<item type="" id="6016" name="金蛇胆">
+		<des>这是一只黄灿灿的金蛇胆，是制备『蛇胆膏』的原料。</des>
+	</item>
+	<item type="" id="6017" name="钥匙">
+		<des>这是一把普通的铜钥匙。</des>
+	</item>
+	<item type="" id="6018" name="青蛇胆">
+		<des>这是一只绿莹莹的青蛇胆，是制备『蛇胆膏』的原料。</des>
+	</item>
+	<item type="" id="6019" name="蛇胆膏">
+		<des>这是珍贵补品『蛇胆膏』。</des>
+	</item>
+	<item type="" id="6020" name="木柴">
+		<des>$N吃下一块蛇胆膏，顿觉一股浩荡真气直涌上来，精，气大增...
+		</des>
+	</item>
+	<item type="" id="40000" name="馒头">
+		<des>这是一个大馒头。</des>
+	</item>
+
+
+	<!--    
 		<item type=""> <id></id> <name>天缺古月寒</name> 
 		<des>江湖传言，每逢月圆之时，石观音都会把自己和这把刀独自关在屋中。据屋中会传来悲苍的歌声，曲调极其古怪，只是觉的仿佛天地间所有的悲伤，苍凉，哀怨， 
 		痛苦，惆怅，渴求，无奈都一齐涌上心头。</des> <type></type> <action> 
-		</action> </item> <item type=""> <id></id> 
-		<name>猴儿酒</name> <des>一个翠绿色的酒葫芦，隐隐之中泛出柔和的光晕，里面盛满了猴儿酒。</des> 
-		<type></type> <action> </action> </item> 
+		</action> </item>  
 		<item type=""> <id></id> <name>狂生曲谱</name> 
 		<des>一本狂生曲曲谱。</des> <type></type> <action> 
-		</action> </item> <item type=""> <id></id> 
-		<name>太平灯笼</name> <des>这是郝生意请巧匠专做的太平灯笼，狼山虽说地远风急，但这灯笼却从不熄灭，端是精巧。</des> 
-		<type></type> <action> <ac type="use"> 你掏出一个太平灯笼,点亮了灯芯。 
-		</ac> </action> </item> <item type=""> <id></id> 
+		</action> </item>  <item type=""> <id></id> 
 		<name>逍遥紫袍</name> <des>逍遥侯家传之宝。当年逍遥侯的爷爷，在天山天池边上捉到一只千年冰蚕，被做成一件紫色的袍子，紫袍穿在身上冬暖夏凉，刀枪不入，还可以驱除瘴气。 
 		</des> <type></type> <action> </action> </item> 
-		<item type=""> <id></id> <name>夜明珠</name> 
-		<des>一颗淡青色的小珠子，在黑暗静静的散发着柔和的光芒，就象是情人的眼睛。那么的美丽，那么的动人。</des> 
-		<type></type> <action> </action> </item> 
-		<item type=""> <id></id> <name>踏月飘香扇</name> 
+		<item type="" id="6008"  name="踏月飘香扇">
 		<des>这是柄相当雅致的折扇，扇骨描金，扇面洋洋洒洒写着『踏月而来』四字狂草，隐约散发着缥缈的郁金花香</des> 
-		<type></type> <action> </action> </item> 
-		<item type=""> <id></id> <name>棋盘</name> 
-		<des>弈者对垒，“三尺之局兮作战场”，投子于枰，布阵列势，宛若将帅在 调动兵马，布置攻防。然而棋子毕竟是没有生命力的静物，阵列于纵横 
-		十九的棋盘上，竟然能生出无穷玄奥的变化来，所以竟有称棋局为“鬼 阵”者。</des> 
-		<type></type> <action> </action> </item> 
+		<acs>
+			<ac type="resolve" name="碾碎"  value="$get;明月粉" />
+		</acs> 
+		</item> 
+		 
+		 
 		<item type=""> <id></id> <name>五罗轻烟帕</name> 
 		<des>一块约莫四尺见方的白缎手帕，四角上都绣著一朵红花。花红欲滴，每朵花旁都衬著一张翠绿色的叶子，迎着微风，不住地抖动。</des> 
 		<type></type> <action> </action> </item> 
@@ -58,9 +145,7 @@
 		居然奇迹般的愈合了！ </action> </item> <item type=""> 
 		<id></id> <name>无剑心法</name> <des>一本破旧，字迹模糊的书。</des> 
 		<type></type> <action> </action> </item> 
-		<item type=""> <id></id> <name>告示</name> 
-		<des> 长安府公函 近日长安城内时有盗贼出没，滋挠百姓。兹派遣民间义士协助官府巡城捉盗，以保太平。 
-		</des> <type></type> <action> </action> </item> 
+		 
 		<item type=""> <id></id> <name>告示</name> 
 		<des>近日长安城内时有猛兽出没，伤及百姓。兹派遣民间义士协助官府剿杀猛兽，以保太平</des> 
 		<type></type> <action> </action> </item> 
@@ -157,79 +242,5 @@
 		<item type=""> <id></id> <name>虚之水精石</name> 
 		<des></des> <type></type> <action> </action> 
 		</item> -->
-	<item type="" id="60001"  name="瓦罐">
-		<des>一个粗糙的陶制瓦罐，里面种着一朵小花。底下压着一本旧书。</des>
-		<ac>
-			<e type="show" name="搬起" value="$show:id:60002:1" />
-		</ac>
-	</item>	
-	<item type="" id="60002"  name="基本吐纳">
-		<des>这是一本发黄的旧书，书被压出了褶皱，上面还有干了的泥土。</des>
-		<ac>
-			<e type="get" name="拾起" value="$get:id:60002:1" />
-		</ac>
-	</item>	
 	
-	
-	<item type="" id="60003"  name="金丝环佩">
-		<des>此物用金丝线结成花珠,间以珠玉,宝石,钟玲,贯串成列,小巧而精致,上面还有奇异文字,弯曲若羊角,了不可识! </des>
-		<ac>
-			<e type="get" name="拾起" value="$get:id:60002:1" />
-		</ac>
-	</item>	
-	<item type="" id="60004"  name="一枚令牌">
-		<des>一枚令牌,上绘蟠龙森然,下描云水激荡,有莫名光凝成银眸,微微睁开一线,俯视天穹.</des>
-		<ac>
-			<e type="get" name="探查" value="$get:id:60002:1" />
-		</ac>
-	</item>	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	<item type="" id="" name="草莓">
-		<des>一颗鲜红硕大的草莓。</des>
-		<effStr></effStr>
-	</item>
-	<item type="" id="" name="木柴">
-		<des>这是一捆木柴。</des>
-	</item>
-	<item type="" id="" name="蛇胆粉">
-		<des>这是疗伤的『蛇胆粉』。</des>
-		<!-- $N吃下一包蛇胆粉，顿觉真气上涌，精神好了些。 -->
-	</item>
-	<item type="" id="" name="金蛇胆">
-		<des>这是一只黄灿灿的金蛇胆，是制备『蛇胆膏』的原料。</des>
-	</item>
-	<item type="" id="" name="钥匙">
-		<des>这是一把普通的铜钥匙。</des>
-	</item>
-	<item type="" id="" name="青蛇胆">
-		<des>这是一只绿莹莹的青蛇胆，是制备『蛇胆膏』的原料。</des>
-	</item>
-	<item type="" id="" name="蛇胆膏">
-		<des>这是珍贵补品『蛇胆膏』。</des>
-	</item>
-	<item type="" id="" name="木柴">
-		<des>$N吃下一块蛇胆膏，顿觉一股浩荡真气直涌上来，精，气大增...
-		</des>
-	</item>
-	<item type="" id="40000" name="馒头">
-		<des>这是一个大馒头。</des>
-	</item>
-	<item type="" id="" name="木柴">
-		<des>这是一捆木柴。</des>
-	</item>
-	<item type="" id="" name="木柴">
-		<des>这是一捆木柴。</des>
-	</item>
-	<item type="" id="" name="木柴">
-		<des>这是一捆木柴。</des>
-	</item>
 </root>

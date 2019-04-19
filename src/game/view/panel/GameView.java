@@ -12,6 +12,7 @@ import game.listener.actionLner.FixBuLner;
 import game.utils.C;
 import game.utils.SUtils;
 import game.view.button.MButton;
+import game.view.frame.QuickFrame;
 import game.view.ui.Field;
 /**
  * 进行游戏的主要界面
@@ -279,7 +280,13 @@ public class GameView extends JPanel{
 		return sceneBuY;
 	}
 	
-	
+	public static void main(String[] args) {
+		QuickFrame qf = new QuickFrame();
+		GameView attrModule =  new GameView();
+		System.out.println(attrModule.getWidth()+":"+attrModule.getHeight());
+		qf.getMainPanel().add(attrModule);
+		qf.start();
+	}
 	
 	
 	

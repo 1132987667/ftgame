@@ -1,0 +1,41 @@
+<item type="" id="60003"  name="金丝环佩">
+	<des>此物用金丝线结成花珠,间以珠玉,宝石,钟玲,贯串成列,小巧而精致,上面还有奇异文字,弯曲若羊角,了不可识! </des>
+	<acs>
+		<ac type="get" name="拾起"  value="$get:id:60002:1" />
+	</acs>
+</item>	
+
+
+
+<item type="" id=""  name="">
+	<acs>
+		<ac type="" name=""  value="" />
+	</acs>
+	
+<equip id="7001" name="" part="0" kind="">
+
+	
+动作列表
+使用: use  使用消耗品
+开启: open 开门, 点亮
+搜索: search	
+分解: resolve
+接受任务: accept
+学习: learn 领悟
+
+
+武器种类
+1 刀
+2 剑
+3
+4
+5
+6
+7
+
+<npc id="" name="" race="" >
+acs
+died: 死亡
+
+
+
